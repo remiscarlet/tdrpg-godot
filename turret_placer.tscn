@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jbv6vlititdl"]
+
+[ext_resource type="Script" uid="uid://b2iqeiwgpw5a0" path="res://turret_placer.gd" id="1_5a4xx"]
+
+[node name="TurretPlacer" type="Node2D"]
+script = ExtResource("1_5a4xx")
