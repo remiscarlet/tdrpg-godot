@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=4 format=3 uid="uid://d1dkm5wl0f3w6"]
 
-[ext_resource type="PackedScene" uid="uid://bkb8rs7ot2v7e" path="res://projectile.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bk852keqsruur" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://turret_system.gd" id="3_h2yge"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_h2yge")
+player_scene = ExtResource("2_h2yge")
 
-[node name="Projectile" parent="." instance=ExtResource("1_0xm2m")]
+[node name="TurretSystem" type="Node" parent="."]
+script = ExtResource("3_h2yge")
 
-[node name="Player" parent="." instance=ExtResource("2_h2yge")]
-position = Vector2(136, 48)
+[node name="TurretContainer" type="Node2D" parent="TurretSystem"]
+
+[node name="Players" type="Node" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk852keqsruur"]
+[gd_scene load_steps=8 format=3 uid="uid://bk852keqsruur"]
 
 [ext_resource type="Texture2D" uid="uid://bh1s3wifopmlw" path="res://img/Player-Sheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://turret_placer.tscn" id="3_i3pqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -40,3 +41,5 @@ frame_progress = 0.2851108
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sweqy")
+
+[node name="TurretPlacer" parent="." instance=ExtResource("3_i3pqv")]

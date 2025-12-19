@@ -7,3 +7,5 @@ var MOVE_DOWN = "move_down"
 
 var TURRET_KEY = "turret"
 var CONFIRM = "confirm"
+
+var LONG_PRESS_DURATION_SEC = 0.5
