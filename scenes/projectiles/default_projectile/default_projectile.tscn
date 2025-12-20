@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkb8rs7ot2v7e"]
 
-[ext_resource type="Texture2D" uid="uid://cegyukxtxu56y" path="res://img/projectile.png" id="1_a85iw"]
+[ext_resource type="Texture2D" uid="uid://cegyukxtxu56y" path="res://assets/projectile.png" id="1_xbght"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf0c"]
 radius = 2.0
 height = 8.0
 
-[node name="Projectile" type="Area2D"]
+[node name="DefaultProjectile" type="Area2D"]
 rotation = 3.1415927
 metadata/_edit_group_ = true
 
@@ -15,4 +15,4 @@ shape = SubResource("CapsuleShape2D_qxf0c")
 
 [node name="Projectile" type="Sprite2D" parent="."]
 scale = Vector2(0.792, 1)
-texture = ExtResource("1_a85iw")
+texture = ExtResource("1_xbght")

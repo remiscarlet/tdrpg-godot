@@ -15,7 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var is_pressed = Input.is_action_pressed(Const.TURRET_KEY)
-	
+
 	var short_press = false
 	var long_press_held = false
 	var long_press_released = false
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	Long press Held: Hold longer than 500ms
 	Long Press Released: Long press released this frame
 	"""
-	
+
 	# Pre process
 	if is_pressed:
 		if was_pressed_last_iter:
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 		request_build_turret()
 	elif long_press_held:
 		configure_turret()
-	
+
 	# Post process
 	if is_pressed:
 		was_pressed_last_iter = true
@@ -67,13 +67,13 @@ func configure_turret() -> void:
 	# Allows modifying the "settings" at which request_build_turret() will atetmpt to build
 	# a turret with. Eg, turret type, modifiers, etc
 	pass
-	
+
 func get_turret_scene() -> PackedScene:
 	# TODO: Multi turret selection
 	return turret1_scene
-	
+
 func request_build_turret() -> void:
 	var turret_scene = get_turret_scene()
 	var world_pos = global_position
-	
+
 	place_turret_requested.emit(world_pos, turret_scene)

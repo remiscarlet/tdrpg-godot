@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1dkm5wl0f3w6"]
+
+[ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/main/main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bk852keqsruur" path="res://scenes/player/player.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dgknbvfaky0qr" path="res://game/systems/projectile_system.gd" id="4_1bvp3"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_h2yge")
+player_scene = ExtResource("2_h2yge")
+
+[node name="TurretSystem" type="Node" parent="."]
+script = ExtResource("3_h2yge")
+
+[node name="TurretContainer" type="Node2D" parent="TurretSystem"]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="ProjectileSystem" type="Node" parent="."]
+script = ExtResource("4_1bvp3")
+
+[node name="ProjectileContainer" type="Node2D" parent="ProjectileSystem"]

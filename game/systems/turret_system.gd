@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 
 func try_build_turret(player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
 	print("Trying to build turret")
+
 	var turret: Node = turret_scene.instantiate()
 	turret_container.add_child(turret)
 	turret.global_position = world_pos
+	# turret.spawn_projectile.connect()

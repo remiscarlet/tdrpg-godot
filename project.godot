@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Const="*res://constants.gd"
+Const="*res://game/constants.gd"
 
 [input]
 
