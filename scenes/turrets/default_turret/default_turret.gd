@@ -1,17 +1,30 @@
 extends Area2D
 
-signal spawn_projectile(world_pos: Vector2, projectile_scene: PackedScene)
 
-@export var projectile: PackedScene
+var projectile_system: ProjectileSystem
+var projectile_scene: PackedScene = preload("res://scenes/projectiles/default_projectile/default_projectile.tscn")
 @onready var shot_timer: Timer = $ShotDelayTimer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	shot_timer.timeout.connect(fire_turret)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+
 func fire_turret() -> void:
-	spawn_projectile.emit(global_position, projectile)
+	var ctx = ProjectileSpawnContext.new(global_position)
+	ctx.direction = _get_target_pos()
+	projectile_system.spawn(projectile_scene, ctx)
+
+
+func init(projectile_system_: ProjectileSystem) -> void:
+	projectile_system = projectile_system_
+
+
+func _get_target_pos() -> Vector2:
+	return MouseUtils.get_dir_to_mouse(self)

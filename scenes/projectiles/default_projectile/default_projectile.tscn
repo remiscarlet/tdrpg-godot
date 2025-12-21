@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkb8rs7ot2v7e"]
+[gd_scene load_steps=4 format=3 uid="uid://bkb8rs7ot2v7e"]
 
+[ext_resource type="Script" uid="uid://c1mfdfsy265ja" path="res://game/projectile/projectile_base.gd" id="1_ro1o5"]
 [ext_resource type="Texture2D" uid="uid://cegyukxtxu56y" path="res://assets/projectile.png" id="1_xbght"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf0c"]
@@ -8,6 +9,8 @@ height = 8.0
 
 [node name="DefaultProjectile" type="Area2D"]
 rotation = 3.1415927
+script = ExtResource("1_ro1o5")
+metadata/_custom_type_script = "uid://c1mfdfsy265ja"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

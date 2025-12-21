@@ -1,19 +1,21 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // VS Code Run/Debug configuration for Godot
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "name": "Launch Godot (run project)",
             "type": "godot",
             "request": "launch",
             "project": "${workspaceFolder}",
+            "editor_path": "/Applications/Godot.app/Contents/MacOS/Godot",
+            // Debug server address/port (used by the debugger adapter)
             "address": "127.0.0.1",
             "port": 6007,
-            "scene": "main|current|pinned|<path>",
-            "editor_path": "<path>",
-            // engine command line flags
+            // Which scene to run. Use "current" to run the currently-open scene in the editor,
+            // or a resource path like "res://scenes/main/main.tscn". Leave out to use project settings.
+            "scene": "current",
+
+            // Engine command line flags / debug options
             "profiling": false,
             "single_threaded_scene": false,
             "debug_collisions": false,
@@ -25,9 +27,19 @@
             "time_scale": 1.0,
             "disable_vsync": false,
             "fixed_fps": 60,
-            // anything else
-            "additional_options": ""
-        }
 
+            // Additional CLI options passed to Godot (string). Example: "--verbose"
+            "additional_options": ""
+        },
+
+        {
+            "name": "Attach to running Godot",
+            "type": "godot",
+            "request": "attach",
+            // Connect to a running Godot instance. Make sure the running game/editor has the debugger enabled
+            // and is listening on this port (default 6007).
+            "address": "127.0.0.1",
+            "port": 6007
+        }
     ]
 }
