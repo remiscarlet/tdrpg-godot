@@ -2,22 +2,18 @@ extends Node2D
 
 var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
 
-@onready var players: Node = $Players
-@onready var turret_system: Node = $TurretSystem
-@onready var projectile_system: Node = $ProjectileSystem
+@onready var combatants_container: Node = $Combatants/CombatantsContainer
+@onready var turret_system: TurretSystem = $TurretSystem
+@onready var projectile_system: ProjectileSystem = $ProjectileSystem
+@onready var combatant_system: CombatantSystem = $CombatantSystem
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     spawn_player()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
-
 func spawn_player() -> void:
-    var player := player_scene.instantiate()
-    player.init(projectile_system)
-    players.add_child(player)
+    var ctx = CombatantSpawnContext.new(global_position, projectile_system)
+    var player := combatant_system.spawn(player_scene, ctx) as Player
 
     var placer := player.get_node("TurretPlacer")
     placer.place_turret_requested.connect(

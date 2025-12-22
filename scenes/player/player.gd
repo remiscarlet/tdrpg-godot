@@ -1,13 +1,8 @@
-extends Area2D
+class_name Player
+extends CombatantBase
 
 @export var speed = 400
 var screen_size: Vector2
-
-var projectile_system: ProjectileSystem
-var projectile_scene: PackedScene = preload("res://scenes/projectiles/default_projectile/default_projectile.tscn")
-
-func init(projectile_system_: ProjectileSystem) -> void:
-	projectile_system = projectile_system_
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

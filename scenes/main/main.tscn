@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=5 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/main/main.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/world/turret_system.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://dgknbvfaky0qr" path="res://game/world/projectile_system.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://lei1d620d8vg" path="res://game/world/combatant_system.gd" id="4_l3cfh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h2yge")
@@ -12,9 +13,12 @@ script = ExtResource("3_h2yge")
 
 [node name="TurretContainer" type="Node2D" parent="TurretSystem"]
 
-[node name="Players" type="Node" parent="."]
-
 [node name="ProjectileSystem" type="Node" parent="."]
 script = ExtResource("4_1bvp3")
 
 [node name="ProjectileContainer" type="Node2D" parent="ProjectileSystem"]
+
+[node name="CombatantSystem" type="Node" parent="."]
+script = ExtResource("4_l3cfh")
+
+[node name="CombatantsContainer" type="Node2D" parent="CombatantSystem"]

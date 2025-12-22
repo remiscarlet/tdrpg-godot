@@ -12,6 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# Signal handler pattern
 func try_build_turret(player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
 	print("Trying to build turret")
 	print(projectile_system)
