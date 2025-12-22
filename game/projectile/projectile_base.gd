@@ -1,7 +1,7 @@
 class_name ProjectileBase
 extends Area2D
 
-@export var speed: float = 800.0
+@export var speed: float = 600.0
 @export var damage: float = 10.0
 @export var lifetime_s: float = 3.0
 
@@ -12,9 +12,12 @@ func _ready() -> void:
     _time_left = lifetime_s
 
 func configure(ctx: ProjectileSpawnContext) -> void:
+    var direction = ctx.direction.normalized()
+
     # Default behavior: linear shot using direction
     global_position = ctx.origin
-    _velocity = ctx.direction.normalized() * speed
+    _velocity = direction * speed
+    rotation = direction.angle()
 
     # Optional tagging (useful for “delete all fire projectiles” mechanics)
     add_to_group(&"projectiles")

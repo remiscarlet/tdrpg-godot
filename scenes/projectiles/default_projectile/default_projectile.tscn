@@ -1,21 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkb8rs7ot2v7e"]
 
 [ext_resource type="Script" uid="uid://c1mfdfsy265ja" path="res://game/projectile/projectile_base.gd" id="1_ro1o5"]
-[ext_resource type="Texture2D" uid="uid://cegyukxtxu56y" path="res://assets/projectile.png" id="1_xbght"]
+[ext_resource type="Texture2D" uid="uid://bmj1t1pye2yv7" path="res://assets/Projectile.png" id="2_ro1o5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf0c"]
-radius = 2.0
-height = 8.0
+radius = 3.0
+height = 12.0
 
 [node name="DefaultProjectile" type="Area2D"]
-rotation = 3.1415927
 script = ExtResource("1_ro1o5")
 metadata/_custom_type_script = "uid://c1mfdfsy265ja"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 4.712389
 shape = SubResource("CapsuleShape2D_qxf0c")
 
 [node name="Projectile" type="Sprite2D" parent="."]
-scale = Vector2(0.792, 1)
-texture = ExtResource("1_xbght")
+texture = ExtResource("2_ro1o5")
