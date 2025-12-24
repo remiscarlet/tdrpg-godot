@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxve5e74iaonb"]
+
+[ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_3omnk"]
+[ext_resource type="Texture2D" uid="uid://bke2cy0xibcmx" path="res://assets/Default-Enemy.png" id="1_v1h8l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7fhhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v1h8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3omnk"]
+radius = 14.0
+
+[node name="DefaultEnemy" type="Area2D"]
+script = ExtResource("1_3omnk")
+metadata/_custom_type_script = "uid://dcwrtcbw0mhlo"
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7fhhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3omnk")

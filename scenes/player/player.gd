@@ -1,4 +1,3 @@
-class_name Player
 extends CombatantBase
 
 @export var speed = 400
@@ -16,24 +15,27 @@ func _process(delta: float) -> void:
 		_handle_fire()
 
 func _handle_move(delta: float) -> void:
-	var velocity = Vector2.ZERO
+	print("Moving?")
+	var move_dir = Vector2.ZERO
 
 	if Input.is_action_pressed(Const.MOVE_DOWN):
-		velocity.y += 1
+		move_dir.y += 1
 	if Input.is_action_pressed(Const.MOVE_UP):
-		velocity.y -= 1
+		move_dir.y -= 1
 	if Input.is_action_pressed(Const.MOVE_LEFT):
-		velocity.x -= 1
+		move_dir.x -= 1
 	if Input.is_action_pressed(Const.MOVE_RIGHT):
-		velocity.x += 1
+		move_dir.x += 1
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	if move_dir.length() > 0:
+		velocity = move_dir.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
+		velocity = Vector2.ZERO
 		$AnimatedSprite2D.stop()
 
-	position += velocity * delta
+	move_and_slide()
+
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 # var last_fired: float = Time.get_unix_time_from_system()
@@ -47,7 +49,7 @@ func _handle_fire() -> void:
 	if not _can_fire(0.1):
 		return
 
-	var ctx := ProjectileSpawnContext.new(global_position)
+	var ctx := ProjectileSpawnContext.new(self, global_position)
 	ctx.direction = MouseUtils.get_dir_to_mouse(self)
 
 	projectile_system.spawn(projectile_scene, ctx)

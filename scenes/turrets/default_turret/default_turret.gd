@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 
 func fire_turret() -> void:
-	var ctx = ProjectileSpawnContext.new(global_position)
+	var ctx = ProjectileSpawnContext.new(self, global_position)
 	ctx.direction = _get_target_pos()
 	projectile_system.spawn(projectile_scene, ctx)
 

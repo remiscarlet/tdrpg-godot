@@ -3,14 +3,6 @@ extends Node
 
 @onready var projectiles_container: Node2D = $ProjectileContainer
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-    pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
-
 func spawn(projectile_scene: PackedScene, ctx: ProjectileSpawnContext) -> ProjectileBase:
     var node := projectile_scene.instantiate()
     var projectile := node as ProjectileBase

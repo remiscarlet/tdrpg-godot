@@ -1,46 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk852keqsruur"]
+[gd_scene load_steps=9 format=3 uid="uid://vamxhibttxff"]
 
-[ext_resource type="Texture2D" uid="uid://bh1s3wifopmlw" path="res://assets/Player-Sheet.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://scenes/player/turret_placer/turret_placer.tscn" id="3_i3pqv"]
+[ext_resource type="Shape2D" uid="uid://b3uqnhb4doph2" path="res://scenes/player/player_shape.tres" id="3_p47bc"]
+[ext_resource type="Texture2D" uid="uid://bh1s3wifopmlw" path="res://assets/Player-Sheet.png" id="4_p47bc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
-atlas = ExtResource("1_4flbx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
+atlas = ExtResource("4_p47bc")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
+atlas = ExtResource("4_p47bc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_onrkg")
+"texture": SubResource("AtlasTexture_75vfm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i3pqv")
+"texture": SubResource("AtlasTexture_0owmy")
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
-radius = 11.0
+[node name="Player" instance=ExtResource("1_dovo2")]
+script = ExtResource("2_gmlin")
+speed = 400
 
-[node name="Player" type="Area2D"]
-script = ExtResource("1_onrkg")
-speed = 250
-metadata/_custom_type_script = "uid://dcwrtcbw0mhlo"
-metadata/_edit_group_ = true
+[node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
+shape = ExtResource("3_p47bc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_hqtel")
-frame = 1
-frame_progress = 0.2851108
+[node name="CollisionShape2D" parent="." index="2"]
+shape = ExtResource("3_p47bc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sweqy")
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_p47bc")
 
-[node name="TurretPlacer" parent="." instance=ExtResource("3_i3pqv")]
+[node name="TurretPlacer" parent="." index="4" instance=ExtResource("3_i3pqv")]
+
+[editable path="Hurtbox2DComponent"]

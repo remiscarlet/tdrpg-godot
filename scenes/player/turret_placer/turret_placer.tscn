@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://jbv6vlititdl"]
+[gd_scene load_steps=2 format=3 uid="uid://jbv6vlititdl"]
 
 [ext_resource type="Script" uid="uid://b2iqeiwgpw5a0" path="res://scenes/player/turret_placer/turret_placer.gd" id="1_5a4xx"]
-[ext_resource type="PackedScene" uid="uid://cvmiin27bmp6u" path="res://scenes/turrets/default_turret/default_turret.tscn" id="2_d3rj6"]
 
 [node name="TurretPlacer" type="Node2D"]
 script = ExtResource("1_5a4xx")
-turret1_scene = ExtResource("2_d3rj6")

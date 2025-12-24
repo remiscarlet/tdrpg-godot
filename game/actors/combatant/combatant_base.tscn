@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://btwq1cb3h7kwa"]
+
+[ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
+[ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox2d/hurtbox2d_component.tscn" id="2_dinay"]
+[ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
+[ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="4_dinay"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
+
+[node name="CombatantBase" type="CharacterBody2D"]
+script = ExtResource("1_nsc2i")
+metadata/_edit_group_ = true
+
+[node name="Hurtbox2DComponent" parent="." instance=ExtResource("2_dinay")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_dinay")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("4_dinay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nsc2i")
+
+[editable path="Hurtbox2DComponent"]
