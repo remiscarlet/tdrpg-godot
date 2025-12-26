@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 		_handle_fire()
 
 func _handle_move(delta: float) -> void:
-	print("Moving?")
 	var move_dir = Vector2.ZERO
 
 	if Input.is_action_pressed(Const.MOVE_DOWN):
@@ -45,8 +44,11 @@ func _can_fire(delay: float) -> bool:
 	var now: float = Time.get_unix_time_from_system()
 	return now >= _last_fired + delay
 
+func _get_fire_delay() -> float:
+	return 0.5
+
 func _handle_fire() -> void:
-	if not _can_fire(0.1):
+	if not _can_fire(_get_fire_delay()):
 		return
 
 	var ctx := ProjectileSpawnContext.new(self, global_position)

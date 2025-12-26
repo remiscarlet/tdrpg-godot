@@ -35,12 +35,12 @@ speed = 400
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("3_p47bc")
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 shape = ExtResource("3_p47bc")
 
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = SubResource("SpriteFrames_p47bc")
-
 [node name="TurretPlacer" parent="." index="4" instance=ExtResource("3_i3pqv")]
+
+[node name="AnimatedSprite2D" parent="." index="5"]
+sprite_frames = SubResource("SpriteFrames_p47bc")
 
 [editable path="Hurtbox2DComponent"]

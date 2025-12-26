@@ -11,9 +11,12 @@ func _ready() -> void:
     area_entered.connect(_on_area_entered)
 
 func _on_area_entered(other: Area2D) -> void:
+    print("Area entered!")
+    print(other)
     var proj := other as ProjectileBase
     if proj == null:
         # only handle Projectile collisions
+        print("Was null!")
         return
 
     var payload := proj.get_damage_payload()
