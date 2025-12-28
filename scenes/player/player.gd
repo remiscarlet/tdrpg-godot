@@ -40,12 +40,20 @@ func _handle_move(delta: float) -> void:
 # var last_fired: float = Time.get_unix_time_from_system()
 var _last_fired: float = 0.0
 
+
+func _get_now() -> float:
+	return Time.get_unix_time_from_system()
+
+
 func _can_fire(delay: float) -> bool:
-	var now: float = Time.get_unix_time_from_system()
+	var now := _get_now()
+	print("now(%s) >= _last_fired(%s) + delay(%s)" % [now, _last_fired, delay])
 	return now >= _last_fired + delay
 
+
 func _get_fire_delay() -> float:
-	return 0.5
+	return 0.3
+
 
 func _handle_fire() -> void:
 	if not _can_fire(_get_fire_delay()):
@@ -55,3 +63,5 @@ func _handle_fire() -> void:
 	ctx.direction = MouseUtils.get_dir_to_mouse(self)
 
 	projectile_system.spawn(projectile_scene, ctx)
+
+	_last_fired = _get_now()

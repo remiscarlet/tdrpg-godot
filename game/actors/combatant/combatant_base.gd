@@ -17,8 +17,14 @@ func init(projectile_system_: ProjectileSystem) -> void:
 func _ready() -> void:
 	$Hurtbox2DComponent/CollisionShape2D.shape = $CollisionShape2D.shape
 	health.health_changed.connect(_on_health_changed)
+	health.died.connect(_die)
 
 
 func _on_health_changed(current: float, maximum: float) -> void:
 	bar.set_ratio(current / maximum)
 	bar.visible = current < maximum
+
+
+func _die(source: Node) -> void:
+	print("%s killed by %s!" % [self, source])
+	queue_free()
