@@ -6,7 +6,7 @@ extends Node
 
 
 # Signal handler pattern
-func try_build_turret(player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
+func try_build_turret(_player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
 	print("Trying to build turret")
 	print(projectile_system)
 

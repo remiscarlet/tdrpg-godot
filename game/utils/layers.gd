@@ -1,0 +1,13 @@
+class_name Layers
+
+const WORLD_SOLID = 1
+const ACTOR_BODY = 2
+
+const PLAYER_HURTBOX = 10
+const PLAYER_PROJECTILE = 11
+
+const ENEMY1_HURTBOX = 15
+const ENEMY1_PROJECTILE = 16
+
+const ENEMY2_HURTBOX = 20
+const ENEMY2_PROJECTILE = 21

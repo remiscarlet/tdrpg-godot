@@ -8,10 +8,10 @@ var damage_type: DamageType
 var source: Node
 
 func _init(
-	amount_: float,
-	source_: Node,
-	damage_type_: DamageType = DamageType.KINETIC,
+	_amount: float,
+	_source: Node,
+	_damage_type: DamageType = DamageType.KINETIC,
 ) -> void:
-	amount = amount_
-	damage_type = damage_type_
-	source = source_
+	amount = _amount
+	damage_type = _damage_type
+	source = _source

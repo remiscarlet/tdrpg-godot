@@ -4,15 +4,16 @@ extends RefCounted
 var origin: Vector2
 var direction: Vector2 = Vector2.RIGHT
 var source: Node
+var team_id: int
 
 # Optional: for homing projectiles
 var target: Node2D = null
 
 # Optional: gameplay metadata
-var team_id: int = 0
 var element: StringName = &""
 var tags: Array[StringName] = []
 
-func _init(source_: Node, origin_: Vector2) -> void:
-	source = source_
-	origin = origin_
+func _init(_source: Node, _origin: Vector2, _team_id: int) -> void:
+	source = _source
+	origin = _origin
+	team_id = _team_id

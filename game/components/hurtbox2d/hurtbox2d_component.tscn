@@ -4,6 +4,8 @@
 [ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="2_hdxcu"]
 
 [node name="Hurtbox2DComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_bhixj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,2 +1,2 @@
-extends ProjectileBase
 class_name DefaultProjectile
+extends ProjectileBase

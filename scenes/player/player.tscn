@@ -1,46 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://vamxhibttxff"]
+[gd_scene load_steps=6 format=3 uid="uid://vamxhibttxff"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://scenes/player/turret_placer/turret_placer.tscn" id="3_i3pqv"]
 [ext_resource type="Shape2D" uid="uid://b3uqnhb4doph2" path="res://scenes/player/player_shape.tres" id="3_p47bc"]
-[ext_resource type="Texture2D" uid="uid://bh1s3wifopmlw" path="res://assets/Player-Sheet.png" id="4_p47bc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
-atlas = ExtResource("4_p47bc")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
-atlas = ExtResource("4_p47bc")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_75vfm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0owmy")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://hg0ttkihoayq" path="res://scenes/player/player_spriteframe.tres" id="5_p47bc"]
 
 [node name="Player" instance=ExtResource("1_dovo2")]
+collision_layer = 2
+collision_mask = 1
 script = ExtResource("2_gmlin")
 speed = 400
 
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("3_p47bc")
 
-[node name="CollisionShape2D" parent="." index="3"]
-shape = ExtResource("3_p47bc")
-
 [node name="TurretPlacer" parent="." index="4" instance=ExtResource("3_i3pqv")]
 
-[node name="AnimatedSprite2D" parent="." index="5"]
-sprite_frames = SubResource("SpriteFrames_p47bc")
+[node name="BodySprite" parent="." index="5"]
+sprite_frames = ExtResource("5_p47bc")
 
 [editable path="Hurtbox2DComponent"]

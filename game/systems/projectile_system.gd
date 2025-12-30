@@ -12,4 +12,5 @@ func spawn(projectile_scene: PackedScene, ctx: ProjectileSpawnContext) -> Projec
 
     projectiles_container.add_child(projectile)
     projectile.configure(ctx)
+
     return projectile

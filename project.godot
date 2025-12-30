@@ -52,6 +52,17 @@ turret={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="WORLD_SOLID"
+2d_physics/layer_2="ACTOR_BODY"
+2d_physics/layer_10="FRIENDLY_HURTBOX"
+2d_physics/layer_11="FRIENDLY_PROJECTILE"
+2d_physics/layer_15="ENEMY1_HURTBOX"
+2d_physics/layer_16="ENEMY1_PROJECTILE"
+2d_physics/layer_20="ENEMY2_HURTBOX"
+2d_physics/layer_21="ENEMY2_PROJECTILE"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

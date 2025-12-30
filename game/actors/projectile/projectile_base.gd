@@ -11,6 +11,7 @@ var _source: Node
 
 func _ready() -> void:
     _time_left = lifetime_s
+    body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
     _time_left -= delta
@@ -30,7 +31,10 @@ func configure(ctx: ProjectileSpawnContext) -> void:
 
     _source = ctx.source
 
-    # Optional tagging (useful for “delete all fire projectiles” mechanics)
+    # Physics Layers
+    configure_physics(ctx)
+
+    # Tagging
     add_to_group(&"projectiles")
     if ctx.element != &"":
         add_to_group(StringName("projectiles_%s" % String(ctx.element)))
@@ -38,3 +42,17 @@ func configure(ctx: ProjectileSpawnContext) -> void:
 func get_damage_payload() -> DamageEvent:
     return DamageEvent.new(damage, _source)
 
+func on_hit_target(_target: Node) -> void:
+    print("Projectile hit target %s" % _target)
+    queue_free()
+
+func _on_body_entered(_body: Node2D) -> void:
+    queue_free()
+
+func configure_physics(ctx: ProjectileSpawnContext) -> void:
+    var team_id = ctx.team_id
+    if team_id == null:
+        push_error("Got a ProjectileSpawnContext with no team_id set! %s" % ctx)
+        return
+
+    PhysicsUtils.set_projectile_physics_for_team(self, team_id)

@@ -1,8 +1,9 @@
 extends Area2D
 
-
 var projectile_system: ProjectileSystem
-var projectile_scene: PackedScene = preload("res://scenes/projectiles/default_projectile/default_projectile.tscn")
+var projectile_scene: PackedScene = preload(
+	"res://scenes/projectiles/default_projectile/default_projectile.tscn"
+)
 @onready var shot_timer: Timer = $ShotDelayTimer
 
 
@@ -17,13 +18,13 @@ func _process(_delta: float) -> void:
 
 
 func fire_turret() -> void:
-	var ctx = ProjectileSpawnContext.new(self, global_position)
+	var ctx = ProjectileSpawnContext.new(self, global_position, Const.TEAM_PLAYER)
 	ctx.direction = _get_target_pos()
 	projectile_system.spawn(projectile_scene, ctx)
 
 
-func init(projectile_system_: ProjectileSystem) -> void:
-	projectile_system = projectile_system_
+func init(_projectile_system: ProjectileSystem) -> void:
+	projectile_system = _projectile_system
 
 
 func _get_target_pos() -> Vector2:

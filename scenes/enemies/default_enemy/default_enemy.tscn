@@ -1,22 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl636niefb2mo"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_v1h8l"]
-[ext_resource type="Texture2D" uid="uid://bke2cy0xibcmx" path="res://assets/Default-Enemy.png" id="2_3omnk"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u3ujn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_3omnk")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Shape2D" uid="uid://brdl2ewkx03gx" path="res://scenes/enemies/default_enemy/default_enemy_shape.tres" id="2_3omnk"]
+[ext_resource type="SpriteFrames" uid="uid://2f5dtjtojaen" path="res://scenes/enemies/default_enemy/default_enemy_spriteframes.tres" id="3_u3ujn"]
 
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
 
-[node name="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = SubResource("SpriteFrames_u3ujn")
+[node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
+shape = ExtResource("2_3omnk")
+
+[node name="BodyShape" parent="." index="3"]
+shape = ExtResource("2_3omnk")
+
+[node name="BodySprite" parent="." index="4"]
+sprite_frames = ExtResource("3_u3ujn")
 
 [editable path="Hurtbox2DComponent"]

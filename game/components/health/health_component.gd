@@ -19,7 +19,9 @@ func apply_damage(amount: float, source: Node = null) -> void:
         push_warning("Tried applying negative damage (%d) from %s" % [amount, source])
         return
     if current_health <= 0.0:
-        push_warning("Tried applying damage from %s to an already dead entity (%s)!" % [source, self])
+        push_warning(
+            "Tried applying damage from %s to an already dead entity (%s)!" % [source, self]
+        )
         return
 
     current_health = max(0.0, current_health - amount)

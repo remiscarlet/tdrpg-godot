@@ -1,11 +1,15 @@
 extends CombatantBase
 
 @export var speed = 400
-var screen_size: Vector2
+var _screen_size: Vector2
+var _last_fired: float = 0.0
+
+@onready var sprite = $BodySprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	screen_size = get_viewport_rect().size
+	_screen_size = get_viewport_rect().size
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -14,7 +18,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(Const.CONFIRM):
 		_handle_fire()
 
-func _handle_move(delta: float) -> void:
+
+func _handle_move(_delta: float) -> void:
 	var move_dir = Vector2.ZERO
 
 	if Input.is_action_pressed(Const.MOVE_DOWN):
@@ -28,17 +33,14 @@ func _handle_move(delta: float) -> void:
 
 	if move_dir.length() > 0:
 		velocity = move_dir.normalized() * speed
-		$AnimatedSprite2D.play()
+		sprite.play()
 	else:
 		velocity = Vector2.ZERO
-		$AnimatedSprite2D.stop()
+		sprite.stop()
 
 	move_and_slide()
 
-	position = position.clamp(Vector2.ZERO, screen_size)
-
-# var last_fired: float = Time.get_unix_time_from_system()
-var _last_fired: float = 0.0
+	position = position.clamp(Vector2.ZERO, _screen_size)
 
 
 func _get_now() -> float:
@@ -47,7 +49,6 @@ func _get_now() -> float:
 
 func _can_fire(delay: float) -> bool:
 	var now := _get_now()
-	print("now(%s) >= _last_fired(%s) + delay(%s)" % [now, _last_fired, delay])
 	return now >= _last_fired + delay
 
 
@@ -59,7 +60,7 @@ func _handle_fire() -> void:
 	if not _can_fire(_get_fire_delay()):
 		return
 
-	var ctx := ProjectileSpawnContext.new(self, global_position)
+	var ctx := ProjectileSpawnContext.new(self, global_position, Const.TEAM_PLAYER)
 	ctx.direction = MouseUtils.get_dir_to_mouse(self)
 
 	projectile_system.spawn(projectile_scene, ctx)

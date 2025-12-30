@@ -8,7 +8,11 @@ radius = 3.0
 height = 12.0
 
 [node name="DefaultProjectile" type="Area2D"]
+editor_description = "Physics Layers:
+Mask 1 - should collide with any walls"
+collision_layer = 0
 script = ExtResource("1_ro1o5")
+lifetime_s = 1.0
 metadata/_custom_type_script = "uid://c1mfdfsy265ja"
 metadata/_edit_group_ = true
 

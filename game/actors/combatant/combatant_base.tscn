@@ -9,6 +9,8 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
 
 [node name="CombatantBase" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_nsc2i")
 metadata/_edit_group_ = true
 
@@ -19,10 +21,10 @@ health_path = NodePath("../HealthComponent")
 
 [node name="HealthBarView" parent="." instance=ExtResource("4_fkj5h")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_dinay")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BodySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nsc2i")
 
 [editable path="Hurtbox2DComponent"]
