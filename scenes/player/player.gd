@@ -12,35 +12,33 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	_handle_move(delta)
-
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed(Const.CONFIRM):
 		_handle_fire()
 
 
-func _handle_move(_delta: float) -> void:
-	var move_dir = Vector2.ZERO
+# func _handle_move(_delta: float) -> void:
+# 	var move_dir = Vector2.ZERO
 
-	if Input.is_action_pressed(Const.MOVE_DOWN):
-		move_dir.y += 1
-	if Input.is_action_pressed(Const.MOVE_UP):
-		move_dir.y -= 1
-	if Input.is_action_pressed(Const.MOVE_LEFT):
-		move_dir.x -= 1
-	if Input.is_action_pressed(Const.MOVE_RIGHT):
-		move_dir.x += 1
+# 	if Input.is_action_pressed(Const.MOVE_DOWN):
+# 		move_dir.y += 1
+# 	if Input.is_action_pressed(Const.MOVE_UP):
+# 		move_dir.y -= 1
+# 	if Input.is_action_pressed(Const.MOVE_LEFT):
+# 		move_dir.x -= 1
+# 	if Input.is_action_pressed(Const.MOVE_RIGHT):
+# 		move_dir.x += 1
 
-	if move_dir.length() > 0:
-		velocity = move_dir.normalized() * speed
-		sprite.play()
-	else:
-		velocity = Vector2.ZERO
-		sprite.stop()
+# 	if move_dir.length() > 0:
+# 		velocity = move_dir.normalized() * speed
+# 		sprite.play()
+# 	else:
+# 		velocity = Vector2.ZERO
+# 		sprite.stop()
 
-	move_and_slide()
+# 	move_and_slide()
 
-	position = position.clamp(Vector2.ZERO, _screen_size)
+# 	position = position.clamp(Vector2.ZERO, _screen_size)
 
 
 func _get_now() -> float:

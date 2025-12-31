@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5bcm3x6tlcwi"]
+
+[ext_resource type="Script" uid="uid://4xehe04unf82" path="res://game/controllers/ai_navigation/ai_navigation_controller.gd" id="1_w43cl"]
+
+[node name="AINavigationController" type="Node2D"]
+script = ExtResource("1_w43cl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="WanderTimer" type="Timer" parent="."]
+autostart = true

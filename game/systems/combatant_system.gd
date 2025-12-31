@@ -26,6 +26,8 @@ func _get_combatant_config(type: Const.CombatantType) -> CombatantConfig:
 	return mapping.get(type)
 
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
+	print("SPAWNING: %s" % ctx)
+
 	var combatant_config := _get_combatant_config(ctx.type)
 	var node := combatant_config.scene.instantiate()
 
@@ -41,4 +43,8 @@ func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
 	PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, combatant_config.team_id)
 
 	combatants_container.add_child(combatant)
+	if not combatant.is_node_ready():
+		await combatant.ready
+	combatant.set_controller_by_team_id(combatant_config.team_id)
+
 	return combatant

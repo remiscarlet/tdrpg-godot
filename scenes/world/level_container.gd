@@ -41,7 +41,7 @@ func _bootstrap_map() -> void:
 func _spawn_player(spawn_pos: Vector2) -> void:
 	print("Attempting to spawn player at %s" % spawn_pos)
 	var ctx = CombatantSpawnContext.new(spawn_pos, Const.CombatantType.PLAYER)
-	var player := combatant_system.spawn(ctx)
+	var player := await combatant_system.spawn(ctx)
 
 	var placer := player.get_node("TurretPlacer")
 	placer.place_turret_requested.connect(
