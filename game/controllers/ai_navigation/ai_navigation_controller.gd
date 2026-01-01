@@ -38,15 +38,7 @@ func _on_WanderTimer_timeout() -> void:
 
 func _pick_new_target() -> void:
 	var target := _get_some_random_reachable_point()
-	print("enemy=", body.name,
-	  "pos=", body.global_position,
-	  "target(before)=", agent.target_position)
-
 	agent.target_position = target
-
-	print("enemy=", body.name,
-		"target(after)=", agent.target_position)
-
 	timer.start(randf_range(wander_seconds_min, wander_seconds_max))
 
 func _get_some_random_reachable_point() -> Vector2:

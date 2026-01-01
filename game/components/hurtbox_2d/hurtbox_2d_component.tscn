@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://df76pjkkl2kqp"]
+
+[ext_resource type="Script" uid="uid://dnpp4mcjtc61x" path="res://game/components/hurtbox_2d/hurtbox_2d_component.gd" id="1_r1lwr"]
+[ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="2_wtjhd"]
+
+[node name="Hurtbox2DComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_r1lwr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_wtjhd")

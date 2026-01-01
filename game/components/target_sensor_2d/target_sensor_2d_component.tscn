@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw0tshg2k2j2p"]
+
+[ext_resource type="Script" uid="uid://bnat8x5td5lpu" path="res://game/components/target_sensor_2d/target_sensor_2d_component.gd" id="1_byify"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fm6i"]
+radius = 100.0
+
+[node name="TargetSensor2DComponent" type="Node2D"]
+script = ExtResource("1_byify")
+
+[node name="TargetSensorArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 540672
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetSensorArea"]
+shape = SubResource("CircleShape2D_6fm6i")

@@ -12,4 +12,5 @@ func try_build_turret(_player: Node, world_pos: Vector2, turret_scene: PackedSce
 	var turret: Node = turret_scene.instantiate()
 	turret.set_level_container_ref(level_container)
 	turret_container.add_child(turret)
+	turret.set_target_provider(ClosestTarget2DProvider.new())
 	turret.global_position = world_pos

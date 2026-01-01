@@ -5,14 +5,16 @@
 [ext_resource type="SpriteFrames" uid="uid://2f5dtjtojaen" path="res://scenes/enemies/default_enemy/default_enemy_spriteframes.tres" id="3_u3ujn"]
 
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
+move_speed = 100.0
+
+[node name="BodyShape" parent="." index="1"]
+shape = ExtResource("2_3omnk")
+
+[node name="BodySprite" parent="." index="2"]
+sprite_frames = ExtResource("3_u3ujn")
 
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("2_3omnk")
 
-[node name="BodyShape" parent="." index="3"]
-shape = ExtResource("2_3omnk")
-
-[node name="BodySprite" parent="." index="4"]
-sprite_frames = ExtResource("3_u3ujn")
-
+[editable path="AttachmentsRoot/Controllers/AINavigationController"]
 [editable path="Hurtbox2DComponent"]

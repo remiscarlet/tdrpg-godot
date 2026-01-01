@@ -2,6 +2,7 @@ class_name Layers
 
 const WORLD_SOLID = 1
 const ACTOR_BODY = 2
+const AREA_SENSOR = 3
 
 const PLAYER_HURTBOX = 10
 const PLAYER_PROJECTILE = 11

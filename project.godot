@@ -57,6 +57,7 @@ turret={
 2d_physics/layer_1="WORLD_SOLID"
 2d_navigation/layer_1="WALK"
 2d_physics/layer_2="ACTOR_BODY"
+2d_physics/layer_3="AREA_SENSOR"
 2d_physics/layer_10="FRIENDLY_HURTBOX"
 2d_physics/layer_11="FRIENDLY_PROJECTILE"
 2d_physics/layer_15="ENEMY1_HURTBOX"

@@ -25,19 +25,19 @@ static func _build() -> Dictionary[int, TeamPhysics]:
 			PackedInt32Array([Layers.PLAYER_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
 			PackedInt32Array([Layers.PLAYER_HURTBOX]),
-			PackedInt32Array([Layers.ENEMY1_PROJECTILE, Layers.ENEMY2_PROJECTILE]),
+			PackedInt32Array([Layers.ENEMY1_PROJECTILE, Layers.ENEMY2_PROJECTILE, Layers.AREA_SENSOR]),
 		),
 		Const.TEAM_AUTOMATON: TeamPhysics.new(
 			PackedInt32Array([Layers.ENEMY1_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX]),
-			PackedInt32Array([Layers.ENEMY2_PROJECTILE, Layers.PLAYER_PROJECTILE]),
+			PackedInt32Array([Layers.ENEMY2_PROJECTILE, Layers.PLAYER_PROJECTILE, Layers.AREA_SENSOR]),
 		),
 		Const.TEAM_MUTANT: TeamPhysics.new(
 			PackedInt32Array([Layers.ENEMY2_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY2_HURTBOX]),
-			PackedInt32Array([Layers.ENEMY1_PROJECTILE, Layers.PLAYER_PROJECTILE]),
+			PackedInt32Array([Layers.ENEMY1_PROJECTILE, Layers.PLAYER_PROJECTILE, Layers.AREA_SENSOR]),
 		),
 	}
 

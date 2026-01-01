@@ -20,6 +20,7 @@ var desired_dir: Vector2 = Vector2.ZERO
 @onready var player_ctrl: Node = attachments_root.get_node("Controllers/PlayerInputController")
 @onready var ai_ctrl: Node2D = attachments_root.get_node("Controllers/AINavigationController")
 
+
 func init(_projectile_system: ProjectileSystem) -> void:
 	projectile_system = _projectile_system
 
@@ -55,5 +56,4 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func set_level_container_ref(container: LevelContainer) -> void:
-	print("Setting level container in CombatantBase: %s" % container)
 	level_container = container

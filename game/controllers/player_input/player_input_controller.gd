@@ -2,7 +2,7 @@ extends Node2D
 
 var _last_fired: float = 0.0
 @onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
-@onready var player_aim_fire_controller: PlayerAimFireController = $"../PlayerAimFireController"
+@onready var player_aim_fire_controller: AimFireController = $"../AimFireController"
 
 func _physics_process(_delta: float) -> void:
 	var d := Vector2(
@@ -33,5 +33,5 @@ func _handle_fire() -> void:
 	if not _can_fire(_get_fire_delay()):
 		return
 
-	if player_aim_fire_controller.fire_at_mouse_pos():
+	if player_aim_fire_controller.fire():
 		_last_fired = _get_now()

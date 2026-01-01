@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
-[ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox2d/hurtbox2d_component.tscn" id="2_dinay"]
+[ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
 [ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_navigation/ai_navigation_controller.tscn" id="2_j2n0y"]
 [ext_resource type="Script" uid="uid://bv5lsmvggalnf" path="res://game/actors/combatant/attachments_root.gd" id="2_mgdoj"]
-[ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target2d/aim_to_target2d_component.tscn" id="2_o3fip"]
+[ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_o3fip"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
 [ext_resource type="PackedScene" uid="uid://dj848oxifs0a3" path="res://game/controllers/player_input/player_input_controller.tscn" id="3_r8x55"]
 [ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="4_dinay"]

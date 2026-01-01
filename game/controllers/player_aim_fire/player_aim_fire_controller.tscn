@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://t4u3jmm2klqp"]
-
-[ext_resource type="Script" uid="uid://ojbyihnm3jml" path="res://game/controllers/player_aim_fire/player_aim_fire_controller.gd" id="1_ag1hd"]
-
-[node name="PlayerAimFireController" type="Node2D"]
-script = ExtResource("1_ag1hd")
