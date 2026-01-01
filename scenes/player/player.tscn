@@ -1,23 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://vamxhibttxff"]
+[gd_scene load_steps=7 format=3 uid="uid://vamxhibttxff"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="2_gmlin"]
+[ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/player_aim_fire/player_aim_fire_controller.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://scenes/player/turret_placer/turret_placer.tscn" id="3_i3pqv"]
 [ext_resource type="Shape2D" uid="uid://b3uqnhb4doph2" path="res://scenes/player/player_shape.tres" id="3_p47bc"]
 [ext_resource type="SpriteFrames" uid="uid://hg0ttkihoayq" path="res://scenes/player/player_spriteframe.tres" id="5_p47bc"]
 
 [node name="Player" instance=ExtResource("1_dovo2")]
-collision_layer = 2
 collision_mask = 1
 script = ExtResource("2_gmlin")
 speed = 400
 
+[node name="PlayerAimFireController" parent="AttachmentsRoot/Controllers" index="2" instance=ExtResource("3_75vfm")]
+
+[node name="BodySprite" parent="." index="2"]
+sprite_frames = ExtResource("5_p47bc")
+
+[node name="TurretPlacer" parent="." index="3" instance=ExtResource("3_i3pqv")]
+
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("3_p47bc")
 
-[node name="TurretPlacer" parent="." index="4" instance=ExtResource("3_i3pqv")]
-
-[node name="BodySprite" parent="." index="5"]
-sprite_frames = ExtResource("5_p47bc")
-
+[editable path="AttachmentsRoot/Controllers/AINavigationController"]
 [editable path="Hurtbox2DComponent"]

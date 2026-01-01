@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=7 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="PackedScene" uid="uid://1x7wcjjp68k1" path="res://scenes/world/maps/map1.tscn" id="2_0bhw6"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
 [ext_resource type="Script" uid="uid://dgknbvfaky0qr" path="res://game/systems/projectile_system.gd" id="3_0khw6"]
 [ext_resource type="Script" uid="uid://lei1d620d8vg" path="res://game/systems/combatant_system.gd" id="4_n1rcx"]
+[ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
 
 [node name="LevelContainer" type="Node2D"]
 script = ExtResource("1_c06pb")
@@ -13,19 +14,28 @@ map_content_scene = ExtResource("2_0bhw6")
 [node name="MapSlot" type="Node2D" parent="."]
 
 [node name="ProjectileSystem" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_0khw6")
 
 [node name="ProjectileContainer" type="Node2D" parent="ProjectileSystem"]
 z_index = 20
 
 [node name="TurretSystem" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_jof1v")
 
 [node name="TurretContainer" type="Node2D" parent="TurretSystem"]
 z_index = 30
 
 [node name="CombatantSystem" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_n1rcx")
 
 [node name="CombatantsContainer" type="Node2D" parent="CombatantSystem"]
 z_index = 30
+
+[node name="CameraRig" type="Node2D" parent="."]
+script = ExtResource("6_2dxgc")
+
+[node name="Camera2D" type="Camera2D" parent="CameraRig"]
+position_smoothing_enabled = true

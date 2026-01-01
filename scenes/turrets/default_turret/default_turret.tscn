@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvmiin27bmp6u"]
+[gd_scene load_steps=11 format=3 uid="uid://cvmiin27bmp6u"]
 
 [ext_resource type="Script" uid="uid://c2x8tb2fy5ns6" path="res://scenes/turrets/default_turret/default_turret.gd" id="1_hyaxd"]
+[ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/player_aim_fire/player_aim_fire_controller.tscn" id="2_2atjr"]
+[ext_resource type="Script" uid="uid://bv5lsmvggalnf" path="res://game/actors/combatant/attachments_root.gd" id="2_deqxc"]
+[ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target2d/aim_to_target2d_component.tscn" id="2_mptej"]
 [ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/Default-Turret.png" id="2_x3o2a"]
+[ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="3_88fu5"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_v27rg"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox2d/hurtbox2d_component.tscn" id="4_2atjr"]
+[ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="6_1rejp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjdg3"]
 radius = 11.0
@@ -11,6 +16,21 @@ radius = 11.0
 [node name="DefaultTurret" type="Area2D"]
 script = ExtResource("1_hyaxd")
 metadata/_edit_group_ = true
+
+[node name="AttachmentsRoot" type="Node2D" parent="."]
+script = ExtResource("2_deqxc")
+
+[node name="AimToTarget2DComponent" parent="AttachmentsRoot" instance=ExtResource("2_mptej")]
+
+[node name="FireWeaponComponent" parent="AttachmentsRoot" instance=ExtResource("3_88fu5")]
+
+[node name="Controllers" type="Node2D" parent="AttachmentsRoot"]
+
+[node name="PlayerAimFireController" parent="AttachmentsRoot/Controllers" instance=ExtResource("2_2atjr")]
+
+[node name="HealthComponent" parent="AttachmentsRoot" instance=ExtResource("3_v27rg")]
+
+[node name="HealthBarView" parent="AttachmentsRoot" instance=ExtResource("6_1rejp")]
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tjdg3")
@@ -20,8 +40,6 @@ texture = ExtResource("2_x3o2a")
 
 [node name="ShotDelayTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="HealthComponent" parent="." instance=ExtResource("3_v27rg")]
 
 [node name="Hurtbox2DComponent" parent="." instance=ExtResource("4_2atjr")]
 

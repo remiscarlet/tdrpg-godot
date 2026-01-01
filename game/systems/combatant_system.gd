@@ -1,6 +1,7 @@
 class_name CombatantSystem
 extends Node
 
+@onready var level_container: LevelContainer = get_parent()
 @onready var combatants_container: Node2D = $CombatantsContainer
 @onready var projectile_system: ProjectileSystem = $"../ProjectileSystem"
 
@@ -46,5 +47,6 @@ func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
 	if not combatant.is_node_ready():
 		await combatant.ready
 	combatant.set_controller_by_team_id(combatant_config.team_id)
+	combatant.set_level_container_ref(level_container)
 
 	return combatant

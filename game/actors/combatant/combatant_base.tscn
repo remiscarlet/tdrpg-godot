@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://btwq1cb3h7kwa"]
+[gd_scene load_steps=12 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox2d/hurtbox2d_component.tscn" id="2_dinay"]
 [ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_navigation/ai_navigation_controller.tscn" id="2_j2n0y"]
+[ext_resource type="Script" uid="uid://bv5lsmvggalnf" path="res://game/actors/combatant/attachments_root.gd" id="2_mgdoj"]
+[ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target2d/aim_to_target2d_component.tscn" id="2_o3fip"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
 [ext_resource type="PackedScene" uid="uid://dj848oxifs0a3" path="res://game/controllers/player_input/player_input_controller.tscn" id="3_r8x55"]
 [ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="4_dinay"]
 [ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="4_fkj5h"]
+[ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
 
@@ -16,11 +19,23 @@ collision_mask = 3
 script = ExtResource("1_nsc2i")
 metadata/_edit_group_ = true
 
-[node name="Controllers" type="Node2D" parent="."]
+[node name="AttachmentsRoot" type="Node2D" parent="."]
+editor_description = "The CombatantBase root node is rotated based on sprite movement direction. For nodes that don't want the rotation applied (eg, health bar), place them all under the AttachmentsRoot node."
+script = ExtResource("2_mgdoj")
 
-[node name="AINavigationController" parent="Controllers" instance=ExtResource("2_j2n0y")]
+[node name="AimToTarget2DComponent" parent="AttachmentsRoot" instance=ExtResource("2_o3fip")]
 
-[node name="PlayerInputController" parent="Controllers" instance=ExtResource("3_r8x55")]
+[node name="Controllers" type="Node2D" parent="AttachmentsRoot"]
+
+[node name="AINavigationController" parent="AttachmentsRoot/Controllers" instance=ExtResource("2_j2n0y")]
+
+[node name="PlayerInputController" parent="AttachmentsRoot/Controllers" instance=ExtResource("3_r8x55")]
+
+[node name="FireWeaponComponent" parent="AttachmentsRoot" instance=ExtResource("6_mgdoj")]
+
+[node name="HealthComponent" parent="AttachmentsRoot" instance=ExtResource("3_dinay")]
+
+[node name="HealthBarView" parent="AttachmentsRoot" instance=ExtResource("4_fkj5h")]
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_dinay")
@@ -28,12 +43,8 @@ shape = ExtResource("4_dinay")
 [node name="BodySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nsc2i")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_dinay")]
-
-[node name="HealthBarView" parent="." instance=ExtResource("4_fkj5h")]
-
 [node name="Hurtbox2DComponent" parent="." instance=ExtResource("2_dinay")]
-health_path = NodePath("../HealthComponent")
+health_path = NodePath("../AttachmentsRoot/HealthComponent")
 
-[editable path="Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/Controllers/AINavigationController"]
 [editable path="Hurtbox2DComponent"]

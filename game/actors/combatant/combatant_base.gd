@@ -1,6 +1,8 @@
 class_name CombatantBase
 extends CharacterBody2D
 
+var level_container: LevelContainer
+
 var projectile_system: ProjectileSystem
 var projectile_scene: PackedScene = preload(
 	"res://scenes/projectiles/default_projectile/default_projectile.tscn"
@@ -9,13 +11,14 @@ var desired_dir: Vector2 = Vector2.ZERO
 
 @export var move_speed: float = 200.0
 
-@onready var health: HealthComponent = $HealthComponent
-@onready var bar: HealthBarView = $HealthBarView
-@onready var hurtbox_collision_shape = $Hurtbox2DComponent/CollisionShape2D
-@onready var sprite_collision_shape = $BodyShape
+@onready var hurtbox_collision_shape: CollisionShape2D = $"Hurtbox2DComponent/CollisionShape2D"
+@onready var sprite_collision_shape: CollisionShape2D = $"BodyShape"
 
-@onready var player_ctrl: Node = $"Controllers/PlayerInputController"
-@onready var ai_ctrl: Node2D = $"Controllers/AINavigationController"
+@onready var attachments_root: Node2D = $AttachmentsRoot
+@onready var health: HealthComponent = attachments_root.get_node("HealthComponent")
+@onready var bar: HealthBarView = attachments_root.get_node("HealthBarView")
+@onready var player_ctrl: Node = attachments_root.get_node("Controllers/PlayerInputController")
+@onready var ai_ctrl: Node2D = attachments_root.get_node("Controllers/AINavigationController")
 
 func init(_projectile_system: ProjectileSystem) -> void:
 	projectile_system = _projectile_system
@@ -50,3 +53,7 @@ func _physics_process(_delta: float) -> void:
 	# Controllers set desired_dir; motor applies it.
 	velocity = desired_dir.normalized() * move_speed
 	move_and_slide()
+
+func set_level_container_ref(container: LevelContainer) -> void:
+	print("Setting level container in CombatantBase: %s" % container)
+	level_container = container

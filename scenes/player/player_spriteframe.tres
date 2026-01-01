@@ -2,22 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://bh1s3wifopmlw" path="res://assets/Player-Sheet.png" id="1_i66bq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hq581"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gw66"]
+atlas = ExtResource("1_i66bq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0s8j"]
 atlas = ExtResource("1_i66bq")
 region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5pk7"]
-atlas = ExtResource("1_i66bq")
-region = Rect2(64, 0, 32, 32)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hq581")
+"texture": SubResource("AtlasTexture_5gw66")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k5pk7")
+"texture": SubResource("AtlasTexture_v0s8j")
 }],
 "loop": true,
 "name": &"default",

@@ -10,6 +10,7 @@ var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
 @onready var projectile_system: ProjectileSystem = $ProjectileSystem
 @onready var combatant_system: CombatantSystem = $CombatantSystem
 @onready var map_slot: Node2D = $MapSlot
+@onready var camera_rig: Node2D = $CameraRig
 
 @export var map_content_scene: PackedScene
 
@@ -36,14 +37,18 @@ func _bootstrap_map() -> void:
 		if marker:
 			spawn_pos = marker.global_position
 
-	_spawn_player(spawn_pos)
+	var player = await _spawn_player(spawn_pos)
+	camera_rig.set_target(player)
 
-func _spawn_player(spawn_pos: Vector2) -> void:
+
+func _spawn_player(spawn_pos: Vector2) -> Player:
 	print("Attempting to spawn player at %s" % spawn_pos)
 	var ctx = CombatantSpawnContext.new(spawn_pos, Const.CombatantType.PLAYER)
-	var player := await combatant_system.spawn(ctx)
+	var player := await combatant_system.spawn(ctx) as Player
 
 	var placer := player.get_node("TurretPlacer")
 	placer.place_turret_requested.connect(
 		func(pos, scene): turret_system.try_build_turret(player, pos, scene)
 	)
+
+	return player

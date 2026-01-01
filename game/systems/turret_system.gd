@@ -1,16 +1,15 @@
 class_name TurretSystem
 extends Node
 
+@onready var level_container: LevelContainer = get_parent()
 @onready var turret_container: Node2D = $TurretContainer
-@onready var projectile_system: Node = $"../ProjectileSystem"
 
 
 # Signal handler pattern
 func try_build_turret(_player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
 	print("Trying to build turret")
-	print(projectile_system)
 
 	var turret: Node = turret_scene.instantiate()
-	turret.init(projectile_system)
+	turret.set_level_container_ref(level_container)
 	turret_container.add_child(turret)
 	turret.global_position = world_pos

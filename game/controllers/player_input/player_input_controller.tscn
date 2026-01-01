@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://v2cnjb3q457l" path="res://game/controllers/player_input/player_input_controller.gd" id="1_yr2lk"]
 
-[node name="PlayerInputController" type="Node"]
+[node name="PlayerInputController" type="Node2D"]
 script = ExtResource("1_yr2lk")

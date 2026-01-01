@@ -1,0 +1,17 @@
+class_name FireWeaponComponent
+extends Node2D
+
+var projectile_system: ProjectileSystem
+var projectile_scene: PackedScene = preload(
+    "res://scenes/projectiles/default_projectile/default_projectile.tscn"
+)
+
+func fire(direction: Vector2) -> bool:
+	var ctx = ProjectileSpawnContext.new(self, global_position, Const.TEAM_PLAYER)
+	ctx.direction = direction
+	var proj = projectile_system.spawn(projectile_scene, ctx) as ProjectileBase
+	return proj != null
+
+func set_projectile_system(system: ProjectileSystem) -> void:
+	print("Setting ProjectileSystem in FireWeaponComponent: %s" % system)
+	projectile_system = system
