@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=9 format=3 uid="uid://de7w2wp0kpd1q"]
+
+[ext_resource type="Script" uid="uid://j51dvkisb5rc" path="res://game/actors/loot/entries/loot_entry_base.gd" id="1_v5fp8"]
+[ext_resource type="Script" uid="uid://c6ic3sb3g8bjl" path="res://game/actors/loot/loot_table.gd" id="2_7kpmx"]
+[ext_resource type="Script" uid="uid://dy1pjhyl1ae3b" path="res://game/actors/loot/entries/scrap.gd" id="2_wdmpq"]
+[ext_resource type="Script" uid="uid://covy3fepeufse" path="res://game/actors/loot/entries/credit.gd" id="3_nuihq"]
+[ext_resource type="Script" uid="uid://b41cic4mth6d1" path="res://game/actors/loot/entries/power_cell.gd" id="4_nuihq"]
+
+[sub_resource type="Resource" id="Resource_p0bh7"]
+script = ExtResource("2_wdmpq")
+required_tags = null
+metadata/_custom_type_script = "uid://dy1pjhyl1ae3b"
+
+[sub_resource type="Resource" id="Resource_cdgo6"]
+script = ExtResource("3_nuihq")
+required_tags = null
+metadata/_custom_type_script = "uid://covy3fepeufse"
+
+[sub_resource type="Resource" id="Resource_258ux"]
+script = ExtResource("4_nuihq")
+required_tags = null
+metadata/_custom_type_script = "uid://b41cic4mth6d1"
+
+[resource]
+script = ExtResource("2_7kpmx")
+entries = Array[ExtResource("1_v5fp8")]([SubResource("Resource_p0bh7"), SubResource("Resource_cdgo6"), SubResource("Resource_258ux")])
+metadata/_custom_type_script = "uid://c6ic3sb3g8bjl"

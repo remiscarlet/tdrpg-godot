@@ -13,7 +13,7 @@ var target: Node2D = null
 var element: StringName = &""
 var tags: Array[StringName] = []
 
-func _init(_source: Node, _origin: Vector2, _team_id: int) -> void:
-	source = _source
-	origin = _origin
-	team_id = _team_id
+func _init(new_source: Node, new_origin: Vector2, new_team_id: int) -> void:
+	source = new_source
+	origin = new_origin
+	team_id = new_team_id

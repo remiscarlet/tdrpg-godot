@@ -43,7 +43,6 @@ func get_damage_payload() -> DamageEvent:
     return DamageEvent.new(damage, _source)
 
 func on_hit_target(_target: Node) -> void:
-    print("Projectile hit target %s" % _target)
     queue_free()
 
 func _on_body_entered(_body: Node2D) -> void:

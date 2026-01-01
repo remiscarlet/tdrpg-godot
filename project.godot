@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TDRPG"
-run/main_scene="uid://d1dkm5wl0f3w6"
+run/main_scene="uid://kk4opvtpytbu"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -58,8 +58,10 @@ turret={
 2d_navigation/layer_1="WALK"
 2d_physics/layer_2="ACTOR_BODY"
 2d_physics/layer_3="AREA_SENSOR"
+2d_physics/layer_4="LOOT"
 2d_physics/layer_10="FRIENDLY_HURTBOX"
 2d_physics/layer_11="FRIENDLY_PROJECTILE"
+2d_physics/layer_12="FRIENDLY_PICKUPBOX"
 2d_physics/layer_15="ENEMY1_HURTBOX"
 2d_physics/layer_16="ENEMY1_PROJECTILE"
 2d_physics/layer_20="ENEMY2_HURTBOX"

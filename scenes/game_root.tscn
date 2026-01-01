@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://kk4opvtpytbu"]
+[gd_scene load_steps=3 format=3 uid="uid://kk4opvtpytbu"]
+
+[ext_resource type="Script" uid="uid://cvekecvbtmol0" path="res://game/systems/level_system.gd" id="1_78s5d"]
+[ext_resource type="Script" uid="uid://cnely4v1w3yqb" path="res://scenes/game_root.gd" id="1_ni5ms"]
 
 [node name="GameRoot" type="Node"]
+editor_description = "Holds UI and cross-session state resources. Cross-session as in save file/steam user scoped state"
+script = ExtResource("1_ni5ms")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="LevelSystem" type="Node" parent="."]
-
-[node name="LevelContainer" type="Node2D" parent="LevelSystem"]
+script = ExtResource("1_78s5d")

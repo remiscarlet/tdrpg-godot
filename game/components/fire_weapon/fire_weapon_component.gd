@@ -7,7 +7,7 @@ var projectile_scene: PackedScene = preload(
 )
 
 func fire(direction: Vector2) -> bool:
-	var ctx = ProjectileSpawnContext.new(self, global_position, Const.TEAM_PLAYER)
+	var ctx = ProjectileSpawnContext.new(self, global_position, CombatantTeam.PLAYER)
 	ctx.direction = direction
 	var proj = projectile_system.spawn(projectile_scene, ctx) as ProjectileBase
 	return proj != null

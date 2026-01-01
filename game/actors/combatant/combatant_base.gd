@@ -3,10 +3,6 @@ extends CharacterBody2D
 
 var level_container: LevelContainer
 
-var projectile_system: ProjectileSystem
-var projectile_scene: PackedScene = preload(
-	"res://scenes/projectiles/default_projectile/default_projectile.tscn"
-)
 var desired_dir: Vector2 = Vector2.ZERO
 
 @export var move_speed: float = 200.0
@@ -19,10 +15,6 @@ var desired_dir: Vector2 = Vector2.ZERO
 @onready var bar: HealthBarView = attachments_root.get_node("HealthBarView")
 @onready var player_ctrl: Node = attachments_root.get_node("Controllers/PlayerInputController")
 @onready var ai_ctrl: Node2D = attachments_root.get_node("Controllers/AINavigationController")
-
-
-func init(_projectile_system: ProjectileSystem) -> void:
-	projectile_system = _projectile_system
 
 func _ready() -> void:
 	hurtbox_collision_shape.shape = sprite_collision_shape.shape
@@ -57,3 +49,9 @@ func _physics_process(_delta: float) -> void:
 
 func set_level_container_ref(container: LevelContainer) -> void:
 	level_container = container
+
+	var fire: FireWeaponComponent = $"AttachmentsRoot/FireWeaponComponent"
+	fire.set_projectile_system(level_container.get_node("%ProjectileSystem"))
+
+	var loot: LootableComponent = $"AttachmentsRoot/LootableComponent"
+	loot.set_loot_system(level_container.get_node("%LootSystem"))

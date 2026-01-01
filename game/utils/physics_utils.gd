@@ -21,19 +21,19 @@ static var _cfg_by_team: Dictionary[int, TeamPhysics] = _build()
 
 static func _build() -> Dictionary[int, TeamPhysics]:
 	return {
-		Const.TEAM_PLAYER: TeamPhysics.new(
+		CombatantTeam.PLAYER: TeamPhysics.new(
 			PackedInt32Array([Layers.PLAYER_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
 			PackedInt32Array([Layers.PLAYER_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY1_PROJECTILE, Layers.ENEMY2_PROJECTILE, Layers.AREA_SENSOR]),
 		),
-		Const.TEAM_AUTOMATON: TeamPhysics.new(
+		CombatantTeam.BOT: TeamPhysics.new(
 			PackedInt32Array([Layers.ENEMY1_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY2_PROJECTILE, Layers.PLAYER_PROJECTILE, Layers.AREA_SENSOR]),
 		),
-		Const.TEAM_MUTANT: TeamPhysics.new(
+		CombatantTeam.MUTANT: TeamPhysics.new(
 			PackedInt32Array([Layers.ENEMY2_PROJECTILE]),
 			PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
 			PackedInt32Array([Layers.ENEMY2_HURTBOX]),

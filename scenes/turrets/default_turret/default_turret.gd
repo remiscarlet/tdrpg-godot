@@ -16,5 +16,6 @@ func set_level_container_ref(container: LevelContainer) -> void:
 	var fire: FireWeaponComponent = $"AttachmentsRoot/FireWeaponComponent"
 	fire.set_projectile_system(level_container.get_node("%ProjectileSystem"))
 
+
 func set_target_provider(provider: TargetBaseProvider) -> void:
 	aim_controller.set_target_provider(provider)

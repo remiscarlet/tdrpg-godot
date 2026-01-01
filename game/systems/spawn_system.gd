@@ -27,5 +27,5 @@ func _get_group_spawns(group_name: String) -> Array[Marker2D]:
 
 func _spawn_enemy() -> void:
     var spawn = get_random_enemy1_spawn()
-    var ctx = CombatantSpawnContext.new(spawn.global_position, Const.CombatantType.DEFAULT_ENEMY)
+    var ctx = CombatantSpawnContext.new(spawn.global_position, CombatantTypes.DEFAULT_ENEMY)
     combatant_spawn_requested.emit(ctx)

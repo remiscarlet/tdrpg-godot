@@ -12,23 +12,44 @@ var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
 @onready var map_slot: Node2D = $MapSlot
 @onready var camera_rig: Node2D = $CameraRig
 
-@export var map_content_scene: PackedScene
+@export var map_name_to_load = ""
+
+var run_state: RunState = RunState.new()
+
+# Simple registry; later you can replace this with Resources / data-driven tables.
+var maps := {
+	"map01": preload("res://scenes/world/maps/map1.tscn"),
+}
 
 var map_content: Node2D
 
-func _ready() -> void:
+func prepare_map(map_name: String) -> void:
+	assert(map_name != "")
+	var map_content_scene = maps.get(map_name)
+
 	assert(map_content_scene != null)
-
-	# Instantiate the per-map content under MapSlot
 	map_content = map_content_scene.instantiate() as Node2D
+
+func _ready() -> void:
+	_reset_run_state()
+	_initialize_map()
+
+func _reset_run_state() -> void:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var run_seed = rng.get_seed()
+	var run_id = Uuid.v4()
+
+	run_state.reset_for_new_run(run_id, run_seed)
+
+func _initialize_map() -> void:
+	# Instantiate the per-map content under MapSlot
+	assert(map_content != null)
+
 	map_slot.add_child(map_content)
-
 	var spawn_system: SpawnSystem = map_slot.get_child(0).get_node("SpawnSystem")
+
 	spawn_system.combatant_spawn_requested.connect(combatant_system.spawn)
-
-	_bootstrap_map()
-
-func _bootstrap_map() -> void:
 	var spawn_pos := global_position
 
 	# Prefer the "MapContent" API if present.
@@ -43,7 +64,7 @@ func _bootstrap_map() -> void:
 
 func _spawn_player(spawn_pos: Vector2) -> Player:
 	print("Attempting to spawn player at %s" % spawn_pos)
-	var ctx = CombatantSpawnContext.new(spawn_pos, Const.CombatantType.PLAYER)
+	var ctx = CombatantSpawnContext.new(spawn_pos, CombatantTypes.PLAYER)
 	var player := await combatant_system.spawn(ctx) as Player
 
 	var placer := player.get_node("TurretPlacer")
