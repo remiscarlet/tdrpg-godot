@@ -64,8 +64,10 @@ turret={
 2d_physics/layer_12="FRIENDLY_PICKUPBOX"
 2d_physics/layer_15="ENEMY1_HURTBOX"
 2d_physics/layer_16="ENEMY1_PROJECTILE"
+2d_physics/layer_17="ENEMY1_PICKUPBOX"
 2d_physics/layer_20="ENEMY2_HURTBOX"
 2d_physics/layer_21="ENEMY2_PROJECTILE"
+2d_physics/layer_22="ENEMY2_PICKUPBOX"
 
 [rendering]
 

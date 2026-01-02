@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btwq1cb3h7kwa"]
+[gd_scene load_steps=15 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="4_fkj5h"]
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
 [ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
+[ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
+[ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
 
@@ -40,6 +42,10 @@ script = ExtResource("2_mgdoj")
 
 [node name="LootableComponent" parent="AttachmentsRoot" groups=["loot_emitters"] instance=ExtResource("9_g1fhr")]
 
+[node name="InventoryComponent" parent="AttachmentsRoot" instance=ExtResource("10_i7seo")]
+
+[node name="PickupboxComponent" parent="AttachmentsRoot" instance=ExtResource("11_qqgk4")]
+
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_dinay")
 
@@ -50,4 +56,5 @@ sprite_frames = SubResource("SpriteFrames_nsc2i")
 health_path = NodePath("../AttachmentsRoot/HealthComponent")
 
 [editable path="AttachmentsRoot/Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/PickupboxComponent"]
 [editable path="Hurtbox2DComponent"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://hacodvxeflyq"]
+
+[ext_resource type="Script" uid="uid://ca7dg587wtcj4" path="res://game/components/pickupbox/pickupbox_component.gd" id="1_tim4d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tim4d"]
+radius = 50.0
+
+[node name="PickupboxComponent" type="Node2D"]
+script = ExtResource("1_tim4d")
+
+[node name="PickupSensorArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupSensorArea"]
+shape = SubResource("CircleShape2D_tim4d")

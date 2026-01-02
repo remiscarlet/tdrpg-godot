@@ -23,4 +23,5 @@ sprite_frames = ExtResource("5_p47bc")
 shape = ExtResource("3_p47bc")
 
 [editable path="AttachmentsRoot/Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/PickupboxComponent"]
 [editable path="Hurtbox2DComponent"]

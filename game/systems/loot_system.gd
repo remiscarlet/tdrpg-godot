@@ -47,7 +47,8 @@ func _on_loot_generated(ctx: LootableSpawnContext) -> void:
             spawn(loot, ctx.origin, ctx.direction)
 
 func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
-    print("SPAWNING: %s at %s facing %s" % [loot.item_id, origin, direction])
+    var item_id = loot.loot_definition.item_id
+    print("SPAWNING: %s at %s facing %s" % [item_id, origin, direction])
 
     assert(loot.scene != null)
 
@@ -61,9 +62,11 @@ func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
     lootable.global_position = origin
     lootable.rotation = direction.normalized().angle()
 
+    lootable.set_loot_definition(loot.loot_definition)
+
     loot_container.add_child(lootable)
     if not lootable.is_node_ready():
         await lootable.ready
 
-    print("Generated %s loot!" % loot.item_id)
+    print("Generated %s loot!" % item_id)
     return lootable
