@@ -41,7 +41,10 @@ class Inventory:
 
         return cardinality
 
-    func add_item(loot: LootDefinitionBase) -> bool:
+    func list_items() -> Array[InventoryEntry]:
+        return self.items.values()
+
+    func add_item(loot: LootDefinitionBase, quantity: int = 1) -> bool:
         if self.size() >= self.capacity:
             print("Failed to add item to inventory - Inventory full!")
             return false
@@ -49,20 +52,20 @@ class Inventory:
         if loot.item_id not in self.items:
             self.items[loot.item_id] = InventoryEntry.new(loot, 0)
 
-        self.items[loot.item_id].add(1)
+        self.items[loot.item_id].add(quantity)
 
         return true
 
-    func remove_item(loot: LootDefinitionBase) -> bool:
+    func remove_item(loot: LootDefinitionBase, quantity: int = 1) -> bool:
         if loot.item_id not in self.items:
             print("Tried removing loot %s but did not exist in inventory!" % loot.item_id)
             return false
 
-        if self.items[loot.item_id].quantity <= 0:
+        if self.items[loot.item_id].quantity < quantity:
             print("Tried removing loot %s from inventory but did not have enough!" % loot.item_id)
             return false
 
-        self.items[loot.item_id].remove(1)
+        self.items[loot.item_id].remove(quantity)
 
         return true
 

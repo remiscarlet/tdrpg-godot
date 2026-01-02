@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3v4ydc3rg5t"]
+
+[ext_resource type="Script" uid="uid://flpbd3nu5rx" path="res://game/components/interactable_detector/interactable_detector_component.gd" id="1_kdcat"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdcat"]
+radius = 50.0
+
+[node name="InteractableDetectorComponent" type="Area2D"]
+script = ExtResource("1_kdcat")
+sensor_path = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kdcat")

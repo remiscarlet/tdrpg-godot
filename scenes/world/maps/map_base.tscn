@@ -17,6 +17,12 @@ tile_map_data = PackedByteArray("AAADAAAAAgAIAAAAAAAEAAAAAgALAAAAAAAEAAEAAgALAAI
 tile_set = ExtResource("2_boh3a")
 script = ExtResource("1_3igsj")
 
+[node name="Interactables" type="TileMapLayer" parent="Tiles" groups=["navigation"]]
+position = Vector2(288, 96)
+tile_map_data = PackedByteArray("AAD+/wkAAAAAAAAAAQA=")
+tile_set = ExtResource("2_boh3a")
+script = ExtResource("1_3igsj")
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(276, 190)
 navigation_polygon = ExtResource("3_3igsj")

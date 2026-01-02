@@ -33,7 +33,6 @@ func _on_HealthComponent_died(source: Node) -> void:
 
 func set_controller_by_team_id(team_id: int) -> void:
 	var active = player_ctrl if team_id == 0 else ai_ctrl
-	print("ACTIVE: %s" % active)
 	set_controller(active)
 
 func set_controller(active: Node) -> void:

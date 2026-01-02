@@ -13,5 +13,4 @@ func fire(direction: Vector2) -> bool:
 	return proj != null
 
 func set_projectile_system(system: ProjectileSystem) -> void:
-	print("Setting ProjectileSystem in FireWeaponComponent: %s" % system)
 	projectile_system = system

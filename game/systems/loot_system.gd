@@ -48,7 +48,6 @@ func _on_loot_generated(ctx: LootableSpawnContext) -> void:
 
 func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
     var item_id = loot.loot_definition.item_id
-    print("SPAWNING: %s at %s facing %s" % [item_id, origin, direction])
 
     assert(loot.scene != null)
 

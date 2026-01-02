@@ -8,14 +8,14 @@ var level_container: LevelContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	shot_timer.timeout.connect(aim_controller.fire)
+    shot_timer.timeout.connect(aim_controller.try_fire)
 
 func set_level_container_ref(container: LevelContainer) -> void:
-	level_container = container
+    level_container = container
 
-	var fire: FireWeaponComponent = $"AttachmentsRoot/FireWeaponComponent"
-	fire.set_projectile_system(level_container.get_node("%ProjectileSystem"))
+    var fire: FireWeaponComponent = $"AttachmentsRoot/FireWeaponComponent"
+    fire.set_projectile_system(level_container.get_node("%ProjectileSystem"))
 
 
 func set_target_provider(provider: TargetBaseProvider) -> void:
-	aim_controller.set_target_provider(provider)
+    aim_controller.set_target_provider(provider)

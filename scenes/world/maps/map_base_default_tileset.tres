@@ -1,8 +1,13 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://cgi4ajhvt0mb3"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://cgi4ajhvt0mb3"]
 
+[ext_resource type="PackedScene" uid="uid://xdfoqfupwqty" path="res://scenes/objects/interactables/resource_collector/resource_collector.tscn" id="1_0hls1"]
 [ext_resource type="Texture2D" uid="uid://5bucmnioh0hf" path="res://assets/test_autotile_godot.png" id="1_yyv3h"]
 [ext_resource type="Texture2D" uid="uid://mqg6k8p0ihya" path="res://assets/test_autotile_godot_2.png" id="2_0hls1"]
 [ext_resource type="Texture2D" uid="uid://c1g7dnb3kvpth" path="res://assets/Spacestation_Inside_A5.png" id="3_3ju13"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yyv3h"]
+resource_name = "interactables"
+scenes/1/scene = ExtResource("1_0hls1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38prr"]
 texture = ExtResource("1_yyv3h")
@@ -740,3 +745,4 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_38prr")
 sources/2 = SubResource("TileSetAtlasSource_a3b3n")
 sources/3 = SubResource("TileSetAtlasSource_1c3ud")
+sources/0 = SubResource("TileSetScenesCollectionSource_yyv3h")

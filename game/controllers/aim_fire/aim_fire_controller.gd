@@ -17,7 +17,7 @@ func aim() -> void:
 	var target = _get_target()
 	aim_component.set_target_angle(target.dir)
 
-func fire() -> bool:
+func try_fire() -> bool:
 	var target = _get_target()
 
 	if not target.has_target:

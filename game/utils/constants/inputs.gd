@@ -7,5 +7,6 @@ const MOVE_DOWN := &"move_down"
 
 const TURRET_KEY := &"turret"
 const CONFIRM := &"confirm"
+const INTERACT := &"interact"
 
 const LONG_PRESS_DURATION_SEC = 0.5

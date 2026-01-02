@@ -28,8 +28,6 @@ func _get_combatant_config(type: StringName) -> CombatantConfig:
     return mapping.get(type)
 
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
-    print("SPAWNING: %s" % ctx)
-
     var combatant_config := _get_combatant_config(ctx.type)
     var node := combatant_config.scene.instantiate()
 
@@ -45,8 +43,6 @@ func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
     PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, team_id)
 
     var pickupbox = combatant.get_node("AttachmentsRoot/PickupboxComponent/PickupSensorArea")
-    print(combatant)
-    print(pickupbox)
     PhysicsUtils.set_pickupbox_physics_for_team(pickupbox, team_id)
 
     combatants_container.add_child(combatant)
