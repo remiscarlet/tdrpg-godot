@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlbaotn0an15v"]
+
+[ext_resource type="Script" uid="uid://6eih674hpdhw" path="res://game/controllers/ai_hauler/ai_hauler_controller.gd" id="1_w43cl"]
+
+[node name="AIHaulerController" type="Node2D"]
+script = ExtResource("1_w43cl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="WanderTimer" type="Timer" parent="."]

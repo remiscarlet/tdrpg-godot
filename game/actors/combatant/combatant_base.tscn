@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://btwq1cb3h7kwa"]
+[gd_scene load_steps=16 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
-[ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_navigation/ai_navigation_controller.tscn" id="2_j2n0y"]
 [ext_resource type="Script" uid="uid://bv5lsmvggalnf" path="res://game/actors/combatant/attachments_root.gd" id="2_mgdoj"]
 [ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_o3fip"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
@@ -10,6 +9,8 @@
 [ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="4_dinay"]
 [ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="4_fkj5h"]
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
+[ext_resource type="PackedScene" uid="uid://dlbaotn0an15v" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="6_qqgk4"]
+[ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_wander_navigation/ai_wander_navigation_controller.tscn" id="6_rrdtx"]
 [ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
 [ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
 [ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
@@ -30,9 +31,11 @@ script = ExtResource("2_mgdoj")
 
 [node name="Controllers" type="Node2D" parent="AttachmentsRoot"]
 
-[node name="AINavigationController" parent="AttachmentsRoot/Controllers" instance=ExtResource("2_j2n0y")]
+[node name="AIWanderNavigationController" parent="AttachmentsRoot/Controllers" instance=ExtResource("6_rrdtx")]
 
 [node name="PlayerInputController" parent="AttachmentsRoot/Controllers" instance=ExtResource("3_r8x55")]
+
+[node name="AIHaulerController" parent="AttachmentsRoot/Controllers" instance=ExtResource("6_qqgk4")]
 
 [node name="FireWeaponComponent" parent="AttachmentsRoot" instance=ExtResource("6_mgdoj")]
 
@@ -55,6 +58,6 @@ sprite_frames = SubResource("SpriteFrames_nsc2i")
 [node name="Hurtbox2DComponent" parent="." instance=ExtResource("2_dinay")]
 health_path = NodePath("../AttachmentsRoot/HealthComponent")
 
-[editable path="AttachmentsRoot/Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
 [editable path="AttachmentsRoot/PickupboxComponent"]
 [editable path="Hurtbox2DComponent"]

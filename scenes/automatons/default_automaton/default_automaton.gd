@@ -1,0 +1,2 @@
+extends CombatantBase
+class_name DefaultAutomaton

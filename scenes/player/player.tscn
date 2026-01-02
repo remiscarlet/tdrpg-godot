@@ -13,7 +13,32 @@ collision_mask = 1
 script = ExtResource("2_gmlin")
 speed = 400
 
+[node name="AIWanderNavigationController" parent="AttachmentsRoot/Controllers" index="0"]
+editor_description = "Adds AI wandering navigation."
+
+[node name="PlayerInputController" parent="AttachmentsRoot/Controllers" index="1"]
+editor_description = "Handles all user keyboard inputs"
+
 [node name="AimFireController" parent="AttachmentsRoot/Controllers" index="2" instance=ExtResource("3_75vfm")]
+editor_description = "Given a TargetBaseProvider, will aim at the given target and expose the ability to try and fire."
+
+[node name="FireWeaponComponent" parent="AttachmentsRoot" index="2"]
+editor_description = "Adds the ability to spawn projectiles"
+
+[node name="HealthComponent" parent="AttachmentsRoot" index="3"]
+editor_description = "Tracks health for an actor. Should also have a Hurtbox2DComponent at the root to take damage."
+
+[node name="HealthBarView" parent="AttachmentsRoot" index="4"]
+editor_description = "Renders a health bar view above the sprite. Relies on HealthComponent"
+
+[node name="InventoryComponent" parent="AttachmentsRoot" index="6"]
+editor_description = "Basic inventory component for a given actor. Understood to be fairly basic and has a simple \"capacity\" for how many pieces of loot can be carried.
+
+TODO: Weight mechanics"
+capacity = 5
+
+[node name="PickupboxComponent" parent="AttachmentsRoot" index="7"]
+editor_description = "Adds a pickupbox and signals - to be used with InventoryComponent or other components that react to loot pickup."
 
 [node name="InteractableDetectorComponent" parent="AttachmentsRoot" index="8" instance=ExtResource("4_0owmy")]
 collision_layer = 4096
@@ -27,6 +52,6 @@ sprite_frames = ExtResource("5_p47bc")
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("3_p47bc")
 
-[editable path="AttachmentsRoot/Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
 [editable path="AttachmentsRoot/PickupboxComponent"]
 [editable path="Hurtbox2DComponent"]

@@ -62,6 +62,7 @@ func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
     lootable.rotation = direction.normalized().angle()
 
     lootable.set_loot_definition(loot.loot_definition)
+    lootable.add_to_group(Groups.LOOT)
 
     loot_container.add_child(lootable)
     if not lootable.is_node_ready():

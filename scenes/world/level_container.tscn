@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=8 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://lei1d620d8vg" path="res://game/systems/combatant_system.gd" id="4_n1rcx"]
 [ext_resource type="Script" uid="uid://d4h30dfbgmw5v" path="res://game/systems/loot_system.gd" id="5_2dxgc"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
+[ext_resource type="Script" uid="uid://cowjmnvp7ute" path="res://game/systems/hauler_task_system.gd" id="6_ncacs"]
 
 [node name="LevelContainer" type="Node2D"]
 editor_description = "Holds session/run-scoped state/systems/etc. "
@@ -39,6 +40,10 @@ unique_name_in_owner = true
 script = ExtResource("5_2dxgc")
 
 [node name="LootContainer" type="Node2D" parent="LootSystem"]
+
+[node name="HaulerTaskSystem" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_ncacs")
 
 [node name="CameraRig" type="Node2D" parent="."]
 script = ExtResource("6_2dxgc")

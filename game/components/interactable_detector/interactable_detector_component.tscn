@@ -6,6 +6,7 @@
 radius = 50.0
 
 [node name="InteractableDetectorComponent" type="Area2D"]
+editor_description = "Adds the ability to detect and keep track of Interactables within the CollisionShape2D range"
 script = ExtResource("1_kdcat")
 sensor_path = NodePath(".")
 

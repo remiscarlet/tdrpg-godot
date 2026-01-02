@@ -16,5 +16,5 @@ sprite_frames = ExtResource("3_u3ujn")
 [node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
 shape = ExtResource("2_3omnk")
 
-[editable path="AttachmentsRoot/Controllers/AINavigationController"]
+[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
 [editable path="Hurtbox2DComponent"]

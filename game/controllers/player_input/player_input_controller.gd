@@ -15,22 +15,32 @@ var delay_config: Dictionary[StringName, Dictionary] = {
     Inputs.CONFIRM: {
         "last": 0.0,
         "delay": 0.3,
-        "func": _try_fire
+        "func": _try_fire,
+        "held": false,
     },
     Inputs.INTERACT: {
         "last": 0.0,
         "delay": 1.0,
-        "func": _try_interact
+        "func": _try_interact,
+        "held": false,
     }
 }
 
+## Use _unhandled_input for input events to allow other systems to take input priority, such as menu/UI/Canvas inputs
 func _unhandled_input(event: InputEvent) -> void:
     for input in delay_config:
-        var handler_func: Callable = delay_config[input]["func"]
-        if event.is_action_pressed(input) and _can(input):
-            if handler_func.call():
+        if event.is_action_pressed(input): # initial press only
+            delay_config[input]["held"] = true
+            get_viewport().set_input_as_handled()
+        elif event.is_action_released(input):
+            delay_config[input]["held"] = false
+
+func _process(_delay: float) -> void:
+    for input in delay_config:
+        var cfg = delay_config[input]
+        if cfg["held"] and Input.is_action_pressed(input) and _can(input):
+            if cfg["func"].call():
                 _set_last(input)
-            get_viewport().set_input_as_handled() # stop other nodes from also acting
 
 func _get_now() -> float:
     return Time.get_unix_time_from_system()

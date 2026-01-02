@@ -4,5 +4,6 @@
 [ext_resource type="Resource" uid="uid://de7w2wp0kpd1q" path="res://game/providers/loot_table/default_enemy_loot_table.tres" id="2_0h50y"]
 
 [node name="LootableComponent" type="Node2D"]
+editor_description = "Indicates the owning actor can drop loot on death"
 script = ExtResource("1_0tgmd")
 loot_table = ExtResource("2_0h50y")

@@ -1,12 +1,13 @@
 extends Node
+class_name LevelSystem
 
 var level_container_scene: PackedScene = preload("res://scenes/world/level_container.tscn")
 var current_level: Node = null
 
+var run_state: RunState
 
-func _ready() -> void:
-    start_session()
-
+func bind_run_state(state: RunState) -> void:
+    run_state = state
 
 func start_session() -> void:
     # Remove existing level subtree.
@@ -16,5 +17,8 @@ func start_session() -> void:
     # Instantiate a fresh LevelContainer
     var container := level_container_scene.instantiate()
     container.prepare_map("map01")
+    container.bind_run_state(run_state)
     add_child(container)
     current_level = container
+
+

@@ -1,4 +1,5 @@
 extends CombatantBase
+class_name Player
 
 var _screen_size: Vector2
 
