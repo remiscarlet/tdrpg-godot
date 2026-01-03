@@ -1,8 +1,6 @@
 extends Area2D
 class_name InteractableBase
 
-@onready var target_sensor: TargetSensor2DComponent = $"AttachmentsRoot/TargetSensor2DComponent"
-
 var run_state: RunState
 
 func _enter_tree() -> void:

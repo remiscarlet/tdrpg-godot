@@ -14,7 +14,6 @@ func _ready() -> void:
     health_component.died.connect(_on_HealthComponent_died)
 
 func _on_HealthComponent_died(_source: Node) -> void:
-    print("Emitting loot_generated!")
     var ctx = LootableSpawnContext.new(root, global_position, generate_loot())
     loot_generated.emit(ctx)
 

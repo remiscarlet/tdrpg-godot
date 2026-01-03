@@ -26,21 +26,19 @@ func roll(rng: RandomNumberGenerator, ctx: LootContext = null, depth: int = 0) -
 	return out
 
 func _roll_once(rng: RandomNumberGenerator, ctx: LootContext, depth: int) -> Array[LootDrop]:
-	print("Rolling for loot...")
-
 	# Filter eligible entries and compute total weight
 	var eligible: Array[LootDefinitionBase] = []
 	var total_weight := 0.0
 
 	for e in entries:
 		if e == null:
-			print("Null entry - skipping")
+			# print("Null entry - skipping")
 			continue
 		if e.weight <= 0.0:
-			print("Invalid weight! Skipping")
+			# print("Invalid weight! Skipping")
 			continue
 		if not e.is_eligible(ctx):
-			print("Skipping %s due to ineligibility", e)
+			# print("Skipping %s due to ineligibility", e)
 			continue
 		eligible.append(e)
 		total_weight += e.weight
@@ -56,7 +54,6 @@ func _roll_once(rng: RandomNumberGenerator, ctx: LootContext, depth: int) -> Arr
 	for e in eligible:
 		acc += e.weight
 		if r <= acc:
-			print("?")
 			return e.resolve(rng, ctx, depth + 1)
 
 	# Fallback (floating point edge case)

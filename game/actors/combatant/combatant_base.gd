@@ -44,7 +44,6 @@ func set_controller_by_team_id(team_id: int) -> void:
     set_controller(active)
 
 func set_controller(active: Node) -> void:
-    print("Activating %s on %s" % [active, self])
     # Disable both, enable one. Disabled means no _process/_physics_process/_input, etc. :contentReference[oaicite:3]{index=3}
     player_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
     ai_hauler_ctrl.process_mode = Node.PROCESS_MODE_DISABLED

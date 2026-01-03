@@ -1,15 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://duynbju0ouwd6"]
+[gd_scene load_steps=5 format=3 uid="uid://duynbju0ouwd6"]
 
 [ext_resource type="Script" uid="uid://cvaur4thyvh6j" path="res://game/actors/interactable/interactable_base.gd" id="1_37qbf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yga2l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37qbf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37qbf"]
+size = Vector2(16, 48)
 
 [node name="InteractableBase" type="Area2D"]
 collision_layer = 16
 collision_mask = 4096
 script = ExtResource("1_37qbf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="InteractionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yga2l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37qbf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor_description = "CollisionShape2D is DISABLED BY DEFAULT"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+editor_description = "DISABLED BY DEFAULT"
+shape = SubResource("RectangleShape2D_37qbf")
+disabled = true

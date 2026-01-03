@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://btwq1cb3h7kwa"]
+[gd_scene load_steps=17 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
 [ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
 [ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
+[ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="13_rrdtx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
 
@@ -37,6 +38,12 @@ script = ExtResource("2_mgdoj")
 
 [node name="AIHaulerController" parent="AttachmentsRoot/Controllers" instance=ExtResource("6_qqgk4")]
 
+[node name="NavigationAgent2D" parent="AttachmentsRoot/Controllers/AIHaulerController" index="0"]
+target_desired_distance = 40.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 1, 0, 1)
+
 [node name="FireWeaponComponent" parent="AttachmentsRoot" instance=ExtResource("6_mgdoj")]
 
 [node name="HealthComponent" parent="AttachmentsRoot" instance=ExtResource("3_dinay")]
@@ -49,6 +56,10 @@ script = ExtResource("2_mgdoj")
 
 [node name="PickupboxComponent" parent="AttachmentsRoot" instance=ExtResource("11_qqgk4")]
 
+[node name="InteractableDetectorComponent" parent="AttachmentsRoot" instance=ExtResource("13_rrdtx")]
+collision_layer = 4096
+collision_mask = 16
+
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_dinay")
 
@@ -59,5 +70,7 @@ sprite_frames = SubResource("SpriteFrames_nsc2i")
 health_path = NodePath("../AttachmentsRoot/HealthComponent")
 
 [editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
+[editable path="AttachmentsRoot/Controllers/AIHaulerController"]
 [editable path="AttachmentsRoot/PickupboxComponent"]
+[editable path="AttachmentsRoot/InteractableDetectorComponent"]
 [editable path="Hurtbox2DComponent"]

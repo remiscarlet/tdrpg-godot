@@ -15,15 +15,14 @@ var _rng := RandomNumberGenerator.new()
 @onready var timer: Timer = $WanderTimer
 
 func _ready() -> void:
-    print("AIWander: _ready")
     _rng.randomize()
 
     # Avoid querying paths in _ready() before navigation map sync
     _setup.call_deferred()
 
 func _setup() -> void:
-    print("AIWander: _setup")
     await get_tree().physics_frame
+    agent.navigation_layers = navigation_layers
     _pick_new_target()
 
     timer.timeout.connect(_on_WanderTimer_timeout)
@@ -40,10 +39,8 @@ func _on_WanderTimer_timeout() -> void:
     _pick_new_target()
 
 func _pick_new_target() -> void:
-    print("AIWander: _pick_new_target")
     var target := _get_some_random_reachable_point()
     agent.target_position = target
-    print("Picked new wander target: %s" % target)
     timer.start(randf_range(wander_seconds_min, wander_seconds_max))
 
 func _get_some_random_reachable_point() -> Vector2:
