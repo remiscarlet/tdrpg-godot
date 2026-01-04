@@ -7,8 +7,9 @@ var los_mask: int = Layers.WORLD_SOLID
 
 func _init_sensor(origin: Node2D) -> bool:
 	if sensor == null:
-		# Optional auto-find if you follow a convention
-		sensor = origin.get_node_or_null("AttachmentsRoot/TargetSensor2DComponent") as TargetSensor2DComponent
+		print(origin)
+		print(origin.get_node("AttachmentsRig"))
+		sensor = origin.get_node("AttachmentsRig/%FacingRoot/Sensors/TargetSensor2DComponent") as TargetSensor2DComponent
 
 	return sensor != null
 

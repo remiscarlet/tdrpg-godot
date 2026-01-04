@@ -1,10 +1,6 @@
 class_name LevelContainer
 extends Node2D
 
-const Player = preload("res://scenes/player/player.gd")
-
-var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
-
 @onready var combatants_container: Node = $CombatantSystem/CombatantsContainer
 @onready var turret_system: TurretSystem = $TurretSystem
 @onready var projectile_system: ProjectileSystem = $ProjectileSystem
@@ -94,7 +90,7 @@ func _spawn_player(spawn_pos: Vector2) -> Player:
     var ctx = CombatantSpawnContext.new(spawn_pos, CombatantTypes.PLAYER)
     var player := await combatant_system.spawn(ctx) as Player
 
-    var placer := player.get_node("TurretPlacer")
+    var placer := player.get_node("AttachmentsRig/%ComponentsRoot/TurretPlacerComponent")
     placer.place_turret_requested.connect(
         func(pos, scene): turret_system.try_build_turret(player, pos, scene)
     )

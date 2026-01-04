@@ -4,7 +4,8 @@ class_name InteractableDetectorComponent
 @export var sensor_path: NodePath
 @onready var sensor: Area2D = get_node(sensor_path) as Area2D
 
-@onready var interactor: Node2D = get_parent().get_parent()
+# CombatantRoot/AttachmentsRig/FacingRoot/Sensors
+@onready var interactor: Node2D = get_parent().get_parent().get_parent().get_parent()
 
 var candidates: Array[InteractableBase] = []
 

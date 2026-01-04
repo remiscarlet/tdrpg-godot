@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dfp3h6lr176vn"]
+
+[ext_resource type="Texture2D" uid="uid://hm0nwrfb31wa" path="res://assets/1tile_door_closed.png" id="1_htt83"]
+[ext_resource type="Texture2D" uid="uid://olfavigdgmtj" path="res://assets/1tile_door_open.png" id="2_wewle"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_htt83")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wewle")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]

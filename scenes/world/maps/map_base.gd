@@ -2,7 +2,7 @@ class_name MapBase
 extends Node2D
 
 @export var player_spawn_path: NodePath
-@onready var spawn_system: SpawnSystem = $SpawnSystem
+@onready var spawn_system: SpawnSystem = %SpawnSystem
 
 func get_player_spawn() -> Marker2D:
 	return spawn_system.get_random_player_spawn()

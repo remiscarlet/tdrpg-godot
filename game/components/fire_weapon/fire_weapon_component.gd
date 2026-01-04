@@ -12,5 +12,5 @@ func fire(direction: Vector2) -> bool:
 	var proj = projectile_system.spawn(projectile_scene, ctx) as ProjectileBase
 	return proj != null
 
-func set_projectile_system(system: ProjectileSystem) -> void:
+func bind_projectile_system(system: ProjectileSystem) -> void:
 	projectile_system = system

@@ -9,7 +9,7 @@ var _rng := RandomNumberGenerator.new()
 
 @onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
-@onready var interactable_detector_component: InteractableDetectorComponent = $"../../InteractableDetectorComponent"
+@onready var interactable_detector_component: InteractableDetectorComponent
 
 enum HaulerState {
     IDLE,
@@ -18,23 +18,20 @@ enum HaulerState {
     DEPOSIT, # interact
 }
 
-var _nav_ready: bool = false
 var completed_state: bool = true
 var current_task: HaulTask
 var state = HaulerState.IDLE
 
 ## Public methods
 
-func set_hauler_task_system(system: HaulerTaskSystem) -> void:
+func bind_hauler_task_system(system: HaulerTaskSystem) -> void:
     print("Setting hauler to %s (%s)" % [system, get_instance_id()])
     hauler_task_system = system
-    _try_activate()
+
+func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:
+    interactable_detector_component = component
 
 ## Lifecycle
-
-func _enter_tree() -> void:
-    set_physics_process(false)
-    set_process(false)
 
 func _ready() -> void:
     _rng.randomize()
@@ -45,13 +42,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
     match state:
         HaulerState.DEPOSIT: _interact_with_collector()
-        _: pass#print("Hauler doing nothing")
+        _: pass
 
 func _setup() -> void:
     await get_tree().physics_frame
     agent.navigation_layers = navigation_layers
-
-    _try_activate()
 
 func _physics_process(_delta: float) -> void:
     if _can_transition_state():
@@ -76,24 +71,17 @@ func _physics_process(_delta: float) -> void:
 
 ## Helpers
 
-func _try_activate() -> void:
-    if not _nav_ready:
-        return
-    if hauler_task_system == null:
-        return
-
-    set_physics_process(true)
-    set_process(true)
-
 func _can_transition_state() -> bool:
     return agent.is_navigation_finished() and completed_state
 
 func _pick_new_target() -> void:
-    print("Hauler is %s (%s)" % [hauler_task_system, self.get_instance_id()])
     current_task = hauler_task_system.request_task(self)
+    if current_task == null:
+        # No new tasks available
+        return
 
+    print("New hauling task: %s (%s) (%s)" % [current_task, current_task.location, current_task.destination])
     agent.target_position = current_task.location
-
     state = HaulerState.GO_TO_LOOT
 
 func _interact_with_collector() -> void:

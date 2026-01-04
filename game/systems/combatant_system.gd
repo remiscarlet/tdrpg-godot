@@ -41,18 +41,20 @@ func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
     combatant.global_position = ctx.origin
 
     var team_id = combatant_config.team_id
-    var hurtbox = combatant.get_node("Hurtbox2DComponent")
+    var sensors_root = combatant.get_node("AttachmentsRig/FacingRoot/Sensors")
+
+    var hurtbox = sensors_root.get_node("Hurtbox2DComponent")
     PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, team_id)
 
-    var pickupbox = combatant.get_node("AttachmentsRoot/PickupboxComponent/PickupSensorArea")
+    var pickupbox = sensors_root.get_node("PickupboxComponent/PickupSensorArea")
     PhysicsUtils.set_pickupbox_physics_for_team(pickupbox, team_id)
 
     combatants_container.add_child(combatant)
     if not combatant.is_node_ready():
         await combatant.ready
 
-    combatant.set_level_container_ref(level_container)
+    combatant.bind_level_container_ref(level_container)
     combatant.set_controller_by_team_id(team_id)
-    
+
 
     return combatant

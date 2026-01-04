@@ -1,22 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvatswmxsu2m1"]
+[gd_scene load_steps=4 format=3 uid="uid://bvatswmxsu2m1"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_t7qrj"]
 [ext_resource type="SpriteFrames" uid="uid://beadl0aawfblw" path="res://scenes/automatons/default_automaton/default_automaton_spriteframes.tres" id="2_eyd6l"]
 [ext_resource type="Script" uid="uid://q2kpcyjx7c1m" path="res://scenes/automatons/default_automaton/default_automaton.gd" id="2_xkd1p"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7qrj"]
-radius = 11.5
-height = 31.0
-
 [node name="DefaultAutomaton" instance=ExtResource("1_t7qrj")]
 script = ExtResource("2_xkd1p")
 
-[node name="BodyShape" parent="." index="1"]
-shape = SubResource("CapsuleShape2D_t7qrj")
-
-[node name="BodySprite" parent="." index="2"]
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("2_eyd6l")
 
-[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
-[editable path="AttachmentsRoot/PickupboxComponent"]
-[editable path="Hurtbox2DComponent"]
+[editable path="AttachmentsRig"]
+[editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
+[editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]

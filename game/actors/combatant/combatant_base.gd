@@ -7,22 +7,46 @@ var desired_dir: Vector2 = Vector2.ZERO
 
 @export var move_speed: float = 200.0
 
-@onready var hurtbox_collision_shape: CollisionShape2D = $"Hurtbox2DComponent/CollisionShape2D"
-@onready var sprite_collision_shape: CollisionShape2D = $"BodyShape"
+@onready var sprite_collision_shape: CollisionShape2D = $"CollisionShape2D"
+@onready var rig = $"AttachmentsRig"
 
-@onready var attachments_root: Node2D = $AttachmentsRoot
-@onready var health: HealthComponent = attachments_root.get_node("HealthComponent")
-@onready var bar: HealthBarView = attachments_root.get_node("HealthBarView")
-@onready var player_ctrl: Node = attachments_root.get_node("Controllers/PlayerInputController")
-@onready var ai_hauler_ctrl: Node = attachments_root.get_node("Controllers/AIHaulerController")
-@onready var ai_wander_ctrl: Node2D = attachments_root.get_node("Controllers/AIWanderNavigationController")
+@onready var sensors_root: Node = rig.get_node("%FacingRoot/Sensors")
+@onready var hurtbox_collision_shape: CollisionShape2D = sensors_root.get_node("Hurtbox2DComponent/CollisionShape2D")
+
+@onready var health: HealthComponent = rig.get_node("%ComponentsRoot/HealthComponent")
+
+@onready var player_ctrl: Node = rig.get_node("%ControllersRoot/PlayerInputController")
+@onready var ai_hauler_ctrl: Node = rig.get_node("%ControllersRoot/AIHaulerController")
+@onready var ai_wander_ctrl: Node = rig.get_node("%ControllersRoot/AIWanderNavigationController")
+
+@onready var bar: HealthBarView = rig.get_node("%ViewsRoot/HealthBarView")
+
+func _enter_tree() -> void:
+    process_mode = Node.PROCESS_MODE_DISABLED
 
 func _ready() -> void:
+    print("Reading CombatantBase...")
+
     hurtbox_collision_shape.shape = sprite_collision_shape.shape
     health.health_changed.connect(_on_HealthComponent_health_changed)
     health.died.connect(_on_HealthComponent_died)
 
+    var interactable_detector_component = rig.get_node("%FacingRoot/Sensors/InteractableDetectorComponent")
+    player_ctrl.bind_interactable_detector_component(interactable_detector_component)
+    ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
+
+    print("Setting inventory_component pickupbox component...")
+    var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
+    var inventory_component = rig.get_node("%ComponentsRoot/InventoryComponent")
+    inventory_component.bind_pickupbox_component(pickupbox_component)
+
+    var aim_to_target_component = rig.get_node("%ComponentsRoot/AimToTarget2DComponent")
+    var facing_root = rig.get_node("%FacingRoot")
+    aim_to_target_component.bind_facing_root(facing_root)
+
     set_controller(player_ctrl)
+
+    process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_HealthComponent_health_changed(current: float, maximum: float) -> void:
     bar.set_ratio(current / maximum)
@@ -56,14 +80,14 @@ func _physics_process(_delta: float) -> void:
     velocity = desired_dir.normalized() * move_speed
     move_and_slide()
 
-func set_level_container_ref(container: LevelContainer) -> void:
+func bind_level_container_ref(container: LevelContainer) -> void:
     level_container = container
 
-    var fire: FireWeaponComponent = $"AttachmentsRoot/FireWeaponComponent"
-    fire.set_projectile_system(level_container.get_node("%ProjectileSystem"))
+    var fire: FireWeaponComponent = rig.get_node("%ComponentsRoot/FireWeaponComponent")
+    fire.bind_projectile_system(level_container.get_node("%ProjectileSystem"))
 
-    var loot: LootableComponent = $"AttachmentsRoot/LootableComponent"
-    loot.set_loot_system(level_container.get_node("%LootSystem"))
+    var loot: LootableComponent = rig.get_node("%ComponentsRoot/LootableComponent")
+    loot.bind_loot_system(level_container.get_node("%LootSystem"))
 
-    var ai_hauler_controller: AIHaulerController = $"AttachmentsRoot/Controllers/AIHaulerController"
-    ai_hauler_controller.set_hauler_task_system(level_container.get_node("%HaulerTaskSystem"))
+    var ai_hauler_controller: AIHaulerController = rig.get_node("%ControllersRoot/AIHaulerController")
+    ai_hauler_controller.bind_hauler_task_system(level_container.get_node("%HaulerTaskSystem"))

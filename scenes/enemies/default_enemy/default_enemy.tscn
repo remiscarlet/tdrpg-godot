@@ -7,19 +7,12 @@
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
 move_speed = 100.0
 
-[node name="InteractableDetectorComponent" parent="AttachmentsRoot" index="8"]
-collision_layer = 0
-collision_mask = 0
-
-[node name="BodyShape" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="0"]
 shape = ExtResource("2_3omnk")
 
-[node name="BodySprite" parent="." index="2"]
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("3_u3ujn")
 
-[node name="CollisionShape2D" parent="Hurtbox2DComponent" index="0"]
-shape = ExtResource("2_3omnk")
-
-[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
-[editable path="AttachmentsRoot/PickupboxComponent"]
-[editable path="Hurtbox2DComponent"]
+[editable path="AttachmentsRig"]
+[editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
+[editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]

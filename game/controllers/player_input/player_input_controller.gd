@@ -1,8 +1,15 @@
 extends Node2D
 
 @onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
-@onready var player_aim_fire_controller: AimFireController = $"../AimFireController"
-@onready var interactable_detector_component: InteractableDetectorComponent = $"../../InteractableDetectorComponent"
+
+@onready var player_aim_fire_controller: AimFireController
+@onready var interactable_detector_component: InteractableDetectorComponent
+
+func bind_player_aim_fire_controller(controller: AimFireController) -> void:
+    player_aim_fire_controller = controller
+
+func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:
+    interactable_detector_component = component
 
 func _physics_process(_delta: float) -> void:
     var d := Vector2(

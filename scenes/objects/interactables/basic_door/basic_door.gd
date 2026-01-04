@@ -6,10 +6,11 @@ enum DoorState { CLOSED, OPEN, LOCKED }
 @export var initial_state: DoorState = DoorState.CLOSED
 @export var door_id: StringName
 
-@onready var solid_shape: CollisionShape2D = $"StaticBody2D/CollisionShape2D"
 @onready var nav_link: NavigationLink2D = $NavigationLink2D
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D  # or Sprite2D
-@onready var anim: AnimationPlayer = get_node_or_null("AnimationPlayer")
+@onready var rig = $AttachmentsRig
+@onready var solid_shape: CollisionShape2D = rig.get_node("%FacingRoot/Sensors/StaticBody2D/CollisionShape2D")
+@onready var sprite: AnimatedSprite2D = rig.get_node("%FacingRoot/Visuals/AnimatedSprite2D")
+@onready var anim: AnimationPlayer
 
 signal state_changed(state: DoorState)
 

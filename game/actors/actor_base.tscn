@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c3qgiu0j6qr5d"]
+
+[node name="AttachmentsRig" type="Node2D"]
+
+[node name="ControllersRoot" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="ComponentsRoot" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="ViewsRoot" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="MotionRoot" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Visual" type="Node" parent="MotionRoot"]
+
+[node name="Sensor" type="Node" parent="MotionRoot"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bcwwj6eyunsvc"]
+
+[node name="AttachmentsRig" type="Node2D"]
+
+[node name="ControllersRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+editor_description = "Handles intent (Controllers)"
+
+[node name="ComponentsRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+editor_description = "Handles state/data/logic (Components)"
+
+[node name="ViewsRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+editor_description = "For holding non-rotating rendered views, such as health bars"
+
+[node name="MiscRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="FacingRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+editor_description = "Anything under here receives any rotational transforms, which is important for sprites/shapes/areas that should also rotate."
+
+[node name="Visuals" type="Node2D" parent="FacingRoot"]
+
+[node name="Sensors" type="Node2D" parent="FacingRoot"]
+editor_description = "For holding components that should receive parent rotations"

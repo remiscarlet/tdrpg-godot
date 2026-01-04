@@ -1,29 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://xdfoqfupwqty"]
+[gd_scene load_steps=4 format=3 uid="uid://xdfoqfupwqty"]
 
 [ext_resource type="PackedScene" uid="uid://duynbju0ouwd6" path="res://game/actors/interactable/interactable_base.tscn" id="1_r8i6y"]
 [ext_resource type="Script" uid="uid://dap8sj6u422gc" path="res://scenes/objects/interactables/resource_collector/resource_collector.gd" id="2_e70b3"]
-[ext_resource type="Texture2D" uid="uid://bqnbkwte1urio" path="res://assets/resource_collector.png" id="2_myper"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_myper"]
-size = Vector2(30, 31)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e70b3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_myper")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://dv56u7y421h1q" path="res://scenes/objects/interactables/resource_collector/resource_collector_spriteframes.tres" id="3_e70b3"]
 
 [node name="ResourceCollector" instance=ExtResource("1_r8i6y")]
 script = ExtResource("2_e70b3")
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_myper")
+[node name="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+sprite_frames = ExtResource("3_e70b3")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_e70b3")
+[editable path="AttachmentsRig"]

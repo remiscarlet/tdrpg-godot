@@ -8,7 +8,7 @@ func _enter_tree() -> void:
     add_to_group(Groups.COLLECTORS)
 
 func interact(interactor: Node2D) -> bool:
-    var inventory: InventoryComponent = interactor.get_node("AttachmentsRoot/InventoryComponent")
+    var inventory: InventoryComponent = interactor.get_node("AttachmentsRig/ComponentsRoot/InventoryComponent")
     print(inventory.inventory)
     print(inventory.inventory.size())
 

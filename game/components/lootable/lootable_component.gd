@@ -24,5 +24,5 @@ func generate_loot(ctx: LootContext = null) -> Array[LootDrop]:
     var drops := loot_table.roll(rng, ctx)
     return drops
 
-func set_loot_system(system: LootSystem) -> void:
+func bind_loot_system(system: LootSystem) -> void:
     loot_system = system

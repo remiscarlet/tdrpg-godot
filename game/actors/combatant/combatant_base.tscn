@@ -1,12 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://btwq1cb3h7kwa"]
+[gd_scene load_steps=18 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
-[ext_resource type="Script" uid="uid://bv5lsmvggalnf" path="res://game/actors/combatant/attachments_root.gd" id="2_mgdoj"]
+[ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_nl20h"]
 [ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_o3fip"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
 [ext_resource type="PackedScene" uid="uid://dj848oxifs0a3" path="res://game/controllers/player_input/player_input_controller.tscn" id="3_r8x55"]
-[ext_resource type="Shape2D" uid="uid://bpvidxxd1ns6w" path="res://game/actors/combatant/combatant_base_shape.tres" id="4_dinay"]
 [ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="4_fkj5h"]
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
 [ext_resource type="PackedScene" uid="uid://dlbaotn0an15v" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="6_qqgk4"]
@@ -14,63 +13,83 @@
 [ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
 [ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
 [ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
+[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/texture_missing.png" id="12_rrdtx"]
 [ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="13_rrdtx"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqgk4"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_rrdtx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CombatantBase" type="CharacterBody2D"]
+scale = Vector2(0.65, 0.65)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_nsc2i")
 metadata/_edit_group_ = true
 
-[node name="AttachmentsRoot" type="Node2D" parent="."]
-editor_description = "The CombatantBase root node is rotated based on sprite movement direction. For nodes that don't want the rotation applied (eg, health bar), place them all under the AttachmentsRoot node."
-script = ExtResource("2_mgdoj")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+editor_description = "Collider shape has to live as a direct child of the CharacterBody2D root :`) "
+shape = SubResource("CircleShape2D_qqgk4")
 
-[node name="AimToTarget2DComponent" parent="AttachmentsRoot" instance=ExtResource("2_o3fip")]
+[node name="AttachmentsRig" parent="." instance=ExtResource("2_nl20h")]
 
-[node name="Controllers" type="Node2D" parent="AttachmentsRoot"]
+[node name="AIWanderNavigationController" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("6_rrdtx")]
+scale = Vector2(0.65, 0.65)
 
-[node name="AIWanderNavigationController" parent="AttachmentsRoot/Controllers" instance=ExtResource("6_rrdtx")]
+[node name="PlayerInputController" parent="AttachmentsRig/ControllersRoot" index="1" instance=ExtResource("3_r8x55")]
+scale = Vector2(0.65, 0.65)
 
-[node name="PlayerInputController" parent="AttachmentsRoot/Controllers" instance=ExtResource("3_r8x55")]
+[node name="AIHaulerController" parent="AttachmentsRig/ControllersRoot" index="2" instance=ExtResource("6_qqgk4")]
+scale = Vector2(0.65, 0.65)
 
-[node name="AIHaulerController" parent="AttachmentsRoot/Controllers" instance=ExtResource("6_qqgk4")]
-
-[node name="NavigationAgent2D" parent="AttachmentsRoot/Controllers/AIHaulerController" index="0"]
+[node name="NavigationAgent2D" parent="AttachmentsRig/ControllersRoot/AIHaulerController" index="0"]
 target_desired_distance = 40.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 1, 0, 1)
 
-[node name="FireWeaponComponent" parent="AttachmentsRoot" instance=ExtResource("6_mgdoj")]
+[node name="FireWeaponComponent" parent="AttachmentsRig/ComponentsRoot" index="0" instance=ExtResource("6_mgdoj")]
+scale = Vector2(0.65, 0.65)
 
-[node name="HealthComponent" parent="AttachmentsRoot" instance=ExtResource("3_dinay")]
+[node name="HealthComponent" parent="AttachmentsRig/ComponentsRoot" index="1" instance=ExtResource("3_dinay")]
+scale = Vector2(0.65, 0.65)
 
-[node name="HealthBarView" parent="AttachmentsRoot" instance=ExtResource("4_fkj5h")]
+[node name="LootableComponent" parent="AttachmentsRig/ComponentsRoot" index="2" groups=["loot_emitters"] instance=ExtResource("9_g1fhr")]
+scale = Vector2(0.65, 0.65)
 
-[node name="LootableComponent" parent="AttachmentsRoot" groups=["loot_emitters"] instance=ExtResource("9_g1fhr")]
+[node name="InventoryComponent" parent="AttachmentsRig/ComponentsRoot" index="3" instance=ExtResource("10_i7seo")]
+scale = Vector2(0.65, 0.65)
 
-[node name="InventoryComponent" parent="AttachmentsRoot" instance=ExtResource("10_i7seo")]
+[node name="AimToTarget2DComponent" parent="AttachmentsRig/ComponentsRoot" index="4" instance=ExtResource("2_o3fip")]
+scale = Vector2(0.65, 0.65)
 
-[node name="PickupboxComponent" parent="AttachmentsRoot" instance=ExtResource("11_qqgk4")]
+[node name="HealthBarView" parent="AttachmentsRig/ViewsRoot" index="0" instance=ExtResource("4_fkj5h")]
+scale = Vector2(0.65, 0.65)
 
-[node name="InteractableDetectorComponent" parent="AttachmentsRoot" instance=ExtResource("13_rrdtx")]
+[node name="BodySprite" type="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+sprite_frames = SubResource("SpriteFrames_nsc2i")
+
+[node name="Hurtbox2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="0" instance=ExtResource("2_dinay")]
+scale = Vector2(0.27462497, 0.27462497)
+health_path = NodePath("../../../ComponentsRoot/HealthComponent")
+
+[node name="PickupboxComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("11_qqgk4")]
+scale = Vector2(0.42249995, 0.42249995)
+
+[node name="InteractableDetectorComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="2" instance=ExtResource("13_rrdtx")]
+scale = Vector2(0.42249995, 0.42249995)
 collision_layer = 4096
 collision_mask = 16
 
-[node name="BodyShape" type="CollisionShape2D" parent="."]
-shape = ExtResource("4_dinay")
-
-[node name="BodySprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_nsc2i")
-
-[node name="Hurtbox2DComponent" parent="." instance=ExtResource("2_dinay")]
-health_path = NodePath("../AttachmentsRoot/HealthComponent")
-
-[editable path="AttachmentsRoot/Controllers/AIWanderNavigationController"]
-[editable path="AttachmentsRoot/Controllers/AIHaulerController"]
-[editable path="AttachmentsRoot/PickupboxComponent"]
-[editable path="AttachmentsRoot/InteractableDetectorComponent"]
-[editable path="Hurtbox2DComponent"]
+[editable path="AttachmentsRig"]
+[editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
+[editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
