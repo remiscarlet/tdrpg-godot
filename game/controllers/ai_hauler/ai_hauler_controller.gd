@@ -70,7 +70,8 @@ func _transition_hauler_state()-> bool:
         HaulerState.IDLE:
             body.desired_dir = Vector2.ZERO
             _pick_new_target()
-            state = HaulerState.GO_TO_LOOT
+            if current_task != null:
+                state = HaulerState.GO_TO_LOOT
             return false
         HaulerState.GO_TO_LOOT:
             state = HaulerState.GO_TO_COLLECTOR
@@ -92,7 +93,7 @@ func _pick_new_target() -> void:
 
     print("New hauling task: %s (%s) (%s)" % [current_task, current_task.location, current_task.destination])
     agent.target_position = current_task.location
-    
+
 
 func _interact_with_collector() -> void:
     if interactable_detector_component.try_interact():

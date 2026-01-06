@@ -1,14 +1,12 @@
 extends RefCounted
 class_name LootDrop
 
-var loot_definition: LootDefinitionBase = LootEntryNothing.new()
+var loot_id: StringName
 var quantity: int
-var scene: PackedScene
 
-func _init(loot: LootDefinitionBase, new_quantity: int = 1, new_scene: PackedScene = null) -> void:
-	loot_definition = loot
+func _init(id: StringName, new_quantity: int = 1) -> void:
+	loot_id = id
 	quantity = new_quantity
-	scene = new_scene
 
 func is_nothing() -> bool:
-	return loot_definition.item_id == &""
+	return loot_id == &""

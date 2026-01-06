@@ -4,24 +4,7 @@ extends Node
 @onready var level_container: LevelContainer = get_parent()
 @onready var loot_container: Node2D = $LootContainer
 
-class LootConfig:
-    var scene: PackedScene
-
-    func _init(
-        c_scene: PackedScene,
-    ):
-        scene = c_scene
-
-var mapping: Dictionary[StringName, LootConfig] = {
-    Loot.CREDIT: LootConfig.new(preload("res://scenes/objects/loot/credit/credit.tscn")),
-    Loot.SCRAP: LootConfig.new(preload("res://scenes/objects/loot/scrap/scrap.tscn")),
-    Loot.POWER_CELL: LootConfig.new(preload("res://scenes/objects/loot/power_cell/power_cell.tscn")),
-}
-
-func _get_loot_config(type: StringName) -> LootConfig:
-    if not mapping.has(type):
-        push_error("Tried getting a CombatantConfig for an unknown CombatantTypes! Got: %s" % type)
-    return mapping.get(type)
+var lootable_base_scene: PackedScene = preload("res://game/actors/loot/lootable_base.tscn")
 
 func _ready() -> void:
     _connect_existing()
@@ -47,26 +30,18 @@ func _on_loot_generated(ctx: LootableSpawnContext) -> void:
             spawn(loot, ctx.origin, ctx.direction)
 
 func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
-    var item_id = loot.loot_definition.item_id
-
-    assert(loot.scene != null)
-
-    var node := loot.scene.instantiate()
+    var node = lootable_base_scene.instantiate()
 
     var lootable := node as LootableBase
     if lootable == null:
         push_error("Lootable scene does not inherit LootableBase.")
         return null
 
-    lootable.global_position = origin
-    lootable.rotation = direction.normalized().angle()
-
-    lootable.set_loot_definition(loot.loot_definition)
-    lootable.add_to_group(Groups.LOOT)
+    lootable.configure(loot, origin, direction)
 
     loot_container.add_child(lootable)
     if not lootable.is_node_ready():
         await lootable.ready
 
-    print("Generated %s loot!" % item_id)
+    print("Generated %s loot!" % loot.loot_id)
     return lootable

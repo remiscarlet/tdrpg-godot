@@ -6,7 +6,7 @@ const MAX_NESTING_DEPTH := 16
 @export var rolls_min: int = 1
 @export var rolls_max: int = 1
 
-@export var entries: Array[LootDefinitionBase] = []
+@export var entries: Array[LootEntry] = []
 
 func roll(rng: RandomNumberGenerator, ctx: LootContext = null, depth: int = 0) -> Array[LootDrop]:
 	if depth > MAX_NESTING_DEPTH:
@@ -27,7 +27,7 @@ func roll(rng: RandomNumberGenerator, ctx: LootContext = null, depth: int = 0) -
 
 func _roll_once(rng: RandomNumberGenerator, ctx: LootContext, depth: int) -> Array[LootDrop]:
 	# Filter eligible entries and compute total weight
-	var eligible: Array[LootDefinitionBase] = []
+	var eligible: Array[LootEntry] = []
 	var total_weight := 0.0
 
 	for e in entries:

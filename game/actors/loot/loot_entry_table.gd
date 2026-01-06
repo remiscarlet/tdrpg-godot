@@ -1,4 +1,4 @@
-extends LootDefinitionBase
+extends LootEntry
 class_name LootEntryTable
 
 @export var table: LootTable

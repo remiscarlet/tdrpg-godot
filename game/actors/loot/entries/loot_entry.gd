@@ -1,8 +1,7 @@
 extends Resource
-class_name LootDefinitionBase
+class_name LootEntry
 
-var item_id: StringName
-var scene: PackedScene
+@export var item_id: StringName
 
 @export var qty_min: int = 1
 @export var qty_max: int = 1
@@ -24,4 +23,4 @@ func resolve(rng: RandomNumberGenerator, _ctx: LootContext, _depth: int) -> Arra
         print("Resolving empty due to empty item_id")
         return []
     var q := rng.randi_range(qty_min, qty_max)
-    return [LootDrop.new(self, q, scene)]
+    return [LootDrop.new(item_id, q)]

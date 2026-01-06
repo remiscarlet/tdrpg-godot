@@ -1,4 +1,4 @@
-extends LootDefinitionBase
+extends LootEntry
 class_name LootEntryNothing
 
 func _init() -> void:

@@ -21,7 +21,7 @@ func bind_pickupbox_component(component: PickupboxComponent) -> void:
 func on_PickupboxComponent_loot_encountered(loot: LootableBase) -> void:
     print("INVENTORY PICKING UP LOOT: %s" % loot)
 
-    var item_id = loot.loot_definition.item_id
+    var item_id = loot.drop.loot_id
     if inventory.add_item(item_id):
         loot.queue_free()
         inventory_changed.emit()
