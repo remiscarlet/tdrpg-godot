@@ -5,7 +5,7 @@ signal place_turret_requested(world_pos: Vector2, turret_scene: PackedScene)
 var was_pressed_last_iter: bool
 var pressed_duration: float
 
-var turret1_scene: PackedScene = preload("res://scenes/turrets/default_turret/default_turret.tscn")
+var turret1_scene_path: String = "res://scenes/turrets/default_turret/default_turret.tscn"
 
 var selected_turret: int = 0
 
@@ -74,7 +74,8 @@ func configure_turret() -> void:
 
 func get_turret_scene() -> PackedScene:
     # TODO: Multi turret selection
-    return turret1_scene
+    return load(turret1_scene_path)
+    # return turret1_scene
 
 
 func request_build_turret() -> void:

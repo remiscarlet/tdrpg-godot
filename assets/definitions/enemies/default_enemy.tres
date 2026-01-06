@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=3 format=3 uid="uid://dkg3r7q6446iv"]
+
+[ext_resource type="Texture2D" uid="uid://bke2cy0xibcmx" path="res://assets/art/Default-Enemy.png" id="1_kv3tb"]
+[ext_resource type="Script" uid="uid://dbdi71vttbufk" path="res://game/definitions/enemy_definition.gd" id="1_rlvs5"]
+
+[resource]
+script = ExtResource("1_rlvs5")
+team_id = 1
+max_hp = 15
+move_speed = 150.0
+id = &"default_enemy"
+display_name = "Default Enemy"
+icon = ExtResource("1_kv3tb")
+metadata/_custom_type_script = "uid://dbdi71vttbufk"

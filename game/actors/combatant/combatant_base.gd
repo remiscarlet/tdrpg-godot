@@ -6,6 +6,7 @@ var level_container: LevelContainer
 var desired_dir: Vector2 = Vector2.ZERO
 
 @export var move_speed: float = 200.0
+@export var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
 
 @onready var sprite_collision_shape: CollisionShape2D = $"CollisionShape2D"
 @onready var rig = $"AttachmentsRig"
@@ -19,7 +20,34 @@ var desired_dir: Vector2 = Vector2.ZERO
 @onready var ai_hauler_ctrl: Node = rig.get_node("%ControllersRoot/AIHaulerController")
 @onready var ai_wander_ctrl: Node = rig.get_node("%ControllersRoot/AIWanderNavigationController")
 
-@onready var bar: HealthBarView = rig.get_node("%ViewsRoot/HealthBarView")
+# Public Methods
+
+func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition) -> void:
+    global_position = ctx.origin
+
+    move_speed = combatant_definition.move_speed
+    combat_tags = combatant_definition.combat_tags
+
+    var _rig = get_node("AttachmentsRig")
+    var health_component: HealthComponent = _rig.get_node("ComponentsRoot/HealthComponent")
+    health_component.max_health = combatant_definition.max_hp
+
+    var team_id = combatant_definition.team_id
+    var sensors = _rig.get_node("FacingRoot/Sensors")
+
+    var hurtbox = sensors.get_node("Hurtbox2DComponent")
+    PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, team_id)
+
+    var pickupbox = sensors.get_node("PickupboxComponent/PickupSensorArea")
+    PhysicsUtils.set_pickupbox_physics_for_team(pickupbox, team_id)
+
+func configure_combatant_post_ready(_ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition, container: LevelContainer) -> void:
+    var team_id = combatant_definition.team_id
+
+    _bind_level_container_ref(container)
+    _set_controller_by_team_id(team_id)
+
+# Lifecycle Methods
 
 func _enter_tree() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
@@ -28,7 +56,6 @@ func _ready() -> void:
     print("Reading CombatantBase...")
 
     hurtbox_collision_shape.shape = sprite_collision_shape.shape
-    health.health_changed.connect(_on_HealthComponent_health_changed)
     health.died.connect(_on_HealthComponent_died)
 
     var interactable_detector_component = rig.get_node("%FacingRoot/Sensors/InteractableDetectorComponent")
@@ -44,19 +71,22 @@ func _ready() -> void:
     var facing_root = rig.get_node("%FacingRoot")
     aim_to_target_component.bind_facing_root(facing_root)
 
-    set_controller(player_ctrl)
+    _set_controller(player_ctrl)
 
     process_mode = Node.PROCESS_MODE_INHERIT
 
-func _on_HealthComponent_health_changed(current: float, maximum: float) -> void:
-    bar.set_ratio(current / maximum)
-    bar.visible = current < maximum
+func _physics_process(_delta: float) -> void:
+    # Controllers set desired_dir; motor applies it.
+    velocity = desired_dir.normalized() * move_speed
+    move_and_slide()
+
+# Helpers
 
 func _on_HealthComponent_died(source: Node) -> void:
     print("%s killed by %s!" % [self, source])
     queue_free()
 
-func set_controller_by_team_id(team_id: int) -> void:
+func _set_controller_by_team_id(team_id: int) -> void:
     var active
     if team_id != CombatantTeam.PLAYER:
         active = ai_wander_ctrl
@@ -65,9 +95,9 @@ func set_controller_by_team_id(team_id: int) -> void:
     else:
         active = player_ctrl
 
-    set_controller(active)
+    _set_controller(active)
 
-func set_controller(active: Node) -> void:
+func _set_controller(active: Node) -> void:
     # Disable both, enable one. Disabled means no _process/_physics_process/_input, etc. :contentReference[oaicite:3]{index=3}
     player_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
     ai_hauler_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
@@ -75,12 +105,7 @@ func set_controller(active: Node) -> void:
 
     active.process_mode = Node.PROCESS_MODE_INHERIT
 
-func _physics_process(_delta: float) -> void:
-    # Controllers set desired_dir; motor applies it.
-    velocity = desired_dir.normalized() * move_speed
-    move_and_slide()
-
-func bind_level_container_ref(container: LevelContainer) -> void:
+func _bind_level_container_ref(container: LevelContainer) -> void:
     level_container = container
 
     var fire: FireWeaponComponent = rig.get_node("%ComponentsRoot/FireWeaponComponent")

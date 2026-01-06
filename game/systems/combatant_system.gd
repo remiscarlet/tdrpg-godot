@@ -28,33 +28,22 @@ func _get_combatant_config(type: StringName) -> CombatantConfig:
     return mapping.get(type)
 
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
-    print("Spawning %s" % ctx.type)
+    print("Spawning %s" % ctx.combatant_id)
 
-    var combatant_config := _get_combatant_config(ctx.type)
-    var node := combatant_config.scene.instantiate()
+    var combatant_definition := DefinitionDB.get_combatant(ctx.combatant_id)
 
+    var node = combatant_definition.scene.instantiate()
     var combatant := node as CombatantBase
     if combatant == null:
-        push_error("Projectile scene does not inherit ProjectileBase.")
+        push_error("Combatant scene does not inherit CombatantBase.")
         return null
 
-    combatant.global_position = ctx.origin
-
-    var team_id = combatant_config.team_id
-    var sensors_root = combatant.get_node("AttachmentsRig/FacingRoot/Sensors")
-
-    var hurtbox = sensors_root.get_node("Hurtbox2DComponent")
-    PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, team_id)
-
-    var pickupbox = sensors_root.get_node("PickupboxComponent/PickupSensorArea")
-    PhysicsUtils.set_pickupbox_physics_for_team(pickupbox, team_id)
+    combatant.configure_combatant_pre_ready(ctx, combatant_definition)
 
     combatants_container.add_child(combatant)
     if not combatant.is_node_ready():
         await combatant.ready
 
-    combatant.bind_level_container_ref(level_container)
-    combatant.set_controller_by_team_id(team_id)
-
+    combatant.configure_combatant_post_ready(ctx, combatant_definition, level_container)
 
     return combatant

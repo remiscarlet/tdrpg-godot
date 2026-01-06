@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvmiin27bmp6u"]
+[gd_scene load_steps=11 format=3 uid="uid://cvmiin27bmp6u"]
 
 [ext_resource type="Script" uid="uid://c2x8tb2fy5ns6" path="res://scenes/turrets/default_turret/default_turret.gd" id="1_hyaxd"]
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="2_2atjr"]
@@ -8,13 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="3_88fu5"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_v27rg"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="4_2atjr"]
-[ext_resource type="PackedScene" uid="uid://oye13cgmlrvo" path="res://game/components/health/health_bar_view.tscn" id="6_1rejp"]
 [ext_resource type="PackedScene" uid="uid://dw0tshg2k2j2p" path="res://game/components/target_sensor_2d/target_sensor_2d_component.tscn" id="6_nlnkj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjdg3"]
 radius = 11.0
 
-[node name="DefaultTurret" type="Area2D"]
+[node name="DefaultTurret" type="Area2D" groups=["combatants"]]
 scale = Vector2(0.65, 0.65)
 script = ExtResource("1_hyaxd")
 metadata/_edit_group_ = true
@@ -32,7 +31,8 @@ shape = SubResource("CircleShape2D_tjdg3")
 
 [node name="HealthComponent" parent="AttachmentsRig/ComponentsRoot" index="2" instance=ExtResource("3_v27rg")]
 
-[node name="HealthBarView" parent="AttachmentsRig/ViewsRoot" index="0" instance=ExtResource("6_1rejp")]
+[node name="OverheadIndicatorAnchor" type="Marker2D" parent="AttachmentsRig/ViewsRoot" index="0"]
+position = Vector2(0, -16)
 
 [node name="ShotDelayTimer" type="Timer" parent="AttachmentsRig/MiscRoot" index="0"]
 autostart = true

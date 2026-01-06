@@ -15,6 +15,10 @@ run/main_scene="uid://kk4opvtpytbu"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DefinitionDB="*res://game/providers/definition_db.gd"
+
 [display]
 
 window/stretch/mode="viewport"

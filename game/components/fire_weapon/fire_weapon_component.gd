@@ -7,10 +7,10 @@ var projectile_scene: PackedScene = preload(
 )
 
 func fire(direction: Vector2) -> bool:
-	var ctx = ProjectileSpawnContext.new(self, global_position, CombatantTeam.PLAYER)
-	ctx.direction = direction
-	var proj = projectile_system.spawn(projectile_scene, ctx) as ProjectileBase
-	return proj != null
+    var ctx = ProjectileSpawnContext.new(self, global_position, CombatantTeam.PLAYER)
+    ctx.direction = direction
+    var proj = projectile_system.spawn(projectile_scene, ctx) as ProjectileBase
+    return proj != null
 
 func bind_projectile_system(system: ProjectileSystem) -> void:
-	projectile_system = system
+    projectile_system = system

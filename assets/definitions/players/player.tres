@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlayerDefinition" load_steps=2 format=3 uid="uid://b4rou8mm08woj"]
+
+[ext_resource type="Script" uid="uid://dwcmlelh3kfoy" path="res://game/definitions/player_definition.gd" id="1_bv7p1"]
+
+[resource]
+script = ExtResource("1_bv7p1")
+move_speed = 250.0
+id = &"player"
+display_name = "Player"
+description = "Default player"
+metadata/_custom_type_script = "uid://dwcmlelh3kfoy"

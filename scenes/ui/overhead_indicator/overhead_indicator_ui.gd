@@ -26,9 +26,11 @@ func set_attach_screen_pos(p: Vector2) -> void:
 
 func _ready() -> void:
     health_component.health_changed.connect(health_bar.on_HealthComponent_health_changed)
+    health_bar.on_HealthComponent_health_changed(health_component.current_health, health_component.max_health)
 
-    inventory_bar.bind_inventory_component(inventory_component)
-    inventory_component.inventory_changed.connect(inventory_bar.on_InventoryComponent_inventory_changed)
+    if inventory_component:
+        inventory_bar.bind_inventory_component(inventory_component)
+        inventory_component.inventory_changed.connect(inventory_bar.on_InventoryComponent_inventory_changed)
 
 # Helpers
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AutomatonDefinition" load_steps=3 format=3 uid="uid://forbsr203gv4"]
+
+[ext_resource type="Script" uid="uid://i5y8ur860oe8" path="res://game/definitions/automaton_definition.gd" id="1_1n0k3"]
+[ext_resource type="Texture2D" uid="uid://dcfu1pkxctmxl" path="res://assets/art/default_automaton.png" id="1_4dvx7"]
+
+[resource]
+script = ExtResource("1_1n0k3")
+move_speed = 150.0
+id = &"default_automaton"
+display_name = "Default Automaton"
+icon = ExtResource("1_4dvx7")
+metadata/_custom_type_script = "uid://i5y8ur860oe8"
