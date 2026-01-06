@@ -7,10 +7,11 @@
 [ext_resource type="NavigationPolygon" uid="uid://bs3l8tutd1b16" path="res://scenes/world/maps/room_b_navpoly.tres" id="4_eyw5l"]
 
 [node name="MapBase" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_3igsj")
 player_spawn_path = NodePath("SpawnSources/PlayerSpawn")
 
-[node name="Tiles" type="Node" parent="."]
+[node name="Tiles" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMapLayer" parent="Tiles" groups=["navigation"]]
 position = Vector2(144, 48)

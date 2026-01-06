@@ -27,8 +27,8 @@ func _generate_some_tasks() -> void:
 		for col in collectors:
 			# Minimal viability: assume compatible; refine later with can_accept(item)
 			var t := HaulTask.new()
-			t.location = loot.global_position
-			t.destination = col.global_position
+			t.loot_loc = loot.global_position
+			t.collector_loc = col.global_position
 			t.loot_id = loot.get_instance_id()
 			t.collector_id = col.get_instance_id()
 			_tasks.append(t)

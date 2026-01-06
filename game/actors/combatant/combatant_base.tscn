@@ -1,17 +1,17 @@
 [gd_scene load_steps=17 format=3 uid="uid://btwq1cb3h7kwa"]
 
 [ext_resource type="Script" uid="uid://dcwrtcbw0mhlo" path="res://game/actors/combatant/combatant_base.gd" id="1_nsc2i"]
-[ext_resource type="PackedScene" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
+[ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="2_dinay"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_nl20h"]
-[ext_resource type="PackedScene" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_o3fip"]
+[ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_o3fip"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_dinay"]
 [ext_resource type="PackedScene" uid="uid://dj848oxifs0a3" path="res://game/controllers/player_input/player_input_controller.tscn" id="3_r8x55"]
-[ext_resource type="PackedScene" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
-[ext_resource type="PackedScene" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="6_qqgk4"]
-[ext_resource type="PackedScene" path="res://game/controllers/ai_wander_navigation/ai_wander_navigation_controller.tscn" id="6_rrdtx"]
-[ext_resource type="PackedScene" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
-[ext_resource type="PackedScene" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
-[ext_resource type="PackedScene" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
+[ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="6_mgdoj"]
+[ext_resource type="PackedScene" uid="uid://dlbaotn0an15v" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="6_qqgk4"]
+[ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_wander_navigation/ai_wander_navigation_controller.tscn" id="6_rrdtx"]
+[ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
+[ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
+[ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
 [ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/art/texture_missing.png" id="12_rrdtx"]
 [ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="13_rrdtx"]
 
@@ -29,7 +29,6 @@ animations = [{
 }]
 
 [node name="CombatantBase" type="CharacterBody2D" groups=["combatants"]]
-scale = Vector2(0.65, 0.65)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_nsc2i")

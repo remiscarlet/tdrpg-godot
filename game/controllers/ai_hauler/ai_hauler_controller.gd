@@ -15,6 +15,7 @@ var _rng := RandomNumberGenerator.new()
 enum HaulerState {
     IDLE,
     GO_TO_LOOT,
+    WAITING_MORE_LOOT,
     GO_TO_COLLECTOR,
     DEPOSIT, # interact
 }
@@ -76,24 +77,25 @@ func _transition_hauler_state(delta: float)-> bool:
     # TODO: Make more robust
     match current_state:
         HaulerState.IDLE:
-            if not inventory_component.inventory.is_empty():
-                time_waiting_for_more_loot += delta
-                if time_waiting_for_more_loot >= time_waiting_for_more_loot_threshold_ms:
-                    _transition_state_go_to_collector()
-                    return true
-
-            body.desired_dir = Vector2.ZERO
-            _pick_new_target()
-            if current_task != null:
-                current_state = HaulerState.GO_TO_LOOT
+            _transition_state_idle()
             return false
         HaulerState.GO_TO_LOOT:
             if inventory_component.inventory.is_full():
                 print("[%s] Inventory was full. Moving back to collector" % self)
                 _transition_state_go_to_collector()
             else:
-                print("[%s] Inventory was not full. Idling." % self)
-                current_state = HaulerState.IDLE
+                print("[%s] Inventory was not full. Waiting for more loot." % self)
+                current_state = HaulerState.WAITING_MORE_LOOT
+        HaulerState.WAITING_MORE_LOOT:
+            if _transition_state_idle():
+                time_waiting_for_more_loot = 0.0
+                return false
+
+            time_waiting_for_more_loot += delta
+            if time_waiting_for_more_loot >= time_waiting_for_more_loot_threshold_ms:
+                _transition_state_go_to_collector()
+                return true
+            return false
         HaulerState.GO_TO_COLLECTOR:
             current_state = HaulerState.DEPOSIT
             ready_next_state = false # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
@@ -103,9 +105,16 @@ func _transition_hauler_state(delta: float)-> bool:
 
     return true
 
+func _transition_state_idle() -> bool:
+    body.desired_dir = Vector2.ZERO
+    _pick_new_target()
+    if current_task != null:
+        current_state = HaulerState.GO_TO_LOOT
+    return current_task != null
+
 func _transition_state_go_to_collector() -> void:
     current_state = HaulerState.GO_TO_COLLECTOR
-    agent.target_position = current_task.destination
+    agent.target_position = current_task.collector_loc
 
 func _pick_new_target() -> void:
     current_task = hauler_task_system.request_task(self)
@@ -113,8 +122,8 @@ func _pick_new_target() -> void:
         # No new tasks available
         return
 
-    print("New hauling task: %s (%s) (%s)" % [current_task, current_task.location, current_task.destination])
-    agent.target_position = current_task.location
+    print("New hauling task: %s (%s) (%s)" % [current_task, current_task.loot_loc, current_task.collector_loc])
+    agent.target_position = current_task.loot_loc
 
 
 func _interact_with_collector() -> void:

@@ -7,8 +7,6 @@ var los_mask: int = Layers.WORLD_SOLID
 
 func _init_sensor(origin: Node2D) -> bool:
 	if sensor == null:
-		print(origin)
-		print(origin.get_node("AttachmentsRig"))
 		sensor = origin.get_node("AttachmentsRig/%FacingRoot/Sensors/TargetSensor2DComponent") as TargetSensor2DComponent
 
 	return sensor != null
@@ -19,7 +17,25 @@ func get_target_direction(origin: Node2D) -> Vector2:
 	if target == null:
 		return Vector2.ZERO
 
-	return origin.global_position.direction_to(target.global_position)
+	var target_location: Vector2
+	var target_has_movement = "velocity" in target.root
+	if not target_has_movement:
+		# Naive - aim straight at current pos
+		target_location = target.global_position
+	else:
+		# Leading aim
+		# First, calculate how long bullet would take to travel to target's current pos.
+		# Then take that `time`, and estimate target's new "leaded" position by moving their position forward by `time`
+		var target_pos := target.global_position
+		var target_velocity: Vector2 = target.root.velocity
+		var dist_to_target := origin.global_position.distance_to(target_pos)
+
+		var projectile_velocity := 600.0 # Default projectile velocity. Make more robust.
+		var time_to_target := dist_to_target / projectile_velocity
+
+		target_location = target_pos + target_velocity * time_to_target
+
+	return origin.global_position.direction_to(target_location)
 
 func get_target_node(origin: Node2D) -> Node2D:
 	var sensor_inited := _init_sensor(origin)

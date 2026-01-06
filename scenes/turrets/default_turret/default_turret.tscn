@@ -14,7 +14,6 @@
 radius = 11.0
 
 [node name="DefaultTurret" type="Area2D" groups=["combatants"]]
-scale = Vector2(0.65, 0.65)
 script = ExtResource("1_hyaxd")
 metadata/_edit_group_ = true
 
