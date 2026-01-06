@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="2_2atjr"]
 [ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_mptej"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_nlnkj"]
-[ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/Default-Turret.png" id="2_x3o2a"]
+[ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/art/Default-Turret.png" id="2_x3o2a"]
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="3_88fu5"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_v27rg"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="4_2atjr"]

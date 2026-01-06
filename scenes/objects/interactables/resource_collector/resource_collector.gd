@@ -9,14 +9,4 @@ func _enter_tree() -> void:
 
 func interact(interactor: Node2D) -> bool:
     var inventory: InventoryComponent = interactor.get_node("AttachmentsRig/ComponentsRoot/InventoryComponent")
-    print(inventory.inventory)
-    print(inventory.inventory.size())
-
-    for item_id in inventory.inventory.list_item_ids():
-        var qty = inventory.inventory.get_item_qty_or_default(item_id)
-
-        run_state.add_currency(item_id, qty)
-        inventory.inventory.remove_item(item_id, qty)
-
-    print(run_state.inventory)
-    return true
+    return inventory.transfer_loot_to_collector(run_state)

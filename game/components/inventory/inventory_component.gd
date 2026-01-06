@@ -1,9 +1,7 @@
 extends Node2D
 class_name InventoryComponent
 
-signal loot_picked_up(loot: LootableBase)
-signal inventory_full()
-signal inventory_empty()
+signal inventory_changed()
 
 @export var capacity = 1
 
@@ -23,10 +21,24 @@ func bind_pickupbox_component(component: PickupboxComponent) -> void:
 func on_PickupboxComponent_loot_encountered(loot: LootableBase) -> void:
     print("INVENTORY PICKING UP LOOT: %s" % loot)
 
-    if inventory.add_item(loot.loot_definition.item_id):
+    var item_id = loot.loot_definition.item_id
+    if inventory.add_item(item_id):
         loot.queue_free()
+        inventory_changed.emit()
     else:
-        print("Failed picking up loot %s!" % loot.loot_definition.item_id)
+        print("Failed picking up loot %s!" % item_id)
+
+func transfer_loot_to_collector(run_state: RunState) -> bool:
+    # TODO: These should really be transactional/have atomicity
+    for item_id in inventory.list_item_ids():
+        var qty = inventory.get_item_qty_or_default(item_id)
+
+        run_state.add_currency(item_id, qty)
+        inventory.remove_item(item_id, qty)
+
+    inventory_changed.emit()
+
+    return true
 
 ## Lifecycle methods
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5cnt6ybcik3j"
-path="res://.godot/imported/Default-Turret.png-f58570dc7e6fc4031d1aecb2915a8794.ctex"
+uid="uid://hm0nwrfb31wa"
+path="res://.godot/imported/1tile_door_closed.png-38b8c2ca92d5c8411e2b121665a9dfd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Default-Turret.png"
-dest_files=["res://.godot/imported/Default-Turret.png-f58570dc7e6fc4031d1aecb2915a8794.ctex"]
+source_file="res://assets/art/1tile_door_closed.png"
+dest_files=["res://.godot/imported/1tile_door_closed.png-38b8c2ca92d5c8411e2b121665a9dfd9.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6ane5tnj37av"]
 
 [ext_resource type="PackedScene" uid="uid://kny3bpkxmfqr" path="res://game/actors/loot/lootable_base.tscn" id="1_smw24"]
-[ext_resource type="Texture2D" uid="uid://dpf53btsqeii8" path="res://assets/credit.png" id="2_wp0co"]
+[ext_resource type="Texture2D" uid="uid://dpf53btsqeii8" path="res://assets/art/credit.png" id="2_wp0co"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wp0co"]
 radius = 9.0

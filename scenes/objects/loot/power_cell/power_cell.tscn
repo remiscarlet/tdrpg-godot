@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blwpsngtfawf8"]
 
 [ext_resource type="PackedScene" uid="uid://kny3bpkxmfqr" path="res://game/actors/loot/lootable_base.tscn" id="1_xt7tp"]
-[ext_resource type="Texture2D" uid="uid://cjsbgs1c3jb2j" path="res://assets/power_cell.png" id="2_kep6r"]
+[ext_resource type="Texture2D" uid="uid://cjsbgs1c3jb2j" path="res://assets/art/power_cell.png" id="2_kep6r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyjcm"]
 radius = 7.0

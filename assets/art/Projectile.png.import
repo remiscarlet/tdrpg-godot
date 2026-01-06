@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjsbgs1c3jb2j"
-path="res://.godot/imported/power_cell.png-425762ace81eb7ddf17829fbfcbee831.ctex"
+uid="uid://bmj1t1pye2yv7"
+path="res://.godot/imported/Projectile.png-650405174cac94fa9ed26bbf2db4e5dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/power_cell.png"
-dest_files=["res://.godot/imported/power_cell.png-425762ace81eb7ddf17829fbfcbee831.ctex"]
+source_file="res://assets/art/Projectile.png"
+dest_files=["res://.godot/imported/Projectile.png-650405174cac94fa9ed26bbf2db4e5dc.ctex"]
 
 [params]
 

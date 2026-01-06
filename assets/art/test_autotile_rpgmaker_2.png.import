@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh1s3wifopmlw"
-path="res://.godot/imported/Player-Sheet.png-e3b1590b56ed284ead72bb63e6b90de3.ctex"
+uid="uid://bpjsjl0gd4kbl"
+path="res://.godot/imported/test_autotile_rpgmaker_2.png-d3669a49e8cf32eff0a7502af38ca374.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Player-Sheet.png"
-dest_files=["res://.godot/imported/Player-Sheet.png-e3b1590b56ed284ead72bb63e6b90de3.ctex"]
+source_file="res://assets/art/test_autotile_rpgmaker_2.png"
+dest_files=["res://.godot/imported/test_autotile_rpgmaker_2.png-d3669a49e8cf32eff0a7502af38ca374.ctex"]
 
 [params]
 

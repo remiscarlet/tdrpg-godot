@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cutmuwt17quib"
-path="res://.godot/imported/automaton_factory.png-d45caf3461f7b9a2452da9ccd8c0b0c9.ctex"
+uid="uid://cjsbgs1c3jb2j"
+path="res://.godot/imported/power_cell.png-08825ea64bb7b2f0a213cf97adb96f43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/automaton_factory.png"
-dest_files=["res://.godot/imported/automaton_factory.png-d45caf3461f7b9a2452da9ccd8c0b0c9.ctex"]
+source_file="res://assets/art/power_cell.png"
+dest_files=["res://.godot/imported/power_cell.png-08825ea64bb7b2f0a213cf97adb96f43.ctex"]
 
 [params]
 

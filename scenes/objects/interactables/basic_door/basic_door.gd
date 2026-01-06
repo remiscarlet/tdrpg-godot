@@ -17,7 +17,6 @@ signal state_changed(state: DoorState)
 var state: DoorState
 
 func interact(_interactor: Node) -> bool:
-    print("Door interaction")
     toggle()
     return true
 

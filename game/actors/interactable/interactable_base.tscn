@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvaur4thyvh6j" path="res://game/actors/interactable/interactable_base.gd" id="1_37qbf"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_pbbv2"]
-[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/texture_missing.png" id="3_p4k88"]
+[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/art/texture_missing.png" id="3_p4k88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yga2l"]
 radius = 14.0

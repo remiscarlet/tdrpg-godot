@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1g7dnb3kvpth"
-path="res://.godot/imported/Spacestation_Inside_A5.png-65658b072cb64ca290378954bbd21533.ctex"
+uid="uid://bvmavldylqwkd"
+path="res://.godot/imported/!Spaceship_chest3.png-4ae14eeafbe91cf2a6c25cf1a99f5db4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spacestation_Inside_A5.png"
-dest_files=["res://.godot/imported/Spacestation_Inside_A5.png-65658b072cb64ca290378954bbd21533.ctex"]
+source_file="res://assets/art/!Spaceship_chest3.png"
+dest_files=["res://.godot/imported/!Spaceship_chest3.png-4ae14eeafbe91cf2a6c25cf1a99f5db4.ctex"]
 
 [params]
 

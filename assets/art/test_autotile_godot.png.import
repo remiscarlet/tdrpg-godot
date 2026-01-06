@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmj1t1pye2yv7"
-path="res://.godot/imported/Projectile.png-0b3550876520583f7ebac1c55ee871ce.ctex"
+uid="uid://5bucmnioh0hf"
+path="res://.godot/imported/test_autotile_godot.png-7d3748b793a572cb15cc2e7aaf935276.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Projectile.png"
-dest_files=["res://.godot/imported/Projectile.png-0b3550876520583f7ebac1c55ee871ce.ctex"]
+source_file="res://assets/art/test_autotile_godot.png"
+dest_files=["res://.godot/imported/test_autotile_godot.png-7d3748b793a572cb15cc2e7aaf935276.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dfp3h6lr176vn"]
 
-[ext_resource type="Texture2D" uid="uid://hm0nwrfb31wa" path="res://assets/1tile_door_closed.png" id="1_htt83"]
-[ext_resource type="Texture2D" uid="uid://olfavigdgmtj" path="res://assets/1tile_door_open.png" id="2_wewle"]
+[ext_resource type="Texture2D" uid="uid://hm0nwrfb31wa" path="res://assets/art/1tile_door_closed.png" id="1_htt83"]
+[ext_resource type="Texture2D" uid="uid://olfavigdgmtj" path="res://assets/art/1tile_door_open.png" id="2_wewle"]
 
 [resource]
 animations = [{

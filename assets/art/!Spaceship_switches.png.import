@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sxrmpj7l4bef"
-path="res://.godot/imported/!Spaceship_switches.png-cd450801cd5a7a11bc94e7f3c7f8e26d.ctex"
+path="res://.godot/imported/!Spaceship_switches.png-66879e30e9ff551e5916eb9ffaa766ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/!Spaceship_switches.png"
-dest_files=["res://.godot/imported/!Spaceship_switches.png-cd450801cd5a7a11bc94e7f3c7f8e26d.ctex"]
+source_file="res://assets/art/!Spaceship_switches.png"
+dest_files=["res://.godot/imported/!Spaceship_switches.png-66879e30e9ff551e5916eb9ffaa766ca.ctex"]
 
 [params]
 

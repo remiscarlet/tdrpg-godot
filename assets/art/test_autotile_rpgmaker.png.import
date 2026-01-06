@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciqtj60t5fuoh"
-path="res://.godot/imported/2tile_door_closed.png-addc361ce77c938281a64f7e5076b265.ctex"
+uid="uid://dmsbrwdhygy14"
+path="res://.godot/imported/test_autotile_rpgmaker.png-c0940aa6da32ca60d21afda7af2ca102.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2tile_door_closed.png"
-dest_files=["res://.godot/imported/2tile_door_closed.png-addc361ce77c938281a64f7e5076b265.ctex"]
+source_file="res://assets/art/test_autotile_rpgmaker.png"
+dest_files=["res://.godot/imported/test_autotile_rpgmaker.png-c0940aa6da32ca60d21afda7af2ca102.ctex"]
 
 [params]
 

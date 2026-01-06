@@ -11,6 +11,12 @@ func _init(new_capacity: int) -> void:
 func clear() -> void:
     items = {}
 
+func is_empty() -> bool:
+    return size() == 0
+
+func is_full() -> bool:
+    return size() == capacity
+
 func size() -> int:
     var cardinality = 0
     for quantity in items.values():

@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://0vqu66pmo83k"]
 
-[ext_resource type="Texture2D" uid="uid://cutmuwt17quib" path="res://assets/automaton_factory.png" id="1_85qb6"]
+[ext_resource type="Texture2D" uid="uid://cutmuwt17quib" path="res://assets/art/automaton_factory.png" id="1_85qb6"]
 
 [resource]
 animations = [{

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvoet3mqg57im"]
+
+[ext_resource type="Script" uid="uid://cr10aos75ho5t" path="res://scenes/ui/overhead_indicator/health_bar.gd" id="1_e4wg4"]
+[ext_resource type="Script" uid="uid://cafv4cs1sb20l" path="res://scenes/ui/overhead_indicator/overhead_indicator_ui.gd" id="1_wuuia"]
+[ext_resource type="Script" uid="uid://cmq8nuaomsheq" path="res://scenes/ui/overhead_indicator/inventory_bar.gd" id="3_q4tij"]
+
+[sub_resource type="Gradient" id="Gradient_quvel"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wdxif"]
+gradient = SubResource("Gradient_quvel")
+width = 32
+height = 3
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_q4tij"]
+offsets = PackedFloat32Array(0, 0.49305555, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.98039216, 0.33333334, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_quvel"]
+gradient = SubResource("Gradient_q4tij")
+width = 32
+height = 2
+
+[node name="OverheadIndicatorUI" type="MarginContainer"]
+custom_minimum_size = Vector2(32, 0)
+offset_right = 100.0
+offset_bottom = 7.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_wuuia")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="InventoryBar" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_q4tij")
+
+[node name="HealthBar" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_e4wg4")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/HealthBar"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture_under = SubResource("GradientTexture2D_wdxif")
+texture_progress = SubResource("GradientTexture2D_quvel")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://4ids0j08mvmj"]
 
 [ext_resource type="PackedScene" uid="uid://kny3bpkxmfqr" path="res://game/actors/loot/lootable_base.tscn" id="1_y3c2y"]
-[ext_resource type="Texture2D" uid="uid://dtiap144kt46v" path="res://assets/scrap.png" id="2_ir8hd"]
+[ext_resource type="Texture2D" uid="uid://dtiap144kt46v" path="res://assets/art/scrap.png" id="2_ir8hd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1yh5"]
 size = Vector2(20, 19)

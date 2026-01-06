@@ -7,16 +7,13 @@ func _process(_dt: float) -> void:
 	_reap_expired_claims()
 
 func request_task(hauler: Node2D) -> HaulTask:
-	# 1) Clean up invalid tasks
 	_prune_invalid_tasks()
 
-	# 2) Try to assign an existing OPEN task
 	var best := _pick_best_open_task(hauler)
 	if best != null:
 		_claim(best, hauler)
 		return best
 
-	# 3) Optionally: generate tasks on demand (simple default)
 	_generate_some_tasks()
 	best = _pick_best_open_task(hauler)
 	if best != null:
@@ -35,7 +32,7 @@ func _generate_some_tasks() -> void:
 			t.loot_id = loot.get_instance_id()
 			t.collector_id = col.get_instance_id()
 			_tasks.append(t)
-	# In practice: don’t generate full cross-product; pick nearest collector per loot.
+	# TODO: don’t generate full cross-product; pick nearest collector per loot.
 
 func _pick_best_open_task(hauler: Node2D) -> HaulTask:
 	var best: HaulTask = null

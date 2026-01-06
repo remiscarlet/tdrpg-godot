@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvmavldylqwkd"
-path="res://.godot/imported/!Spaceship_chest3.png-719b1d297740f4d06c0d0dc34f4c452f.ctex"
+uid="uid://cutmuwt17quib"
+path="res://.godot/imported/automaton_factory.png-de9a159ea97ddbee4c852237efed6c07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/!Spaceship_chest3.png"
-dest_files=["res://.godot/imported/!Spaceship_chest3.png-719b1d297740f4d06c0d0dc34f4c452f.ctex"]
+source_file="res://assets/art/automaton_factory.png"
+dest_files=["res://.godot/imported/automaton_factory.png-de9a159ea97ddbee4c852237efed6c07.ctex"]
 
 [params]
 

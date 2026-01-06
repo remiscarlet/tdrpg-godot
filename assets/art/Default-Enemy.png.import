@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2cbc2iy5imq7"
-path="res://.godot/imported/Spacestation_Inside_A2.png-5b06a1e5dcc51d5240d4d7b73139544b.ctex"
+uid="uid://bke2cy0xibcmx"
+path="res://.godot/imported/Default-Enemy.png-dbbd70972aeb0f67b47d6cf05af70fa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spacestation_Inside_A2.png"
-dest_files=["res://.godot/imported/Spacestation_Inside_A2.png-5b06a1e5dcc51d5240d4d7b73139544b.ctex"]
+source_file="res://assets/art/Default-Enemy.png"
+dest_files=["res://.godot/imported/Default-Enemy.png-dbbd70972aeb0f67b47d6cf05af70fa9.ctex"]
 
 [params]
 

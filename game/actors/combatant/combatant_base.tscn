@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://psoysml4w3uk" path="res://game/components/lootable/lootable_component.tscn" id="9_g1fhr"]
 [ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="10_i7seo"]
 [ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="11_qqgk4"]
-[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/texture_missing.png" id="12_rrdtx"]
+[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/art/texture_missing.png" id="12_rrdtx"]
 [ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="13_rrdtx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqgk4"]
@@ -29,7 +29,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CombatantBase" type="CharacterBody2D"]
+[node name="CombatantBase" type="CharacterBody2D" groups=["combatants"]]
 scale = Vector2(0.65, 0.65)
 collision_layer = 2
 collision_mask = 3
@@ -73,7 +73,12 @@ scale = Vector2(0.65, 0.65)
 scale = Vector2(0.65, 0.65)
 
 [node name="HealthBarView" parent="AttachmentsRig/ViewsRoot" index="0" instance=ExtResource("4_fkj5h")]
+process_mode = 4
+visible = false
 scale = Vector2(0.65, 0.65)
+
+[node name="OverheadIndicatorAnchor" type="Marker2D" parent="AttachmentsRig/ViewsRoot" index="1"]
+position = Vector2(0, -21.538464)
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = SubResource("SpriteFrames_nsc2i")

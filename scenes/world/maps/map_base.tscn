@@ -18,7 +18,7 @@ tile_map_data = PackedByteArray("AAADAAAAAgAIAAAAAAAEAAAAAgALAAAAAAAEAAEAAgALAAI
 tile_set = ExtResource("2_boh3a")
 script = ExtResource("1_3igsj")
 
-[node name="Interactables" type="TileMapLayer" parent="Tiles" groups=["navigation"]]
+[node name="Interactables" type="TileMapLayer" parent="Tiles"]
 position = Vector2(288, 96)
 tile_map_data = PackedByteArray("AAD9/woAAAAAAAAAAQD9/wwAAAAAAAAAAgAHABAAAAAAAAAAAwA=")
 tile_set = ExtResource("2_boh3a")
@@ -39,18 +39,14 @@ navigation_polygon = ExtResource("4_eyw5l")
 [node name="PlayerSpawn" type="Marker2D" parent="SpawnSources" groups=["player_spawns"]]
 position = Vector2(94, 307)
 
-[node name="Enemy1Spawns" type="Node" parent="SpawnSources"]
-
-[node name="Spawn1" type="Marker2D" parent="SpawnSources/Enemy1Spawns" groups=["enemy1_spawns"]]
-position = Vector2(575, 359)
-
-[node name="Spawn2" type="Marker2D" parent="SpawnSources/Enemy1Spawns" groups=["enemy1_spawns"]]
+[node name="Spawn1" type="Marker2D" parent="SpawnSources" groups=["enemy2_spawns"]]
 position = Vector2(336, 95)
 
-[node name="Enemy2Spawns" type="Node" parent="SpawnSources"]
+[node name="Spawn2" type="Marker2D" parent="SpawnSources" groups=["enemy1_spawns"]]
+position = Vector2(576, 314)
 
-[node name="Spawn1" type="Marker2D" parent="SpawnSources/Enemy2Spawns" groups=["enemy2_spawns"]]
-position = Vector2(336, 95)
+[node name="Spawn3" type="Marker2D" parent="SpawnSources" groups=["enemy1_spawns"]]
+position = Vector2(648, 600)
 
 [node name="Props" type="Node2D" parent="."]
 

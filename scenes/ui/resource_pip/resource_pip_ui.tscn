@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://buqndbgv2txwp"]
+
+[ext_resource type="Script" uid="uid://bnyoo8orc2c8p" path="res://scenes/ui/resource_pip/resource_pip_ui.gd" id="1_p1jq3"]
+
+[node name="ResourcePipUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_p1jq3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 5.0
+offset_bottom = 23.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

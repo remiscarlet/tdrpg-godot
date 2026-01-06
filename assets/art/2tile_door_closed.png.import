@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mqg6k8p0ihya"
-path="res://.godot/imported/test_autotile_godot_2.png-7f8d8769891134bf239dba6dc9ade6d5.ctex"
+uid="uid://ciqtj60t5fuoh"
+path="res://.godot/imported/2tile_door_closed.png-488be2ef95223bccee8a555a732bfc09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test_autotile_godot_2.png"
-dest_files=["res://.godot/imported/test_autotile_godot_2.png-7f8d8769891134bf239dba6dc9ade6d5.ctex"]
+source_file="res://assets/art/2tile_door_closed.png"
+dest_files=["res://.godot/imported/2tile_door_closed.png-488be2ef95223bccee8a555a732bfc09.ctex"]
 
 [params]
 
