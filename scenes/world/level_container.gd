@@ -92,7 +92,7 @@ func _spawn_player(spawn_pos: Vector2) -> Player:
 
     var placer := player.get_node("AttachmentsRig/%ComponentsRoot/TurretPlacerComponent")
     placer.place_turret_requested.connect(
-        func(pos, scene): turret_system.try_build_turret(player, pos, scene)
+        func(pos, turret_type): turret_system.try_build_turret(player, pos, turret_type)
     )
 
     return player

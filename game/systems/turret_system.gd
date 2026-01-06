@@ -6,14 +6,13 @@ extends Node
 
 
 # Signal handler pattern
-func try_build_turret(_player: Node, world_pos: Vector2, turret_scene: PackedScene) -> void:
+func try_build_turret(_player: Node, world_pos: Vector2, turret_type: StringName) -> void:
     print("Trying to build turret")
-    print(turret_scene)
+    print(turret_type)
 
-    var turret: Node = turret_scene.instantiate()
-    MiscUtils.dump_ps("Bar", preload("res://scenes/turrets/default_turret/default_turret.tscn"))
+    var def := DefinitionDB.get_turret(turret_type)
+    var turret: Node = def.scene.instantiate()
 
-    turret.bind_level_container_ref(level_container)
+    turret.configure_pre_ready(level_container, def)
     turret_container.add_child(turret)
-    turret.bind_target_provider(ClosestTarget2DProvider.new())
-    turret.global_position = world_pos
+    turret.configure_post_ready(world_pos)

@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_mh07m")
+fire_rate_per_sec = 3.0
 move_speed = 0.0
 id = &"default_turret"
 display_name = "Default Turret"

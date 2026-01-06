@@ -5,3 +5,4 @@ const COMBATANT_SYSTEM_CONSUMERS := &"combatant_system_consumers"
 
 const LOOT := &"loot"
 const COLLECTORS := &"resource_collectors"
+const COMBATANTS := &"combatants"

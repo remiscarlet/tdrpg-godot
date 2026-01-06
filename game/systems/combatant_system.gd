@@ -5,28 +5,6 @@ extends Node
 @onready var combatants_container: Node2D = $CombatantsContainer
 @onready var projectile_system: ProjectileSystem = $"../ProjectileSystem"
 
-class CombatantConfig:
-    var scene: PackedScene
-    var team_id: int
-
-    func _init(
-        c_scene: PackedScene,
-        c_team_id: int,
-    ):
-        scene = c_scene
-        team_id = c_team_id
-
-var mapping = {
-    CombatantTypes.PLAYER: CombatantConfig.new(preload("res://scenes/player/player.tscn"), CombatantTeam.PLAYER),
-    CombatantTypes.DEFAULT_AUTOMATON: CombatantConfig.new(preload("res://scenes/automatons/default_automaton/default_automaton.tscn"), CombatantTeam.PLAYER),
-    CombatantTypes.DEFAULT_ENEMY: CombatantConfig.new(preload("res://scenes/enemies/default_enemy/default_enemy.tscn"), CombatantTeam.MUTANT),
-}
-
-func _get_combatant_config(type: StringName) -> CombatantConfig:
-    if not mapping.has(type):
-        push_error("Tried getting a CombatantConfig for an unknown CombatantTypes! Got: %s" % type)
-    return mapping.get(type)
-
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
     print("Spawning %s" % ctx.combatant_id)
 

@@ -30,7 +30,7 @@ func get_target_direction(origin: Node2D) -> Vector2:
 		var target_velocity: Vector2 = target.root.velocity
 		var dist_to_target := origin.global_position.distance_to(target_pos)
 
-		var projectile_velocity := 600.0 # Default projectile velocity. Make more robust.
+		var projectile_velocity := 600.0 # Default projectile velocity. TODO: Make more robust.
 		var time_to_target := dist_to_target / projectile_velocity
 
 		target_location = target_pos + target_velocity * time_to_target

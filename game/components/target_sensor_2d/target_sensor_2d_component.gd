@@ -4,7 +4,12 @@ class_name TargetSensor2DComponent
 @export var target_group: StringName = &"targetable"
 @export var area: Area2D
 
+@onready var shape = $TargetSensorArea/CollisionShape2D
+
 var _candidates: Array[Node2D] = []
+
+func set_sensor_radius(radius: float) -> void:
+	shape.shape.radius = radius
 
 func _ready() -> void:
 	if area == null:

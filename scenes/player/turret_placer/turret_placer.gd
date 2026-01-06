@@ -1,11 +1,9 @@
 extends Node2D
 
-signal place_turret_requested(world_pos: Vector2, turret_scene: PackedScene)
+signal place_turret_requested(world_pos: Vector2, turret_type: StringName)
 
 var was_pressed_last_iter: bool
 var pressed_duration: float
-
-var turret1_scene_path: String = "res://scenes/turrets/default_turret/default_turret.tscn"
 
 var selected_turret: int = 0
 
@@ -72,14 +70,12 @@ func configure_turret() -> void:
     pass
 
 
-func get_turret_scene() -> PackedScene:
+func select_turret() -> StringName:
     # TODO: Multi turret selection
-    return load(turret1_scene_path)
-    # return turret1_scene
+    return TurretTypes.DEFAULT
 
 
 func request_build_turret() -> void:
-    var turret_scene = get_turret_scene()
     var world_pos = global_position
 
-    place_turret_requested.emit(world_pos, turret_scene)
+    place_turret_requested.emit(world_pos, select_turret())

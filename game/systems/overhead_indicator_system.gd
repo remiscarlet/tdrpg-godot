@@ -2,7 +2,7 @@ class_name OverheadIndicatorSystem
 extends Node
 
 @export var indicator_scene: PackedScene
-@export var combatant_group: StringName = &"combatants"
+@export var combatant_group: StringName = Groups.COMBATANTS
 @export var anchor_rel_path: NodePath = NodePath("AttachmentsRig/ViewsRoot/OverheadIndicatorAnchor")
 
 @onready var indicators_root: Control = %"IndicatorsRoot"

@@ -44,4 +44,5 @@ texture = ExtResource("2_x3o2a")
 [node name="Hurtbox2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("4_2atjr")]
 
 [editable path="AttachmentsRig"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
