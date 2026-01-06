@@ -12,11 +12,10 @@ var inventory: Inventory
 
 ## Public Methods
 
-func bind_pickupbox_component(component: PickupboxComponent) -> void:
-    print("Binding pickup box? %s" % component)
-    pickupbox = component
-    pickupbox.loot_encountered.connect(on_PickupboxComponent_loot_encountered)
-    _try_activate()
+func configure(component: PickupboxComponent, inventory_capacity: int) -> void:
+    _bind_pickupbox_component(component)
+    capacity = inventory_capacity
+    _init_inventory()
 
 func on_PickupboxComponent_loot_encountered(loot: LootableBase) -> void:
     print("INVENTORY PICKING UP LOOT: %s" % loot)
@@ -43,8 +42,7 @@ func transfer_loot_to_collector(run_state: RunState) -> bool:
 ## Lifecycle methods
 
 func _ready() -> void:
-    inventory = Inventory.new(capacity)
-
+    _init_inventory()
     _try_activate()
 
 func _enter_tree() -> void:
@@ -52,6 +50,15 @@ func _enter_tree() -> void:
     set_process(false)
 
 ## Helpers
+
+func _init_inventory() -> void:
+    inventory = Inventory.new(capacity)
+
+func _bind_pickupbox_component(component: PickupboxComponent) -> void:
+    print("Binding pickup box? %s" % component)
+    pickupbox = component
+    pickupbox.loot_encountered.connect(on_PickupboxComponent_loot_encountered)
+    _try_activate()
 
 func _try_activate() -> void:
     if pickupbox == null:

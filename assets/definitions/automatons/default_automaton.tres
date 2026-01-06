@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_1n0k3")
+inventory_capacity = 3
 move_speed = 150.0
 id = &"default_automaton"
 display_name = "Default Automaton"

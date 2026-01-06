@@ -38,5 +38,6 @@ func on_InventoryComponent_inventory_changed() -> void:
             pip.update_quantity(quantity)
 
     for item_id in unseen:
-        _pips[item_id].queue_free()
-        _pips.erase(item_id)
+        if unseen[item_id]:
+            _pips[item_id].queue_free()
+            _pips.erase(item_id)

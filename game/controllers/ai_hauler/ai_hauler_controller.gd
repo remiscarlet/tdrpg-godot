@@ -10,6 +10,7 @@ var _rng := RandomNumberGenerator.new()
 @onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
 @onready var interactable_detector_component: InteractableDetectorComponent
+@onready var inventory_component: InventoryComponent
 
 enum HaulerState {
     IDLE,
@@ -18,9 +19,12 @@ enum HaulerState {
     DEPOSIT, # interact
 }
 
-var completed_state: bool = true
+var ready_next_state: bool = true
 var current_task: HaulTask
-var state = HaulerState.IDLE
+var current_state = HaulerState.IDLE
+
+var time_waiting_for_more_loot: float = 0.0
+var time_waiting_for_more_loot_threshold_ms: float = 5000.0
 
 ## Public methods
 
@@ -31,6 +35,10 @@ func bind_hauler_task_system(system: HaulerTaskSystem) -> void:
 func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:
     interactable_detector_component = component
 
+func bind_inventory_component(component: InventoryComponent) -> void:
+    inventory_component = component
+
+
 ## Lifecycle
 
 func _ready() -> void:
@@ -40,7 +48,7 @@ func _ready() -> void:
     _setup.call_deferred()
 
 func _process(_delta: float) -> void:
-    match state:
+    match current_state:
         HaulerState.DEPOSIT: _interact_with_collector()
         _: pass
 
@@ -48,9 +56,9 @@ func _setup() -> void:
     await get_tree().physics_frame
     agent.navigation_layers = navigation_layers
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
     if _can_transition_state():
-        var tick_physics = _transition_hauler_state()
+        var tick_physics = _transition_hauler_state(delta)
 
         if not tick_physics:
             return
@@ -61,29 +69,43 @@ func _physics_process(_delta: float) -> void:
 ## Helpers
 
 func _can_transition_state() -> bool:
-    return agent.is_navigation_finished() and completed_state
+    return agent.is_navigation_finished() and ready_next_state
 
 ## Returns bool on whether _physics_process should continue processing physics/navigation this frame
-func _transition_hauler_state()-> bool:
+func _transition_hauler_state(delta: float)-> bool:
     # TODO: Make more robust
-    match state:
+    match current_state:
         HaulerState.IDLE:
+            if not inventory_component.inventory.is_empty():
+                time_waiting_for_more_loot += delta
+                if time_waiting_for_more_loot >= time_waiting_for_more_loot_threshold_ms:
+                    _transition_state_go_to_collector()
+                    return true
+
             body.desired_dir = Vector2.ZERO
             _pick_new_target()
             if current_task != null:
-                state = HaulerState.GO_TO_LOOT
+                current_state = HaulerState.GO_TO_LOOT
             return false
         HaulerState.GO_TO_LOOT:
-            state = HaulerState.GO_TO_COLLECTOR
-            agent.target_position = current_task.destination
+            if inventory_component.inventory.is_full():
+                print("[%s] Inventory was full. Moving back to collector" % self)
+                _transition_state_go_to_collector()
+            else:
+                print("[%s] Inventory was not full. Idling." % self)
+                current_state = HaulerState.IDLE
         HaulerState.GO_TO_COLLECTOR:
-            state = HaulerState.DEPOSIT
-            completed_state = false # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
+            current_state = HaulerState.DEPOSIT
+            ready_next_state = false # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
         HaulerState.DEPOSIT:
-            state = HaulerState.IDLE
-        _: push_warning("Got an unknown HaulerState! (%s)" % state)
+            current_state = HaulerState.IDLE
+        _: push_warning("Got an unknown HaulerState! (%s)" % current_state)
 
     return true
+
+func _transition_state_go_to_collector() -> void:
+    current_state = HaulerState.GO_TO_COLLECTOR
+    agent.target_position = current_task.destination
 
 func _pick_new_target() -> void:
     current_task = hauler_task_system.request_task(self)
@@ -97,7 +119,7 @@ func _pick_new_target() -> void:
 
 func _interact_with_collector() -> void:
     if interactable_detector_component.try_interact():
-        completed_state = true
+        ready_next_state = true
         current_task.status = HaulTask.Status.DONE
     else:
         push_error("AI Hauler failed to interact with collector!")

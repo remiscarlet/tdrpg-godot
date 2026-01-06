@@ -4,9 +4,9 @@ extends CharacterBody2D
 var level_container: LevelContainer
 
 var desired_dir: Vector2 = Vector2.ZERO
-
-@export var move_speed: float = 200.0
-@export var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
+var inventory_capacity: int = 1
+var move_speed: float = 100.0
+var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
 
 @onready var sprite_collision_shape: CollisionShape2D = $"CollisionShape2D"
 @onready var rig = $"AttachmentsRig"
@@ -25,6 +25,8 @@ var desired_dir: Vector2 = Vector2.ZERO
 func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition) -> void:
     global_position = ctx.origin
 
+    if "inventory_capacity" in combatant_definition:
+        inventory_capacity = combatant_definition.inventory_capacity
     move_speed = combatant_definition.move_speed
     combat_tags = combatant_definition.combat_tags
 
@@ -53,19 +55,19 @@ func _enter_tree() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
 
 func _ready() -> void:
-    print("Reading CombatantBase...")
+    print("Readying CombatantBase...")
 
     hurtbox_collision_shape.shape = sprite_collision_shape.shape
     health.died.connect(_on_HealthComponent_died)
 
+    var inventory_component = rig.get_node("%ComponentsRoot/InventoryComponent")
+    var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
+    inventory_component.configure(pickupbox_component, inventory_capacity)
+
     var interactable_detector_component = rig.get_node("%FacingRoot/Sensors/InteractableDetectorComponent")
     player_ctrl.bind_interactable_detector_component(interactable_detector_component)
     ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
-
-    print("Setting inventory_component pickupbox component...")
-    var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
-    var inventory_component = rig.get_node("%ComponentsRoot/InventoryComponent")
-    inventory_component.bind_pickupbox_component(pickupbox_component)
+    ai_hauler_ctrl.bind_inventory_component(inventory_component)
 
     var aim_to_target_component = rig.get_node("%ComponentsRoot/AimToTarget2DComponent")
     var facing_root = rig.get_node("%FacingRoot")

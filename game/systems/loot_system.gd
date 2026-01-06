@@ -38,6 +38,7 @@ func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
         return null
 
     lootable.configure(loot, origin, direction)
+    lootable.add_to_group(Groups.LOOT)
 
     loot_container.add_child(lootable)
     if not lootable.is_node_ready():
