@@ -38,10 +38,10 @@ func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definit
     var sensors = _rig.get_node("FacingRoot/Sensors")
 
     var hurtbox = sensors.get_node("Hurtbox2DComponent")
-    PhysicsUtils.set_hurtbox_physics_for_team(hurtbox, team_id)
+    PhysicsUtils.set_hurtbox_collisions_for_team(hurtbox, team_id)
 
     var pickupbox = sensors.get_node("PickupboxComponent/PickupSensorArea")
-    PhysicsUtils.set_pickupbox_physics_for_team(pickupbox, team_id)
+    PhysicsUtils.set_pickupbox_collisions_for_team(pickupbox, team_id)
 
 func configure_combatant_post_ready(_ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition, container: LevelContainer) -> void:
     var team_id = combatant_definition.team_id
@@ -55,7 +55,7 @@ func _enter_tree() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
 
 func _ready() -> void:
-    print("Readying CombatantBase...")
+    print("== Readying CombatantBase...")
 
     hurtbox_collision_shape.shape = sprite_collision_shape.shape
     health.died.connect(_on_HealthComponent_died)

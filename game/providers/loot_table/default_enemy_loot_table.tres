@@ -26,7 +26,6 @@ metadata/_custom_type_script = "uid://i0xmhljneo8e"
 
 [sub_resource type="Resource" id="Resource_cdgo6"]
 script = ExtResource("2_wdmpq")
-weight = 3.0
 required_tags = null
 metadata/_custom_type_script = "uid://byeq5edlw23fq"
 

@@ -1,9 +1,8 @@
 class_name ProjectileBase
-extends Area2D
+extends DamageEmitterBase
 
-@export var speed: float = 600.0
-@export var damage: float = 10.0
-@export var lifetime_s: float = 3.0
+var speed: float = 600.0
+var lifetime_s: float = 3.0
 
 var _velocity: Vector2 = Vector2.ZERO
 var _time_left: float
@@ -12,6 +11,7 @@ var _source: Node
 func _ready() -> void:
     _time_left = lifetime_s
     body_entered.connect(_on_body_entered)
+    damage = 10.0
 
 func _physics_process(delta: float) -> void:
     _time_left -= delta
@@ -54,4 +54,4 @@ func configure_physics(ctx: ProjectileSpawnContext) -> void:
         push_error("Got a ProjectileSpawnContext with no team_id set! %s" % ctx)
         return
 
-    PhysicsUtils.set_projectile_physics_for_team(self, team_id)
+    PhysicsUtils.set_hitbox_collisions_for_team(self, team_id)

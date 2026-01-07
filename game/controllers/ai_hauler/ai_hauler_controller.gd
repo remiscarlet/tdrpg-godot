@@ -30,7 +30,6 @@ var time_waiting_for_more_loot_threshold_ms: float = 5000.0
 ## Public methods
 
 func bind_hauler_task_system(system: HaulerTaskSystem) -> void:
-    print("Setting hauler to %s (%s)" % [system, get_instance_id()])
     hauler_task_system = system
 
 func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:

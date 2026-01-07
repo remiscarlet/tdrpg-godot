@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://jm2q30vsnydh"]
+
+[ext_resource type="Script" uid="uid://3mkpwh2ntmi5" path="res://scenes/objects/basic_sword/basic_sword.gd" id="1_svts3"]
+[ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="1_vga2u"]
+[ext_resource type="Texture2D" uid="uid://b752brxp2b3rf" path="res://assets/art/melee_sword.png" id="2_svts3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb3qb"]
+size = Vector2(5, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mu81d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_svts3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BasicSword" type="Area2D"]
+rotation = 1.1923696
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_svts3")
+end_swing_angle = 3.082
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -20)
+shape = SubResource("RectangleShape2D_pb3qb")
+
+[node name="AttachmentsRig" parent="." instance=ExtResource("1_vga2u")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_mu81d")
+
+[editable path="AttachmentsRig"]

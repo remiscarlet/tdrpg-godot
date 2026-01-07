@@ -15,6 +15,7 @@ func _ready() -> void:
 
 
 func apply_damage(amount: float, source: Node = null) -> void:
+    print("Applying %d damage from %s" % [amount, source])
     if amount <= 0.0:
         push_warning("Tried applying negative damage (%d) from %s" % [amount, source])
         return

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://54x3racncsd4"]
+
+[ext_resource type="Script" uid="uid://baupfaldbbiyj" path="res://game/components/melee_attack/melee_attack_component.gd" id="1_oo02h"]
+
+[node name="MeleeAttackComponent" type="Node2D"]
+script = ExtResource("1_oo02h")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
