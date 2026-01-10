@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_bv7p1")
+max_hp = 1000
 move_speed = 250.0
 id = &"player"
 display_name = "Player"

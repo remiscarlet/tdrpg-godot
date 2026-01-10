@@ -40,7 +40,8 @@ func configure(ctx: ProjectileSpawnContext) -> void:
         add_to_group(StringName("projectiles_%s" % String(ctx.element)))
 
 func get_damage_payload() -> DamageEvent:
-    return DamageEvent.new(damage, _source)
+    var src = _source if is_instance_valid(_source) else null
+    return DamageEvent.new(damage, src)
 
 func on_hit_target(_target: Node) -> void:
     queue_free()

@@ -27,5 +27,6 @@ rotation = -1.0569029
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword/AttachmentsRig"]

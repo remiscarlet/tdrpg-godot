@@ -31,3 +31,4 @@ sprite_frames = ExtResource("6_75vfm")
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]

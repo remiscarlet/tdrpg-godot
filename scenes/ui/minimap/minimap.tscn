@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cse32o4aqqb6n"]
+
+[ext_resource type="Script" uid="uid://6pa8lqb2oxr0" path="res://scenes/ui/minimap/minimap_nav_bake.gd" id="1_0k5yr"]
+[ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="2_rfb21"]
+
+[node name="Minimap" type="PanelContainer"]
+custom_minimum_size = Vector2(256, 256)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0k5yr")
+bake_resolution = Vector2i(1024, 1024)
+frame_padding = 0.26
+fill_color = Color(0.38100487, 0.6187125, 1, 0.12156863)
+
+[node name="ClipControl" type="Control" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="BaseMap" type="TextureRect" parent="ClipControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="BakeViewport" type="SubViewport" parent="ClipControl"]
+size = Vector2i(1024, 1024)
+
+[node name="BakeWorld" type="Node2D" parent="ClipControl/BakeViewport"]
+
+[node name="BakeCamera" type="Camera2D" parent="ClipControl/BakeViewport/BakeWorld"]
+script = ExtResource("2_rfb21")
+
+[node name="PolysRoot" type="Node2D" parent="ClipControl/BakeViewport/BakeWorld"]

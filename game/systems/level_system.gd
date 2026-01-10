@@ -9,7 +9,7 @@ var run_state: RunState
 func bind_run_state(state: RunState) -> void:
     run_state = state
 
-func start_session() -> void:
+func start_session() -> LevelContainer:
     # Remove existing level subtree.
     if current_level != null:
         current_level.queue_free()
@@ -21,4 +21,4 @@ func start_session() -> void:
     add_child(container)
     current_level = container
 
-
+    return container

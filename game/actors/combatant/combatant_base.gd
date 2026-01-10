@@ -32,7 +32,7 @@ func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definit
 
     var _rig = get_node("AttachmentsRig")
     var health_component: HealthComponent = _rig.get_node("ComponentsRoot/HealthComponent")
-    health_component.max_health = combatant_definition.max_hp
+    health_component.set_max_health(combatant_definition.max_hp)
 
     var team_id = combatant_definition.team_id
     var sensors = _rig.get_node("FacingRoot/Sensors")

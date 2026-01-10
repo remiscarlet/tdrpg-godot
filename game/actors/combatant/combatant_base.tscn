@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="13_rrdtx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqgk4"]
+radius = 15.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsc2i"]
 animations = [{
@@ -37,6 +38,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 editor_description = "Collider shape has to live as a direct child of the CharacterBody2D root :`) "
 shape = SubResource("CircleShape2D_qqgk4")
+debug_color = Color(0.052071124, 0.6441717, 0.26613647, 0.41960785)
 
 [node name="AttachmentsRig" parent="." instance=ExtResource("2_nl20h")]
 
@@ -80,6 +82,9 @@ sprite_frames = SubResource("SpriteFrames_nsc2i")
 scale = Vector2(0.27462497, 0.27462497)
 health_path = NodePath("../../../ComponentsRoot/HealthComponent")
 
+[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent" index="0"]
+debug_color = Color(0.98623556, 0, 0.3495352, 0.41960785)
+
 [node name="PickupboxComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("11_qqgk4")]
 scale = Vector2(0.42249995, 0.42249995)
 
@@ -91,3 +96,4 @@ collision_mask = 16
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]

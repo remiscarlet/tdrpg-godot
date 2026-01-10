@@ -1,7 +1,7 @@
 extends Node2D
 class_name AIHaulerController
 
-var hauler_task_system: HaulerTaskSystem
+
 
 var _rng := RandomNumberGenerator.new()
 
@@ -9,8 +9,6 @@ var _rng := RandomNumberGenerator.new()
 
 @onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
-@onready var interactable_detector_component: InteractableDetectorComponent
-@onready var inventory_component: InventoryComponent
 
 enum HaulerState {
     IDLE,
@@ -19,6 +17,10 @@ enum HaulerState {
     GO_TO_COLLECTOR,
     DEPOSIT, # interact
 }
+
+var interactable_detector_component: InteractableDetectorComponent
+var inventory_component: InventoryComponent
+var hauler_task_system: HaulerTaskSystem
 
 var ready_next_state: bool = true
 var current_task: HaulTask

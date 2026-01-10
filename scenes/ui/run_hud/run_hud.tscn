@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5s0cmj0l4g0k"]
+[gd_scene load_steps=4 format=3 uid="uid://c5s0cmj0l4g0k"]
 
 [ext_resource type="Script" uid="uid://croicg2coipol" path="res://scenes/ui/run_hud/run_hud.gd" id="1_3dhur"]
 [ext_resource type="PackedScene" uid="uid://chixs58k4qg3g" path="res://scenes/ui/resource_row/resource_row.tscn" id="2_l1o27"]
+[ext_resource type="PackedScene" uid="uid://cse32o4aqqb6n" path="res://scenes/ui/minimap/minimap.tscn" id="3_ospfo"]
 
 [node name="RunHUD" type="Control"]
 layout_mode = 3
@@ -25,17 +26,25 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ResourceList" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ResourceList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="ResourceList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ResourceList"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Title" parent="MarginContainer/VBoxContainer/PanelContainer/ResourceList" groups=["persistent_ui"] instance=ExtResource("2_l1o27")]
+[node name="Title" parent="MarginContainer/VBoxContainer/ResourceList/ResourceList" groups=["persistent_ui"] instance=ExtResource("2_l1o27")]
 layout_mode = 2
 
-[node name="Name" parent="MarginContainer/VBoxContainer/PanelContainer/ResourceList/Title" index="1"]
+[node name="Name" parent="MarginContainer/VBoxContainer/ResourceList/ResourceList/Title" index="1"]
 text = "Inventory"
 
-[editable path="MarginContainer/VBoxContainer/PanelContainer/ResourceList/Title"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Minimap" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_ospfo")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[editable path="MarginContainer/VBoxContainer/ResourceList/ResourceList/Title"]

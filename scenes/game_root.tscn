@@ -36,3 +36,7 @@ offset_bottom = 40.0
 unique_name_in_owner = true
 
 [node name="MenuLayer" type="CanvasLayer" parent="UI"]
+
+[editable path="UI/RunHUDLayer/RunHUD"]
+[editable path="UI/RunHUDLayer/RunHUD/MarginContainer/VBoxContainer/ResourceList/ResourceList/Title"]
+[editable path="UI/RunHUDLayer/RunHUD/MarginContainer/VBoxContainer/Minimap"]

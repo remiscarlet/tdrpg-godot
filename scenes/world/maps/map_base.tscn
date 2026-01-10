@@ -26,6 +26,7 @@ tile_set = ExtResource("2_boh3a")
 script = ExtResource("1_3igsj")
 
 [node name="Navigation" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="RoomA" type="NavigationRegion2D" parent="Navigation"]
 position = Vector2(276, 190)

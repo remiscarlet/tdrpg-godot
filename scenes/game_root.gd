@@ -2,6 +2,7 @@ extends Node
 
 @onready var run_hud: RunHUD = %RunHUD
 @onready var level_system: LevelSystem = %LevelSystem
+@onready var minimap: MinimapNavBake = run_hud.get_node("%Minimap")
 
 var meta_state: MetaState = MetaState.new()
 var run_state: RunState
@@ -20,4 +21,7 @@ func start_run() -> void:
     run_hud.bind_run_state(run_state)
     level_system.bind_run_state(run_state)
 
-    level_system.start_session()
+    var container: LevelContainer = level_system.start_session()
+    var nav_root: Node = container.get_active_map().get_nav_root()
+    minimap.bind_nav_root(nav_root)
+    minimap.bind_player_root(container.get_player())

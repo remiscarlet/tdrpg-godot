@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvmiin27bmp6u"]
+[gd_scene load_steps=12 format=3 uid="uid://cvmiin27bmp6u"]
 
 [ext_resource type="Script" uid="uid://c2x8tb2fy5ns6" path="res://scenes/turrets/default_turret/default_turret.gd" id="1_hyaxd"]
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="2_2atjr"]
@@ -12,6 +12,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjdg3"]
 radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deqxc"]
 
 [node name="DefaultTurret" type="Area2D" groups=["combatants"]]
 script = ExtResource("1_hyaxd")
@@ -40,6 +42,9 @@ autostart = true
 texture = ExtResource("2_x3o2a")
 
 [node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="0" instance=ExtResource("6_nlnkj")]
+
+[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent" index="0"]
+shape = SubResource("CircleShape2D_deqxc")
 
 [node name="Hurtbox2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("4_2atjr")]
 

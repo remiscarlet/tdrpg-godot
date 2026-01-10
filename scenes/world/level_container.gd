@@ -11,20 +11,27 @@ extends Node2D
 @export var map_name_to_load = ""
 
 var run_state: RunState
+var player: Player
 
 # Simple registry; later you can replace this with Resources / data-driven tables.
 var maps := {
     "map01": preload("res://scenes/world/maps/map1.tscn"),
 }
 
-var map_content: Node2D
+var map_content: MapBase
 
 func prepare_map(map_name: String) -> void:
     assert(map_name != "")
     var map_content_scene = maps.get(map_name)
 
     assert(map_content_scene != null)
-    map_content = map_content_scene.instantiate() as Node2D
+    map_content = map_content_scene.instantiate() as MapBase
+
+func get_active_map() -> MapBase:
+    return map_content
+
+func get_player() -> Player:
+    return player
 
 func bind_run_state(state: RunState) -> void:
     run_state = state
@@ -81,18 +88,16 @@ func _initialize_map() -> void:
         if marker:
             spawn_pos = marker.global_position
 
-    var player = await _spawn_player(spawn_pos)
+    await _spawn_player(spawn_pos)
     camera_rig.set_target(player)
 
 
-func _spawn_player(spawn_pos: Vector2) -> Player:
+func _spawn_player(spawn_pos: Vector2) -> void:
     print("Attempting to spawn player at %s" % spawn_pos)
     var ctx = CombatantSpawnContext.new(spawn_pos, CombatantTypes.PLAYER)
-    var player := await combatant_system.spawn(ctx) as Player
+    player = await combatant_system.spawn(ctx) as Player
 
     var placer := player.get_node("AttachmentsRig/%ComponentsRoot/TurretPlacerComponent")
     placer.place_turret_requested.connect(
         func(pos, turret_type): turret_system.try_build_turret(player, pos, turret_type)
     )
-
-    return player

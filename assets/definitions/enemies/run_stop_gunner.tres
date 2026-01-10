@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=3 format=3 uid="uid://brmg22v5qijk"]
+
+[ext_resource type="Texture2D" uid="uid://di2qx7fkvfsi8" path="res://assets/art/run_stop_gunner.png" id="1_nn7us"]
+[ext_resource type="Script" uid="uid://dbdi71vttbufk" path="res://game/definitions/enemy_definition.gd" id="2_001x5"]
+
+[resource]
+script = ExtResource("2_001x5")
+team_id = 1
+max_hp = 15
+move_speed = 200.0
+id = &"run_stop_gunner"
+display_name = "Gunner"
+icon = ExtResource("1_nn7us")
+metadata/_custom_type_script = "uid://dbdi71vttbufk"

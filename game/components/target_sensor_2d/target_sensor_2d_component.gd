@@ -17,6 +17,7 @@ func set_team_id(id: int) -> void:
     team_id = id
 
 func _ready() -> void:
+    print("Sensor radius: %s" % sensor_radius)
     shape.shape.radius = sensor_radius
     monitoring = true
 
