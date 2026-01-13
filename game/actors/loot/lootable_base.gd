@@ -5,6 +5,9 @@ class_name LootableBase
 
 var drop: LootDrop
 
+var definition: ItemDefinition:
+    get:
+        return null if drop == null else DefinitionDB.get_item(drop.loot_id)
 
 ## Returns a "positionless" instance of LootableBase configured as `item_id`
 static func instantiate_by_id(item_id: StringName) -> LootableBase:

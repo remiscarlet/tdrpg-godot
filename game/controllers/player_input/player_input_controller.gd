@@ -13,7 +13,6 @@ func bind_player_aim_fire_controller(controller: AimFireController) -> void:
 func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:
     interactable_detector_component = component
 
-
 func _physics_process(_delta: float) -> void:
     var d := Vector2(
         Input.get_action_strength(Inputs.MOVE_RIGHT) - Input.get_action_strength(Inputs.MOVE_LEFT),

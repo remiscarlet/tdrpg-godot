@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=3 format=3 uid="uid://dkg3r7q6446iv"]
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=4 format=3 uid="uid://dkg3r7q6446iv"]
 
 [ext_resource type="Texture2D" uid="uid://bke2cy0xibcmx" path="res://assets/art/Default-Enemy.png" id="1_kv3tb"]
 [ext_resource type="Script" uid="uid://dbdi71vttbufk" path="res://game/definitions/enemy_definition.gd" id="1_rlvs5"]
+[ext_resource type="PackedScene" uid="uid://4tfr1jtxjs82" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_dot_icon.tscn" id="2_7w5ua"]
 
 [resource]
 script = ExtResource("1_rlvs5")
@@ -11,4 +12,6 @@ move_speed = 150.0
 id = &"default_enemy"
 display_name = "Default Enemy"
 icon = ExtResource("1_kv3tb")
+minimap_icon_color = Color(0.21960784, 0.26666668, 0, 1)
+minimap_icon_scene = ExtResource("2_7w5ua")
 metadata/_custom_type_script = "uid://dbdi71vttbufk"

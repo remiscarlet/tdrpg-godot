@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bud34gq2w0bs0"]
+
+[ext_resource type="Script" uid="uid://p0r2hqxi8et4" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_icon_base.gd" id="1_ui4ct"]
+
+[node name="MinimapIconBase" type="Node2D"]
+script = ExtResource("1_ui4ct")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]

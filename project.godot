@@ -27,6 +27,7 @@ window/stretch/mode="viewport"
 
 combatants=""
 loot=""
+interactables=""
 
 [input]
 

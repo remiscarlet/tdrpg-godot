@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="AutomatonDefinition" load_steps=3 format=3 uid="uid://forbsr203gv4"]
+[gd_resource type="Resource" script_class="AutomatonDefinition" load_steps=4 format=3 uid="uid://forbsr203gv4"]
 
 [ext_resource type="Script" uid="uid://i5y8ur860oe8" path="res://game/definitions/automaton_definition.gd" id="1_1n0k3"]
 [ext_resource type="Texture2D" uid="uid://dcfu1pkxctmxl" path="res://assets/art/default_automaton.png" id="1_4dvx7"]
+[ext_resource type="PackedScene" uid="uid://4tfr1jtxjs82" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_dot_icon.tscn" id="2_0urqw"]
 
 [resource]
 script = ExtResource("1_1n0k3")
@@ -10,4 +11,6 @@ move_speed = 150.0
 id = &"default_automaton"
 display_name = "Default Automaton"
 icon = ExtResource("1_4dvx7")
+minimap_icon_color = Color(0.9254902, 0.43137255, 0, 1)
+minimap_icon_scene = ExtResource("2_0urqw")
 metadata/_custom_type_script = "uid://i5y8ur860oe8"

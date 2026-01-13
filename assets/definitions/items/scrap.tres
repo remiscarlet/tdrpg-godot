@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3 uid="uid://cw08ac8r8jd0l"]
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=4 format=3 uid="uid://cw08ac8r8jd0l"]
 
 [ext_resource type="Texture2D" uid="uid://dtiap144kt46v" path="res://assets/art/scrap.png" id="1_mybul"]
 [ext_resource type="Script" uid="uid://b1ak5gfrhv715" path="res://game/definitions/item_definition.gd" id="1_trj2m"]
+[ext_resource type="PackedScene" uid="uid://dff067hy8j784" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_star_icon.tscn" id="2_wev7v"]
 
 [resource]
 script = ExtResource("1_trj2m")
 id = &"scrap"
 display_name = "Scrap"
 icon = ExtResource("1_mybul")
+minimap_icon_color = Color(0.7254902, 0.36078432, 0, 1)
+minimap_icon_scene = ExtResource("2_wev7v")
 metadata/_custom_type_script = "uid://b1ak5gfrhv715"

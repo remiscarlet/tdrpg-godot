@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37qbf"]
 size = Vector2(16, 48)
 
-[node name="InteractableBase" type="Area2D"]
+[node name="InteractableBase" type="Area2D" groups=["interactables"]]
 collision_layer = 16
 collision_mask = 4096
 script = ExtResource("1_37qbf")

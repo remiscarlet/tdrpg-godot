@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cse32o4aqqb6n"]
+[gd_scene load_steps=7 format=3 uid="uid://cse32o4aqqb6n"]
 
 [ext_resource type="Script" uid="uid://6pa8lqb2oxr0" path="res://scenes/ui/minimap/minimap_nav_bake.gd" id="1_0k5yr"]
 [ext_resource type="Script" uid="uid://cxmh6k1vgdahs" path="res://scenes/ui/minimap/minimap.gd" id="1_n58tj"]
 [ext_resource type="Script" uid="uid://dkyhqb0w7fvfy" path="res://scenes/ui/minimap/minimap_bake_texture.gd" id="2_8mwjq"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="2_rfb21"]
+[ext_resource type="Script" uid="uid://b2s1prtglin62" path="res://scenes/ui/minimap/renderers/map_renderer.gd" id="5_8mwjq"]
+[ext_resource type="Script" uid="uid://gqc35sa2xe7b" path="res://scenes/ui/minimap/renderers/icon_renderer.gd" id="6_30hu7"]
 
 [node name="Minimap" type="PanelContainer"]
 custom_minimum_size = Vector2(256, 256)
@@ -21,15 +23,7 @@ clip_contents = true
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 
-[node name="MapLayers" type="Control" parent="ClipControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BakeTexture" type="TextureRect" parent="ClipControl/MapLayers"]
+[node name="MapTexture" type="TextureRect" parent="ClipControl"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -71,11 +65,25 @@ unique_name_in_owner = true
 size = Vector2i(1024, 1024)
 script = ExtResource("1_0k5yr")
 
-[node name="BakeWorld" type="Node2D" parent="ClipControl/BakeViewport"]
-
-[node name="BakeCamera" type="Camera2D" parent="ClipControl/BakeViewport/BakeWorld"]
+[node name="BakeCamera" type="Camera2D" parent="ClipControl/BakeViewport"]
 unique_name_in_owner = true
 script = ExtResource("2_rfb21")
 
-[node name="PolysRoot" type="Node2D" parent="ClipControl/BakeViewport/BakeWorld"]
+[node name="PolyContainers" type="Node2D" parent="ClipControl/BakeViewport"]
+
+[node name="MapPolysRoot" type="Node2D" parent="ClipControl/BakeViewport/PolyContainers"]
 unique_name_in_owner = true
+
+[node name="IconPolysRoot" type="Node2D" parent="ClipControl/BakeViewport/PolyContainers"]
+unique_name_in_owner = true
+
+[node name="Renderers" type="Node" parent="ClipControl/BakeViewport"]
+unique_name_in_owner = true
+
+[node name="MapRenderer" type="Node" parent="ClipControl/BakeViewport/Renderers"]
+unique_name_in_owner = true
+script = ExtResource("5_8mwjq")
+
+[node name="IconRenderer" type="Node" parent="ClipControl/BakeViewport/Renderers"]
+unique_name_in_owner = true
+script = ExtResource("6_30hu7")

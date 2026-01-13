@@ -9,7 +9,7 @@ var zoom_in_mod: float = 1.05
 var zoom_out_mod: float = 0.95
 
 @export var nav_root: Node
-@onready var bake_texture: TextureRect = %BakeTexture
+@onready var map_texture: TextureRect = %MapTexture
 @onready var bake_viewport: MinimapNavBake = %BakeViewport
 @onready var bake_camera: Camera2D = %BakeCamera
 @onready var zoom_label: Label = %ZoomLabel
@@ -62,7 +62,7 @@ func _ready() -> void:
 
 func _apply_bake_to_map_texture() -> void:
     # ViewportTexture is acquired via Viewport.get_texture().
-    bake_texture.texture = bake_viewport.get_texture()
+    map_texture.texture = bake_viewport.get_texture()
 
 
 func _push_config() -> void:

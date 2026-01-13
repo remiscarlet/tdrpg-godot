@@ -15,7 +15,7 @@ height = 3
 fill_from = Vector2(1, 0)
 
 [sub_resource type="Gradient" id="Gradient_q4tij"]
-offsets = PackedFloat32Array(0, 0.49305555, 1)
+offsets = PackedFloat32Array(0, 0.43229166, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.98039216, 0.33333334, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_quvel"]

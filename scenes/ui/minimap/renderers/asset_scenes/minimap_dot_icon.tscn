@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://4tfr1jtxjs82"]
+
+[ext_resource type="PackedScene" uid="uid://bud34gq2w0bs0" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_icon_base.tscn" id="1_32fuw"]
+
+[node name="MinimapDotIcon" instance=ExtResource("1_32fuw")]
+
+[node name="Polygon2D" parent="." index="0"]
+position = Vector2(1.1920929e-07, 1.1920929e-07)
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(-2, 0, -2, -1, -1, -2, 0, -2, 1, -2, 2, -1, 2, 0, 2, 1, 1, 2, 0, 2, -1, 2, -2, 1)

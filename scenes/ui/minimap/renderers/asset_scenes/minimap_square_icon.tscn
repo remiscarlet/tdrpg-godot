@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d22vppeiyu5jd"]
+
+[ext_resource type="PackedScene" uid="uid://bud34gq2w0bs0" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_icon_base.tscn" id="1_6hbvk"]
+
+[node name="MinimapSquareIcon" instance=ExtResource("1_6hbvk")]
+
+[node name="Polygon2D" parent="." index="0"]
+position = Vector2(-2.3841858e-07, -2.3841858e-07)
+scale = Vector2(2.9999998, 2.9999998)
+polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
