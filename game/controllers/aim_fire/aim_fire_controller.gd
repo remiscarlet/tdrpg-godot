@@ -1,13 +1,12 @@
-extends Node2D
 class_name AimFireController
-
-@onready var target_provider: TargetBaseProvider = MouseTargetProvider.new()
-
-@onready var root: Node2D = get_parent().get_parent().get_parent()  # Root/AttachmentsRoot/Controllers
-@onready var aim_component: AimToTarget2DComponent
-@onready var fire_component: FireWeaponComponent
+extends Node2D
 
 var last_dir = Vector2.ZERO
+
+@onready var target_provider: TargetBaseProvider = MouseTargetProvider.new()
+@onready var root: Node2D = get_parent().get_parent().get_parent() # Root/AttachmentsRoot/Controllers
+@onready var aim_component: AimToTarget2DComponent
+@onready var fire_component: FireWeaponComponent
 
 
 static func wire_aim_fire_controller(actor: Node) -> void:
@@ -19,6 +18,10 @@ static func wire_aim_fire_controller(actor: Node) -> void:
     var aim_fire_controller = _rig.get_node("%ControllersRoot/AimFireController")
     aim_fire_controller.bind_aim_component(_aim_component)
     aim_fire_controller.bind_fire_component(_fire_component)
+
+
+func _process(_delta: float) -> void:
+    aim()
 
 
 func bind_aim_component(component: AimToTarget2DComponent) -> void:
@@ -46,10 +49,6 @@ func try_fire() -> bool:
         return false
 
     return fire_component.fire(target.dir)
-
-
-func _process(_delta: float) -> void:
-    aim()
 
 
 func _get_target() -> AimingTargetResult:

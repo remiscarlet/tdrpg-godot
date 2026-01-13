@@ -4,7 +4,6 @@ extends RefCounted
 var origin: Vector2
 var source: Node
 var drops: Array[LootDrop]
-
 var direction: Vector2 = Vector2.RIGHT
 
 

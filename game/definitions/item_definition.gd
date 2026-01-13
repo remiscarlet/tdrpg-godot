@@ -1,5 +1,5 @@
-extends DefinitionBase
 class_name ItemDefinition
+extends DefinitionBase
 
 enum ItemKind { RESOURCE, CONSUMABLE, KEY_ITEM }
 

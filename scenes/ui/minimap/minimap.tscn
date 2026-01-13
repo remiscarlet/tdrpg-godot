@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dkyhqb0w7fvfy" path="res://scenes/ui/minimap/minimap_bake_texture.gd" id="2_8mwjq"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="2_rfb21"]
 [ext_resource type="Script" uid="uid://b2s1prtglin62" path="res://scenes/ui/minimap/renderers/map_renderer.gd" id="5_8mwjq"]
-[ext_resource type="Script" uid="uid://gqc35sa2xe7b" path="res://scenes/ui/minimap/renderers/icon_renderer.gd" id="6_30hu7"]
+[ext_resource type="Script" uid="uid://brflnysm60p1x" path="res://scenes/ui/minimap/renderers/icon_renderer.gd" id="6_30hu7"]
 
 [node name="Minimap" type="PanelContainer"]
 custom_minimum_size = Vector2(256, 256)

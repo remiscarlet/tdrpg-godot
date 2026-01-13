@@ -1,9 +1,9 @@
-extends HBoxContainer
 class_name InventoryBarUI
+extends HBoxContainer
 
 var inventory_component: InventoryComponent
 var resource_pip_scene: PackedScene = preload("res://scenes/ui/resource_pip/resource_pip_ui.tscn")
-var _pips: Dictionary[StringName, ResourcePipUI] = {}
+var _pips: Dictionary[StringName, ResourcePipUI] = { }
 
 
 func bind_inventory_component(component: InventoryComponent) -> void:
@@ -11,7 +11,7 @@ func bind_inventory_component(component: InventoryComponent) -> void:
 
 
 func on_InventoryComponent_inventory_changed() -> void:
-    var unseen: Dictionary[StringName, bool] = {}
+    var unseen: Dictionary[StringName, bool] = { }
 
     var inv = inventory_component.inventory
 

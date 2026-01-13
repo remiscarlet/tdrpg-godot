@@ -1,7 +1,7 @@
 class_name Inventory
 extends Resource
 
-var items: Dictionary[StringName, int] = {}
+var items: Dictionary[StringName, int] = { }
 var capacity: int
 
 
@@ -10,7 +10,7 @@ func _init(new_capacity: int) -> void:
 
 
 func clear() -> void:
-    items = {}
+    items = { }
 
 
 func is_empty() -> bool:

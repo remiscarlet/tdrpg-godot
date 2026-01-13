@@ -1,5 +1,5 @@
-extends HBoxContainer
 class_name ResourcePipUI
+extends HBoxContainer
 
 var item_id: StringName
 var quantity: int

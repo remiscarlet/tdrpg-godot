@@ -1,5 +1,5 @@
-extends RefCounted
 class_name LootContext
+extends RefCounted
 
 var tags: PackedStringArray = PackedStringArray()
 var level: int = 1

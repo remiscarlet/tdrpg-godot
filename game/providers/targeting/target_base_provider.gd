@@ -1,5 +1,5 @@
-extends RefCounted
 class_name TargetBaseProvider
+extends RefCounted
 
 
 ## If Vector2.ZERO is returned, it means no target.

@@ -4,10 +4,10 @@ extends Node
 @export var indicator_scene: PackedScene
 @export var anchor_rel_path: NodePath = NodePath("AttachmentsRig/ViewsRoot/OverheadIndicatorAnchor")
 
-@onready var indicators_root: Control = %"IndicatorsRoot"
-
 # Map combatant -> indicator
-var _indicators := {}  # Dictionary[Node, Control]
+var _indicators := { } # Dictionary[Node, Control]
+
+@onready var indicators_root: Control = %"IndicatorsRoot"
 
 
 func _ready() -> void:

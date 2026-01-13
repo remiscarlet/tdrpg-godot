@@ -2,6 +2,7 @@ class_name MapBase
 extends Node2D
 
 @export var player_spawn_path: NodePath
+
 @onready var spawn_system: SpawnSystem = %SpawnSystem
 @onready var nav_root: Node = %Navigation
 

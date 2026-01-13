@@ -1,5 +1,5 @@
-extends TargetBaseProvider
 class_name MouseTargetProvider
+extends TargetBaseProvider
 
 
 ## If Vector2.ZERO is returned, it means no target.

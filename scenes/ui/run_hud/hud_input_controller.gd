@@ -1,24 +1,19 @@
 extends Node
 
-@onready var minimap: Minimap = %Minimap
-
 var delay_config: Dictionary[StringName, Dictionary] = {
-    Inputs.ZOOM_IN:
-    {
+    Inputs.ZOOM_IN: {
         "last": 0.0,
         "delay": 0.25,
         "func": func(): minimap.zoom_in(),
         "held": false,
     },
-    Inputs.ZOOM_OUT:
-    {
+    Inputs.ZOOM_OUT: {
         "last": 0.0,
         "delay": 0.25,
         "func": func(): minimap.zoom_out(),
         "held": false,
     },
-    Inputs.ZOOM_RESET:
-    {
+    Inputs.ZOOM_RESET: {
         "last": 0.0,
         "delay": 0.25,
         "func": func(): minimap.zoom_reset(),
@@ -26,14 +21,7 @@ var delay_config: Dictionary[StringName, Dictionary] = {
     },
 }
 
-
-func _unhandled_input(event: InputEvent) -> void:
-    for input in delay_config:
-        if event.is_action_pressed(input):  # initial press only
-            delay_config[input]["held"] = true
-            get_viewport().set_input_as_handled()
-        elif event.is_action_released(input):
-            delay_config[input]["held"] = false
+@onready var minimap: Minimap = %Minimap
 
 
 func _process(_delay: float) -> void:
@@ -42,6 +30,15 @@ func _process(_delay: float) -> void:
         if cfg["held"] and Input.is_action_pressed(input) and _can(input):
             if cfg["func"].call():
                 _set_last(input)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+    for input in delay_config:
+        if event.is_action_pressed(input): # initial press only
+            delay_config[input]["held"] = true
+            get_viewport().set_input_as_handled()
+        elif event.is_action_released(input):
+            delay_config[input]["held"] = false
 
 
 func _get_now() -> float:

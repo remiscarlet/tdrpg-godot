@@ -1,32 +1,27 @@
-extends Resource
 class_name RunState
+extends Resource
+
+# ---------------------------
+# Convenience API
+# ---------------------------
+signal state_changed
+signal currency_changed(currency_id: StringName, new_value: int)
+signal inventory_changed(item_id: StringName, new_qty: int)
 
 ## Run/session identity
 @export var run_id: StringName = &""
 @export var rng_seed: int = 0
 @export var started_unix: float = 0.0
-
 ## Inventory
 @export var inventory: Inventory = Inventory.new(1000)
-
 ## Run flags: arbitrary booleans keyed by id (tutorial steps, one-time events, etc.)
-@export var flags: Dictionary = {}  # Dictionary[StringName, bool]
-
+@export var flags: Dictionary = { } # Dictionary[StringName, bool]
 ## Discovered/cleared content across maps
 ## e.g. sector_id -> "discovered"/"cleared"/etc (you can evolve this later)
-@export var sectors: Dictionary = {}  # Dictionary[StringName, Dictionary]
-
+@export var sectors: Dictionary = { } # Dictionary[StringName, Dictionary]
 ## Persisted “hub” state across levels
 ## hub_id -> hub data (minimal starter shape)
-@export var hubs: Dictionary = {}  # Dictionary[StringName, Dictionary]
-
-# ---------------------------
-# Convenience API
-# ---------------------------
-
-signal state_changed
-signal currency_changed(currency_id: StringName, new_value: int)
-signal inventory_changed(item_id: StringName, new_qty: int)
+@export var hubs: Dictionary = { } # Dictionary[StringName, Dictionary]
 
 
 func reset_for_new_run(new_run_id: StringName, new_seed: int) -> void:
@@ -45,8 +40,6 @@ func reset_for_new_run(new_run_id: StringName, new_seed: int) -> void:
 # ---------------------------
 # Currency helpers
 # ---------------------------
-
-
 func get_currency(currency_id: StringName) -> int:
     match currency_id:
         Loot.CREDIT:
@@ -82,8 +75,6 @@ func add_currency(currency_id: StringName, delta: int) -> void:
 # ---------------------------
 # Inventory helpers
 # ---------------------------
-
-
 func get_item_qty(item_id: StringName) -> int:
     return int(inventory.get_item_qty_or_default(item_id, 0))
 

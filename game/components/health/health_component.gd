@@ -8,12 +8,12 @@ var max_health: float = 100.0
 var current_health: float
 
 
-func set_max_health(health: float) -> void:
-    max_health = health
-
-
 func _ready() -> void:
     current_health = max_health
+
+
+func set_max_health(health: float) -> void:
+    max_health = health
 
 
 func apply_damage(amount: float, source: Node = null) -> void:
@@ -23,7 +23,7 @@ func apply_damage(amount: float, source: Node = null) -> void:
         return
     if current_health <= 0.0:
         push_warning(
-            "Tried applying damage from %s to an already dead entity (%s)!" % [source, self]
+            "Tried applying damage from %s to an already dead entity (%s)!" % [source, self],
         )
         return
 

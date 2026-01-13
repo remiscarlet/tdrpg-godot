@@ -3,33 +3,65 @@ extends CharacterBody2D
 
 var spawn_context: CombatantSpawnContext
 var definition: CombatantDefinition
-
 var level_container: LevelContainer
-
 var desired_dir: Vector2 = Vector2.ZERO
 var inventory_capacity: int = 1
 var move_speed: float = 100.0
-var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
+var combat_tags: Array[StringName] = [] # e.g. ["swarm", "armored"]
 
 @onready var sprite_collision_shape: CollisionShape2D = $"CollisionShape2D"
 @onready var rig = $"AttachmentsRig"
-
 @onready var sensors_root: Node = rig.get_node("%FacingRoot/Sensors")
 @onready var hurtbox_collision_shape: CollisionShape2D = sensors_root.get_node(
-    "Hurtbox2DComponent/CollisionShape2D"
+    "Hurtbox2DComponent/CollisionShape2D",
 )
-
 @onready var health: HealthComponent = rig.get_node("%ComponentsRoot/HealthComponent")
-
 @onready var player_ctrl: Node = rig.get_node("%ControllersRoot/PlayerInputController")
 @onready var ai_hauler_ctrl: Node = rig.get_node("%ControllersRoot/AIHaulerController")
 @onready var ai_wander_ctrl: Node = rig.get_node("%ControllersRoot/AIWanderNavigationController")
 
+
+# Lifecycle Methods
+func _enter_tree() -> void:
+    process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _ready() -> void:
+    print("== Readying CombatantBase...")
+
+    hurtbox_collision_shape.shape = sprite_collision_shape.shape
+    health.died.connect(_on_HealthComponent_died)
+
+    var inventory_component = rig.get_node("%ComponentsRoot/InventoryComponent")
+    var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
+    inventory_component.configure(pickupbox_component, inventory_capacity)
+
+    var interactable_detector_component = rig.get_node(
+        "%FacingRoot/Sensors/InteractableDetectorComponent",
+    )
+    player_ctrl.bind_interactable_detector_component(interactable_detector_component)
+    ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
+    ai_hauler_ctrl.bind_inventory_component(inventory_component)
+
+    var aim_to_target_component = rig.get_node("%ComponentsRoot/AimToTarget2DComponent")
+    var facing_root = rig.get_node("%FacingRoot")
+    aim_to_target_component.bind_facing_root(facing_root)
+
+    _set_controller(player_ctrl)
+
+    process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _physics_process(_delta: float) -> void:
+    # Controllers set desired_dir; motor applies it.
+    velocity = desired_dir.normalized() * move_speed
+    move_and_slide()
+
+
 # Public Methods
-
-
 func configure_combatant_pre_ready(
-    ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition
+        ctx: CombatantSpawnContext,
+        combatant_definition: CombatantDefinition,
 ) -> void:
     spawn_context = ctx
     definition = combatant_definition
@@ -59,48 +91,7 @@ func configure_combatant_post_ready(container: LevelContainer) -> void:
     _set_controller_by_team_id(definition.team_id)
 
 
-# Lifecycle Methods
-
-
-func _enter_tree() -> void:
-    process_mode = Node.PROCESS_MODE_DISABLED
-
-
-func _ready() -> void:
-    print("== Readying CombatantBase...")
-
-    hurtbox_collision_shape.shape = sprite_collision_shape.shape
-    health.died.connect(_on_HealthComponent_died)
-
-    var inventory_component = rig.get_node("%ComponentsRoot/InventoryComponent")
-    var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
-    inventory_component.configure(pickupbox_component, inventory_capacity)
-
-    var interactable_detector_component = rig.get_node(
-        "%FacingRoot/Sensors/InteractableDetectorComponent"
-    )
-    player_ctrl.bind_interactable_detector_component(interactable_detector_component)
-    ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
-    ai_hauler_ctrl.bind_inventory_component(inventory_component)
-
-    var aim_to_target_component = rig.get_node("%ComponentsRoot/AimToTarget2DComponent")
-    var facing_root = rig.get_node("%FacingRoot")
-    aim_to_target_component.bind_facing_root(facing_root)
-
-    _set_controller(player_ctrl)
-
-    process_mode = Node.PROCESS_MODE_INHERIT
-
-
-func _physics_process(_delta: float) -> void:
-    # Controllers set desired_dir; motor applies it.
-    velocity = desired_dir.normalized() * move_speed
-    move_and_slide()
-
-
 # Helpers
-
-
 func _on_HealthComponent_died(source: Node) -> void:
     print("%s killed by %s!" % [self, source])
     queue_free()
@@ -119,7 +110,6 @@ func _set_controller_by_team_id(team_id: int) -> void:
 
 
 func _set_controller(active: Node) -> void:
-    # Disable both, enable one. Disabled means no _process/_physics_process/_input, etc. :contentReference[oaicite:3]{index=3}
     player_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
     ai_hauler_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
     ai_wander_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
@@ -137,6 +127,6 @@ func _bind_level_container_ref(container: LevelContainer) -> void:
     loot.bind_loot_system(level_container.get_node("%LootSystem"))
 
     var ai_hauler_controller: AIHaulerController = rig.get_node(
-        "%ControllersRoot/AIHaulerController"
+        "%ControllersRoot/AIHaulerController",
     )
     ai_hauler_controller.bind_hauler_task_system(level_container.get_node("%HaulerTaskSystem"))

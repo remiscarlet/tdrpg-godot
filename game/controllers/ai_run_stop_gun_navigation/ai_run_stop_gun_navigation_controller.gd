@@ -1,12 +1,5 @@
-extends Node2D
 class_name AIRunStopGunNavigationController
-
-var _rng := RandomNumberGenerator.new()
-
-@export_flags_2d_navigation var navigation_layers := 1  # must match region layers you want to use
-
-@onready var body: CombatantBase = get_parent().get_parent().get_parent()  # CombatantBase/AttachmentsRoot/Controllers
-@onready var agent: NavigationAgent2D = $NavigationAgent2D
+extends Node2D
 
 enum GunnerState {
     IDLE,
@@ -15,22 +8,19 @@ enum GunnerState {
     RETREAT,
 }
 
-var fire_weapon_component: FireWeaponComponent
+@export_flags_2d_navigation var navigation_layers := 1 # must match region layers you want to use
 
+var fire_weapon_component: FireWeaponComponent
 var ready_next_state: bool = true
 var current_task: HaulTask
 var current_state = GunnerState.IDLE
+var _rng := RandomNumberGenerator.new()
 
-## Public methods
-
-
-func bind_fire_weapon_component(component: FireWeaponComponent) -> void:
-    fire_weapon_component = component
+@onready var body: CombatantBase = get_parent().get_parent().get_parent() # CombatantBase/AttachmentsRoot/Controllers
+@onready var agent: NavigationAgent2D = $NavigationAgent2D
 
 
 ## Lifecycle
-
-
 func _ready() -> void:
     _rng.randomize()
 
@@ -44,11 +34,6 @@ func _process(_delta: float) -> void:
             pass
 
 
-func _setup() -> void:
-    await get_tree().physics_frame
-    agent.navigation_layers = navigation_layers
-
-
 func _physics_process(delta: float) -> void:
     if _can_transition_state():
         var tick_physics = _transition_state(delta)
@@ -60,9 +45,17 @@ func _physics_process(delta: float) -> void:
     body.desired_dir = body.global_position.direction_to(next_pos)
 
 
+## Public methods
+func bind_fire_weapon_component(component: FireWeaponComponent) -> void:
+    fire_weapon_component = component
+
+
+func _setup() -> void:
+    await get_tree().physics_frame
+    agent.navigation_layers = navigation_layers
+
+
 ## Helpers
-
-
 func _can_transition_state() -> bool:
     return agent.is_navigation_finished() and ready_next_state
 
@@ -80,7 +73,6 @@ func _transition_state(delta: float) -> bool:
             pass
         GunnerState.RETREAT:
             pass
-
         GunnerState.GO_TO_LOOT:
             if inventory_component.inventory.is_full():
                 print("[%s] Inventory was full. Moving back to collector" % self)
@@ -100,7 +92,7 @@ func _transition_state(delta: float) -> bool:
             return false
         GunnerState.GO_TO_COLLECTOR:
             current_state = GunnerState.DEPOSIT
-            ready_next_state = false  # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
+            ready_next_state = false # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
         GunnerState.DEPOSIT:
             current_state = GunnerState.IDLE
         _:
@@ -132,7 +124,7 @@ func _pick_new_target() -> void:
         (
             "New hauling task: %s (%s) (%s)"
             % [current_task, current_task.loot_loc, current_task.collector_loc]
-        )
+        ),
     )
     agent.target_position = current_task.loot_loc
 

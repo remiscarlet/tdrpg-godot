@@ -1,5 +1,5 @@
-extends Area2D
 class_name DamageEmitterBase
+extends Area2D
 
 var damage: float = 1.0
 var elemental: Array[StringName] = []

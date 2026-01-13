@@ -3,7 +3,7 @@ class_name Uuid
 
 static func v4() -> String:
     var crypto := Crypto.new()
-    var b: PackedByteArray = crypto.generate_random_bytes(16)  # 128 bits
+    var b: PackedByteArray = crypto.generate_random_bytes(16) # 128 bits
 
     # Set version = 4 (0100xxxx)
     b[6] = (b[6] & 0x0F) | 0x40

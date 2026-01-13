@@ -1,8 +1,12 @@
-extends Node2D
 class_name AimToTarget2DComponent
+extends Node2D
 
 var facing_root: Node2D
 var _angle_vector: Vector2
+
+
+func _physics_process(_delta: float):
+    facing_root.rotation = _angle_vector.normalized().angle()
 
 
 func bind_facing_root(node: Node2D) -> void:
@@ -11,7 +15,3 @@ func bind_facing_root(node: Node2D) -> void:
 
 func set_target_angle(angle_vector: Vector2) -> void:
     _angle_vector = angle_vector
-
-
-func _physics_process(_delta: float):
-    facing_root.rotation = _angle_vector.normalized().angle()

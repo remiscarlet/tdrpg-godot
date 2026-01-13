@@ -1,5 +1,5 @@
-extends InteractableBase
 class_name ResourceCollector
+extends InteractableBase
 
 
 func _enter_tree() -> void:
@@ -11,6 +11,6 @@ func _enter_tree() -> void:
 
 func interact(interactor: Node2D) -> bool:
     var inventory: InventoryComponent = interactor.get_node(
-        "AttachmentsRig/ComponentsRoot/InventoryComponent"
+        "AttachmentsRig/ComponentsRoot/InventoryComponent",
     )
     return inventory.transfer_loot_to_collector(run_state)

@@ -1,7 +1,8 @@
-extends Node2D
 class_name PickupboxComponent
+extends Node2D
 
 signal loot_encountered(loot: LootableBase)
+
 @export var area: Area2D
 
 

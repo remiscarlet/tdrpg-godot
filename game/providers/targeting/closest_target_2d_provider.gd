@@ -1,19 +1,9 @@
-extends TargetBaseProvider
 class_name ClosestTarget2DProvider
+extends TargetBaseProvider
 
 var sensor: TargetSensor2DComponent
 var require_line_of_sight: bool = false
 var los_mask: int = Layers.WORLD_SOLID
-
-
-func _init_sensor(origin: Node2D) -> bool:
-    if sensor == null:
-        sensor = (
-            origin.get_node("AttachmentsRig/%FacingRoot/Sensors/TargetSensor2DComponent")
-            as TargetSensor2DComponent
-        )
-
-    return sensor != null
 
 
 func get_target_direction(origin: Node2D) -> Vector2:
@@ -35,7 +25,7 @@ func get_target_direction(origin: Node2D) -> Vector2:
         var target_velocity: Vector2 = target.root.velocity
         var dist_to_target := origin.global_position.distance_to(target_pos)
 
-        var projectile_velocity := 600.0  # Default projectile velocity. TODO: Make more robust.
+        var projectile_velocity := 600.0 # Default projectile velocity. TODO: Make more robust.
         var time_to_target := dist_to_target / projectile_velocity
 
         target_location = target_pos + target_velocity * time_to_target
@@ -66,6 +56,15 @@ func get_target_node(origin: Node2D) -> Node2D:
         best_d2 = d2
 
     return best
+
+
+func _init_sensor(origin: Node2D) -> bool:
+    if sensor == null:
+        sensor = (
+            origin.get_node("AttachmentsRig/%FacingRoot/Sensors/TargetSensor2DComponent") as TargetSensor2DComponent
+        )
+
+    return sensor != null
 
 
 func _has_line_of_sight(origin: Node2D, target: Node2D) -> bool:

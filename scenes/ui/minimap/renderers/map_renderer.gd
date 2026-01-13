@@ -1,5 +1,5 @@
-extends RendererBase
 class_name MapRenderer
+extends RendererBase
 
 @export var fill_color: Color = Color(1, 1, 1, 0.12)
 @export var outline_color: Color = Color(1, 1, 1, 0.65)
@@ -11,23 +11,26 @@ func bake(ctx: RenderContext) -> void:
     var regions := _collect_nav_regions(ctx.nav_root)
     if regions.is_empty():
         push_warning(
-            "MinimapNavBake: no NavigationRegion2D nodes found under navigation_root_path."
+            "MinimapNavBake: no NavigationRegion2D nodes found under navigation_root_path.",
         )
         return
 
     var map_polys_root := ctx.poly_containers_root.get_node("%MapPolysRoot")
     _build_poly_nodes(regions, map_polys_root)
-    
+
+
 func _collect_nav_regions(root: Node) -> Array[NavigationRegion2D]:
     var out: Array[NavigationRegion2D] = []
     _collect_nav_regions_rec(root, out)
     return out
+
 
 func _collect_nav_regions_rec(node: Node, out: Array[NavigationRegion2D]) -> void:
     if node is NavigationRegion2D:
         out.append(node)
     for c in node.get_children():
         _collect_nav_regions_rec(c, out)
+
 
 func _build_poly_nodes(regions: Array[NavigationRegion2D], polys_root: Node2D) -> void:
     _clear_polys_root(polys_root)

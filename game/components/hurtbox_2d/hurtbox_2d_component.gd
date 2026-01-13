@@ -2,10 +2,10 @@ class_name Hurtbox2DComponent
 extends Area2D
 
 # signal hit(damage: float, source: Node, hit_position: Vector2)
-
 @export var health_path: NodePath
+
 @onready var health: HealthComponent = get_node_or_null(health_path) as HealthComponent
-@onready var root: Node2D = get_parent().get_parent().get_parent().get_parent()  # AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent
+@onready var root: Node2D = get_parent().get_parent().get_parent().get_parent() # AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent
 
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func _on_area_entered(other: Area2D) -> void:
         health.apply_damage(dmg, src)
     else:
         push_warning(
-            "Hurtbox2DComponent exists without a valid associated HealthComponent! (%s)" % self
+            "Hurtbox2DComponent exists without a valid associated HealthComponent! (%s)" % self,
         )
 
     emitter.on_hit_target(self)

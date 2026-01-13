@@ -1,9 +1,8 @@
-extends Node
 class_name LevelSystem
+extends Node
 
 var level_container_scene: PackedScene = preload("res://scenes/world/level_container.tscn")
 var current_level: Node = null
-
 var run_state: RunState
 
 

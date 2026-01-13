@@ -1,8 +1,7 @@
-extends Resource
 class_name LootEntry
+extends Resource
 
 @export var item_id: StringName
-
 @export var qty_min: int = 1
 @export var qty_max: int = 1
 @export var weight: float = 1.0

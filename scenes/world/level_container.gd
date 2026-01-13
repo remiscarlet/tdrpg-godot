@@ -1,6 +1,16 @@
 class_name LevelContainer
 extends Node2D
 
+@export var map_name_to_load = ""
+
+var run_state: RunState
+var player: Player
+# Simple registry; later you can replace this with Resources / data-driven tables.
+var maps := {
+    "map01": preload("res://scenes/world/maps/map1.tscn"),
+}
+var map_content: MapBase
+
 @onready var combatants_container: Node = $CombatantSystem/CombatantsContainer
 @onready var turret_system: TurretSystem = $TurretSystem
 @onready var projectile_system: ProjectileSystem = $ProjectileSystem
@@ -8,17 +18,17 @@ extends Node2D
 @onready var map_slot: Node2D = $MapSlot
 @onready var camera_rig: Node2D = $CameraRig
 
-@export var map_name_to_load = ""
 
-var run_state: RunState
-var player: Player
+func _ready() -> void:
+    _reset_run_state()
+    _initialize_map()
+    _inject_dependencies()
 
-# Simple registry; later you can replace this with Resources / data-driven tables.
-var maps := {
-    "map01": preload("res://scenes/world/maps/map1.tscn"),
-}
 
-var map_content: MapBase
+func _exit_tree() -> void:
+    # Optional hygiene
+    if get_tree().node_added.is_connected(_on_node_added):
+        get_tree().node_added.disconnect(_on_node_added)
 
 
 func prepare_map(map_name: String) -> void:
@@ -41,18 +51,6 @@ func bind_run_state(state: RunState) -> void:
     run_state = state
 
 
-func _ready() -> void:
-    _reset_run_state()
-    _initialize_map()
-    _inject_dependencies()
-
-
-func _exit_tree() -> void:
-    # Optional hygiene
-    if get_tree().node_added.is_connected(_on_node_added):
-        get_tree().node_added.disconnect(_on_node_added)
-
-
 func _on_node_added(node: Node) -> void:
     # Filter to avoid injecting into unrelated scenes elsewhere in the tree.
     if not is_ancestor_of(node):
@@ -70,7 +68,9 @@ func _inject_dependencies():
     # Wire anything already in the tree
     get_tree().call_group(Groups.RUN_STATE_CONSUMERS, "bind_run_state", run_state)
     get_tree().call_group(
-        Groups.COMBATANT_SYSTEM_CONSUMERS, "bind_combatant_system", combatant_system
+        Groups.COMBATANT_SYSTEM_CONSUMERS,
+        "bind_combatant_system",
+        combatant_system,
     )
     # Wire anything that shows up later (ie, scene tiles)
     get_tree().node_added.connect(_on_node_added)

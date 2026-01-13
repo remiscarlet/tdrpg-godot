@@ -1,5 +1,5 @@
-extends VBoxContainer
 class_name HealthBarUI
+extends VBoxContainer
 
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
 

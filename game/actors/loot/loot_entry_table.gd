@@ -1,5 +1,5 @@
-extends LootEntry
 class_name LootEntryTable
+extends LootEntry
 
 @export var table: LootTable
 

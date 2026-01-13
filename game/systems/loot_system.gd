@@ -1,15 +1,34 @@
 class_name LootSystem
 extends Node
 
+var lootable_base_scene: PackedScene = preload("res://game/actors/loot/lootable_base.tscn")
+
 @onready var level_container: LevelContainer = get_parent()
 @onready var loot_container: Node2D = $LootContainer
-
-var lootable_base_scene: PackedScene = preload("res://game/actors/loot/lootable_base.tscn")
 
 
 func _ready() -> void:
     _connect_existing()
     get_tree().node_added.connect(_on_node_added)
+
+
+func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
+    var node = lootable_base_scene.instantiate()
+
+    var lootable := node as LootableBase
+    if lootable == null:
+        push_error("Lootable scene does not inherit LootableBase.")
+        return null
+
+    lootable.configure(loot, origin, direction)
+    lootable.add_to_group(Groups.LOOT)
+
+    loot_container.add_child(lootable)
+    if not lootable.is_node_ready():
+        await lootable.ready
+
+    print("Generated %s loot!" % loot.loot_id)
+    return lootable
 
 
 func _connect_existing() -> void:
@@ -33,22 +52,3 @@ func _on_loot_generated(ctx: LootableSpawnContext) -> void:
     for loot in ctx.drops:
         if not loot.is_nothing():
             spawn(loot, ctx.origin, ctx.direction)
-
-
-func spawn(loot: LootDrop, origin: Vector2, direction: Vector2) -> LootableBase:
-    var node = lootable_base_scene.instantiate()
-
-    var lootable := node as LootableBase
-    if lootable == null:
-        push_error("Lootable scene does not inherit LootableBase.")
-        return null
-
-    lootable.configure(loot, origin, direction)
-    lootable.add_to_group(Groups.LOOT)
-
-    loot_container.add_child(lootable)
-    if not lootable.is_node_ready():
-        await lootable.ready
-
-    print("Generated %s loot!" % loot.loot_id)
-    return lootable

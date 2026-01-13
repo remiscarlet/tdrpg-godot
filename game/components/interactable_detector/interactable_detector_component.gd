@@ -1,18 +1,29 @@
-extends Area2D
 class_name InteractableDetectorComponent
+extends Area2D
 
 @export var sensor_path: NodePath
-@onready var sensor: Area2D = get_node(sensor_path) as Area2D
-
-# CombatantRoot/AttachmentsRig/FacingRoot/Sensors
-@onready var interactor: Node2D = get_parent().get_parent().get_parent().get_parent()
 
 var candidates: Array[InteractableBase] = []
+
+@onready var sensor: Area2D = get_node(sensor_path) as Area2D
+# CombatantRoot/AttachmentsRig/FacingRoot/Sensors
+@onready var interactor: Node2D = get_parent().get_parent().get_parent().get_parent()
 
 
 func _ready() -> void:
     sensor.area_entered.connect(_on_area_entered)
     sensor.area_exited.connect(_on_area_exited)
+
+
+func try_interact() -> bool:
+    var target := _pick_best_candidate()
+    if target == null:
+        return false
+
+    if not target.can_interact(interactor):
+        return false
+
+    return target.interact(interactor)
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -50,14 +61,3 @@ func _pick_best_candidate() -> InteractableBase:
             best = c
 
     return best
-
-
-func try_interact() -> bool:
-    var target := _pick_best_candidate()
-    if target == null:
-        return false
-
-    if not target.can_interact(interactor):
-        return false
-
-    return target.interact(interactor)

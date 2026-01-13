@@ -1,32 +1,32 @@
-extends InteractableBase
 class_name BasicDoor
+extends InteractableBase
+
+signal state_changed(state: DoorState)
 
 enum DoorState { CLOSED, OPEN, LOCKED }
 
 @export var initial_state: DoorState = DoorState.CLOSED
 @export var door_id: StringName
 
+var state: DoorState
+
 @onready var nav_link: NavigationLink2D = $NavigationLink2D
 @onready var rig = $AttachmentsRig
 @onready var solid_shape: CollisionShape2D = rig.get_node(
-    "%FacingRoot/Sensors/StaticBody2D/CollisionShape2D"
+    "%FacingRoot/Sensors/StaticBody2D/CollisionShape2D",
 )
 @onready var sprite: AnimatedSprite2D = rig.get_node("%FacingRoot/Visuals/AnimatedSprite2D")
 @onready var anim: AnimationPlayer
-
-signal state_changed(state: DoorState)
-
-var state: DoorState
-
-
-func interact(_interactor: Node) -> bool:
-    toggle()
-    return true
 
 
 func _ready() -> void:
     state = initial_state
     _apply_state_instant()
+
+
+func interact(_interactor: Node) -> bool:
+    toggle()
+    return true
 
 
 func open() -> void:

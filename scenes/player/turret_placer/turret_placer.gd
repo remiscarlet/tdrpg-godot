@@ -4,13 +4,12 @@ signal place_turret_requested(world_pos: Vector2, turret_type: StringName)
 
 var was_pressed_last_iter: bool
 var pressed_duration: float
-
 var selected_turret: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass  # Replace with function body.
+    pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

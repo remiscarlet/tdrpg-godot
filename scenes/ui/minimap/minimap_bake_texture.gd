@@ -1,5 +1,5 @@
-extends TextureRect
 class_name MinimapBaseMap
+extends TextureRect
 
 
 func _ready() -> void:

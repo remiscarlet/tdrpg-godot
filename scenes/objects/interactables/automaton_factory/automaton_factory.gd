@@ -1,5 +1,5 @@
-extends InteractableBase
 class_name AutomatonFactory
+extends InteractableBase
 
 var combatant_system: CombatantSystem
 

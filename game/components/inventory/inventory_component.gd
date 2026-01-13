@@ -1,18 +1,28 @@
-extends Node2D
 class_name InventoryComponent
+extends Node2D
 
 signal inventory_changed
 
 @export var capacity = 1
-
 @export var pickupbox_path: NodePath
-@onready var pickupbox: PickupboxComponent
 
 var inventory: Inventory
 
+@onready var pickupbox: PickupboxComponent
+
+
+func _enter_tree() -> void:
+    set_physics_process(false)
+    set_process(false)
+
+
+## Lifecycle methods
+func _ready() -> void:
+    _init_inventory()
+    _try_activate()
+
+
 ## Public Methods
-
-
 func configure(component: PickupboxComponent, inventory_capacity: int) -> void:
     _bind_pickupbox_component(component)
     capacity = inventory_capacity
@@ -43,22 +53,7 @@ func transfer_loot_to_collector(run_state: RunState) -> bool:
     return true
 
 
-## Lifecycle methods
-
-
-func _ready() -> void:
-    _init_inventory()
-    _try_activate()
-
-
-func _enter_tree() -> void:
-    set_physics_process(false)
-    set_process(false)
-
-
 ## Helpers
-
-
 func _init_inventory() -> void:
     inventory = Inventory.new(capacity)
 

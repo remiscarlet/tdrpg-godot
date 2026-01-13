@@ -1,9 +1,9 @@
-extends CombatantBase
 class_name Player
-
-var _screen_size: Vector2
+extends CombatantBase
 
 @export var speed = 400
+
+var _screen_size: Vector2
 
 
 # Called when the node enters the scene tree for the first time.

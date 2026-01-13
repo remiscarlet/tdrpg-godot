@@ -1,59 +1,24 @@
 class_name PhysicsUtils
 
-
-class TeamPhysics:
-    var hitbox_layer: PackedInt32Array
-    var hitbox_mask: PackedInt32Array
-    var hurtbox_layer: PackedInt32Array
-    var hurtbox_mask: PackedInt32Array
-    var pickupbox_layer: PackedInt32Array
-    var pickupbox_mask: PackedInt32Array
-    var detector_layer: PackedInt32Array
-    var detector_mask: PackedInt32Array
-
-    func _init(
-        hit_layer: PackedInt32Array,
-        hit_mask: PackedInt32Array,
-        hurt_layer: PackedInt32Array,
-        hurt_mask: PackedInt32Array,
-        pb_layer: PackedInt32Array,
-        pb_mask: PackedInt32Array,
-        d_layer: PackedInt32Array,
-        d_mask: PackedInt32Array,
-    ) -> void:
-        hitbox_layer = hit_layer
-        hitbox_mask = hit_mask
-        hurtbox_layer = hurt_layer
-        hurtbox_mask = hurt_mask
-        pickupbox_layer = pb_layer
-        pickupbox_mask = pb_mask
-        detector_layer = d_layer
-        detector_mask = d_mask
-
-
 static var _cfg_by_team: Dictionary[int, TeamPhysics] = _build()
 
 
 static func _build() -> Dictionary[int, TeamPhysics]:
     return {
-        CombatantTeam.PLAYER:
-        (
-            TeamPhysics
-            . new(
-                PackedInt32Array([Layers.PLAYER_HITBOX]),  # Hitbox
+        CombatantTeam.PLAYER: (
+            TeamPhysics.new(
+                PackedInt32Array([Layers.PLAYER_HITBOX]), # Hitbox
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
-                PackedInt32Array([Layers.PLAYER_HURTBOX]),  # Hurtbox
+                PackedInt32Array([Layers.PLAYER_HURTBOX]), # Hurtbox
                 PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.ENEMY2_HITBOX]),
-                PackedInt32Array([Layers.PLAYER_PICKUPBOX]),  # Pickupbox
+                PackedInt32Array([Layers.PLAYER_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([Layers.LOOT]),
-                PackedInt32Array([Layers.AREA_SENSOR]),  # Target Detector
+                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
             )
         ),
-        CombatantTeam.BOT:
-        (
-            TeamPhysics
-            . new(
+        CombatantTeam.BOT: (
+            TeamPhysics.new(
                 PackedInt32Array([Layers.ENEMY1_HITBOX]),
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
                 PackedInt32Array([Layers.ENEMY1_HURTBOX]),
@@ -64,10 +29,8 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
             )
         ),
-        CombatantTeam.MUTANT:
-        (
-            TeamPhysics
-            . new(
+        CombatantTeam.MUTANT: (
+            TeamPhysics.new(
                 PackedInt32Array([Layers.ENEMY2_HITBOX]),
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
                 PackedInt32Array([Layers.ENEMY2_HURTBOX]),
@@ -128,10 +91,42 @@ static func set_pickupbox_collisions_for_team(pickupbox: CollisionObject2D, team
 
 
 static func set_target_detector_collisions_for_team(
-    detector: CollisionObject2D, team_id: int
+        detector: CollisionObject2D,
+        team_id: int,
 ) -> void:
     var cfg := _get_cfg(team_id)
     for layer in cfg.detector_layer:
         detector.set_collision_layer_value(layer, true)
     for layer in cfg.detector_mask:
         detector.set_collision_mask_value(layer, true)
+
+
+class TeamPhysics:
+    var hitbox_layer: PackedInt32Array
+    var hitbox_mask: PackedInt32Array
+    var hurtbox_layer: PackedInt32Array
+    var hurtbox_mask: PackedInt32Array
+    var pickupbox_layer: PackedInt32Array
+    var pickupbox_mask: PackedInt32Array
+    var detector_layer: PackedInt32Array
+    var detector_mask: PackedInt32Array
+
+
+    func _init(
+            hit_layer: PackedInt32Array,
+            hit_mask: PackedInt32Array,
+            hurt_layer: PackedInt32Array,
+            hurt_mask: PackedInt32Array,
+            pb_layer: PackedInt32Array,
+            pb_mask: PackedInt32Array,
+            d_layer: PackedInt32Array,
+            d_mask: PackedInt32Array,
+    ) -> void:
+        hitbox_layer = hit_layer
+        hitbox_mask = hit_mask
+        hurtbox_layer = hurt_layer
+        hurtbox_mask = hurt_mask
+        pickupbox_layer = pb_layer
+        pickupbox_mask = pb_mask
+        detector_layer = d_layer
+        detector_mask = d_mask

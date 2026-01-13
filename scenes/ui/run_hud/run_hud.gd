@@ -1,11 +1,12 @@
-extends Control
 class_name RunHUD
+extends Control
 
 @export var resource_row_scene: PackedScene
-@onready var resource_list: VBoxContainer = %ResourceList
 
 var run_state: RunState
-var rows: Dictionary[StringName, Node] = {}
+var rows: Dictionary[StringName, Node] = { }
+
+@onready var resource_list: VBoxContainer = %ResourceList
 
 
 func bind_run_state(rs: RunState) -> void:

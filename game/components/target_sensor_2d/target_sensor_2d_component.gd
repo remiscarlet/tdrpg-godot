@@ -1,22 +1,15 @@
-extends Area2D
 class_name TargetSensor2DComponent
+extends Area2D
 
 signal target_sensed(node: Node)
 
 @export var target_group: StringName = &"targetable"
-@onready var shape = $CollisionShape2D
 
 var sensor_radius: float
 var team_id: int
 var _candidates: Array[Node2D] = []
 
-
-func set_sensor_radius(radius: float) -> void:
-    sensor_radius = radius
-
-
-func set_team_id(id: int) -> void:
-    team_id = id
+@onready var shape = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -28,6 +21,14 @@ func _ready() -> void:
     area_exited.connect(_on_area_exited)
 
     PhysicsUtils.set_target_detector_collisions_for_team(self, team_id)
+
+
+func set_sensor_radius(radius: float) -> void:
+    sensor_radius = radius
+
+
+func set_team_id(id: int) -> void:
+    team_id = id
 
 
 func get_candidates() -> Array[Node2D]:

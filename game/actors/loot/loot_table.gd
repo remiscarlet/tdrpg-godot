@@ -1,11 +1,10 @@
-extends Resource
 class_name LootTable
+extends Resource
 
 const MAX_NESTING_DEPTH := 16
 
 @export var rolls_min: int = 1
 @export var rolls_max: int = 1
-
 @export var entries: Array[LootEntry] = []
 
 

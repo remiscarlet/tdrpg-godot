@@ -1,5 +1,5 @@
-extends LootEntry
 class_name LootEntryNothing
+extends LootEntry
 
 
 func _init() -> void:

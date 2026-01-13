@@ -1,12 +1,12 @@
-extends Area2D
 class_name InteractableBase
+extends Area2D
 
 var run_state: RunState
 
 
 func _enter_tree() -> void:
     # Interactables are scene tiles which get spawned in by Godot systems - not us. Thus, we can't dependency inject.
-    # As a workaround, use groups that we'll query and wire up from somewhere we control such as LevelContainer's _ready()
+    # As a workaround, use groups that we query and wire up from somewhere we control such as LevelContainer's _ready()
     add_to_group(Groups.RUN_STATE_CONSUMERS)
 
 

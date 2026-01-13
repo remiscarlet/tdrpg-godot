@@ -3,7 +3,6 @@ extends DamageEmitterBase
 
 var speed: float = 600.0
 var lifetime_s: float = 3.0
-
 var _velocity: Vector2 = Vector2.ZERO
 var _time_left: float
 var _source: Node
@@ -52,10 +51,6 @@ func on_hit_target(_target: Node) -> void:
     queue_free()
 
 
-func _on_body_entered(_body: Node2D) -> void:
-    queue_free()
-
-
 func configure_physics(ctx: ProjectileSpawnContext) -> void:
     var team_id = ctx.team_id
     if team_id == null:
@@ -63,3 +58,7 @@ func configure_physics(ctx: ProjectileSpawnContext) -> void:
         return
 
     PhysicsUtils.set_hitbox_collisions_for_team(self, team_id)
+
+
+func _on_body_entered(_body: Node2D) -> void:
+    queue_free()

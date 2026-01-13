@@ -4,7 +4,6 @@ extends RefCounted
 var origin: Vector2
 var direction: Vector2 = Vector2.RIGHT
 var combatant_id: StringName
-
 # Optional: gameplay metadata
 var tags: Array[StringName] = []
 

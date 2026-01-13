@@ -1,11 +1,15 @@
 extends Node
 
+var meta_state: MetaState = MetaState.new()
+var run_state: RunState
+
 @onready var run_hud: RunHUD = %RunHUD
 @onready var level_system: LevelSystem = %LevelSystem
 @onready var minimap: Minimap = run_hud.get_node("%Minimap")
 
-var meta_state: MetaState = MetaState.new()
-var run_state: RunState
+
+func _ready() -> void:
+    start_run()
 
 
 func get_meta_state() -> MetaState:
@@ -14,10 +18,6 @@ func get_meta_state() -> MetaState:
 
 func get_run_state() -> RunState:
     return run_state
-
-
-func _ready() -> void:
-    start_run()
 
 
 func start_run() -> void:

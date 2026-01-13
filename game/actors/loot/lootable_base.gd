@@ -1,13 +1,13 @@
-extends Area2D
 class_name LootableBase
-
-@onready var sprite: Sprite2D = $Sprite2D
+extends Area2D
 
 var drop: LootDrop
-
 var definition: ItemDefinition:
     get:
         return null if drop == null else DefinitionDB.get_item(drop.loot_id)
+
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 ## Returns a "positionless" instance of LootableBase configured as `item_id`
 static func instantiate_by_id(item_id: StringName) -> LootableBase:
@@ -16,14 +16,14 @@ static func instantiate_by_id(item_id: StringName) -> LootableBase:
     return lootable
 
 
+func _ready() -> void:
+    _configure_sprite()
+
+
 func configure(loot: LootDrop, origin: Vector2, direction: Vector2) -> void:
     drop = loot
     global_position = origin
     rotation = direction.normalized().angle()
-
-
-func _ready() -> void:
-    _configure_sprite()
 
 
 func _configure_sprite() -> void:

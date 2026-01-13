@@ -1,5 +1,5 @@
-extends RefCounted
 class_name LootDrop
+extends RefCounted
 
 var loot_id: StringName
 var quantity: int
