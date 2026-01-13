@@ -3,6 +3,7 @@ extends Node
 
 @onready var projectiles_container: Node2D = $ProjectileContainer
 
+
 func spawn(projectile_scene: PackedScene, ctx: ProjectileSpawnContext) -> ProjectileBase:
     var node := projectile_scene.instantiate()
     var projectile := node as ProjectileBase

@@ -13,6 +13,7 @@ var enemies: Dictionary[StringName, EnemyDefinition] = {}
 var automatons: Dictionary[StringName, AutomatonDefinition] = {}
 var players: Dictionary[StringName, PlayerDefinition] = {}
 
+
 func _ready() -> void:
     items = _load_items(items_dir)
     turrets = _load_turrets(turrets_dir)
@@ -20,20 +21,26 @@ func _ready() -> void:
     automatons = _load_automatons(automatons_dir)
     players = _load_players(players_dir)
 
+
 func get_item(id: StringName) -> ItemDefinition:
     return items.get(id)
+
 
 func get_turret(id: StringName) -> TurretDefinition:
     return turrets.get(id)
 
+
 func get_enemy(id: StringName) -> EnemyDefinition:
     return enemies.get(id)
+
 
 func get_automaton(id: StringName) -> AutomatonDefinition:
     return automatons.get(id)
 
+
 func get_player(id: StringName) -> PlayerDefinition:
     return players.get(id)
+
 
 func get_combatant(id: StringName) -> CombatantDefinition:
     var enemy_def = get_enemy(id)
@@ -49,6 +56,7 @@ func get_combatant(id: StringName) -> CombatantDefinition:
         return player_def
 
     return null
+
 
 func _load_dir(dir_path: String, expected_type: Variant) -> Dictionary[StringName, DefinitionBase]:
     var out: Dictionary[StringName, DefinitionBase] = {}
@@ -87,12 +95,14 @@ func _load_dir(dir_path: String, expected_type: Variant) -> Dictionary[StringNam
     dir.list_dir_end()
     return out
 
+
 func _load_items(dir_path: String) -> Dictionary[StringName, ItemDefinition]:
     var base := _load_dir(dir_path, ItemDefinition)
     var out: Dictionary[StringName, ItemDefinition] = {}
     for id: StringName in base:
         out[id] = base[id] as ItemDefinition
     return out
+
 
 func _load_turrets(dir_path: String) -> Dictionary[StringName, TurretDefinition]:
     var base := _load_dir(dir_path, TurretDefinition)
@@ -101,6 +111,7 @@ func _load_turrets(dir_path: String) -> Dictionary[StringName, TurretDefinition]
         out[id] = base[id] as TurretDefinition
     return out
 
+
 func _load_enemies(dir_path: String) -> Dictionary[StringName, EnemyDefinition]:
     var base := _load_dir(dir_path, EnemyDefinition)
     var out: Dictionary[StringName, EnemyDefinition] = {}
@@ -108,12 +119,14 @@ func _load_enemies(dir_path: String) -> Dictionary[StringName, EnemyDefinition]:
         out[id] = base[id] as EnemyDefinition
     return out
 
+
 func _load_automatons(dir_path: String) -> Dictionary[StringName, AutomatonDefinition]:
     var base := _load_dir(dir_path, AutomatonDefinition)
     var out: Dictionary[StringName, AutomatonDefinition] = {}
     for id: StringName in base:
         out[id] = base[id] as AutomatonDefinition
     return out
+
 
 func _load_players(dir_path: String) -> Dictionary[StringName, PlayerDefinition]:
     var base := _load_dir(dir_path, PlayerDefinition)

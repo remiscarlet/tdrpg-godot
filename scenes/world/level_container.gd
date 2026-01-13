@@ -20,6 +20,7 @@ var maps := {
 
 var map_content: MapBase
 
+
 func prepare_map(map_name: String) -> void:
     assert(map_name != "")
     var map_content_scene = maps.get(map_name)
@@ -27,24 +28,30 @@ func prepare_map(map_name: String) -> void:
     assert(map_content_scene != null)
     map_content = map_content_scene.instantiate() as MapBase
 
+
 func get_active_map() -> MapBase:
     return map_content
+
 
 func get_player() -> Player:
     return player
 
+
 func bind_run_state(state: RunState) -> void:
     run_state = state
+
 
 func _ready() -> void:
     _reset_run_state()
     _initialize_map()
     _inject_dependencies()
 
+
 func _exit_tree() -> void:
     # Optional hygiene
     if get_tree().node_added.is_connected(_on_node_added):
         get_tree().node_added.disconnect(_on_node_added)
+
 
 func _on_node_added(node: Node) -> void:
     # Filter to avoid injecting into unrelated scenes elsewhere in the tree.
@@ -58,12 +65,16 @@ func _on_node_added(node: Node) -> void:
     if node.is_in_group(Groups.COMBATANT_SYSTEM_CONSUMERS):
         node.call_deferred("bind_combatant_system", combatant_system)
 
+
 func _inject_dependencies():
     # Wire anything already in the tree
     get_tree().call_group(Groups.RUN_STATE_CONSUMERS, "bind_run_state", run_state)
-    get_tree().call_group(Groups.COMBATANT_SYSTEM_CONSUMERS, "bind_combatant_system", combatant_system)
+    get_tree().call_group(
+        Groups.COMBATANT_SYSTEM_CONSUMERS, "bind_combatant_system", combatant_system
+    )
     # Wire anything that shows up later (ie, scene tiles)
     get_tree().node_added.connect(_on_node_added)
+
 
 func _reset_run_state() -> void:
     var rng = RandomNumberGenerator.new()
@@ -72,6 +83,7 @@ func _reset_run_state() -> void:
     var run_id = Uuid.v4()
 
     run_state.reset_for_new_run(run_id, run_seed)
+
 
 func _initialize_map() -> void:
     # Instantiate the per-map content under MapSlot

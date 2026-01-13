@@ -6,8 +6,10 @@ var current_level: Node = null
 
 var run_state: RunState
 
+
 func bind_run_state(state: RunState) -> void:
     run_state = state
+
 
 func start_session() -> LevelContainer:
     # Remove existing level subtree.

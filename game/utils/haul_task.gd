@@ -15,5 +15,6 @@ var claimed_by_id: int = 0
 var claim_started_msec: int = 0
 var claim_ttl_msec: int = 15_000
 
+
 func is_claim_expired(now_msec: int) -> bool:
-	return status == Status.CLAIMED and (now_msec - claim_started_msec) > claim_ttl_msec
+    return status == Status.CLAIMED and (now_msec - claim_started_msec) > claim_ttl_msec

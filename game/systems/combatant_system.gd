@@ -5,6 +5,7 @@ extends Node
 @onready var combatants_container: Node2D = $CombatantsContainer
 @onready var projectile_system: ProjectileSystem = $"../ProjectileSystem"
 
+
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
     print("Spawning %s" % ctx.combatant_id)
 
@@ -22,6 +23,6 @@ func spawn(ctx: CombatantSpawnContext) -> CombatantBase:
     if not combatant.is_node_ready():
         await combatant.ready
 
-    combatant.configure_combatant_post_ready(ctx, combatant_definition, level_container)
+    combatant.configure_combatant_post_ready(level_container)
 
     return combatant

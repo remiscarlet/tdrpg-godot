@@ -5,10 +5,12 @@ extends Area2D
 
 @export var health_path: NodePath
 @onready var health: HealthComponent = get_node_or_null(health_path) as HealthComponent
-@onready var root: Node2D = get_parent().get_parent().get_parent().get_parent() # AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent
+@onready var root: Node2D = get_parent().get_parent().get_parent().get_parent()  # AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent
+
 
 func _ready() -> void:
     area_entered.connect(_on_area_entered)
+
 
 func _on_area_entered(other: Area2D) -> void:
     var emitter := other as DamageEmitterBase
@@ -26,6 +28,8 @@ func _on_area_entered(other: Area2D) -> void:
     if health:
         health.apply_damage(dmg, src)
     else:
-        push_warning("Hurtbox2DComponent exists without a valid associated HealthComponent! (%s)" % self)
+        push_warning(
+            "Hurtbox2DComponent exists without a valid associated HealthComponent! (%s)" % self
+        )
 
     emitter.on_hit_target(self)

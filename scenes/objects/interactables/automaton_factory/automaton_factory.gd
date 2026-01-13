@@ -3,11 +3,13 @@ class_name AutomatonFactory
 
 var combatant_system: CombatantSystem
 
+
 func _enter_tree() -> void:
     super()
     # Interactables are scene tiles which get spawned in by Godot systems - not us. Thus, we can't dependency inject.
     # As a workaround, use groups that we'll query and wire up from somewhere we control such as LevelContainer's _ready()
     add_to_group(Groups.COMBATANT_SYSTEM_CONSUMERS)
+
 
 func bind_combatant_system(system: CombatantSystem) -> void:
     combatant_system = system

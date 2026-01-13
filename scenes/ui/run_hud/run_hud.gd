@@ -7,6 +7,7 @@ class_name RunHUD
 var run_state: RunState
 var rows: Dictionary[StringName, Node] = {}
 
+
 func bind_run_state(rs: RunState) -> void:
     # Unbind old
     if run_state and run_state.inventory_changed.is_connected(_on_inventory_changed):
@@ -29,9 +30,11 @@ func bind_run_state(rs: RunState) -> void:
         _ensure_row(id)
         _update_row(id, run_state.get_resource(id))
 
+
 func _on_inventory_changed(id: StringName, new_value: int) -> void:
     _ensure_row(id)
     _update_row(id, new_value)
+
 
 func _ensure_row(id: StringName) -> void:
     if id in rows:
@@ -41,6 +44,7 @@ func _ensure_row(id: StringName) -> void:
     rows[id] = row
     # Assumes row has %Name and %Value labels (recommended)
     row.get_node("%Name").text = String(id)
+
 
 func _update_row(id: StringName, value: int) -> void:
     var row = rows[id]

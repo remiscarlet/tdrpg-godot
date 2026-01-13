@@ -1,7 +1,7 @@
 extends Node2D
 class_name InventoryComponent
 
-signal inventory_changed()
+signal inventory_changed
 
 @export var capacity = 1
 
@@ -12,10 +12,12 @@ var inventory: Inventory
 
 ## Public Methods
 
+
 func configure(component: PickupboxComponent, inventory_capacity: int) -> void:
     _bind_pickupbox_component(component)
     capacity = inventory_capacity
     _init_inventory()
+
 
 func on_PickupboxComponent_loot_encountered(loot: LootableBase) -> void:
     print("INVENTORY PICKING UP LOOT: %s" % loot)
@@ -26,6 +28,7 @@ func on_PickupboxComponent_loot_encountered(loot: LootableBase) -> void:
         inventory_changed.emit()
     else:
         print("Failed picking up loot %s!" % item_id)
+
 
 func transfer_loot_to_collector(run_state: RunState) -> bool:
     # TODO: These should really be transactional/have atomicity
@@ -39,26 +42,33 @@ func transfer_loot_to_collector(run_state: RunState) -> bool:
 
     return true
 
+
 ## Lifecycle methods
+
 
 func _ready() -> void:
     _init_inventory()
     _try_activate()
 
+
 func _enter_tree() -> void:
     set_physics_process(false)
     set_process(false)
 
+
 ## Helpers
+
 
 func _init_inventory() -> void:
     inventory = Inventory.new(capacity)
+
 
 func _bind_pickupbox_component(component: PickupboxComponent) -> void:
     print("Binding pickup box? %s" % component)
     pickupbox = component
     pickupbox.loot_encountered.connect(on_PickupboxComponent_loot_encountered)
     _try_activate()
+
 
 func _try_activate() -> void:
     if pickupbox == null:

@@ -2,19 +2,23 @@ extends Node
 
 @onready var run_hud: RunHUD = %RunHUD
 @onready var level_system: LevelSystem = %LevelSystem
-@onready var minimap: MinimapNavBake = run_hud.get_node("%Minimap")
+@onready var minimap: Minimap = run_hud.get_node("%Minimap")
 
 var meta_state: MetaState = MetaState.new()
 var run_state: RunState
 
+
 func get_meta_state() -> MetaState:
     return meta_state
+
 
 func get_run_state() -> RunState:
     return run_state
 
+
 func _ready() -> void:
     start_run()
+
 
 func start_run() -> void:
     run_state = RunState.new()

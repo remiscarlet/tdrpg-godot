@@ -7,6 +7,7 @@ var pressed_duration: float
 
 var selected_turret: int = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pass  # Replace with function body.

@@ -1,5 +1,5 @@
 extends Node2D
-class_name AIHaulerController
+class_name AIRunStopGunNavigationController
 
 var _rng := RandomNumberGenerator.new()
 
@@ -8,38 +8,24 @@ var _rng := RandomNumberGenerator.new()
 @onready var body: CombatantBase = get_parent().get_parent().get_parent()  # CombatantBase/AttachmentsRoot/Controllers
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
 
-enum HaulerState {
+enum GunnerState {
     IDLE,
-    GO_TO_LOOT,
-    WAITING_MORE_LOOT,
-    GO_TO_COLLECTOR,
-    DEPOSIT,  # interact
+    MOVE_TO_TARGET,
+    STOP_AND_GUN,
+    RETREAT,
 }
 
-var interactable_detector_component: InteractableDetectorComponent
-var inventory_component: InventoryComponent
-var hauler_task_system: HaulerTaskSystem
+var fire_weapon_component: FireWeaponComponent
 
 var ready_next_state: bool = true
 var current_task: HaulTask
-var current_state = HaulerState.IDLE
-
-var time_waiting_for_more_loot: float = 0.0
-var time_waiting_for_more_loot_threshold_ms: float = 5000.0
+var current_state = GunnerState.IDLE
 
 ## Public methods
 
 
-func bind_hauler_task_system(system: HaulerTaskSystem) -> void:
-    hauler_task_system = system
-
-
-func bind_interactable_detector_component(component: InteractableDetectorComponent) -> void:
-    interactable_detector_component = component
-
-
-func bind_inventory_component(component: InventoryComponent) -> void:
-    inventory_component = component
+func bind_fire_weapon_component(component: FireWeaponComponent) -> void:
+    fire_weapon_component = component
 
 
 ## Lifecycle
@@ -54,8 +40,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
     match current_state:
-        HaulerState.DEPOSIT:
-            _interact_with_collector()
         _:
             pass
 
@@ -67,7 +51,7 @@ func _setup() -> void:
 
 func _physics_process(delta: float) -> void:
     if _can_transition_state():
-        var tick_physics = _transition_hauler_state(delta)
+        var tick_physics = _transition_state(delta)
 
         if not tick_physics:
             return
@@ -84,20 +68,27 @@ func _can_transition_state() -> bool:
 
 
 ## Returns bool on whether _physics_process should continue processing physics/navigation this frame
-func _transition_hauler_state(delta: float) -> bool:
+func _transition_state(delta: float) -> bool:
     # TODO: Make more robust
     match current_state:
-        HaulerState.IDLE:
+        GunnerState.IDLE:
             _transition_state_idle()
             return false
-        HaulerState.GO_TO_LOOT:
+        GunnerState.MOVE_TO_TARGET:
+            pass
+        GunnerState.STOP_AND_GUN:
+            pass
+        GunnerState.RETREAT:
+            pass
+
+        GunnerState.GO_TO_LOOT:
             if inventory_component.inventory.is_full():
                 print("[%s] Inventory was full. Moving back to collector" % self)
                 _transition_state_go_to_collector()
             else:
                 print("[%s] Inventory was not full. Waiting for more loot." % self)
-                current_state = HaulerState.WAITING_MORE_LOOT
-        HaulerState.WAITING_MORE_LOOT:
+                current_state = GunnerState.WAITING_MORE_LOOT
+        GunnerState.WAITING_MORE_LOOT:
             if _transition_state_idle():
                 time_waiting_for_more_loot = 0.0
                 return false
@@ -107,13 +98,13 @@ func _transition_hauler_state(delta: float) -> bool:
                 _transition_state_go_to_collector()
                 return true
             return false
-        HaulerState.GO_TO_COLLECTOR:
-            current_state = HaulerState.DEPOSIT
+        GunnerState.GO_TO_COLLECTOR:
+            current_state = GunnerState.DEPOSIT
             ready_next_state = false  # Refactor this. This is brittle. "Waiting for non-navigation action to complete"
-        HaulerState.DEPOSIT:
-            current_state = HaulerState.IDLE
+        GunnerState.DEPOSIT:
+            current_state = GunnerState.IDLE
         _:
-            push_warning("Got an unknown HaulerState! (%s)" % current_state)
+            push_warning("Got an unknown GunnerState! (%s)" % current_state)
 
     return true
 
@@ -122,12 +113,12 @@ func _transition_state_idle() -> bool:
     body.desired_dir = Vector2.ZERO
     _pick_new_target()
     if current_task != null:
-        current_state = HaulerState.GO_TO_LOOT
+        current_state = GunnerState.GO_TO_LOOT
     return current_task != null
 
 
 func _transition_state_go_to_collector() -> void:
-    current_state = HaulerState.GO_TO_COLLECTOR
+    current_state = GunnerState.GO_TO_COLLECTOR
     agent.target_position = current_task.collector_loc
 
 

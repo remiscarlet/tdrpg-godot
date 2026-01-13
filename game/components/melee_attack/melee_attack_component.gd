@@ -6,11 +6,14 @@ var sword: BasicSword
 
 @onready var attack_timer: Timer = $AttackTimer
 
+
 func bind_sword(weapon: BasicSword) -> void:
     sword = weapon
 
+
 func bind_target_sensor_component(component: TargetSensor2DComponent) -> void:
     target_sensor_component = component
+
 
 func _ready() -> void:
     print("Readying MeleeAttackComponent")

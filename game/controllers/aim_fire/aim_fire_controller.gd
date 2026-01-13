@@ -3,11 +3,12 @@ class_name AimFireController
 
 @onready var target_provider: TargetBaseProvider = MouseTargetProvider.new()
 
-@onready var root: Node2D = get_parent().get_parent().get_parent() # Root/AttachmentsRoot/Controllers
+@onready var root: Node2D = get_parent().get_parent().get_parent()  # Root/AttachmentsRoot/Controllers
 @onready var aim_component: AimToTarget2DComponent
 @onready var fire_component: FireWeaponComponent
 
 var last_dir = Vector2.ZERO
+
 
 static func wire_aim_fire_controller(actor: Node) -> void:
     # Kinda ugly that this helper is in here, but this is called from both CombatantBase and DefaultTurret
@@ -19,18 +20,23 @@ static func wire_aim_fire_controller(actor: Node) -> void:
     aim_fire_controller.bind_aim_component(_aim_component)
     aim_fire_controller.bind_fire_component(_fire_component)
 
+
 func bind_aim_component(component: AimToTarget2DComponent) -> void:
     aim_component = component
+
 
 func bind_fire_component(component: FireWeaponComponent) -> void:
     fire_component = component
 
+
 func bind_target_provider(provider: TargetBaseProvider) -> void:
     target_provider = provider
+
 
 func aim() -> void:
     var target = _get_target()
     aim_component.set_target_angle(target.dir)
+
 
 func try_fire() -> bool:
     var target = _get_target()
@@ -41,8 +47,10 @@ func try_fire() -> bool:
 
     return fire_component.fire(target.dir)
 
+
 func _process(_delta: float) -> void:
     aim()
+
 
 func _get_target() -> AimingTargetResult:
     var dir = target_provider.get_target_direction(root)

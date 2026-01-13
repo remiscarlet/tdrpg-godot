@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://kk4opvtpytbu"]
+[gd_scene load_steps=7 format=3 uid="uid://kk4opvtpytbu"]
 
 [ext_resource type="Script" uid="uid://cvekecvbtmol0" path="res://game/systems/level_system.gd" id="1_78s5d"]
 [ext_resource type="Script" uid="uid://cnely4v1w3yqb" path="res://scenes/game_root.gd" id="1_ni5ms"]
 [ext_resource type="PackedScene" uid="uid://c5s0cmj0l4g0k" path="res://scenes/ui/run_hud/run_hud.tscn" id="2_uebra"]
 [ext_resource type="Script" uid="uid://ue3rifte5fut" path="res://game/systems/overhead_indicator_system.gd" id="3_jb3nc"]
 [ext_resource type="PackedScene" uid="uid://cvoet3mqg57im" path="res://scenes/ui/overhead_indicator/overhead_indicator_ui.tscn" id="4_iusj4"]
+[ext_resource type="Theme" uid="uid://co5jk8vxni2w4" path="res://assets/themes/default_theme.tres" id="6_a1rh6"]
 
 [node name="GameRoot" type="Node"]
 editor_description = "Holds UI and cross-session state resources. Cross-session as in save file/steam user scoped state"
@@ -29,11 +30,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("6_a1rh6")
 
 [node name="RunHUDLayer" type="CanvasLayer" parent="UI"]
 
 [node name="RunHUD" parent="UI/RunHUDLayer" instance=ExtResource("2_uebra")]
 unique_name_in_owner = true
+theme = ExtResource("6_a1rh6")
 
 [node name="MenuLayer" type="CanvasLayer" parent="UI"]
 

@@ -1,21 +1,25 @@
-
 class_name Inventory
 extends Resource
 
 var items: Dictionary[StringName, int] = {}
 var capacity: int
 
+
 func _init(new_capacity: int) -> void:
     capacity = new_capacity
+
 
 func clear() -> void:
     items = {}
 
+
 func is_empty() -> bool:
     return size() == 0
 
+
 func is_full() -> bool:
     return size() == capacity
+
 
 func size() -> int:
     var cardinality = 0
@@ -24,14 +28,17 @@ func size() -> int:
 
     return cardinality
 
+
 func list_item_ids() -> Array[StringName]:
     return items.keys()
+
 
 func get_item_qty_or_default(item_name: StringName, default: int = 0) -> int:
     if item_name in items:
         return items[item_name]
 
     return default
+
 
 func add_item(loot_name: StringName, quantity: int = 1) -> bool:
     if quantity == 0:
@@ -49,6 +56,7 @@ func add_item(loot_name: StringName, quantity: int = 1) -> bool:
     items[loot_name] += quantity
 
     return true
+
 
 func remove_item(loot_name: StringName, quantity: int = 1) -> bool:
     if quantity == 0:

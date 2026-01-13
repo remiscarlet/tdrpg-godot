@@ -3,7 +3,7 @@ extends Control
 @onready var health_bar: HealthBarUI = %HealthBar
 @onready var inventory_bar: InventoryBarUI = %InventoryBar
 
-@export var attach_frac: Vector2 = Vector2(0.5, 1.0) # (0.5,1.0) == bottom-center
+@export var attach_frac: Vector2 = Vector2(0.5, 1.0)  # (0.5,1.0) == bottom-center
 
 var _attach_screen_pos: Vector2
 
@@ -12,27 +12,38 @@ var inventory_component: InventoryComponent
 
 # Public Methods
 
+
 func bind_health_component(component: HealthComponent) -> void:
     health_component = component
 
+
 func bind_inventory_component(component: InventoryComponent) -> void:
     inventory_component = component
+
 
 func set_attach_screen_pos(p: Vector2) -> void:
     _attach_screen_pos = p
     _reposition()
 
+
 # Lifecycle Methods
+
 
 func _ready() -> void:
     health_component.health_changed.connect(health_bar.on_HealthComponent_health_changed)
-    health_bar.on_HealthComponent_health_changed(health_component.current_health, health_component.max_health)
+    health_bar.on_HealthComponent_health_changed(
+        health_component.current_health, health_component.max_health
+    )
 
     if inventory_component:
         inventory_bar.bind_inventory_component(inventory_component)
-        inventory_component.inventory_changed.connect(inventory_bar.on_InventoryComponent_inventory_changed)
+        inventory_component.inventory_changed.connect(
+            inventory_bar.on_InventoryComponent_inventory_changed
+        )
+
 
 # Helpers
+
 
 func _reposition() -> void:
     # size can be (0,0) very early; minimum size is a decent fallback for UI.

@@ -8,6 +8,7 @@ var combatant_id: StringName
 # Optional: gameplay metadata
 var tags: Array[StringName] = []
 
+
 func _init(at: Vector2, id: StringName) -> void:
     origin = at
     combatant_id = id

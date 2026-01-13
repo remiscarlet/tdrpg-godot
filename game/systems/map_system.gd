@@ -4,5 +4,5 @@ extends Node
 
 
 func _ready() -> void:
-	var map = map_scene.instantiate()
-	add_child(map)
+    var map = map_scene.instantiate()
+    add_child(map)

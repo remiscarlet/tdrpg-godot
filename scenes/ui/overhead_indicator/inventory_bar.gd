@@ -5,8 +5,10 @@ var inventory_component: InventoryComponent
 var resource_pip_scene: PackedScene = preload("res://scenes/ui/resource_pip/resource_pip_ui.tscn")
 var _pips: Dictionary[StringName, ResourcePipUI] = {}
 
+
 func bind_inventory_component(component: InventoryComponent) -> void:
     inventory_component = component
+
 
 func on_InventoryComponent_inventory_changed() -> void:
     var unseen: Dictionary[StringName, bool] = {}

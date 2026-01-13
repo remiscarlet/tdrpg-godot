@@ -8,6 +8,7 @@ class_name LootEntry
 @export var weight: float = 1.0
 @export var required_tags: PackedStringArray = PackedStringArray()
 
+
 func is_eligible(ctx: LootContext) -> bool:
     if required_tags.is_empty():
         return true
@@ -17,6 +18,7 @@ func is_eligible(ctx: LootContext) -> bool:
         if not ctx.has_tag(t):
             return false
     return true
+
 
 func resolve(rng: RandomNumberGenerator, _ctx: LootContext, _depth: int) -> Array[LootDrop]:
     if item_id == &"":

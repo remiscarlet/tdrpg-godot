@@ -1,13 +1,8 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://cgi4ajhvt0mb3"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://cgi4ajhvt0mb3"]
 
 [ext_resource type="PackedScene" uid="uid://xdfoqfupwqty" path="res://scenes/objects/interactables/resource_collector/resource_collector.tscn" id="1_0hls1"]
 [ext_resource type="PackedScene" uid="uid://baun2e7yr1bsl" path="res://scenes/objects/interactables/automaton_factory/automaton_factory.tscn" id="2_p6y4n"]
 [ext_resource type="PackedScene" uid="uid://d4eto68frg146" path="res://scenes/objects/interactables/basic_door/basic_door.tscn" id="3_ectqm"]
-[ext_resource type="Texture2D" uid="uid://5bucmnioh0hf" path="res://assets/art/test_autotile_godot.png" id="4_ectqm"]
-[ext_resource type="Texture2D" uid="uid://mqg6k8p0ihya" path="res://assets/art/test_autotile_godot_2.png" id="5_man52"]
-[ext_resource type="Texture2D" uid="uid://c1g7dnb3kvpth" path="res://assets/art/Spacestation_Inside_A5.png" id="6_8fwla"]
-[ext_resource type="Texture2D" uid="uid://bvmavldylqwkd" path="res://assets/art/!Spaceship_chest3.png" id="7_20ljj"]
-[ext_resource type="Texture2D" uid="uid://sxrmpj7l4bef" path="res://assets/art/!Spaceship_switches.png" id="8_3mnq7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yyv3h"]
 resource_name = "interactables"
@@ -16,7 +11,6 @@ scenes/2/scene = ExtResource("2_p6y4n")
 scenes/3/scene = ExtResource("3_ectqm")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38prr"]
-texture = ExtResource("4_ectqm")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -218,7 +212,6 @@ texture_region_size = Vector2i(48, 48)
 11:3/0/terrain = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3b3n"]
-texture = ExtResource("5_man52")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -551,7 +544,6 @@ texture_region_size = Vector2i(48, 48)
 11:3/0/terrains_peering_bit/top_side = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1c3ud"]
-texture = ExtResource("6_8fwla")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -684,7 +676,6 @@ texture_region_size = Vector2i(48, 48)
 7:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_34iid"]
-texture = ExtResource("7_20ljj")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 1:0/0 = 0
@@ -748,7 +739,6 @@ texture_region_size = Vector2i(48, 48)
 5:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6y4n"]
-texture = ExtResource("8_3mnq7")
 texture_region_size = Vector2i(48, 48)
 6:0/0 = 0
 7:0/0 = 0

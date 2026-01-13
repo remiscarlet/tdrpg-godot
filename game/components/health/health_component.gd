@@ -1,16 +1,16 @@
 class_name HealthComponent
 extends Node
 
-
 signal health_changed(current: float, max: float)
 signal died(source: Node)
-
 
 var max_health: float = 100.0
 var current_health: float
 
+
 func set_max_health(health: float) -> void:
     max_health = health
+
 
 func _ready() -> void:
     current_health = max_health

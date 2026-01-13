@@ -9,15 +9,18 @@ class_name InteractableDetectorComponent
 
 var candidates: Array[InteractableBase] = []
 
+
 func _ready() -> void:
     sensor.area_entered.connect(_on_area_entered)
     sensor.area_exited.connect(_on_area_exited)
+
 
 func _on_area_entered(area: Area2D) -> void:
     var maybe := area as InteractableBase
     if maybe and not candidates.has(maybe):
         print("Adding candidate interactable: %s" % maybe)
         candidates.append(maybe)
+
 
 func _on_area_exited(area: Area2D) -> void:
     var maybe := area as InteractableBase
@@ -47,6 +50,7 @@ func _pick_best_candidate() -> InteractableBase:
             best = c
 
     return best
+
 
 func try_interact() -> bool:
     var target := _pick_best_candidate()

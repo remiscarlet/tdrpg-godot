@@ -10,6 +10,7 @@ extends Node
 # Map combatant -> indicator
 var _indicators := {}  # Dictionary[Node, Control]
 
+
 func _ready() -> void:
     # Handle existing combatants.
     for c in get_tree().get_nodes_in_group(combatant_group):
@@ -18,6 +19,7 @@ func _ready() -> void:
     # Handle future spawns/despawns.
     get_tree().node_added.connect(_on_node_added)
     get_tree().node_removed.connect(_on_node_removed)
+
 
 func _process(_dt: float) -> void:
     for combatant in _indicators.keys():
@@ -37,16 +39,20 @@ func _process(_dt: float) -> void:
         var screen_pos := anchor.get_global_transform_with_canvas().origin
         indicator.set_attach_screen_pos(screen_pos)
 
+
 func _on_node_added(node: Node) -> void:
     # Groups are sometimes assigned in the node's _ready, so defer one tick.
     call_deferred("_maybe_register", node)
+
 
 func _maybe_register(node: Node) -> void:
     if is_instance_valid(node) and node.is_in_group(combatant_group):
         _register_combatant(node)
 
+
 func _on_node_removed(node: Node) -> void:
     _unregister_combatant(node)
+
 
 func _register_combatant(combatant: Node) -> void:
     if _indicators.has(combatant):
@@ -67,6 +73,7 @@ func _register_combatant(combatant: Node) -> void:
 
     indicators_root.add_child(indicator)
     _indicators[combatant] = indicator
+
 
 func _unregister_combatant(combatant: Node) -> void:
     if not _indicators.has(combatant):

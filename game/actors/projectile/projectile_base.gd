@@ -8,10 +8,12 @@ var _velocity: Vector2 = Vector2.ZERO
 var _time_left: float
 var _source: Node
 
+
 func _ready() -> void:
     _time_left = lifetime_s
     body_entered.connect(_on_body_entered)
     damage = 10.0
+
 
 func _physics_process(delta: float) -> void:
     _time_left -= delta
@@ -20,6 +22,7 @@ func _physics_process(delta: float) -> void:
         return
 
     global_position += _velocity * delta
+
 
 func configure(ctx: ProjectileSpawnContext) -> void:
     var direction = ctx.direction.normalized()
@@ -39,15 +42,19 @@ func configure(ctx: ProjectileSpawnContext) -> void:
     if ctx.element != &"":
         add_to_group(StringName("projectiles_%s" % String(ctx.element)))
 
+
 func get_damage_payload() -> DamageEvent:
     var src = _source if is_instance_valid(_source) else null
     return DamageEvent.new(damage, src)
 
+
 func on_hit_target(_target: Node) -> void:
     queue_free()
 
+
 func _on_body_entered(_body: Node2D) -> void:
     queue_free()
+
 
 func configure_physics(ctx: ProjectileSpawnContext) -> void:
     var team_id = ctx.team_id

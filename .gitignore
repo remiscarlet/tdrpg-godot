@@ -3,7 +3,7 @@
 /android/
 
 # Mac
-.DS_Store
+*.DS_Store
 
 # Python
 .python-version

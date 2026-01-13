@@ -7,8 +7,7 @@ class_name MetaState
 @export var mystery_item: int = 0
 
 ## Run flags: arbitrary booleans keyed by id (tutorial steps, one-time events, etc.)
-@export var flags: Dictionary = {} # Dictionary[StringName, bool]
-
+@export var flags: Dictionary = {}  # Dictionary[StringName, bool]
 
 # ---------------------------
 # Convenience API
@@ -16,6 +15,7 @@ class_name MetaState
 
 signal meta_state_changed
 signal meta_currency_changed(currency_id: StringName, new_value: int)
+
 
 func _init() -> void:
     started_unix = Time.get_unix_time_from_system()
@@ -31,10 +31,14 @@ func _init() -> void:
 # Currency helpers
 # ---------------------------
 
+
 func get_currency(currency_id: StringName) -> int:
     match currency_id:
-        &"mystery_item": return mystery_item
-        _: return 0
+        &"mystery_item":
+            return mystery_item
+        _:
+            return 0
+
 
 func add_currency(currency_id: StringName, delta: int) -> void:
     if delta == 0:

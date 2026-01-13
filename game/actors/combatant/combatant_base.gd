@@ -1,6 +1,9 @@
 class_name CombatantBase
 extends CharacterBody2D
 
+var spawn_context: CombatantSpawnContext
+var definition: CombatantDefinition
+
 var level_container: LevelContainer
 
 var desired_dir: Vector2 = Vector2.ZERO
@@ -12,7 +15,9 @@ var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
 @onready var rig = $"AttachmentsRig"
 
 @onready var sensors_root: Node = rig.get_node("%FacingRoot/Sensors")
-@onready var hurtbox_collision_shape: CollisionShape2D = sensors_root.get_node("Hurtbox2DComponent/CollisionShape2D")
+@onready var hurtbox_collision_shape: CollisionShape2D = sensors_root.get_node(
+    "Hurtbox2DComponent/CollisionShape2D"
+)
 
 @onready var health: HealthComponent = rig.get_node("%ComponentsRoot/HealthComponent")
 
@@ -22,7 +27,12 @@ var combat_tags: Array[StringName] = []  # e.g. ["swarm", "armored"]
 
 # Public Methods
 
-func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition) -> void:
+
+func configure_combatant_pre_ready(
+    ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition
+) -> void:
+    spawn_context = ctx
+    definition = combatant_definition
     global_position = ctx.origin
 
     if "inventory_capacity" in combatant_definition:
@@ -43,16 +53,18 @@ func configure_combatant_pre_ready(ctx: CombatantSpawnContext, combatant_definit
     var pickupbox = sensors.get_node("PickupboxComponent/PickupSensorArea")
     PhysicsUtils.set_pickupbox_collisions_for_team(pickupbox, team_id)
 
-func configure_combatant_post_ready(_ctx: CombatantSpawnContext, combatant_definition: CombatantDefinition, container: LevelContainer) -> void:
-    var team_id = combatant_definition.team_id
 
+func configure_combatant_post_ready(container: LevelContainer) -> void:
     _bind_level_container_ref(container)
-    _set_controller_by_team_id(team_id)
+    _set_controller_by_team_id(definition.team_id)
+
 
 # Lifecycle Methods
 
+
 func _enter_tree() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
+
 
 func _ready() -> void:
     print("== Readying CombatantBase...")
@@ -64,7 +76,9 @@ func _ready() -> void:
     var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
     inventory_component.configure(pickupbox_component, inventory_capacity)
 
-    var interactable_detector_component = rig.get_node("%FacingRoot/Sensors/InteractableDetectorComponent")
+    var interactable_detector_component = rig.get_node(
+        "%FacingRoot/Sensors/InteractableDetectorComponent"
+    )
     player_ctrl.bind_interactable_detector_component(interactable_detector_component)
     ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
     ai_hauler_ctrl.bind_inventory_component(inventory_component)
@@ -77,16 +91,20 @@ func _ready() -> void:
 
     process_mode = Node.PROCESS_MODE_INHERIT
 
+
 func _physics_process(_delta: float) -> void:
     # Controllers set desired_dir; motor applies it.
     velocity = desired_dir.normalized() * move_speed
     move_and_slide()
 
+
 # Helpers
+
 
 func _on_HealthComponent_died(source: Node) -> void:
     print("%s killed by %s!" % [self, source])
     queue_free()
+
 
 func _set_controller_by_team_id(team_id: int) -> void:
     var active
@@ -99,6 +117,7 @@ func _set_controller_by_team_id(team_id: int) -> void:
 
     _set_controller(active)
 
+
 func _set_controller(active: Node) -> void:
     # Disable both, enable one. Disabled means no _process/_physics_process/_input, etc. :contentReference[oaicite:3]{index=3}
     player_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
@@ -106,6 +125,7 @@ func _set_controller(active: Node) -> void:
     ai_wander_ctrl.process_mode = Node.PROCESS_MODE_DISABLED
 
     active.process_mode = Node.PROCESS_MODE_INHERIT
+
 
 func _bind_level_container_ref(container: LevelContainer) -> void:
     level_container = container
@@ -116,5 +136,7 @@ func _bind_level_container_ref(container: LevelContainer) -> void:
     var loot: LootableComponent = rig.get_node("%ComponentsRoot/LootableComponent")
     loot.bind_loot_system(level_container.get_node("%LootSystem"))
 
-    var ai_hauler_controller: AIHaulerController = rig.get_node("%ControllersRoot/AIHaulerController")
+    var ai_hauler_controller: AIHaulerController = rig.get_node(
+        "%ControllersRoot/AIHaulerController"
+    )
     ai_hauler_controller.bind_hauler_task_system(level_container.get_node("%HaulerTaskSystem"))
