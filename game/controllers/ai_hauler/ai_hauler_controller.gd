@@ -51,6 +51,20 @@ func _physics_process(delta: float) -> void:
     var next_pos := agent.get_next_path_position()
     body.desired_dir = body.global_position.direction_to(next_pos)
 
+    var map_rid := get_world_2d().get_navigation_map()
+    var from := global_position
+    var to := agent.target_position
+
+    var path_raw := NavigationServer2D.map_get_path(map_rid, from, to, false)
+    var path_opt := NavigationServer2D.map_get_path(map_rid, from, to, true)
+
+    # Print just the first few points for sanity.
+    if path_raw.size() >= 2:
+        print("RAW: ", path_raw[0], " -> ", path_raw[1])
+    if path_opt.size() >= 2:
+        print("OPT: ", path_opt[0], " -> ", path_opt[1])
+
+
 
 ## Public methods
 func bind_hauler_task_system(system: HaulerTaskSystem) -> void:

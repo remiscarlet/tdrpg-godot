@@ -4,13 +4,13 @@ var delay_config: Dictionary[StringName, Dictionary] = {
     Inputs.CONFIRM: {
         "last": 0.0,
         "delay": 0.3,
-        "func": func(): player_aim_fire_controller.try_fire(),
+        "func": func(): return player_aim_fire_controller.try_fire(),
         "held": false,
     },
     Inputs.INTERACT: {
         "last": 0.0,
         "delay": 1.0,
-        "func": func(): interactable_detector_component.try_interact(),
+        "func": func(): return interactable_detector_component.try_interact(),
         "held": false,
     },
 }

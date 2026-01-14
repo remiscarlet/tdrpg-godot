@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://flpbd3nu5rx" path="res://game/components/interactable_detector/interactable_detector_component.gd" id="1_kdcat"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdcat"]
-radius = 75.0
+radius = 50.0
 
 [node name="InteractableDetectorComponent" type="Area2D"]
 editor_description = "Adds the ability to detect and keep track of Interactables within the CollisionShape2D range"
@@ -12,3 +12,4 @@ sensor_path = NodePath(".")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kdcat")
+debug_color = Color(0.26448107, 0.50741035, 0.9879263, 0.41960785)

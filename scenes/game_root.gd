@@ -27,5 +27,7 @@ func start_run() -> void:
 
     var container: LevelContainer = level_system.start_session()
     var nav_root: Node = container.get_active_map().get_nav_root()
+    var tilemap_layer: TileMapLayer = container.get_active_map().get_nav_tilemap_layer()
     minimap.bind_nav_root(nav_root)
     minimap.bind_player_root(container.get_player())
+    minimap.bind_tilemap_layer(tilemap_layer)

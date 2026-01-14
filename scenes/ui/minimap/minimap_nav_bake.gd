@@ -7,6 +7,7 @@ extends SubViewport
 
 var player_root: Player
 var render_context: RenderContext
+var tilemap_layer: TileMapLayer
 var per_frame_rebakes: Array[RendererBase] = []
 
 @onready var bake_camera: Camera2D = %BakeCamera
@@ -39,9 +40,10 @@ func _process(_delta: float) -> void:
         renderer.bake(render_context)
 
 
-func configure(nav: Node, player: Player) -> void:
+func configure(nav: Node, player: Player, layer: TileMapLayer) -> void:
     nav_root = nav
     player_root = player
+    tilemap_layer = layer
 
     _init_camera()
     _activate_if_possible()
@@ -59,12 +61,15 @@ func _activate_if_possible() -> void:
         return
     if player_root == null:
         return
+    if tilemap_layer == null:
+        return
 
     render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 
     render_context = RenderContext.new(
         nav_root,
         polys_root,
+        tilemap_layer,
     )
 
     rebake()

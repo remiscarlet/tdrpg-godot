@@ -5,6 +5,10 @@ extends Node2D
 
 @onready var spawn_system: SpawnSystem = %SpawnSystem
 @onready var nav_root: Node = %Navigation
+@onready var floor_tiles: TileMapLayer = %Floor
+
+func get_nav_tilemap_layer() -> TileMapLayer:
+    return floor_tiles
 
 
 func get_player_spawn() -> Marker2D:

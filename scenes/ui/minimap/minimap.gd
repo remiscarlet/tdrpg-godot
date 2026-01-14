@@ -5,12 +5,14 @@ extends PanelContainer
 @export var min_zoom: float = 0.15
 @export var max_zoom: float = 2.0
 @export var default_zoom: float = 1.0
-@export var nav_root: Node
 
 var zoom_in_mod: float = 1.05
 var zoom_out_mod: float = 0.95
-var player_root: Player
 var max_zoom_out: Vector2
+
+var player_root: Player
+var nav_root: Node
+var tilemap_layer: TileMapLayer
 
 @onready var map_texture: TextureRect = %MapTexture
 @onready var bake_viewport: MinimapNavBake = %BakeViewport
@@ -49,6 +51,11 @@ func bind_player_root(root: Player) -> void:
     _push_config()
 
 
+func bind_tilemap_layer(layer: TileMapLayer) -> void:
+    tilemap_layer = layer
+    _push_config()
+
+
 func _get_zoom() -> float:
     return bake_camera.zoom.x
 
@@ -70,8 +77,10 @@ func _push_config() -> void:
         return
     if nav_root == null:
         return
+    if tilemap_layer == null:
+        return
 
     if not is_node_ready():
         return
 
-    bake_viewport.configure(nav_root, player_root)
+    bake_viewport.configure(nav_root, player_root, tilemap_layer)

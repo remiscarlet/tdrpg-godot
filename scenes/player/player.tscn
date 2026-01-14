@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://vamxhibttxff"]
+[gd_scene load_steps=8 format=3 uid="uid://vamxhibttxff"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="2_gmlin"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://scenes/player/turret_placer/turret_placer.tscn" id="3_i3pqv"]
 [ext_resource type="Shape2D" uid="uid://b3uqnhb4doph2" path="res://scenes/player/player_shape.tres" id="3_p47bc"]
 [ext_resource type="SpriteFrames" uid="uid://hg0ttkihoayq" path="res://scenes/player/player_spriteframe.tres" id="6_75vfm"]
+[ext_resource type="Shape2D" uid="uid://gk0701bpdx8t" path="res://scenes/player/player_hurtbox_shape.tres" id="7_0owmy"]
 
 [node name="Player" instance=ExtResource("1_dovo2")]
 collision_mask = 1
@@ -28,7 +29,12 @@ scale = Vector2(0.65, 0.65)
 [node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("6_75vfm")
 
+[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent" index="0"]
+shape = ExtResource("7_0owmy")
+
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/PickupboxComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/InteractableDetectorComponent"]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxmh6k1vgdahs" path="res://scenes/ui/minimap/minimap.gd" id="1_n58tj"]
 [ext_resource type="Script" uid="uid://dkyhqb0w7fvfy" path="res://scenes/ui/minimap/minimap_bake_texture.gd" id="2_8mwjq"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="2_rfb21"]
-[ext_resource type="Script" uid="uid://b2s1prtglin62" path="res://scenes/ui/minimap/renderers/map_renderer.gd" id="5_8mwjq"]
+[ext_resource type="Script" uid="uid://cmwkicacagp80" path="res://scenes/ui/minimap/renderers/map_renderer_tilebake.gd" id="5_k4e4s"]
 [ext_resource type="Script" uid="uid://brflnysm60p1x" path="res://scenes/ui/minimap/renderers/icon_renderer.gd" id="6_30hu7"]
 
 [node name="Minimap" type="PanelContainer"]
@@ -82,7 +82,8 @@ unique_name_in_owner = true
 
 [node name="MapRenderer" type="Node" parent="ClipControl/BakeViewport/Renderers"]
 unique_name_in_owner = true
-script = ExtResource("5_8mwjq")
+script = ExtResource("5_k4e4s")
+contour_epsilon = 0.0
 
 [node name="IconRenderer" type="Node" parent="ClipControl/BakeViewport/Renderers"]
 unique_name_in_owner = true

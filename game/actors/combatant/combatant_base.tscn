@@ -49,10 +49,10 @@ scale = Vector2(0.65, 0.65)
 scale = Vector2(0.65, 0.65)
 
 [node name="AIHaulerController" parent="AttachmentsRig/ControllersRoot" index="2" instance=ExtResource("6_qqgk4")]
-scale = Vector2(0.65, 0.65)
 
 [node name="NavigationAgent2D" parent="AttachmentsRig/ControllersRoot/AIHaulerController" index="0"]
-target_desired_distance = 40.0
+path_desired_distance = 6.0
+target_desired_distance = 6.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 1, 0, 1)
@@ -79,17 +79,14 @@ position = Vector2(0, -21.538464)
 sprite_frames = SubResource("SpriteFrames_nsc2i")
 
 [node name="Hurtbox2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="0" instance=ExtResource("2_dinay")]
-scale = Vector2(0.27462497, 0.27462497)
 health_path = NodePath("../../../ComponentsRoot/HealthComponent")
 
 [node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent" index="0"]
 debug_color = Color(0.98623556, 0, 0.3495352, 0.41960785)
 
 [node name="PickupboxComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("11_qqgk4")]
-scale = Vector2(0.42249995, 0.42249995)
 
 [node name="InteractableDetectorComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="2" instance=ExtResource("13_rrdtx")]
-scale = Vector2(0.42249995, 0.42249995)
 collision_layer = 4096
 collision_mask = 16
 
@@ -97,3 +94,5 @@ collision_mask = 16
 [editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/PickupboxComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/InteractableDetectorComponent"]

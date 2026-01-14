@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1x7wcjjp68k1"]
+[gd_scene load_steps=2 format=3 uid="uid://1x7wcjjp68k1"]
 
 [ext_resource type="PackedScene" uid="uid://bdlk7innnmi87" path="res://scenes/world/maps/map_base.tscn" id="1_ng8hu"]
-[ext_resource type="NavigationPolygon" uid="uid://b6kakn1mp1fsd" path="res://scenes/world/maps/room_a_navpoly.tres" id="2_gup70"]
 
 [node name="TestMap" instance=ExtResource("1_ng8hu")]
 
-[node name="NavigationRegion2DBone2D" type="Bone2D" parent="." index="4"]
-position = Vector2(276, 190)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavigationRegion2DBone2D" index="0"]
-navigation_polygon = ExtResource("2_gup70")
+[node name="RoomB" parent="Navigation" index="1"]
+position = Vector2(551, 381)
