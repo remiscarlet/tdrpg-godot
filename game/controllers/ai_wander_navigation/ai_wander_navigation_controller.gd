@@ -63,12 +63,14 @@ func _get_some_random_reachable_point() -> Vector2:
         candidate = NavigationServer2D.map_get_closest_point(map_rid, candidate)
 
         # Ask server for a path to prove it’s reachable.
-        var path := NavigationServer2D.map_get_path(
-            map_rid,
-            origin,
-            candidate,
-            true,
-            navigation_layers, # optimize  # only regions in these nav layers
+        var path := (
+            NavigationServer2D.map_get_path(
+                map_rid,
+                origin,
+                candidate,
+                true,
+                navigation_layers, # optimize  # only regions in these nav layers
+            )
         )
 
         if path.size() >= 2:

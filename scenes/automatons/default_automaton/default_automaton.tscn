@@ -11,9 +11,6 @@
 [node name="DefaultAutomaton" instance=ExtResource("1_t7qrj")]
 script = ExtResource("2_xkd1p")
 
-[node name="NavigationAgent2D" parent="AttachmentsRig/ControllersRoot/AIHaulerController" index="0"]
-path_postprocessing = 2
-
 [node name="MeleeAttackComponent" parent="AttachmentsRig/ComponentsRoot" index="5" instance=ExtResource("3_0xbrn")]
 
 [node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]

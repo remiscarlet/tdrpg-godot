@@ -22,6 +22,7 @@ func bind_target_sensor_component(component: TargetSensor2DComponent) -> void:
 
     _push_config()
 
+
 func _push_config() -> void:
     if sword == null:
         return

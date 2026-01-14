@@ -66,10 +66,12 @@ func _activate_if_possible() -> void:
 
     render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 
-    render_context = RenderContext.new(
-        nav_root,
-        polys_root,
-        tilemap_layer,
+    render_context = (
+        RenderContext.new(
+            nav_root,
+            polys_root,
+            tilemap_layer,
+        )
     )
 
     rebake()

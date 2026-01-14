@@ -12,8 +12,10 @@ var state: DoorState
 
 @onready var nav_link: NavigationLink2D = $NavigationLink2D
 @onready var rig = $AttachmentsRig
-@onready var solid_shape: CollisionShape2D = rig.get_node(
-    "%FacingRoot/Sensors/StaticBody2D/CollisionShape2D",
+@onready var solid_shape: CollisionShape2D = (
+    rig.get_node(
+        "%FacingRoot/Sensors/StaticBody2D/CollisionShape2D",
+    )
 )
 @onready var sprite: AnimatedSprite2D = rig.get_node("%FacingRoot/Visuals/AnimatedSprite2D")
 @onready var anim: AnimationPlayer

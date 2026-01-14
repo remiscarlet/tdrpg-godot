@@ -9,7 +9,6 @@ extends PanelContainer
 var zoom_in_mod: float = 1.05
 var zoom_out_mod: float = 0.95
 var max_zoom_out: Vector2
-
 var player_root: Player
 var nav_root: Node
 var tilemap_layer: TileMapLayer

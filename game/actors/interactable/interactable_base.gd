@@ -14,11 +14,11 @@ func bind_run_state(rs: RunState) -> void:
     run_state = rs
 
 
-func can_interact(interactor: Node2D) -> bool:
+func can_interact(_interactor: Node2D) -> bool:
     return true
 
 
-func interact(interactor: Node2D) -> bool:
+func interact(_interactor: Node2D) -> bool:
     return true
 
 

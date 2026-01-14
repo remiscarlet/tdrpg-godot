@@ -1,14 +1,14 @@
-extends RendererBase
 class_name MapRendererTilebake
+extends RendererBase
 
 @export var fill_color: Color = Color(1, 1, 1, 0.12)
 @export var outline_color: Color = Color(1, 1, 1, 0.65)
 @export_range(1.0, 12.0, 0.5) var outline_width: float = 2.0
-
 @export var tile_size: Vector2i = Vector2i(48, 48)
 @export var walkable_key: StringName = &"walkable"
 
 var contour_epsilon: float = 0.0 # Always render exact edges
+
 
 func bake(ctx: RenderContext) -> void:
     # You’ll need to provide this in your ctx, similar to nav_root.
@@ -40,7 +40,7 @@ func bake(ctx: RenderContext) -> void:
 
     var polys: Array[PackedVector2Array] = bm.opaque_to_polygons(
         Rect2i(Vector2i.ZERO, used_rect.size),
-        contour_epsilon
+        contour_epsilon,
     )
 
     # Convert bitmap coords -> world coords.
@@ -68,6 +68,7 @@ func bake(ctx: RenderContext) -> void:
         line.width = outline_width
         line.default_color = outline_color
         polys_root.add_child(line)
+
 
 func _is_walkable_cell(layer: TileMapLayer, cell: Vector2i) -> bool:
     var td: TileData = layer.get_cell_tile_data(cell)

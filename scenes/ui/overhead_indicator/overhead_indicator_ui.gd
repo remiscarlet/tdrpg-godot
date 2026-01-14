@@ -13,15 +13,19 @@ var _attach_screen_pos: Vector2
 # Lifecycle Methods
 func _ready() -> void:
     health_component.health_changed.connect(health_bar.on_HealthComponent_health_changed)
-    health_bar.on_HealthComponent_health_changed(
-        health_component.current_health,
-        health_component.max_health,
+    (
+        health_bar.on_HealthComponent_health_changed(
+            health_component.current_health,
+            health_component.max_health,
+        )
     )
 
     if inventory_component:
         inventory_bar.bind_inventory_component(inventory_component)
-        inventory_component.inventory_changed.connect(
-            inventory_bar.on_InventoryComponent_inventory_changed,
+        (
+            inventory_component.inventory_changed.connect(
+                inventory_bar.on_InventoryComponent_inventory_changed,
+            )
         )
 
 

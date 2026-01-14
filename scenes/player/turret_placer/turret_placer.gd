@@ -16,14 +16,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     var is_pressed = Input.is_action_pressed(Inputs.TURRET_KEY)
 
+    # Short press: Hold less than 500ms and release
+    # Long press Held: Hold longer than 500ms
+    # Long Press Released: Long press released this frame
     var short_press = false
     var long_press_held = false
     var long_press_released = false
-    """
-    Short press: Hold less than 500ms and release
-    Long press Held: Hold longer than 500ms
-    Long Press Released: Long press released this frame
-    """
 
     # Pre process
     if is_pressed:

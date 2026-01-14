@@ -7,8 +7,10 @@ var definition: TurretDefinition
 
 @onready var rig = $AttachmentsRig
 @onready var shot_timer: Timer = rig.get_node("%MiscRoot/ShotDelayTimer")
-@onready var target_sensor_component: TargetSensor2DComponent = rig.get_node(
-    "%FacingRoot/Sensors/TargetSensor2DComponent",
+@onready var target_sensor_component: TargetSensor2DComponent = (
+    rig.get_node(
+        "%FacingRoot/Sensors/TargetSensor2DComponent",
+    )
 )
 @onready var aim_controller: AimFireController = rig.get_node("%ControllersRoot/AimFireController")
 

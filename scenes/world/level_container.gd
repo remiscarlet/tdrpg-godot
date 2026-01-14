@@ -67,10 +67,12 @@ func _on_node_added(node: Node) -> void:
 func _inject_dependencies():
     # Wire anything already in the tree
     get_tree().call_group(Groups.RUN_STATE_CONSUMERS, "bind_run_state", run_state)
-    get_tree().call_group(
-        Groups.COMBATANT_SYSTEM_CONSUMERS,
-        "bind_combatant_system",
-        combatant_system,
+    (
+        get_tree().call_group(
+            Groups.COMBATANT_SYSTEM_CONSUMERS,
+            "bind_combatant_system",
+            combatant_system,
+        )
     )
     # Wire anything that shows up later (ie, scene tiles)
     get_tree().node_added.connect(_on_node_added)

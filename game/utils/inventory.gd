@@ -43,10 +43,10 @@ func get_item_qty_or_default(item_name: StringName, default: int = 0) -> int:
 func add_item(loot_name: StringName, quantity: int = 1) -> bool:
     if quantity == 0:
         return true
-    elif quantity < 0:
+    if quantity < 0:
         push_error("Tried adding negative items! (%s) (%s)" % [loot_name, quantity])
         return false
-    elif size() >= capacity:
+    if size() >= capacity:
         print("Failed to add item to inventory - Inventory full!")
         return false
 
@@ -61,13 +61,13 @@ func add_item(loot_name: StringName, quantity: int = 1) -> bool:
 func remove_item(loot_name: StringName, quantity: int = 1) -> bool:
     if quantity == 0:
         return true
-    elif quantity < 0:
+    if quantity < 0:
         push_error("Tried removing negative items! (%s) (%s)" % [loot_name, quantity])
         return false
-    elif loot_name not in items:
+    if loot_name not in items:
         print("Tried removing loot %s but did not exist in inventory!" % loot_name)
         return false
-    elif items[loot_name] < quantity:
+    if items[loot_name] < quantity:
         print("Tried removing loot %s from inventory but did not have enough!" % loot_name)
         return false
 

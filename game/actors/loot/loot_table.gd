@@ -20,6 +20,7 @@ func roll(rng: RandomNumberGenerator, ctx: LootContext = null, depth: int = 0) -
     var rolls := rng.randi_range(rolls_min, rolls_max)
     var out: Array[LootDrop] = []
 
+    # gdlint-ignore-next-line loop-variable-name
     for _i in range(rolls):
         out.append_array(_roll_once(rng, ctx, depth))
 

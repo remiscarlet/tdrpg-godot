@@ -58,7 +58,6 @@ func _swing(delta: float) -> void:
         + (end_swing_angle - start_swing_angle) * swing_percentage
     )
 
-    # print("[%s] swinging_dur=%s, swing_percentage=%s, target_angle=%s" % [self, swinging_dur, swing_percentage, target_angle])
     rotation = target_angle
 
     if swinging_dur >= max_swing_duration:

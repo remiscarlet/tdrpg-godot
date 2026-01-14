@@ -7,11 +7,15 @@ func configure_combatant_post_ready(container: LevelContainer) -> void:
 
     var _rig = get_node("AttachmentsRig")
     var sword_component: BasicSword = _rig.get_node("FacingRoot/Sensors/BasicSword")
-    var target_sensor_component: TargetSensor2DComponent = _rig.get_node(
-        "FacingRoot/Sensors/TargetSensor2DComponent",
+    var target_sensor_component: TargetSensor2DComponent = (
+        _rig.get_node(
+            "FacingRoot/Sensors/TargetSensor2DComponent",
+        )
     )
-    var melee_attack_component: MeleeAttackComponent = _rig.get_node(
-        "ComponentsRoot/MeleeAttackComponent",
+    var melee_attack_component: MeleeAttackComponent = (
+        _rig.get_node(
+            "ComponentsRoot/MeleeAttackComponent",
+        )
     )
 
     melee_attack_component.bind_target_sensor_component(target_sensor_component)

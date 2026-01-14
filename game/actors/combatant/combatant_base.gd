@@ -12,8 +12,10 @@ var combat_tags: Array[StringName] = [] # e.g. ["swarm", "armored"]
 @onready var sprite_collision_shape: CollisionShape2D = $"CollisionShape2D"
 @onready var rig = $"AttachmentsRig"
 @onready var sensors_root: Node = rig.get_node("%FacingRoot/Sensors")
-@onready var hurtbox_collision_shape: CollisionShape2D = sensors_root.get_node(
-    "Hurtbox2DComponent/CollisionShape2D",
+@onready var hurtbox_collision_shape: CollisionShape2D = (
+    sensors_root.get_node(
+        "Hurtbox2DComponent/CollisionShape2D",
+    )
 )
 @onready var health: HealthComponent = rig.get_node("%ComponentsRoot/HealthComponent")
 @onready var player_ctrl: Node = rig.get_node("%ControllersRoot/PlayerInputController")
@@ -36,8 +38,10 @@ func _ready() -> void:
     var pickupbox_component = rig.get_node("%FacingRoot/Sensors/PickupboxComponent")
     inventory_component.configure(pickupbox_component, inventory_capacity)
 
-    var interactable_detector_component = rig.get_node(
-        "%FacingRoot/Sensors/InteractableDetectorComponent",
+    var interactable_detector_component = (
+        rig.get_node(
+            "%FacingRoot/Sensors/InteractableDetectorComponent",
+        )
     )
     player_ctrl.bind_interactable_detector_component(interactable_detector_component)
     ai_hauler_ctrl.bind_interactable_detector_component(interactable_detector_component)
@@ -81,6 +85,7 @@ func configure_combatant_pre_ready(
 
     var hurtbox = sensors.get_node("Hurtbox2DComponent")
     PhysicsUtils.set_hurtbox_collisions_for_team(hurtbox, team_id)
+    hurtbox.set_combatant_root(self)
 
     var pickupbox = sensors.get_node("PickupboxComponent/PickupSensorArea")
     PhysicsUtils.set_pickupbox_collisions_for_team(pickupbox, team_id)
@@ -126,7 +131,9 @@ func _bind_level_container_ref(container: LevelContainer) -> void:
     var loot: LootableComponent = rig.get_node("%ComponentsRoot/LootableComponent")
     loot.bind_loot_system(level_container.get_node("%LootSystem"))
 
-    var ai_hauler_controller: AIHaulerController = rig.get_node(
-        "%ControllersRoot/AIHaulerController",
+    var ai_hauler_controller: AIHaulerController = (
+        rig.get_node(
+            "%ControllersRoot/AIHaulerController",
+        )
     )
     ai_hauler_controller.bind_hauler_task_system(level_container.get_node("%HaulerTaskSystem"))

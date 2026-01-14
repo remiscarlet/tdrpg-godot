@@ -4,11 +4,24 @@ extends Area2D
 # signal hit(damage: float, source: Node, hit_position: Vector2)
 @export var health_path: NodePath
 
+var root: CombatantBase
+
 @onready var health: HealthComponent = get_node_or_null(health_path) as HealthComponent
-@onready var root: Node2D = get_parent().get_parent().get_parent().get_parent() # AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent
 
 
 func _ready() -> void:
+    _activate_if_possible()
+
+
+func set_combatant_root(combatant: CombatantBase) -> void:
+    root = combatant
+    _activate_if_possible()
+
+
+func _activate_if_possible() -> void:
+    if root == null:
+        return
+
     area_entered.connect(_on_area_entered)
 
 

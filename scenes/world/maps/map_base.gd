@@ -7,6 +7,7 @@ extends Node2D
 @onready var nav_root: Node = %Navigation
 @onready var floor_tiles: TileMapLayer = %Floor
 
+
 func get_nav_tilemap_layer() -> TileMapLayer:
     return floor_tiles
 

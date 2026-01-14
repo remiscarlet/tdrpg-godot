@@ -1,11 +1,21 @@
 
 setup:
-	pip install -r requirements.txt
+	@echo "Please download GDQuest's gdscript-formatter and place the binary in the 'tools/' directory."
+
+install: setup
 
 lint:
-	gdlint game/* scenes/*
+	find . -name '*.gd' -type f -exec \
+		./tools/gdscript-formatter lint \
+		--disable function-name \
+		--max-line-length 120 \
+		{} \;
 
 format:
-	gdformat game/* scenes/*
+	find . -name '*.gd' -type f -exec \
+		./tools/gdscript-formatter \
+		--use-spaces \
+		--reorder-code \
+		{} \;
 
 lint-fix: format lint
