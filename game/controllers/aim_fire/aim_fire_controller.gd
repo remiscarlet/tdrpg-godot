@@ -41,14 +41,14 @@ func aim() -> void:
     aim_component.set_target_angle(target.dir)
 
 
-func try_fire() -> bool:
+func try_fire(attack_type: StringName) -> bool:
     var target = _get_target()
 
     if not target.has_target:
         # Did not fire/no valid target
         return false
 
-    return fire_component.fire(target.dir)
+    return fire_component.fire(attack_type, target.dir)
 
 
 func _get_target() -> AimingTargetResult:

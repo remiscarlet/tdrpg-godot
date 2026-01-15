@@ -6,12 +6,14 @@ extends Node
 @export_dir var enemies_dir: String = "res://assets/definitions/enemies"
 @export_dir var automatons_dir: String = "res://assets/definitions/automatons"
 @export_dir var players_dir: String = "res://assets/definitions/players"
+@export_dir var ranged_attacks_dir: String = "res://assets/definitions/ranged_attacks"
 
 var items: Dictionary[StringName, ItemDefinition] = { }
 var turrets: Dictionary[StringName, TurretDefinition] = { }
 var enemies: Dictionary[StringName, EnemyDefinition] = { }
 var automatons: Dictionary[StringName, AutomatonDefinition] = { }
 var players: Dictionary[StringName, PlayerDefinition] = { }
+var ranged_attacks: Dictionary[StringName, RangedAttackDefinition] = { }
 
 
 func _ready() -> void:
@@ -20,6 +22,7 @@ func _ready() -> void:
     enemies = _load_enemies(enemies_dir)
     automatons = _load_automatons(automatons_dir)
     players = _load_players(players_dir)
+    ranged_attacks = _load_ranged_attacks(ranged_attacks_dir)
 
 
 func get_item(id: StringName) -> ItemDefinition:
@@ -40,6 +43,10 @@ func get_automaton(id: StringName) -> AutomatonDefinition:
 
 func get_player(id: StringName) -> PlayerDefinition:
     return players.get(id)
+
+
+func get_ranged_attack(id: StringName) -> RangedAttackDefinition:
+    return ranged_attacks.get(id)
 
 
 func get_combatant(id: StringName) -> CombatantDefinition:
@@ -133,4 +140,11 @@ func _load_players(dir_path: String) -> Dictionary[StringName, PlayerDefinition]
     var out: Dictionary[StringName, PlayerDefinition] = { }
     for id: StringName in base:
         out[id] = base[id] as PlayerDefinition
+    return out
+
+func _load_ranged_attacks(dir_path: String) -> Dictionary[StringName, RangedAttackDefinition]:
+    var base := _load_dir(dir_path, RangedAttackDefinition)
+    var out: Dictionary[StringName, RangedAttackDefinition] = { }
+    for id: StringName in base:
+        out[id] = base[id] as RangedAttackDefinition
     return out

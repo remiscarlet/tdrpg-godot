@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RangedAttackDefinition" load_steps=5 format=3 uid="uid://ed58jypet1wy"]
+
+[ext_resource type="Script" uid="uid://cd15g8om27no1" path="res://game/definitions/shot_modes/single_shot_mode.gd" id="1_2atxk"]
+[ext_resource type="Script" uid="uid://bg40cjtpwuyhf" path="res://game/definitions/ranged_attack_definition.gd" id="1_gcewk"]
+[ext_resource type="PackedScene" uid="uid://bkb8rs7ot2v7e" path="res://scenes/projectiles/default_projectile/default_projectile.tscn" id="2_buowa"]
+
+[sub_resource type="Resource" id="Resource_2ognu"]
+script = ExtResource("1_2atxk")
+metadata/_custom_type_script = "uid://dwjp87euhbvxi"
+
+[resource]
+script = ExtResource("1_gcewk")
+kind = SubResource("Resource_2ognu")
+damage = 3.0
+id = &"default_pistol"
+scene = ExtResource("2_buowa")

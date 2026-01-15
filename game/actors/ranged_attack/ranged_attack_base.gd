@@ -1,4 +1,4 @@
-class_name ProjectileBase
+class_name RangedAttackBase
 extends DamageEmitterBase
 
 var speed: float = 600.0
@@ -11,7 +11,6 @@ var _source: Node
 func _ready() -> void:
     _time_left = lifetime_s
     body_entered.connect(_on_body_entered)
-    damage = 10.0
 
 
 func _physics_process(delta: float) -> void:
@@ -23,13 +22,19 @@ func _physics_process(delta: float) -> void:
     global_position += _velocity * delta
 
 
-func configure(ctx: ProjectileSpawnContext) -> void:
+func configure(ctx: RangedAttackSpawnContext) -> void:
+    var def := DefinitionDB.get_ranged_attack(ctx.ranged_attack_type_id)
+    if def == null:
+        push_error("Could not find ranged attack with id '%s'!" % ctx.ranged_attack_type_id)
+        return
+
     var direction = ctx.direction.normalized()
 
     # Default behavior: linear shot using direction
     global_position = ctx.origin
     _velocity = direction * speed
     rotation = direction.angle()
+    damage = def.damage
 
     _source = ctx.source
 
@@ -37,9 +42,9 @@ func configure(ctx: ProjectileSpawnContext) -> void:
     configure_physics(ctx)
 
     # Tagging
-    add_to_group(&"projectiles")
+    add_to_group(Groups.RANGED_ATTACK)
     if ctx.element != &"":
-        add_to_group(StringName("projectiles_%s" % String(ctx.element)))
+        add_to_group(StringName("%s_%s" % [Groups.RANGED_ATTACK, String(ctx.element)]))
 
 
 func get_damage_payload() -> DamageEvent:
@@ -51,10 +56,10 @@ func on_hit_target(_target: Node) -> void:
     queue_free()
 
 
-func configure_physics(ctx: ProjectileSpawnContext) -> void:
+func configure_physics(ctx: RangedAttackSpawnContext) -> void:
     var team_id = ctx.team_id
     if team_id == null:
-        push_error("Got a ProjectileSpawnContext with no team_id set! %s" % ctx)
+        push_error("Got a RangedAttackSpawnContext with no team_id set! %s" % ctx)
         return
 
     PhysicsUtils.set_hitbox_collisions_for_team(self, team_id)

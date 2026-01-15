@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="ItemDefinition" load_steps=4 format=3 uid="uid://b0m3bfutkw87o"]
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=5 format=3 uid="uid://b0m3bfutkw87o"]
 
 [ext_resource type="Texture2D" uid="uid://cjsbgs1c3jb2j" path="res://assets/art/power_cell.png" id="1_63plq"]
 [ext_resource type="Script" uid="uid://b1ak5gfrhv715" path="res://game/definitions/item_definition.gd" id="1_nbv8r"]
 [ext_resource type="PackedScene" uid="uid://dff067hy8j784" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_star_icon.tscn" id="2_kpq7c"]
+[ext_resource type="PackedScene" uid="uid://kny3bpkxmfqr" path="res://game/actors/loot/lootable_base.tscn" id="3_j4q5r"]
 
 [resource]
 script = ExtResource("1_nbv8r")
@@ -11,4 +12,5 @@ display_name = "Power Cell"
 icon = ExtResource("1_63plq")
 minimap_icon_color = Color(0, 1, 0, 1)
 minimap_icon_scene = ExtResource("2_kpq7c")
+scene = ExtResource("3_j4q5r")
 metadata/_custom_type_script = "uid://b1ak5gfrhv715"

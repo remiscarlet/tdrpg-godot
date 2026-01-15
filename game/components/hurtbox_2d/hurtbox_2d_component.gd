@@ -1,25 +1,27 @@
 class_name Hurtbox2DComponent
 extends Area2D
 
-# signal hit(damage: float, source: Node, hit_position: Vector2)
-@export var health_path: NodePath
-
-var root: CombatantBase
-
-@onready var health: HealthComponent = get_node_or_null(health_path) as HealthComponent
+var root: Node2D
+var health: HealthComponent
 
 
 func _ready() -> void:
     _activate_if_possible()
 
 
-func set_combatant_root(combatant: CombatantBase) -> void:
-    root = combatant
+func bind_root(node: Node2D) -> void:
+    root = node
+    _activate_if_possible()
+
+func bind_health_component(component: HealthComponent) -> void:
+    health = component
     _activate_if_possible()
 
 
 func _activate_if_possible() -> void:
     if root == null:
+        return
+    if health == null:
         return
 
     area_entered.connect(_on_area_entered)

@@ -13,7 +13,7 @@ var map_content: MapBase
 
 @onready var combatants_container: Node = $CombatantSystem/CombatantsContainer
 @onready var turret_system: TurretSystem = $TurretSystem
-@onready var projectile_system: ProjectileSystem = $ProjectileSystem
+@onready var ranged_attack_system: RangedAttackSystem = $RangedAttackSystem
 @onready var combatant_system: CombatantSystem = $CombatantSystem
 @onready var map_slot: Node2D = $MapSlot
 @onready var camera_rig: Node2D = $CameraRig

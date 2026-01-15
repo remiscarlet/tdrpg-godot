@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RangedAttackDefinition" load_steps=5 format=3 uid="uid://bi4v3dqgyeuwl"]
+
+[ext_resource type="Script" uid="uid://cd15g8om27no1" path="res://game/definitions/shot_modes/single_shot_mode.gd" id="1_qovg4"]
+[ext_resource type="PackedScene" uid="uid://bkb8rs7ot2v7e" path="res://scenes/projectiles/default_projectile/default_projectile.tscn" id="2_y8uae"]
+[ext_resource type="Script" uid="uid://bg40cjtpwuyhf" path="res://game/definitions/ranged_attack_definition.gd" id="3_un0ie"]
+
+[sub_resource type="Resource" id="Resource_2ognu"]
+script = ExtResource("1_qovg4")
+metadata/_custom_type_script = "uid://dwjp87euhbvxi"
+
+[resource]
+script = ExtResource("3_un0ie")
+kind = SubResource("Resource_2ognu")
+damage = 2.0
+id = &"default_turret_shot"
+scene = ExtResource("2_y8uae")

@@ -3,7 +3,7 @@ extends Node
 
 @onready var level_container: LevelContainer = get_parent()
 @onready var combatants_container: Node2D = $CombatantsContainer
-@onready var projectile_system: ProjectileSystem = $"../ProjectileSystem"
+@onready var ranged_attack_system: RangedAttackSystem = $"../RangedAttackSystem"
 
 
 func spawn(ctx: CombatantSpawnContext) -> CombatantBase:

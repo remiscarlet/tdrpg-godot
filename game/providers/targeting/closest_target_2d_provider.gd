@@ -3,6 +3,7 @@ extends TargetBaseProvider
 
 var sensor: TargetSensor2DComponent
 
+
 func get_target_direction(origin: Node2D) -> Vector2:
     var target := get_target_node(origin)
 
@@ -46,7 +47,7 @@ func get_target_node(origin: Node2D) -> Hurtbox2DComponent:
         if d2 >= best_d2:
             continue
 
-        if _has_line_of_sight(origin, t):
+        if not _has_line_of_sight(origin, t):
             continue
 
         best = t

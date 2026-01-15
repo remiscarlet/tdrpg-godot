@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
-[ext_resource type="Script" uid="uid://dgknbvfaky0qr" path="res://game/systems/projectile_system.gd" id="3_0khw6"]
+[ext_resource type="Script" uid="uid://6cm6ayfr5d6q" path="res://game/systems/ranged_attack_system.gd" id="3_0khw6"]
 [ext_resource type="Script" uid="uid://lei1d620d8vg" path="res://game/systems/combatant_system.gd" id="4_n1rcx"]
 [ext_resource type="Script" uid="uid://d4h30dfbgmw5v" path="res://game/systems/loot_system.gd" id="5_2dxgc"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
@@ -14,11 +14,11 @@ script = ExtResource("1_c06pb")
 
 [node name="MapSlot" type="Node2D" parent="."]
 
-[node name="ProjectileSystem" type="Node" parent="."]
+[node name="RangedAttackSystem" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_0khw6")
 
-[node name="ProjectileContainer" type="Node2D" parent="ProjectileSystem"]
+[node name="RangedAttackContainer" type="Node2D" parent="RangedAttackSystem"]
 z_index = 20
 
 [node name="TurretSystem" type="Node" parent="."]

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="TurretDefinition" load_steps=4 format=3 uid="uid://d0xyjqrrwha68"]
+[gd_resource type="Resource" script_class="TurretDefinition" load_steps=5 format=3 uid="uid://d0xyjqrrwha68"]
 
 [ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/art/Default-Turret.png" id="1_hg5ho"]
 [ext_resource type="Script" uid="uid://25sa15ht2qpk" path="res://game/definitions/turret_definition.gd" id="1_mh07m"]
 [ext_resource type="PackedScene" uid="uid://b4k3qdogr4ogn" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_triangle_icon.tscn" id="2_l8nyr"]
+[ext_resource type="PackedScene" uid="uid://cvmiin27bmp6u" path="res://scenes/turrets/default_turret/default_turret.tscn" id="3_bcnw4"]
 
 [resource]
 script = ExtResource("1_mh07m")
@@ -13,4 +14,5 @@ display_name = "Default Turret"
 icon = ExtResource("1_hg5ho")
 minimap_icon_color = Color(1, 1, 0, 1)
 minimap_icon_scene = ExtResource("2_l8nyr")
+scene = ExtResource("3_bcnw4")
 metadata/_custom_type_script = "uid://25sa15ht2qpk"

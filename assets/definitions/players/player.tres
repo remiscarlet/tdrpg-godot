@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="PlayerDefinition" load_steps=3 format=3 uid="uid://b4rou8mm08woj"]
+[gd_resource type="Resource" script_class="PlayerDefinition" load_steps=4 format=3 uid="uid://b4rou8mm08woj"]
 
 [ext_resource type="Script" uid="uid://dwcmlelh3kfoy" path="res://game/definitions/player_definition.gd" id="1_bv7p1"]
 [ext_resource type="PackedScene" uid="uid://d22vppeiyu5jd" path="res://scenes/ui/minimap/renderers/asset_scenes/minimap_square_icon.tscn" id="1_xfysv"]
+[ext_resource type="PackedScene" uid="uid://vamxhibttxff" path="res://scenes/player/player.tscn" id="2_73wed"]
 
 [resource]
 script = ExtResource("1_bv7p1")
@@ -12,4 +13,5 @@ display_name = "Player"
 description = "Default player"
 minimap_icon_color = Color(1, 0, 0, 1)
 minimap_icon_scene = ExtResource("1_xfysv")
+scene = ExtResource("2_73wed")
 metadata/_custom_type_script = "uid://dwcmlelh3kfoy"

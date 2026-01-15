@@ -84,8 +84,9 @@ func configure_combatant_pre_ready(
     var sensors = _rig.get_node("FacingRoot/Sensors")
 
     var hurtbox = sensors.get_node("Hurtbox2DComponent")
+    hurtbox.bind_health_component(health_component)
+    hurtbox.bind_root(self)
     PhysicsUtils.set_hurtbox_collisions_for_team(hurtbox, team_id)
-    hurtbox.set_combatant_root(self)
 
     var pickupbox = sensors.get_node("PickupboxComponent/PickupSensorArea")
     PhysicsUtils.set_pickupbox_collisions_for_team(pickupbox, team_id)
@@ -126,7 +127,7 @@ func _bind_level_container_ref(container: LevelContainer) -> void:
     level_container = container
 
     var fire: FireWeaponComponent = rig.get_node("%ComponentsRoot/FireWeaponComponent")
-    fire.bind_projectile_system(level_container.get_node("%ProjectileSystem"))
+    fire.bind_ranged_attack_system(level_container.get_node("%RangedAttackSystem"))
 
     var loot: LootableComponent = rig.get_node("%ComponentsRoot/LootableComponent")
     loot.bind_loot_system(level_container.get_node("%LootSystem"))

@@ -10,6 +10,7 @@
 [ext_resource type="Shape2D" uid="uid://co1vw7c527yan" path="res://scenes/enemies/default_enemy/default_enemy_hurtbox_shape.tres" id="6_nffph"]
 
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
+rotation = -0.00020307512
 script = ExtResource("2_ycnr1")
 
 [node name="CollisionShape2D" parent="." index="0"]

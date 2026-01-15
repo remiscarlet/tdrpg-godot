@@ -1,2 +1,2 @@
 class_name DefaultProjectile
-extends ProjectileBase
+extends RangedAttackBase

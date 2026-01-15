@@ -4,7 +4,7 @@ var delay_config: Dictionary[StringName, Dictionary] = {
     Inputs.CONFIRM: {
         "last": 0.0,
         "delay": 0.3,
-        "func": func(): return player_aim_fire_controller.try_fire(),
+        "func": func(): return player_aim_fire_controller.try_fire(RangedAttackTypes.DEFAULT_PISTOL),
         "held": false,
     },
     Inputs.INTERACT: {
