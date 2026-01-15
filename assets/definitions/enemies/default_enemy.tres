@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_rlvs5")
-team_id = 1
+team_id = 2
 max_hp = 15
 move_speed = 150.0
 id = &"default_enemy"

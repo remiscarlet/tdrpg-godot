@@ -11,5 +11,6 @@ move_speed = 0.0
 id = &"default_turret"
 display_name = "Default Turret"
 icon = ExtResource("1_hg5ho")
+minimap_icon_color = Color(1, 1, 0, 1)
 minimap_icon_scene = ExtResource("2_l8nyr")
 metadata/_custom_type_script = "uid://25sa15ht2qpk"

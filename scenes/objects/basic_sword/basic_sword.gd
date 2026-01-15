@@ -34,13 +34,13 @@ func on_hit_target(_source: Node) -> void:
     print("Sword hit target")
 
 
-func start_swing(node: Node) -> void:
+func start_swing(hurtbox: Hurtbox2DComponent) -> void:
     # print("> Starting swing at %s" % node)
     is_swinging = true
 
     swinging_dur = 0.0
     rotation = start_swing_angle
-    target_direction = global_position.direction_to(node.global_position)
+    target_direction = global_position.direction_to(hurtbox.global_position)
 
     _enable_sword()
 

@@ -1,6 +1,7 @@
 class_name PhysicsUtils
 
 static var _cfg_by_team: Dictionary[int, TeamPhysics] = _build()
+static var world_collidables: PackedInt32Array = [Layers.WORLD_SOLID]
 
 
 static func _build() -> Dictionary[int, TeamPhysics]:
@@ -19,25 +20,25 @@ static func _build() -> Dictionary[int, TeamPhysics]:
         ),
         CombatantTeam.BOT: (
             TeamPhysics.new(
-                PackedInt32Array([Layers.ENEMY1_HITBOX]),
+                PackedInt32Array([Layers.ENEMY1_HITBOX]), # Hitbox
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
-                PackedInt32Array([Layers.ENEMY1_HURTBOX]),
+                PackedInt32Array([Layers.ENEMY1_HURTBOX]), # Hurtbox
                 PackedInt32Array([Layers.ENEMY2_HITBOX, Layers.PLAYER_HITBOX, Layers.AREA_SENSOR]),
-                PackedInt32Array([Layers.ENEMY1_PICKUPBOX]),
+                PackedInt32Array([Layers.ENEMY1_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
-                PackedInt32Array([Layers.AREA_SENSOR]),
+                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
             )
         ),
         CombatantTeam.MUTANT: (
             TeamPhysics.new(
-                PackedInt32Array([Layers.ENEMY2_HITBOX]),
+                PackedInt32Array([Layers.ENEMY2_HITBOX]), # Hitbox
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
-                PackedInt32Array([Layers.ENEMY2_HURTBOX]),
+                PackedInt32Array([Layers.ENEMY2_HURTBOX]), # Hurtbox
                 PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.PLAYER_HITBOX, Layers.AREA_SENSOR]),
-                PackedInt32Array([Layers.ENEMY2_PICKUPBOX]),
+                PackedInt32Array([Layers.ENEMY2_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
-                PackedInt32Array([Layers.AREA_SENSOR]),
+                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
             )
         ),
@@ -50,20 +51,39 @@ static func _get_cfg(team_id: int) -> TeamPhysics:
     return cfg
 
 
-static func get_projectile_layer(team_id: int) -> PackedInt32Array:
-    return _get_cfg(team_id).hitbox_layer
+static func get_projectile_layer(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hitbox_layer)
 
 
-static func get_projectile_mask(team_id: int) -> PackedInt32Array:
-    return _get_cfg(team_id).hitbox_mask
+static func get_projectile_mask(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hitbox_mask)
 
 
-static func get_hurtbox_layer(team_id: int) -> PackedInt32Array:
-    return _get_cfg(team_id).hurtbox_layer
+static func get_hitbox_layer(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hitbox_layer)
 
 
-static func get_hurtbox_mask(team_id: int) -> PackedInt32Array:
-    return _get_cfg(team_id).hurtbox_mask
+static func get_hitbox_mask(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hitbox_mask)
+
+
+static func get_hurtbox_layer(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hurtbox_layer)
+
+
+static func get_hurtbox_mask(team_id: int) -> int:
+    return as_mask(_get_cfg(team_id).hurtbox_mask)
+
+
+static func get_world_collidables_mask() -> int:
+    return as_mask(world_collidables)
+
+
+static func as_mask(layers: PackedInt32Array) -> int:
+    var mask := 0
+    for layer in layers:
+        mask |= 1 << (layer - 1)
+    return mask
 
 
 static func set_hitbox_collisions_for_team(proj: CollisionObject2D, team_id: int) -> void:

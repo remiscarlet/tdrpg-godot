@@ -1,13 +1,13 @@
 class_name TargetSensor2DComponent
 extends Area2D
 
-signal target_sensed(node: Node)
+signal target_sensed(node: Hurtbox2DComponent)
 
 @export var target_group: StringName = &"targetable"
 
 var sensor_radius: float
 var team_id: int
-var _candidates: Array[Node2D] = []
+var _candidates: Array[Hurtbox2DComponent] = []
 
 @onready var shape = $CollisionShape2D
 
@@ -31,27 +31,27 @@ func set_team_id(id: int) -> void:
     team_id = id
 
 
-func get_candidates() -> Array[Node2D]:
+func get_candidates() -> Array[Hurtbox2DComponent]:
     _prune_invalid()
     return _candidates
 
 
 func _on_area_entered(body: Node) -> void:
     print("Target Sensor detected: %s" % body)
-    var node2d := body as Node2D
-    if node2d == null:
+    var hurtbox := body as Hurtbox2DComponent
+    if hurtbox == null:
         return
     # if target_group != &"" and not node2d.is_in_group(target_group):
     #     return
-    _candidates.append(node2d)
-    target_sensed.emit(node2d)
+    _candidates.append(hurtbox)
+    target_sensed.emit(hurtbox)
 
 
 func _on_area_exited(body: Node) -> void:
-    var node2d := body as Node2D
-    if node2d == null:
+    var hurtbox := body as Hurtbox2DComponent
+    if hurtbox == null:
         return
-    _candidates.erase(node2d)
+    _candidates.erase(hurtbox)
 
 
 func _prune_invalid() -> void:
