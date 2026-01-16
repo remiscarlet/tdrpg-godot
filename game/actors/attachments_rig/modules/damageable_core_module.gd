@@ -44,9 +44,9 @@ func _install_ready(ctx: RigContext) -> bool:
     hurtbox.bind_health_component(health)
     PhysicsUtils.set_hurtbox_collisions_for_team(hurtbox, ctx.team_id)
 
-    # Centralize death handling:
-    if not health.died.is_connected(_on_died):
-        health.died.connect(_on_died.bind(ctx.actor))
+    var cb := Callable(self, "_on_died").bind(ctx.actor)
+    if not health.died.is_connected(cb):
+        health.died.connect(cb)
     return true
 
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cvmiin27bmp6u"]
 
 [ext_resource type="Script" uid="uid://c2x8tb2fy5ns6" path="res://scenes/turrets/default_turret/default_turret.gd" id="1_hyaxd"]
+[ext_resource type="Shape2D" uid="uid://db13twuxux2ls" path="res://scenes/turrets/default_turret/default_turret_shape.tres" id="2_1scsf"]
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="2_2atjr"]
 [ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_mptej"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_nlnkj"]
@@ -11,9 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dw0tshg2k2j2p" path="res://game/components/target_sensor_2d/target_sensor_2d_component.tscn" id="6_nlnkj"]
 [ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="10_nlnkj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tjdg3"]
-radius = 11.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_nlnkj"]
 radius = 100.0
 
@@ -22,7 +20,7 @@ script = ExtResource("1_hyaxd")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tjdg3")
+shape = ExtResource("2_1scsf")
 
 [node name="AttachmentsRig" parent="." instance=ExtResource("2_nlnkj")]
 
@@ -36,7 +34,6 @@ shape = SubResource("CircleShape2D_tjdg3")
 
 [node name="ShotDelayTimer" type="Timer" parent="AttachmentsRig/MiscRoot" index="0"]
 unique_name_in_owner = true
-autostart = true
 
 [node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("6_88fu5")

@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
         Input.get_action_strength(Inputs.MOVE_RIGHT) - Input.get_action_strength(Inputs.MOVE_LEFT),
         Input.get_action_strength(Inputs.MOVE_DOWN) - Input.get_action_strength(Inputs.MOVE_UP),
     )
-    body.desired_dir = d.normalized()
+    body.set_desired_dir(d.normalized())
 
 
 ## Use _unhandled_input for input events to allow other systems to take input priority, such as menu/UI/Canvas inputs

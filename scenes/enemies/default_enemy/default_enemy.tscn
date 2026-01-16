@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl636niefb2mo"]
+[gd_scene load_steps=10 format=3 uid="uid://bl636niefb2mo"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_v1h8l"]
 [ext_resource type="Script" uid="uid://beu50d24ud1v3" path="res://scenes/enemies/default_enemy/default_enemy.gd" id="2_ycnr1"]
 [ext_resource type="PackedScene" uid="uid://54x3racncsd4" path="res://game/components/melee_attack/melee_attack_component.tscn" id="3_k5pk7"]
+[ext_resource type="Shape2D" uid="uid://brdl2ewkx03gx" path="res://scenes/enemies/default_enemy/default_enemy_shape.tres" id="3_x6w07"]
 [ext_resource type="PackedScene" uid="uid://c5bcm3x6tlcwi" path="res://game/controllers/ai_wander_navigation/ai_wander_navigation_controller.tscn" id="3_ycnr1"]
 [ext_resource type="PackedScene" uid="uid://jm2q30vsnydh" path="res://scenes/objects/basic_sword/basic_sword.tscn" id="4_hq581"]
 [ext_resource type="SpriteFrames" uid="uid://2f5dtjtojaen" path="res://scenes/enemies/default_enemy/default_enemy_spriteframes.tres" id="5_nffph"]
@@ -12,6 +13,9 @@
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
 rotation = -0.00020307512
 script = ExtResource("2_ycnr1")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = ExtResource("3_x6w07")
 
 [node name="AIWanderNavigationController" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("3_ycnr1")]
 
@@ -27,17 +31,14 @@ sprite_frames = ExtResource("5_nffph")
 [node name="BasicSword" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("4_hq581")]
 rotation = -1.0569029
 
-[node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="2" instance=ExtResource("6_2qtr1")]
-
-[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent" index="0"]
-debug_color = Color(0, 0.6, 0.69803923, 0)
-
 [node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent" index="0"]
 shape = ExtResource("6_nffph")
 debug_color = Color(1, 0.31764707, 0.76862746, 0.5647059)
 
+[node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="3" instance=ExtResource("6_2qtr1")]
+
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword/AttachmentsRig"]
-[editable path="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvatswmxsu2m1"]
+[gd_scene load_steps=12 format=3 uid="uid://bvatswmxsu2m1"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_t7qrj"]
 [ext_resource type="SpriteFrames" uid="uid://beadl0aawfblw" path="res://scenes/automatons/default_automaton/default_automaton_spriteframes.tres" id="2_eyd6l"]
 [ext_resource type="Script" uid="uid://q2kpcyjx7c1m" path="res://scenes/automatons/default_automaton/default_automaton.gd" id="2_xkd1p"]
 [ext_resource type="PackedScene" uid="uid://54x3racncsd4" path="res://game/components/melee_attack/melee_attack_component.tscn" id="3_0xbrn"]
+[ext_resource type="Shape2D" uid="uid://d3qisuv6vhp6h" path="res://scenes/automatons/default_automaton/default_automaton_shape.tres" id="3_77n7h"]
 [ext_resource type="PackedScene" uid="uid://dlbaotn0an15v" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="3_hmxod"]
 [ext_resource type="PackedScene" uid="uid://jm2q30vsnydh" path="res://scenes/objects/basic_sword/basic_sword.tscn" id="5_caqvp"]
 [ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="5_mel6l"]
@@ -13,6 +14,9 @@
 
 [node name="DefaultAutomaton" instance=ExtResource("1_t7qrj")]
 script = ExtResource("2_xkd1p")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = ExtResource("3_77n7h")
 
 [node name="AIHaulerController" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("3_hmxod")]
 

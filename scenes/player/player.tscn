@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://vamxhibttxff"]
+[gd_scene load_steps=12 format=3 uid="uid://vamxhibttxff"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://bmxg3vvppoe5n" path="res://scenes/player/player.gd" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://jbv6vlititdl" path="res://scenes/player/turret_placer/turret_placer.tscn" id="3_i3pqv"]
+[ext_resource type="Shape2D" uid="uid://b3uqnhb4doph2" path="res://scenes/player/player_shape.tres" id="3_je7p5"]
 [ext_resource type="SpriteFrames" uid="uid://hg0ttkihoayq" path="res://scenes/player/player_spriteframe.tres" id="6_75vfm"]
 [ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="10_h17s1"]
 [ext_resource type="PackedScene" uid="uid://dj848oxifs0a3" path="res://game/controllers/player_input/player_input_controller.tscn" id="12_007i1"]
@@ -14,6 +15,9 @@
 [node name="Player" instance=ExtResource("1_dovo2")]
 collision_mask = 1
 script = ExtResource("2_gmlin")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = ExtResource("3_je7p5")
 
 [node name="AimFireController" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("3_75vfm")]
 

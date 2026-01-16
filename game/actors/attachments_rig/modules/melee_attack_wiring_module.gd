@@ -7,22 +7,34 @@ func id() -> StringName:
 
 
 func stages() -> int:
-    return ModuleHost.Stage.POST_READY
+    return ModuleHost.Stage.POST_READY | ModuleHost.Stage.PRE_TREE
 
 
 func is_applicable(ctx: RigContext) -> bool:
-    return ctx.rig != null and ctx.level_container != null and ctx.rig.melee_attack() != null
+    return (
+        ctx.rig != null
+        and ctx.level_container != null
+        and ctx.rig.melee_attack() != null
+        and ctx.rig.target_sensor() != null
+    )
 
 
 func install(ctx: RigContext, stage: int) -> bool:
     print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
 
     match stage:
+        ModuleHost.Stage.PRE_TREE:
+            return _install_pre_tree(ctx)
         ModuleHost.Stage.POST_READY:
             return _install_post_ready(ctx)
         _:
             return true
 
+func _install_pre_tree(ctx: RigContext) -> bool:
+    var target_sensor: TargetSensor2DComponent = ctx.rig.target_sensor()
+    target_sensor.set_team_id(ctx.team_id)
+
+    return true
 
 func _install_post_ready(ctx: RigContext) -> bool:
     var target_sensor: TargetSensor2DComponent = ctx.rig.target_sensor()

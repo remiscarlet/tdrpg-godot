@@ -23,7 +23,7 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY1_HITBOX]), # Hitbox
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
                 PackedInt32Array([Layers.ENEMY1_HURTBOX]), # Hurtbox
-                PackedInt32Array([Layers.ENEMY2_HITBOX, Layers.PLAYER_HITBOX, Layers.AREA_SENSOR]),
+                PackedInt32Array([Layers.ENEMY2_HITBOX, Layers.PLAYER_HITBOX]),
                 PackedInt32Array([Layers.ENEMY1_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
                 PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
@@ -35,7 +35,7 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY2_HITBOX]), # Hitbox
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
                 PackedInt32Array([Layers.ENEMY2_HURTBOX]), # Hurtbox
-                PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.PLAYER_HITBOX, Layers.AREA_SENSOR]),
+                PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.PLAYER_HITBOX]),
                 PackedInt32Array([Layers.ENEMY2_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
                 PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
@@ -117,8 +117,10 @@ static func set_target_detector_collisions_for_team(
     var cfg := _get_cfg(team_id)
     for layer in cfg.detector_layer:
         detector.set_collision_layer_value(layer, true)
+    # print("Pre detector mask: %s" % String.num_int64(detector.collision_mask, 2))
     for layer in cfg.detector_mask:
         detector.set_collision_mask_value(layer, true)
+    # print("Post detector mask: %s (%s)" % [String.num_int64(detector.collision_mask, 2), detector])
 
 
 class TeamPhysics:
