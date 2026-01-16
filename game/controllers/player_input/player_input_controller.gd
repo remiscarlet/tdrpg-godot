@@ -1,3 +1,4 @@
+class_name PlayerInputController
 extends Node2D
 
 var delay_config: Dictionary[StringName, Dictionary] = {

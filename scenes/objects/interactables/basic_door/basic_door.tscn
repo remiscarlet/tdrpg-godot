@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4eto68frg146"]
+[gd_scene load_steps=6 format=3 uid="uid://d4eto68frg146"]
 
 [ext_resource type="PackedScene" uid="uid://duynbju0ouwd6" path="res://game/actors/interactable/interactable_base.tscn" id="1_27x01"]
 [ext_resource type="Script" uid="uid://d0qsy21wwjd0o" path="res://scenes/objects/interactables/basic_door/basic_door.gd" id="2_1r7k8"]
 [ext_resource type="Shape2D" uid="uid://dneacsvhi352p" path="res://scenes/objects/interactables/basic_door/basic_door_interaction_collisionshape.tres" id="3_2g41l"]
-[ext_resource type="SpriteFrames" uid="uid://dfp3h6lr176vn" path="res://scenes/objects/interactables/basic_door/basic_door_spriteframes.tres" id="3_27x01"]
+[ext_resource type="SpriteFrames" uid="uid://dfp3h6lr176vn" path="res://scenes/objects/interactables/basic_door/basic_door_spriteframes.tres" id="4_2g41l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27x01"]
+size = Vector2(16, 48)
 
 [node name="BasicDoor" instance=ExtResource("1_27x01")]
 script = ExtResource("2_1r7k8")
@@ -13,9 +16,12 @@ door_id = &""
 [node name="InteractionShape" parent="." index="0"]
 shape = ExtResource("3_2g41l")
 
-[node name="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
-sprite_frames = ExtResource("3_27x01")
-animation = &"open"
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+sprite_frames = ExtResource("4_2g41l")
+animation = &"closed"
+
+[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_27x01")
 
 [node name="NavigationLink2D" type="NavigationLink2D" parent="." index="2"]
 position = Vector2(6, 0)

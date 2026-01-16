@@ -32,5 +32,5 @@ func _push_config() -> void:
     print("Readying MeleeAttackComponent")
     print(target_sensor_component)
     print(sword)
-    target_sensor_component.set_sensor_radius(sword.swing_range)
+    target_sensor_component.set_target_sensor_radius(sword.swing_range)
     target_sensor_component.target_sensed.connect(sword.start_swing)

@@ -1,19 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvmiin27bmp6u"]
+[gd_scene load_steps=13 format=3 uid="uid://cvmiin27bmp6u"]
 
 [ext_resource type="Script" uid="uid://c2x8tb2fy5ns6" path="res://scenes/turrets/default_turret/default_turret.gd" id="1_hyaxd"]
 [ext_resource type="PackedScene" uid="uid://t4u3jmm2klqp" path="res://game/controllers/aim_fire/aim_fire_controller.tscn" id="2_2atjr"]
 [ext_resource type="PackedScene" uid="uid://dudd2rlcy4ism" path="res://game/components/aim_to_target_2d/aim_to_target_2d_component.tscn" id="2_mptej"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_nlnkj"]
-[ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/art/Default-Turret.png" id="2_x3o2a"]
 [ext_resource type="PackedScene" uid="uid://neqgf0gyfohn" path="res://game/components/fire_weapon/fire_weapon_component.tscn" id="3_88fu5"]
 [ext_resource type="PackedScene" uid="uid://br3ttsbwt1c1q" path="res://game/components/health/health_component.tscn" id="3_v27rg"]
 [ext_resource type="PackedScene" uid="uid://df76pjkkl2kqp" path="res://game/components/hurtbox_2d/hurtbox_2d_component.tscn" id="4_2atjr"]
+[ext_resource type="SpriteFrames" uid="uid://dvvucf87potpv" path="res://scenes/turrets/default_turret/default_turret_spriteframe.tres" id="6_88fu5"]
 [ext_resource type="PackedScene" uid="uid://dw0tshg2k2j2p" path="res://game/components/target_sensor_2d/target_sensor_2d_component.tscn" id="6_nlnkj"]
+[ext_resource type="PackedScene" uid="uid://bt3v4ydc3rg5t" path="res://game/components/interactable_detector/interactable_detector_component.tscn" id="10_nlnkj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjdg3"]
 radius = 11.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_deqxc"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlnkj"]
+radius = 100.0
 
 [node name="DefaultTurret" type="Area2D" groups=["combatants"]]
 script = ExtResource("1_hyaxd")
@@ -32,22 +34,22 @@ shape = SubResource("CircleShape2D_tjdg3")
 
 [node name="HealthComponent" parent="AttachmentsRig/ComponentsRoot" index="2" instance=ExtResource("3_v27rg")]
 
-[node name="OverheadIndicatorAnchor" type="Marker2D" parent="AttachmentsRig/ViewsRoot" index="0"]
-position = Vector2(0, -16)
-
 [node name="ShotDelayTimer" type="Timer" parent="AttachmentsRig/MiscRoot" index="0"]
+unique_name_in_owner = true
 autostart = true
 
-[node name="BodySprite" type="Sprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
-texture = ExtResource("2_x3o2a")
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+sprite_frames = ExtResource("6_88fu5")
 
 [node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="0" instance=ExtResource("6_nlnkj")]
 
 [node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent" index="0"]
-shape = SubResource("CircleShape2D_deqxc")
+shape = SubResource("CircleShape2D_nlnkj")
 
 [node name="Hurtbox2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="1" instance=ExtResource("4_2atjr")]
 
+[node name="InteractableDetectorComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="2" instance=ExtResource("10_nlnkj")]
+
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/TargetSensor2DComponent"]
-[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/InteractableDetectorComponent"]

@@ -7,5 +7,7 @@ script = ExtResource("1_w43cl")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
+debug_enabled = true
+debug_path_custom_color = Color(1, 1, 0, 1)
 
 [node name="WanderTimer" type="Timer" parent="."]

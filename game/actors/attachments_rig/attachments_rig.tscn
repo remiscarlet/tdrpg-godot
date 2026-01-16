@@ -1,6 +1,12 @@
-[gd_scene format=3 uid="uid://bcwwj6eyunsvc"]
+[gd_scene load_steps=4 format=3 uid="uid://bcwwj6eyunsvc"]
+
+[ext_resource type="Script" uid="uid://dptl33qh6cmcw" path="res://game/actors/attachments_rig/attachments_rig.gd" id="1_ssdnv"]
+[ext_resource type="Script" uid="uid://xn3r6oifga24" path="res://game/actors/attachments_rig/module_host.gd" id="2_lwtog"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hbv0b"]
 
 [node name="AttachmentsRig" type="Node2D"]
+script = ExtResource("1_ssdnv")
 
 [node name="ControllersRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -14,6 +20,9 @@ editor_description = "Handles state/data/logic (Components)"
 unique_name_in_owner = true
 editor_description = "For holding non-rotating rendered views, such as health bars"
 
+[node name="OverheadIndicatorAnchor" type="Marker2D" parent="ViewsRoot"]
+position = Vector2(0, -22)
+
 [node name="MiscRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -23,5 +32,12 @@ editor_description = "Anything under here receives any rotational transforms, wh
 
 [node name="Visuals" type="Node2D" parent="FacingRoot"]
 
+[node name="BodySprite" type="AnimatedSprite2D" parent="FacingRoot/Visuals"]
+sprite_frames = SubResource("SpriteFrames_hbv0b")
+
 [node name="Sensors" type="Node2D" parent="FacingRoot"]
 editor_description = "For holding components that should receive parent rotations"
+
+[node name="ModuleHost" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_lwtog")

@@ -1,0 +1,36 @@
+class_name InventoryWiringModule
+extends FeatureModuleBase
+
+
+func id() -> StringName:
+    return &"inventory_wiring"
+
+
+func stages() -> int:
+    return ModuleHost.Stage.READY | ModuleHost.Stage.PRE_TREE
+
+
+func is_applicable(ctx: RigContext) -> bool:
+    return ctx.rig != null and ctx.rig.inventory() != null and ctx.rig.pickupbox() != null
+
+
+func install(ctx: RigContext, stage: int) -> bool:
+    print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
+
+    var inv := ctx.rig.inventory()
+    var pb := ctx.rig.pickupbox()
+
+    if stage == ModuleHost.Stage.PRE_TREE:
+        print("Configuring pickupsensor?")
+        if ctx.team_id >= 0:
+            var sensorbox := pb.get_node("PickupSensorArea")
+            PhysicsUtils.set_pickupbox_collisions_for_team(sensorbox, ctx.team_id)
+            print(sensorbox, ctx.team_id)
+        return true
+
+    # READY
+    var cap := 0
+    if ctx.definition != null and "inventory_capacity" in ctx.definition:
+        cap = ctx.definition.inventory_capacity
+    inv.configure(pb, cap)
+    return true

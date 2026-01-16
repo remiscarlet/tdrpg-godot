@@ -7,7 +7,7 @@
 [node name="ResourceCollector" instance=ExtResource("1_r8i6y")]
 script = ExtResource("2_e70b3")
 
-[node name="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("3_e70b3")
 
 [editable path="AttachmentsRig"]

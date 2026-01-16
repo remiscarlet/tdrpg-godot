@@ -8,17 +8,17 @@ var color: Color
 
 
 func _ready() -> void:
-    _activate_if_possible()
+    _activate_if_ready()
 
 
 func configure(origin: Vector2, icon_color: Color) -> void:
     global_position = origin
     color = icon_color
     configured = true
-    _activate_if_possible()
+    _activate_if_ready()
 
 
-func _activate_if_possible():
+func _activate_if_ready():
     if not configured:
         return
     if shape == null:

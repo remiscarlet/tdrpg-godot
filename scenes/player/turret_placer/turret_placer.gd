@@ -1,6 +1,6 @@
 extends Node2D
 
-signal place_turret_requested(world_pos: Vector2, turret_type: StringName)
+signal place_turret_requested(ctx: TurretSpawnContext)
 
 var was_pressed_last_iter: bool
 var pressed_duration: float
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 
 
 func configure_turret() -> void:
-    # Allows modifying the "settings" at which request_build_turret() will atetmpt to build
+    # Allows modifying the "settings" at which request_build_turret() will attempt to build
     # a turret with. Eg, turret type, modifiers, etc
     pass
 
@@ -76,4 +76,4 @@ func select_turret() -> StringName:
 func request_build_turret() -> void:
     var world_pos = global_position
 
-    place_turret_requested.emit(world_pos, select_turret())
+    place_turret_requested.emit(TurretSpawnContext.new(world_pos, select_turret()))

@@ -32,7 +32,7 @@ func _ready() -> void:
             continue
         per_frame_rebakes.append(renderer)
 
-    _activate_if_possible()
+    _activate_if_ready()
 
 
 func _process(_delta: float) -> void:
@@ -46,7 +46,7 @@ func configure(nav: Node, player: Player, layer: TileMapLayer) -> void:
     tilemap_layer = layer
 
     _init_camera()
-    _activate_if_possible()
+    _activate_if_ready()
 
 
 func rebake() -> void:
@@ -56,7 +56,7 @@ func rebake() -> void:
     call_deferred("_bake_all_now")
 
 
-func _activate_if_possible() -> void:
+func _activate_if_ready() -> void:
     if nav_root == null:
         return
     if player_root == null:

@@ -142,6 +142,7 @@ func _load_players(dir_path: String) -> Dictionary[StringName, PlayerDefinition]
         out[id] = base[id] as PlayerDefinition
     return out
 
+
 func _load_ranged_attacks(dir_path: String) -> Dictionary[StringName, RangedAttackDefinition]:
     var base := _load_dir(dir_path, RangedAttackDefinition)
     var out: Dictionary[StringName, RangedAttackDefinition] = { }

@@ -3,6 +3,7 @@ extends Node2D
 
 var ranged_attack_system: RangedAttackSystem
 
+
 func fire(type: StringName, direction: Vector2) -> bool:
     var ctx = RangedAttackSpawnContext.new(type, self, global_position, CombatantTeam.PLAYER)
     ctx.direction = direction

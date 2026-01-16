@@ -3,8 +3,6 @@ extends Area2D
 
 signal target_sensed(node: Hurtbox2DComponent)
 
-@export var target_group: StringName = &"targetable"
-
 var sensor_radius: float
 var team_id: int
 var _candidates: Array[Hurtbox2DComponent] = []
@@ -23,7 +21,7 @@ func _ready() -> void:
     PhysicsUtils.set_target_detector_collisions_for_team(self, team_id)
 
 
-func set_sensor_radius(radius: float) -> void:
+func set_target_sensor_radius(radius: float) -> void:
     sensor_radius = radius
 
 
@@ -41,8 +39,6 @@ func _on_area_entered(body: Node) -> void:
     var hurtbox := body as Hurtbox2DComponent
     if hurtbox == null:
         return
-    # if target_group != &"" and not node2d.is_in_group(target_group):
-    #     return
     _candidates.append(hurtbox)
     target_sensed.emit(hurtbox)
 

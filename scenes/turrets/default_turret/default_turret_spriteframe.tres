@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dvvucf87potpv"]
+
+[ext_resource type="Texture2D" uid="uid://5cnt6ybcik3j" path="res://assets/art/Default-Turret.png" id="1_p4rxu"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p4rxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

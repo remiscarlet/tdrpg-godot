@@ -15,6 +15,8 @@ var map_content: MapBase
 @onready var turret_system: TurretSystem = $TurretSystem
 @onready var ranged_attack_system: RangedAttackSystem = $RangedAttackSystem
 @onready var combatant_system: CombatantSystem = $CombatantSystem
+@onready var hauler_task_system: HaulerTaskSystem = $HaulerTaskSystem
+@onready var loot_system: LootSystem = $LootSystem
 @onready var map_slot: Node2D = $MapSlot
 @onready var camera_rig: Node2D = $CameraRig
 
@@ -45,6 +47,18 @@ func get_active_map() -> MapBase:
 
 func get_player() -> Player:
     return player
+
+
+func get_loot_system() -> LootSystem:
+    return loot_system
+
+
+func get_ranged_attack_system() -> RangedAttackSystem:
+    return ranged_attack_system
+
+
+func get_hauler_task_system() -> HaulerTaskSystem:
+    return hauler_task_system
 
 
 func bind_run_state(state: RunState) -> void:
@@ -112,6 +126,4 @@ func _spawn_player(spawn_pos: Vector2) -> void:
     player = await combatant_system.spawn(ctx) as Player
 
     var placer := player.get_node("AttachmentsRig/%ComponentsRoot/TurretPlacerComponent")
-    placer.place_turret_requested.connect(
-        func(pos, turret_type): turret_system.try_build_turret(player, pos, turret_type)
-    )
+    placer.place_turret_requested.connect(turret_system.try_build_turret)

@@ -6,19 +6,20 @@ var health: HealthComponent
 
 
 func _ready() -> void:
-    _activate_if_possible()
+    _activate_if_ready()
 
 
 func bind_root(node: Node2D) -> void:
     root = node
-    _activate_if_possible()
+    _activate_if_ready()
+
 
 func bind_health_component(component: HealthComponent) -> void:
     health = component
-    _activate_if_possible()
+    _activate_if_ready()
 
 
-func _activate_if_possible() -> void:
+func _activate_if_ready() -> void:
     if root == null:
         return
     if health == null:

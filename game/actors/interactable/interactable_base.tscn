@@ -1,25 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://duynbju0ouwd6"]
+[gd_scene load_steps=5 format=3 uid="uid://duynbju0ouwd6"]
 
 [ext_resource type="Script" uid="uid://cvaur4thyvh6j" path="res://game/actors/interactable/interactable_base.gd" id="1_37qbf"]
 [ext_resource type="PackedScene" uid="uid://bcwwj6eyunsvc" path="res://game/actors/attachments_rig/attachments_rig.tscn" id="2_pbbv2"]
-[ext_resource type="Texture2D" uid="uid://cer7t7e0qff0o" path="res://assets/art/texture_missing.png" id="3_p4k88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yga2l"]
 radius = 14.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_37qbf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_p4k88")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37qbf"]
-size = Vector2(16, 48)
+size = Vector2(32, 32)
 
 [node name="InteractableBase" type="Area2D" groups=["interactables"]]
 collision_layer = 16
@@ -30,9 +18,6 @@ script = ExtResource("1_37qbf")
 shape = SubResource("CircleShape2D_yga2l")
 
 [node name="AttachmentsRig" parent="." instance=ExtResource("2_pbbv2")]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
-sprite_frames = SubResource("SpriteFrames_37qbf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="AttachmentsRig/FacingRoot/Sensors" index="0"]
 editor_description = "CollisionShape2D is DISABLED BY DEFAULT"

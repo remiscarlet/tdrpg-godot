@@ -7,7 +7,7 @@
 [node name="AutomatonFactory" instance=ExtResource("1_0sbqa")]
 script = ExtResource("2_y5pwy")
 
-[node name="AnimatedSprite2D" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
+[node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("3_y5pwy")
 
 [editable path="AttachmentsRig"]

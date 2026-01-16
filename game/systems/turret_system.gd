@@ -6,13 +6,24 @@ extends Node
 
 
 # Signal handler pattern
-func try_build_turret(_player: Node, world_pos: Vector2, turret_type: StringName) -> void:
+func try_build_turret(ctx: TurretSpawnContext) -> DefaultTurret:
     print("Trying to build turret")
-    print(turret_type)
+    var def := DefinitionDB.get_turret(ctx.turret_id)
 
-    var def := DefinitionDB.get_turret(turret_type)
-    var turret: Node = def.scene.instantiate()
+    var node = def.scene.instantiate()
+    var turret := node as DefaultTurret
+    if turret == null:
+        push_error("Turret scene does not inherit DefaultTurret.")
+        return null
 
-    turret.configure_pre_ready(level_container, def)
+    var rig := turret.get_node("AttachmentsRig") as AttachmentsRig
+    rig.module_host().configure_pre_tree(def, def.team_id, ctx)
+    turret.configure_pre_ready(ctx, def)
+
     turret_container.add_child(turret)
-    turret.configure_post_ready(world_pos)
+    if not turret.is_node_ready():
+        await turret.ready
+
+    rig.module_host().configure_post_ready(level_container)
+
+    return turret

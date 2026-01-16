@@ -2,38 +2,42 @@ class_name AimFireController
 extends Node2D
 
 var last_dir = Vector2.ZERO
+var target_provider: TargetBaseProvider
+var aim_component: AimToTarget2DComponent
+var fire_component: FireWeaponComponent
 
-@onready var target_provider: TargetBaseProvider = MouseTargetProvider.new()
 @onready var root: Node2D = get_parent().get_parent().get_parent() # Root/AttachmentsRoot/Controllers
-@onready var aim_component: AimToTarget2DComponent
-@onready var fire_component: FireWeaponComponent
 
 
-static func wire_aim_fire_controller(actor: Node) -> void:
-    # Kinda ugly that this helper is in here, but this is called from both CombatantBase and DefaultTurret
-    var _rig = actor.get_node("AttachmentsRig")
-    var _aim_component = _rig.get_node("%ComponentsRoot/AimToTarget2DComponent")
-    var _fire_component = _rig.get_node("%ComponentsRoot/FireWeaponComponent")
+func _enter_tree() -> void:
+    set_process(false)
+    set_physics_process(false)
 
-    var aim_fire_controller = _rig.get_node("%ControllersRoot/AimFireController")
-    aim_fire_controller.bind_aim_component(_aim_component)
-    aim_fire_controller.bind_fire_component(_fire_component)
+
+func _ready() -> void:
+    _activate_if_ready()
 
 
 func _process(_delta: float) -> void:
     aim()
 
 
-func bind_aim_component(component: AimToTarget2DComponent) -> void:
+func bind_aim_to_target_component(component: AimToTarget2DComponent) -> void:
     aim_component = component
 
+    _activate_if_ready()
 
-func bind_fire_component(component: FireWeaponComponent) -> void:
+
+func bind_fire_weapon_component(component: FireWeaponComponent) -> void:
     fire_component = component
+
+    _activate_if_ready()
 
 
 func bind_target_provider(provider: TargetBaseProvider) -> void:
     target_provider = provider
+
+    _activate_if_ready()
 
 
 func aim() -> void:
@@ -60,3 +64,15 @@ func _get_target() -> AimingTargetResult:
 
     last_dir = dir
     return AimingTargetResult.new(true, dir)
+
+
+func _activate_if_ready() -> void:
+    if aim_component == null:
+        return
+    if fire_component == null:
+        return
+    if target_provider == null:
+        return
+
+    set_process(true)
+    set_physics_process(true)

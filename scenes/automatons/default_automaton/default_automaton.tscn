@@ -1,17 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvatswmxsu2m1"]
+[gd_scene load_steps=11 format=3 uid="uid://bvatswmxsu2m1"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_t7qrj"]
 [ext_resource type="SpriteFrames" uid="uid://beadl0aawfblw" path="res://scenes/automatons/default_automaton/default_automaton_spriteframes.tres" id="2_eyd6l"]
 [ext_resource type="Script" uid="uid://q2kpcyjx7c1m" path="res://scenes/automatons/default_automaton/default_automaton.gd" id="2_xkd1p"]
 [ext_resource type="PackedScene" uid="uid://54x3racncsd4" path="res://game/components/melee_attack/melee_attack_component.tscn" id="3_0xbrn"]
+[ext_resource type="PackedScene" uid="uid://dlbaotn0an15v" path="res://game/controllers/ai_hauler/ai_hauler_controller.tscn" id="3_hmxod"]
 [ext_resource type="PackedScene" uid="uid://jm2q30vsnydh" path="res://scenes/objects/basic_sword/basic_sword.tscn" id="5_caqvp"]
+[ext_resource type="PackedScene" uid="uid://dqus2cwven8je" path="res://game/components/inventory/inventory_component.tscn" id="5_mel6l"]
 [ext_resource type="Shape2D" uid="uid://b37gt43qq5i8g" path="res://scenes/automatons/default_automaton/default_automaton_hurtbox_shape.tres" id="5_xbo12"]
 [ext_resource type="PackedScene" uid="uid://dw0tshg2k2j2p" path="res://game/components/target_sensor_2d/target_sensor_2d_component.tscn" id="6_caqvp"]
+[ext_resource type="PackedScene" uid="uid://hacodvxeflyq" path="res://game/components/pickupbox/pickupbox_component.tscn" id="10_77n7h"]
 
 [node name="DefaultAutomaton" instance=ExtResource("1_t7qrj")]
 script = ExtResource("2_xkd1p")
 
-[node name="MeleeAttackComponent" parent="AttachmentsRig/ComponentsRoot" index="5" instance=ExtResource("3_0xbrn")]
+[node name="AIHaulerController" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("3_hmxod")]
+
+[node name="MeleeAttackComponent" parent="AttachmentsRig/ComponentsRoot" index="2" instance=ExtResource("3_0xbrn")]
+
+[node name="InventoryComponent" parent="AttachmentsRig/ComponentsRoot" index="3" instance=ExtResource("5_mel6l")]
 
 [node name="BodySprite" parent="AttachmentsRig/FacingRoot/Visuals" index="0"]
 sprite_frames = ExtResource("2_eyd6l")
@@ -19,16 +26,13 @@ sprite_frames = ExtResource("2_eyd6l")
 [node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent" index="0"]
 shape = ExtResource("5_xbo12")
 
-[node name="CollisionShape2D" parent="AttachmentsRig/FacingRoot/Sensors/PickupboxComponent/PickupSensorArea" index="0"]
-debug_color = Color(0.78338194, 0.119122185, 0.99999994, 0.41960785)
+[node name="BasicSword" parent="AttachmentsRig/FacingRoot/Sensors" index="2" instance=ExtResource("5_caqvp")]
 
-[node name="BasicSword" parent="AttachmentsRig/FacingRoot/Sensors" index="3" instance=ExtResource("5_caqvp")]
+[node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="3" instance=ExtResource("6_caqvp")]
 
-[node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="4" instance=ExtResource("6_caqvp")]
+[node name="PickupboxComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="4" instance=ExtResource("10_77n7h")]
 
 [editable path="AttachmentsRig"]
-[editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
 [editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
-[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
-[editable path="AttachmentsRig/FacingRoot/Sensors/PickupboxComponent"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/InteractableDetectorComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
