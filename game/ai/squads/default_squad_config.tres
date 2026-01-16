@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SquadConfig" load_steps=2 format=3 uid="uid://c40sj6rim7kry"]
+
+[ext_resource type="Script" uid="uid://d3bwvrebduyn5" path="res://game/ai/squads/squad_config.gd" id="1_o4iar"]
+
+[resource]
+script = ExtResource("1_o4iar")
+metadata/_custom_type_script = "uid://d3bwvrebduyn5"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=13 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
 [ext_resource type="Script" uid="uid://cowjmnvp7ute" path="res://game/systems/hauler_task_system.gd" id="6_ncacs"]
 [ext_resource type="Script" uid="uid://bc01fxnb52vjd" path="res://game/ai/squads/squad_manager.gd" id="7_7k2i2"]
+[ext_resource type="Resource" uid="uid://c40sj6rim7kry" path="res://game/ai/squads/default_squad_config.tres" id="8_4kdn2"]
 [ext_resource type="Script" uid="uid://daoikxcwmp4at" path="res://game/ai/squads/squad_spawn_manager.gd" id="8_pdn5p"]
 [ext_resource type="PackedScene" uid="uid://bl636niefb2mo" path="res://scenes/enemies/default_enemy/default_enemy.tscn" id="9_gd8f6"]
 [ext_resource type="Script" uid="uid://cxoi7qgyeg7h6" path="res://game/ai/squads/squad_debug_draw.gd" id="9_q1he2"]
@@ -53,6 +54,11 @@ script = ExtResource("6_ncacs")
 
 [node name="SquadManager" type="Node2D" parent="SquadSystem"]
 script = ExtResource("7_7k2i2")
+default_squad_config = ExtResource("8_4kdn2")
+
+[node name="SquadDirectiveRandTimer" type="Timer" parent="SquadSystem/SquadManager"]
+wait_time = 5.0
+autostart = true
 
 [node name="SquadSpawnManager" type="Node" parent="SquadSystem" node_paths=PackedStringArray("combatant_system")]
 script = ExtResource("8_pdn5p")

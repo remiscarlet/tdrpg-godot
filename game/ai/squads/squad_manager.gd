@@ -5,18 +5,29 @@ signal squad_created(squad_id: int)
 signal squad_disbanded(squad_id: int)
 signal squad_slot_targets_updated(squad_id: int, targets: Dictionary) # Node2D -> Vector2
 
+@export var default_squad_config: SquadConfig
 @export var auto_assign_member_targets: bool = false
 @export var project_targets_to_navmesh: bool = true
-@export var nav_layers_default: int = 1
 
 var _nav_map: RID
 var _next_squad_id: int = 1
 var _squads: Dictionary = { } # int -> Squad
 
+@onready var directive_randomization_timer: Timer = $SquadDirectiveRandTimer
+
 
 func _ready() -> void:
     # Default navigation map RID comes from World2D.
     _nav_map = get_world_2d().get_navigation_map()
+
+    directive_randomization_timer.timeout.connect(_on_directive_rand_timer_timeout)
+
+
+func _process(_delta: float) -> void:
+    for squad_id in _squads.keys():
+        var squad: Squad = _squads.get(squad_id)
+        if squad.is_empty():
+            disband_squad(squad_id)
 
 
 func _physics_process(delta: float) -> void:
@@ -24,8 +35,7 @@ func _physics_process(delta: float) -> void:
     var map_ready := NavigationServer2D.map_get_iteration_id(_nav_map) > 0
 
     for squad_id in _squads.keys():
-        var s: Squad = _squads[squad_id]
-        s.nav_layers = nav_layers_default
+        var s: Squad = _squads.get(squad_id)
         s.tick(delta, _nav_map)
 
         var targets := _compute_slot_targets(s, map_ready)
@@ -39,7 +49,7 @@ func create_squad(team_id: int, anchor_position: Vector2, desired_count: int) ->
     var id := _next_squad_id
     _next_squad_id += 1
 
-    var s := Squad.new(id, team_id, anchor_position, desired_count)
+    var s := Squad.new(default_squad_config, id, team_id, anchor_position, desired_count)
     _squads[id] = s
     squad_created.emit(id)
     return id
@@ -78,6 +88,7 @@ func remove_member_from_squad(squad_id: int, member: Node2D) -> void:
 
 
 func set_squad_hold(squad_id: int, at: Vector2) -> void:
+    print("Setting squad (%s) hold at %s" % [squad_id, at])
     var s := get_squad(squad_id)
     if s == null:
         return
@@ -85,6 +96,7 @@ func set_squad_hold(squad_id: int, at: Vector2) -> void:
 
 
 func set_squad_move_to(squad_id: int, destination: Vector2) -> void:
+    print("Setting squad (%s) move to %s" % [squad_id, destination])
     var s := get_squad(squad_id)
     if s == null:
         return
@@ -92,6 +104,7 @@ func set_squad_move_to(squad_id: int, destination: Vector2) -> void:
 
 
 func set_squad_patrol(squad_id: int, points: PackedVector2Array, loop: bool = true) -> void:
+    print("Setting squad (%s) patrol along %s (Loop: %s)" % [squad_id, points, loop])
     var s := get_squad(squad_id)
     if s == null:
         return
@@ -115,7 +128,7 @@ func _apply_targets_to_members(targets: Dictionary) -> void:
     # Optional convenience for early prototypes.
     # Your actual member controller can consume these however you like.
     for m in targets.keys():
-        var pos: Vector2 = targets[m]
+        var pos: Vector2 = targets.get(m)
         if not is_instance_valid(m):
             continue
 
@@ -123,3 +136,21 @@ func _apply_targets_to_members(targets: Dictionary) -> void:
             m.call("set_squad_slot_target", pos)
         elif "squad_slot_target" in m:
             m.set("squad_slot_target", pos)
+
+
+func _on_directive_rand_timer_timeout() -> void:
+    for squad_id in _squads.keys():
+        var squad: Squad = get_squad(squad_id)
+        var member: Node2D = squad.get_any_member()
+        var nav_rid := member.get_world_2d().get_navigation_map()
+
+        var rand := RandomNumberGenerator.new().randi_range(1, 3)
+        match rand:
+            1:
+                set_squad_hold(squad_id, NavUtils.get_some_random_reachable_point(nav_rid, squad.rt.anchor_position))
+            2:
+                set_squad_move_to(squad_id, NavUtils.get_some_random_reachable_point(nav_rid, squad.rt.anchor_position))
+            3:
+                set_squad_patrol(squad_id, NavUtils.get_some_random_path(nav_rid, squad.rt.anchor_position), true)
+            _:
+                pass

@@ -2,20 +2,18 @@ class_name SquadSpawnManager
 extends Node
 
 @export var squad_manager_path: NodePath
-
 @export var combatant_system: CombatantSystem
 @export var enemy_member_scene: PackedScene
 @export var spawn_markers_group: StringName = Groups.ENEMY2_SPAWNS
-
 @export_range(0.1, 60.0, 0.1) var spawn_interval_sec: float = 4.0
 @export var squad_size: int = 4
-@export var team_id: int = 1
+@export var team_id: int = CombatantTeam.MUTANT
 @export var max_squads_alive: int = 8
-
 @export var spawn_enabled: bool = true
 @export var spawn_scatter_radius: float = 14.0
 
 var _timer: Timer
+
 
 func _ready() -> void:
     _timer = Timer.new()
@@ -24,6 +22,7 @@ func _ready() -> void:
     _timer.timeout.connect(_on_timeout)
     add_child(_timer)
     _timer.start()
+
 
 func _on_timeout() -> void:
     if not spawn_enabled:

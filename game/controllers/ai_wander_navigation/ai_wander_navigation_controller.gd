@@ -43,39 +43,8 @@ func _on_WanderTimer_timeout() -> void:
 
 
 func _pick_new_target() -> void:
-    var target := _get_some_random_reachable_point()
+    var nav_rid := get_world_2d().get_navigation_map()
+    var target := NavUtils.get_some_random_reachable_point(nav_rid, body.global_position, wander_tries, wander_radius)
+
     agent.target_position = target
     timer.start(randf_range(wander_seconds_min, wander_seconds_max))
-
-
-func _get_some_random_reachable_point() -> Vector2:
-    var map_rid: RID = get_world_2d().get_navigation_map()
-
-    var origin := NavigationServer2D.map_get_closest_point(map_rid, body.global_position)
-
-    for i in range(wander_tries):
-        # Random point in a disk around origin (uniform-ish).
-        var angle := _rng.randf_range(0.0, TAU)
-        var radius := sqrt(_rng.randf()) * wander_radius
-        var candidate := origin + Vector2(radius, 0.0).rotated(angle)
-
-        # Snap candidate onto the nav surface.
-        candidate = NavigationServer2D.map_get_closest_point(map_rid, candidate)
-
-        # Ask server for a path to prove it’s reachable.
-        var path := (
-            NavigationServer2D.map_get_path(
-                map_rid,
-                origin,
-                candidate,
-                true,
-                navigation_layers, # optimize  # only regions in these nav layers
-            )
-        )
-
-        if path.size() >= 2:
-            # Use the *final* point in the returned path (it’s guaranteed to be on the nav surface).
-            return path[path.size() - 1]
-
-    # Fallback: don’t move.
-    return origin

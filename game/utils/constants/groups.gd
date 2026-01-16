@@ -9,7 +9,6 @@ const INTERACTABLES := &"interactables"
 const COMBATANTS := &"combatants"
 const COLLECTORS := &"resource_collectors"
 const RANGED_ATTACK := &"ranged_attack"
-
 const PLAYER_SPAWNS := &"player_spawns"
 const ENEMY1_SPAWNS := &"enemy1_spawns"
 const ENEMY2_SPAWNS := &"enemy2_spawns"
