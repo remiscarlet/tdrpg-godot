@@ -27,6 +27,8 @@ func install(ctx: RigContext, stage: int) -> bool:
             return _install_ready(ctx)
         _:
             return true
+
+
 func _install_pre_tree(ctx: RigContext) -> bool:
     var sensor := ctx.rig.target_sensor()
 
@@ -35,6 +37,7 @@ func _install_pre_tree(ctx: RigContext) -> bool:
     if ctx.definition != null and "fire_range" in ctx.definition:
         sensor.set_target_sensor_radius(ctx.definition.fire_range)
     return true
+
 
 func _install_ready(ctx: RigContext) -> bool:
     var timer := ctx.rig.shot_delay_timer()

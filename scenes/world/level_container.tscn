@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=12 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://d4h30dfbgmw5v" path="res://game/systems/loot_system.gd" id="5_2dxgc"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
 [ext_resource type="Script" uid="uid://cowjmnvp7ute" path="res://game/systems/hauler_task_system.gd" id="6_ncacs"]
+[ext_resource type="Script" uid="uid://bc01fxnb52vjd" path="res://game/ai/squads/squad_manager.gd" id="7_7k2i2"]
+[ext_resource type="Script" uid="uid://daoikxcwmp4at" path="res://game/ai/squads/squad_spawn_manager.gd" id="8_pdn5p"]
+[ext_resource type="PackedScene" uid="uid://bl636niefb2mo" path="res://scenes/enemies/default_enemy/default_enemy.tscn" id="9_gd8f6"]
+[ext_resource type="Script" uid="uid://cxoi7qgyeg7h6" path="res://game/ai/squads/squad_debug_draw.gd" id="9_q1he2"]
 
 [node name="LevelContainer" type="Node2D"]
 editor_description = "Holds session/run-scoped state/systems/etc. "
@@ -14,36 +18,51 @@ script = ExtResource("1_c06pb")
 
 [node name="MapSlot" type="Node2D" parent="."]
 
-[node name="RangedAttackSystem" type="Node" parent="."]
+[node name="RangedAttackSystem" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_0khw6")
 
 [node name="RangedAttackContainer" type="Node2D" parent="RangedAttackSystem"]
 z_index = 20
 
-[node name="TurretSystem" type="Node" parent="."]
+[node name="TurretSystem" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_jof1v")
 
 [node name="TurretContainer" type="Node2D" parent="TurretSystem"]
 z_index = 30
 
-[node name="CombatantSystem" type="Node" parent="."]
+[node name="CombatantSystem" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_n1rcx")
 
 [node name="CombatantsContainer" type="Node2D" parent="CombatantSystem"]
 z_index = 30
 
-[node name="LootSystem" type="Node" parent="."]
+[node name="LootSystem" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_2dxgc")
 
 [node name="LootContainer" type="Node2D" parent="LootSystem"]
 
-[node name="HaulerTaskSystem" type="Node" parent="."]
+[node name="HaulerTaskSystem" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("6_ncacs")
+
+[node name="SquadSystem" type="Node2D" parent="."]
+
+[node name="SquadManager" type="Node2D" parent="SquadSystem"]
+script = ExtResource("7_7k2i2")
+
+[node name="SquadSpawnManager" type="Node" parent="SquadSystem" node_paths=PackedStringArray("combatant_system")]
+script = ExtResource("8_pdn5p")
+squad_manager_path = NodePath("../SquadManager")
+combatant_system = NodePath("../../CombatantSystem")
+enemy_member_scene = ExtResource("9_gd8f6")
+
+[node name="SquadDebugDraw" type="Node2D" parent="SquadSystem"]
+script = ExtResource("9_q1he2")
+squad_manager_path = NodePath("../SquadManager")
 
 [node name="CameraRig" type="Node2D" parent="."]
 script = ExtResource("6_2dxgc")

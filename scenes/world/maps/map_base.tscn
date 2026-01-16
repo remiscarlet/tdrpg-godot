@@ -55,4 +55,3 @@ unique_name_in_owner = true
 script = ExtResource("3_ou0rn")
 
 [node name="Enemy1SpawnTimer" type="Timer" parent="SpawnSystem"]
-autostart = true

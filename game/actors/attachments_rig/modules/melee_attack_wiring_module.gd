@@ -30,11 +30,13 @@ func install(ctx: RigContext, stage: int) -> bool:
         _:
             return true
 
+
 func _install_pre_tree(ctx: RigContext) -> bool:
     var target_sensor: TargetSensor2DComponent = ctx.rig.target_sensor()
     target_sensor.set_team_id(ctx.team_id)
 
     return true
+
 
 func _install_post_ready(ctx: RigContext) -> bool:
     var target_sensor: TargetSensor2DComponent = ctx.rig.target_sensor()

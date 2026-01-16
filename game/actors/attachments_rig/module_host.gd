@@ -9,7 +9,6 @@ var ctx := RigContext.new()
 var _ran_stage := 0
 var _modules: Array[FeatureModuleBase] = [
     DamageableCoreModule.new(),
-    LootableWiringModule.new(),
     InventoryWiringModule.new(),
     AIHaulerWiringModule.new(),
     InteractableWiringModule.new(),

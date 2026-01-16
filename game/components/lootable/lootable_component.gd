@@ -5,7 +5,6 @@ signal loot_generated(ctx: LootableSpawnContext)
 
 @export var loot_table: LootTable
 
-var loot_system: LootSystem
 var rng := RandomNumberGenerator.new()
 
 @onready var health_component: HealthComponent = $"../HealthComponent"
@@ -22,10 +21,6 @@ func generate_loot(ctx: LootContext = null) -> Array[LootDrop]:
         return []
     var drops := loot_table.roll(rng, ctx)
     return drops
-
-
-func bind_loot_system(system: LootSystem) -> void:
-    loot_system = system
 
 
 func _on_HealthComponent_died(_source: Node) -> void:
