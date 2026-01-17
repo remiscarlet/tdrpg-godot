@@ -45,6 +45,10 @@ func set_directive(new_directive: SquadDirective, reason: String = "") -> void:
     _directive = new_directive
     directive_changed.emit(old, new_directive, reason)
 
+    print("New directive! %s" % DebugUtils.pretty_object(_directive))
+    path_index = 0
+    patrol_index = 0
+
     _last_directive_change = _get_now()
 
 

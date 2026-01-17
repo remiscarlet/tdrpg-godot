@@ -35,7 +35,6 @@ func open() -> void:
     if state == DoorState.OPEN or state == DoorState.LOCKED:
         return
     state = DoorState.OPEN
-    print("OPEN")
     _apply_transition()
 
 
@@ -43,7 +42,6 @@ func close() -> void:
     if state != DoorState.OPEN:
         return
     state = DoorState.CLOSED
-    print("CLOSING")
     _apply_transition()
 
 

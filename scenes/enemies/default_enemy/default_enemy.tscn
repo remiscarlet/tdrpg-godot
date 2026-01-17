@@ -22,8 +22,10 @@ shape = ExtResource("3_x6w07")
 [node name="NavIntentLocomotionDriver" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("4_0xj1q")]
 
 [node name="CombatantAISupervisor" parent="AttachmentsRig/ControllersRoot" index="1" instance=ExtResource("5_dpprp")]
+max_slot_distance = 250.0
+recover_slot_distance = 100.0
 
-[node name="CombatantAIDebugDraw" parent="AttachmentsRig/ControllersRoot" index="2" instance=ExtResource("6_0xj1q")]
+[node name="CombatantAIDebugDraw" parent="AttachmentsRig/ControllersRoot" index="2" groups=["debug_overlay_combatant"] instance=ExtResource("6_0xj1q")]
 
 [node name="MeleeAttackComponent" parent="AttachmentsRig/ComponentsRoot" index="1" instance=ExtResource("3_k5pk7")]
 

@@ -117,10 +117,8 @@ static func set_target_detector_collisions_for_team(
     var cfg := _get_cfg(team_id)
     for layer in cfg.detector_layer:
         detector.set_collision_layer_value(layer, true)
-    # print("Pre detector mask: %s" % String.num_int64(detector.collision_mask, 2))
     for layer in cfg.detector_mask:
         detector.set_collision_mask_value(layer, true)
-    # print("Post detector mask: %s (%s)" % [String.num_int64(detector.collision_mask, 2), detector])
 
 
 class TeamPhysics:

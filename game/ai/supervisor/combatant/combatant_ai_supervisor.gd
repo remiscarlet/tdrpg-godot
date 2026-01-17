@@ -115,7 +115,6 @@ func _pick_target_for_intent(intent: Intent) -> Vector2:
         Intent.FOLLOW_SQUAD:
             return _actor.squad_link.get_assigned_slot_pos()
         Intent.RETURN_TO_SLOT:
-            print("Return to slot actor: %s" % _actor)
             return _actor.squad_link.get_assigned_slot_pos()
         Intent.RETURN_TO_SPAWNER:
             return _actor.squad_link.get_return_pos()

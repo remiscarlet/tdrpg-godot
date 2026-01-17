@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kk4opvtpytbu"]
+[gd_scene load_steps=8 format=3 uid="uid://kk4opvtpytbu"]
 
 [ext_resource type="Script" uid="uid://cvekecvbtmol0" path="res://game/systems/level_system.gd" id="1_78s5d"]
 [ext_resource type="Script" uid="uid://cnely4v1w3yqb" path="res://scenes/game_root.gd" id="1_ni5ms"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ue3rifte5fut" path="res://game/systems/overhead_indicator_system.gd" id="3_jb3nc"]
 [ext_resource type="PackedScene" uid="uid://cvoet3mqg57im" path="res://scenes/ui/overhead_indicator/overhead_indicator_ui.tscn" id="4_iusj4"]
 [ext_resource type="Theme" uid="uid://co5jk8vxni2w4" path="res://assets/themes/default_theme.tres" id="6_a1rh6"]
+[ext_resource type="PackedScene" uid="uid://yh8j4ss3h8v2" path="res://scenes/ui/debug/debug_layer.tscn" id="7_j7aru"]
 
 [node name="GameRoot" type="Node"]
 editor_description = "Holds UI and cross-session state resources. Cross-session as in save file/steam user scoped state"
@@ -39,6 +40,8 @@ unique_name_in_owner = true
 theme = ExtResource("6_a1rh6")
 
 [node name="MenuLayer" type="CanvasLayer" parent="UI"]
+
+[node name="DebugLayer" parent="UI" instance=ExtResource("7_j7aru")]
 
 [editable path="UI/RunHUDLayer/RunHUD"]
 [editable path="UI/RunHUDLayer/RunHUD/MarginContainer/VBoxContainer/ResourceList/ResourceList/Title"]

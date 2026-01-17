@@ -25,6 +25,11 @@ func _ready() -> void:
 
     directive_randomization_timer.timeout.connect(_on_directive_rand_timer_timeout)
 
+    (get_node("/root/Debug") as DebugService).request_force_move_squad.connect(_on_force_move_squad)
+
+func _on_force_move_squad(squad_id: int, target_pos: Vector2) -> void:
+    print("FORCE SQUAD (%s) TO MOVE %s" % [squad_id, target_pos])
+    set_squad_move_to(squad_id, target_pos)
 
 func _process(_delta: float) -> void:
     for squad_id in _squads.keys():

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DefinitionDB="*res://game/providers/definition_db.gd"
+Debug="*res://game/debug/debug_service.gd"
 
 [display]
 
@@ -29,6 +30,8 @@ window/stretch/aspect="expand"
 combatants=""
 loot=""
 interactables=""
+debug_overlay_squad=""
+debug_overlay_combatant=""
 
 [input]
 

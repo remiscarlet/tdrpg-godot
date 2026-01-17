@@ -55,7 +55,6 @@ func _watched_intent_id() -> StringName:
 
 func _build_intent() -> LocomotionIntent:
     if _body == null or _agent == null:
-        print("Body or Agent was null!")
         return null
 
     if _nav_rid == RID():

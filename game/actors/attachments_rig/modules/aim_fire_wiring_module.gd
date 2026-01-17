@@ -24,7 +24,6 @@ func _install_ready(ctx: RigContext) -> bool:
     var aim := ctx.rig.aim_to_target()
     var fire := ctx.rig.fire_weapon()
 
-    print("Binding: %s, %s, %s" % [aim_fire, aim, fire])
     aim.bind_facing_root(ctx.rig.facing_root())
     aim_fire.bind_aim_to_target_component(aim)
     aim_fire.bind_fire_weapon_component(fire)

@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
         return
 
     if _body == null or _agent == null:
-        print(_body, _agent)
         return
 
     _target_set_this_frame = false

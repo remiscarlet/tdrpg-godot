@@ -60,7 +60,6 @@ func _get_zoom() -> float:
 
 
 func _set_zoom(zoom: float) -> bool:
-    print("Setting zoom to %d" % zoom)
     bake_camera.zoom = Vector2(zoom, zoom)
     zoom_label.text = "x%.2f" % zoom
     return true

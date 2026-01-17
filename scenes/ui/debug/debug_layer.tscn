@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yh8j4ss3h8v2"]
+
+[ext_resource type="Script" uid="uid://bc7rpmv3v53xl" path="res://scenes/ui/debug/debug_input_controller.gd" id="1_7v0k0"]
+[ext_resource type="PackedScene" path="res://scenes/ui/debug/debug_panel.tscn" id="2_1s5bq"]
+
+[node name="DebugLayer" type="CanvasLayer"]
+layer = 100
+
+[node name="DebugInputController" type="Node" parent="."]
+script = ExtResource("1_7v0k0")
+
+[node name="DebugPanel" parent="." instance=ExtResource("2_1s5bq")]
+offset_left = 840.0
+offset_top = 5.0
+offset_right = 1150.0
+offset_bottom = 440.0

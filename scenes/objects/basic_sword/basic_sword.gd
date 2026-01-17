@@ -35,7 +35,6 @@ func on_hit_target(_source: Node) -> void:
 
 
 func start_swing(hurtbox: Hurtbox2DComponent) -> void:
-    # print("> Starting swing at %s" % node)
     is_swinging = true
 
     swinging_dur = 0.0
@@ -46,7 +45,6 @@ func start_swing(hurtbox: Hurtbox2DComponent) -> void:
 
 
 func _swing(delta: float) -> void:
-    # print("> Continuing swing")
     swinging_dur += delta
 
     var angle_to_target := target_direction.normalized().angle()
@@ -65,7 +63,6 @@ func _swing(delta: float) -> void:
 
 
 func _finish_swing() -> void:
-    # print("> Finishing swing")
     is_swinging = false
     _disable_sword()
 

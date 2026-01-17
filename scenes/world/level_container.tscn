@@ -62,7 +62,7 @@ enemy_member_scene = ExtResource("9_gd8f6")
 spawn_interval_sec = 1.0
 squad_size = 2
 
-[node name="SquadDebugDraw" type="Node2D" parent="SquadSystem"]
+[node name="SquadDebugDraw" type="Node2D" parent="SquadSystem" groups=["debug_overlay_squad"]]
 script = ExtResource("9_q1he2")
 squad_manager_path = NodePath("..")
 

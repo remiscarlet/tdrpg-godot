@@ -39,14 +39,6 @@ func _process(delta: float) -> void:
     if pressed_duration >= Inputs.LONG_PRESS_DURATION_SEC:
         # Check if in long press duration regardless of key press state
         long_press_held = true
-        print("++++")
-        print("is_pressed: %s" % is_pressed)
-        print("was_pressed_last_iter: %s" % was_pressed_last_iter)
-        print("pressed_duration: %s" % pressed_duration)
-
-        print("short_press: %s" % short_press)
-        print("long_press_held: %s" % long_press_held)
-        print("long_press_released: %s" % long_press_released)
 
     # Process
     if short_press or long_press_released:

@@ -27,7 +27,6 @@ func _install_post_ready(ctx: RigContext) -> bool:
 
     var actor := ctx.actor as CombatantBase
     if actor == null:
-        print("No actor?")
         return false
 
     var squad_id := actor.spawn_context.squad_id

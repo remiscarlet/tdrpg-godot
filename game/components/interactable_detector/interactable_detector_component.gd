@@ -29,14 +29,14 @@ func try_interact() -> bool:
 func _on_area_entered(area: Area2D) -> void:
     var maybe := area as InteractableBase
     if maybe and not candidates.has(maybe):
-        print("Adding candidate interactable: %s" % maybe)
+        # print("Adding candidate interactable: %s" % maybe)
         candidates.append(maybe)
 
 
 func _on_area_exited(area: Area2D) -> void:
     var maybe := area as InteractableBase
     if maybe:
-        print("Removing candidate interactable: %s" % maybe)
+        # print("Removing candidate interactable: %s" % maybe)
         candidates.erase(maybe)
 
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhkdiusubu2x"]
+
+[ext_resource type="Script" uid="uid://db4kggj2ys5dw" path="res://game/debug/debug_selection_draw.gd" id="1_5m2t7"]
+
+[node name="DebugSelectionDraw" type="Node2D" groups=["debug_overlay_selection"]]
+script = ExtResource("1_5m2t7")

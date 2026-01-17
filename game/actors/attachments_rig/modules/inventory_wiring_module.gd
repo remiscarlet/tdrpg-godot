@@ -17,11 +17,9 @@ func is_applicable(ctx: RigContext) -> bool:
 func _install_pre_tree(ctx: RigContext) -> bool:
     var pb := ctx.rig.pickupbox()
 
-    print("Configuring pickupsensor?")
     if ctx.team_id >= 0:
         var sensorbox := pb.get_node("PickupSensorArea")
         PhysicsUtils.set_pickupbox_collisions_for_team(sensorbox, ctx.team_id)
-        print(sensorbox, ctx.team_id)
     return true
 
 

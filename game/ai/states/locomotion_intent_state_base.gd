@@ -66,7 +66,6 @@ func _apply_intent() -> void:
 
 
 func _on_driver_intent_completed(intent_id: StringName) -> void:
-    print("INTENT FINISHED: %s" % intent_id)
     var watched := _watched_intent_id()
     if watched == &"":
         return

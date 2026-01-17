@@ -41,23 +41,19 @@ func get_target_node(origin: Node2D) -> Hurtbox2DComponent:
     var best_d2 := INF
 
     for t in sensor.get_candidates():
-        # print("Candidate: %s" % t)
         if t == null or not is_instance_valid(t):
             continue
 
         var d2 := origin.global_position.distance_squared_to(t.global_position)
         if d2 >= best_d2:
-            # print("d2: %d, best_d2: %d" % [d2, best_d2])
             continue
 
         if not _has_line_of_sight(origin, t):
-            # print("No LoS: %s to %s" % [origin, t])
             continue
 
         best = t
         best_d2 = d2
 
-    # print("Returning best: %s" % best)
     return best
 
 
