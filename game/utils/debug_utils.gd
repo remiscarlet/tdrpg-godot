@@ -10,6 +10,16 @@ static func dump_ps(tag: String, ps: PackedScene) -> void:
     )
 
 
+static func print_caller() -> void:
+    var stack = get_stack()
+    # The first entry (index 0) is the call to get_stack() itself.
+    # The second entry (index 1) is the function that called 'bar()' (which is 'foo()').
+    if stack.size() > 2:
+        print("Called by function: ", stack[2].function)
+        print("In script: ", stack[2].source)
+        print("At line: ", stack[2].line)
+
+
 static func object_props_to_dict(o: Object) -> Dictionary:
     var d := { }
     for info in o.get_property_list():
@@ -21,4 +31,7 @@ static func object_props_to_dict(o: Object) -> Dictionary:
 
 
 static func pretty_object(o: Object) -> String:
+    if o == null:
+        return "null"
+
     return JSON.stringify(object_props_to_dict(o), "  ")

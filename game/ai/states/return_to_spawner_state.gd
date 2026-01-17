@@ -1,4 +1,4 @@
-class_name RetreatState
+class_name ReturntoSpawnerState
 extends LocomotionIntentStateBase
 
 @export var nav_agent_path: NodePath = NodePath("../../../NavIntentLocomotionDriver/NavigationAgent2D")
@@ -6,7 +6,7 @@ extends LocomotionIntentStateBase
 @export var arrive_radius: float = 24.0
 @export var slowdown_radius: float = 80.0
 # Optional: force repick even if not “arrived”
-@export var repick_interval_sec: float = 0.0
+@export var repick_interval_sec: float = 5.0
 
 var _agent: NavigationAgent2D
 var _nav_rid: RID
@@ -50,7 +50,7 @@ func _setup() -> void:
 
 
 func _watched_intent_id() -> StringName:
-    return LocomotionIntents.RETREAT_MOVE
+    return LocomotionIntents.RETURN_TO_SPAWNER_MOVE
 
 
 func _build_intent() -> LocomotionIntent:
@@ -60,11 +60,9 @@ func _build_intent() -> LocomotionIntent:
     if _nav_rid == RID():
         _nav_rid = _agent.get_navigation_map()
 
-    var dest = _body.squad_link.get_return_pos()
-
     var intent: LocomotionIntent = CommonIntents.move_to_point(
         _watched_intent_id(),
-        dest,
+        _dest,
         arrive_radius,
         slowdown_radius,
         true,

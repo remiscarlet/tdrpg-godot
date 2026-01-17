@@ -7,6 +7,7 @@ extends Node
 
 var _driver: NavIntentLocomotionDriver
 var _body: CombatantBase
+var _dest: Vector2
 
 
 func _ready() -> void:
@@ -21,6 +22,10 @@ func _ready() -> void:
         return
 
     _driver.intent_completed.connect(_on_driver_intent_completed)
+
+
+func set_target(vec: Vector2) -> void:
+    _dest = vec
 
 
 # Called by FSM/supervisor
@@ -61,6 +66,7 @@ func _apply_intent() -> void:
 
 
 func _on_driver_intent_completed(intent_id: StringName) -> void:
+    print("INTENT FINISHED: %s" % intent_id)
     var watched := _watched_intent_id()
     if watched == &"":
         return

@@ -9,6 +9,7 @@ static func move_to_point(
         slowdown_radius: float = 0.0,
         complete_on_arrival: bool = true,
 ) -> LocomotionIntent:
+    print("move_to_point to %s" % goal)
     var intent := LocomotionIntent.new(id, GoalProviders.static_point(goal), Callable())
     intent.arrive_radius = arrive_radius
     intent.slowdown_radius = slowdown_radius
@@ -22,10 +23,12 @@ static func return_to_slot(
         slowdown_radius: float = 48.0,
 ) -> LocomotionIntent:
     var intent := LocomotionIntent.new(
-        &"return_to_slot",
+        LocomotionIntents.RETURN_TO_SLOT_MOVE,
         GoalProviders.squad_return_pos(squad_link),
         Callable(), # always active
     )
+    print("return_to_slot to goal %s" % intent.get_goal())
+
     intent.arrive_radius = arrive_radius
     intent.slowdown_radius = slowdown_radius
     intent.repath_min_interval_sec = 0.35
@@ -42,7 +45,7 @@ static func follow_squad_goal(
     var intent := LocomotionIntent.new(
         &"follow_squad_goal",
         GoalProviders.squad_follow_goal_pos(squad_link),
-        GoalProviders.squad_has_follow_goal(squad_link),
+        GoalProviders.squad_has_directive_goal(squad_link),
     )
     intent.arrive_radius = arrive_radius
     intent.slowdown_radius = slowdown_radius

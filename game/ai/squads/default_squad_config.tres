@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_o4iar")
+cohesion_radius_idle = 100.0
+cohesion_radius_patrol = 100.0
 metadata/_custom_type_script = "uid://d3bwvrebduyn5"

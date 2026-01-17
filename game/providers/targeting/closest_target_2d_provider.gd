@@ -81,8 +81,6 @@ func _has_line_of_sight(origin: Node2D, target: Hurtbox2DComponent) -> bool:
     params.collision_mask = target_hurtbox_layer_mask | world_collidables_mask
     params.collide_with_areas = true
 
-    # print(DebugUtils.pretty_object(params))
-
     var hit := space.intersect_ray(params)
     # print(hit)
     # We masked for world collidables or the enemy hurtbox.

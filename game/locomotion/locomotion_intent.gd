@@ -64,4 +64,4 @@ func should_repath(
 func speed_scale_for_distance(dist_to_goal: float) -> float:
     if slowdown_radius <= 0.0:
         return 1.0
-    return clampf(dist_to_goal / max(slowdown_radius, 0.001), 0.0, 1.0)
+    return clampf(dist_to_goal / max(slowdown_radius, 0.001), 0.5, 1.0)

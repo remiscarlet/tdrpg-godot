@@ -61,16 +61,10 @@ func _build_intent() -> LocomotionIntent:
     if _nav_rid == RID():
         _nav_rid = _agent.get_navigation_map()
 
-    var dest := NavUtils.get_some_random_reachable_point(
-        _nav_rid,
-        _body.global_position,
-        tries,
-        wander_radius,
-    )
-
+    print("Building intent bound for: %s" % _dest)
     var intent: LocomotionIntent = CommonIntents.move_to_point(
-        LocomotionIntents.WANDER_MOVE,
-        dest,
+        _watched_intent_id(),
+        _dest,
         arrive_radius,
         slowdown_radius,
         true,

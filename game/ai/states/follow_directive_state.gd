@@ -55,20 +55,15 @@ func _watched_intent_id() -> StringName:
 
 func _build_intent() -> LocomotionIntent:
     if _body == null or _agent == null:
-        return null
-
-    if not _body.squad_link.has_active_move_directive():
-        push_error("Tried building FollowDirectiveState intent when no directive was active!")
+        print("Body or Agent was null!")
         return null
 
     if _nav_rid == RID():
         _nav_rid = _agent.get_navigation_map()
 
-    var dest = _body.squad_link.get_follow_directive_pos()
-
     var intent: LocomotionIntent = CommonIntents.move_to_point(
         _watched_intent_id(),
-        dest,
+        _dest,
         arrive_radius,
         slowdown_radius,
         true,

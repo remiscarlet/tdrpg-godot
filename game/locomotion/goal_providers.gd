@@ -26,16 +26,16 @@ static func method_bool(obj: Object, method_name: StringName) -> Callable:
 
 
 # SquadLink adapters (match your existing SquadLink stub)
-static func squad_return_pos(squad_link: Object) -> Callable:
+static func squad_return_pos(squad_link: SquadLink) -> Callable:
     # squad_link.get_return_pos() -> Vector2
     return method_vec2(squad_link, &"get_return_pos")
 
 
-static func squad_follow_goal_pos(squad_link: Object) -> Callable:
+static func squad_follow_goal_pos(squad_link: SquadLink) -> Callable:
     # squad_link.get_follow_directive_pos() -> Vector2
     return method_vec2(squad_link, &"get_follow_directive_pos")
 
 
-static func squad_has_follow_goal(squad_link: Object) -> Callable:
+static func squad_has_directive_goal(squad_link: SquadLink) -> Callable:
     # squad_link.has_active_follow_goal() -> bool
-    return method_bool(squad_link, &"has_active_follow_goal")
+    return method_bool(squad_link, &"has_active_move_directive")

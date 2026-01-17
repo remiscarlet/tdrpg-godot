@@ -100,12 +100,14 @@ func get_current_cohesion_radius() -> float:
             return cfg.cohesion_radius_patrol
     return cfg.cohesion_radius_idle
 
+
 func has_slot_target_for(member: CombatantBase) -> bool:
     if member == null or not is_instance_valid(member):
         return false
 
     var id: int = member.get_instance_id()
     return id in rt.slot_assignment
+
 
 func get_slot_target_for(member: CombatantBase) -> Vector2:
     if not has_slot_target_for(member):

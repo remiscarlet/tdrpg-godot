@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://ochmuqfrk5a1"]
+[gd_scene load_steps=6 format=3 uid="uid://ochmuqfrk5a1"]
 
 [ext_resource type="Script" uid="uid://b5e1fxg8lp5d4" path="res://game/ai/supervisor/combatant/combatant_ai_supervisor.gd" id="1_juaxx"]
 [ext_resource type="Script" uid="uid://cam6vdokmkqfk" path="res://game/ai/states/wander_state.gd" id="2_fttug"]
 [ext_resource type="Script" uid="uid://bdqdj1bl1ywe6" path="res://game/ai/states/follow_directive_state.gd" id="2_t17qe"]
-[ext_resource type="Script" uid="uid://dhgye6iitq5id" path="res://game/ai/states/retreat_state.gd" id="4_tksj8"]
+[ext_resource type="Script" uid="uid://depmygeb4kggs" path="res://game/ai/states/return_to_spawner_state.gd" id="4_tksj8"]
+[ext_resource type="Script" uid="uid://cnx0oq6f30hh5" path="res://game/ai/states/return_to_slot_state.gd" id="5_kq73x"]
 
 [node name="CombatantAISupervisor" type="Node"]
 script = ExtResource("1_juaxx")
-follow_state_path = NodePath("States/FollowDirectiveState")
+follow_directive_state_path = NodePath("States/FollowDirectiveState")
 wander_state_path = NodePath("States/WanderState")
-return_state_path = NodePath("States/RetreatState")
+return_to_spawner_state_path = NodePath("States/ReturnToSpawnerState")
+return_to_slot_state_path = NodePath("States/ReturnToSlotState")
 
 [node name="States" type="Node" parent="."]
 
@@ -19,5 +21,10 @@ script = ExtResource("2_t17qe")
 [node name="WanderState" type="Node" parent="States"]
 script = ExtResource("2_fttug")
 
-[node name="RetreatState" type="Node" parent="States"]
+[node name="ReturnToSpawnerState" type="Node" parent="States"]
+process_physics_priority = -20
 script = ExtResource("4_tksj8")
+repick_interval_sec = 0.0
+
+[node name="ReturnToSlotState" type="Node" parent="States"]
+script = ExtResource("5_kq73x")

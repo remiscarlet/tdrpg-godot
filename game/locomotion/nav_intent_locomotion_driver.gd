@@ -92,7 +92,6 @@ func _physics_process(delta: float) -> void:
 
 
 func set_intent(intent: LocomotionIntent) -> void:
-    print("Setting intent: %s" % DebugUtils.pretty_object(intent))
     _intent = intent
     _since_repath = 9999.0
     _last_goal = Vector2.INF
@@ -100,7 +99,8 @@ func set_intent(intent: LocomotionIntent) -> void:
 
 
 func clear_intent() -> void:
-    print("Clearing intent!")
+    # DebugUtils.print_caller()
+    # print("Clearing intent!")
     _intent = null
     _since_repath = 9999.0
     _last_goal = Vector2.INF
@@ -114,11 +114,14 @@ func has_intent() -> bool:
 func current_intent_id() -> StringName:
     return _intent.id if _intent != null else &""
 
+
 func get_last_goal() -> Vector2:
     return _last_goal
 
+
 func get_agent() -> NavigationAgent2D:
     return _agent
+
 
 func is_navigation_finished() -> bool:
     return _agent == null or _agent.is_navigation_finished()
@@ -131,7 +134,8 @@ func _setup() -> void:
 
 
 func _stop_if_no_intent() -> void:
-    if stop_when_no_intent:
+    if stop_when_no_intent and _intent == null:
+        print("Stopping - no intent")
         _body.set_desired_move(Vector2.ZERO, 0.0)
 
 

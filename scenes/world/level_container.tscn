@@ -59,6 +59,8 @@ script = ExtResource("8_pdn5p")
 squad_system_path = NodePath("..")
 combatant_system = NodePath("../../CombatantSystem")
 enemy_member_scene = ExtResource("9_gd8f6")
+spawn_interval_sec = 1.0
+squad_size = 2
 
 [node name="SquadDebugDraw" type="Node2D" parent="SquadSystem"]
 script = ExtResource("9_q1he2")

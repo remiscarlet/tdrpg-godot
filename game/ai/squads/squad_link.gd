@@ -5,13 +5,15 @@ var _combatant: CombatantBase
 var _squad_id: int
 var _squad_system: SquadSystem
 
-func get_squad_id() -> int:
-    return _squad_id
 
 func _init(combatant: CombatantBase, id: int, system: SquadSystem) -> void:
     _combatant = combatant
     _squad_id = id
     _squad_system = system
+
+
+func get_squad_id() -> int:
+    return _squad_id
 
 
 func has_assigned_slot() -> bool:

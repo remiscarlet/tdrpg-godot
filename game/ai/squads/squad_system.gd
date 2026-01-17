@@ -8,6 +8,9 @@ signal squad_slot_targets_updated(squad_id: int, targets: Dictionary) # Node2D -
 @export var default_squad_config: SquadConfig
 @export var auto_assign_member_targets: bool = false
 @export var project_targets_to_navmesh: bool = true
+@export var squad_move_tries: int = 12
+@export var squad_move_radius: float = 1000.0
+@export var squad_path_radius_mod_min: float = 0.5
 
 var _nav_map: RID
 var _next_squad_id: int = 1
@@ -145,13 +148,32 @@ func _on_directive_rand_timer_timeout() -> void:
         var member: Node2D = squad.get_any_member()
         var nav_rid := member.get_world_2d().get_navigation_map()
 
-        var rand := RandomNumberGenerator.new().randi_range(1, 3)
+        # TODO: Tweaked
+        var rand := RandomNumberGenerator.new().randi_range(2, 3)
         match rand:
             1:
                 set_squad_hold(squad_id, NavUtils.get_some_random_reachable_point(nav_rid, squad.rt.anchor_position))
             2:
-                set_squad_move_to(squad_id, NavUtils.get_some_random_reachable_point(nav_rid, squad.rt.anchor_position))
+                set_squad_move_to(
+                    squad_id,
+                    NavUtils.get_some_random_reachable_point(
+                        nav_rid,
+                        squad.rt.anchor_position,
+                        squad_move_tries,
+                        squad_move_radius,
+                    ),
+                )
             3:
-                set_squad_patrol(squad_id, NavUtils.get_some_random_path(nav_rid, squad.rt.anchor_position), true)
+                set_squad_patrol(
+                    squad_id,
+                    NavUtils.get_some_random_path(
+                        nav_rid,
+                        squad.rt.anchor_position,
+                        squad_move_tries,
+                        squad_move_radius,
+                        squad_path_radius_mod_min,
+                    ),
+                    true,
+                )
             _:
                 pass

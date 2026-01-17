@@ -16,6 +16,7 @@ static func get_some_random_path(
         from: Vector2,
         tries: int = 12,
         wander_radius: float = 400.0,
+        wander_radius_mod_min: float = 0.25, # Discourages tiny paths
 ) -> PackedVector2Array:
     var _rng := RandomNumberGenerator.new() # Potential footgun?
 
@@ -24,7 +25,7 @@ static func get_some_random_path(
     for i in range(tries):
         # Random point in a disk around origin (uniform-ish).
         var angle := _rng.randf_range(0.0, TAU)
-        var radius := sqrt(_rng.randf()) * wander_radius
+        var radius := sqrt(_rng.randf_range(wander_radius_mod_min, 1.0)) * wander_radius
         var candidate := origin + Vector2(radius, 0.0).rotated(angle)
 
         # Snap candidate onto the nav surface.
