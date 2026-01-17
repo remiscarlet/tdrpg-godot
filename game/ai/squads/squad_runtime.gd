@@ -3,7 +3,14 @@ extends RefCounted
 
 signal directive_changed(old_directive: SquadDirective, new_directive: SquadDirective, reason: String)
 
-var anchor_position: Vector2 = Vector2.ZERO
+# "Where did we spawn"/"Where do we go to replenish"
+var spawner_position: Vector2:
+    get:
+        return _spawner_position
+# "Where are we going right now?"
+var anchor_position: Vector2:
+    get:
+        return _anchor_position
 var directive: SquadDirective:
     get:
         return _directive
@@ -13,12 +20,19 @@ var patrol_index: int = 0
 var slot_offsets: PackedVector2Array = PackedVector2Array()
 var slot_assignment: Dictionary = { } # instance_id -> slot_index
 var slots_dirty: bool = true
+var _spawner_position_set: bool = false
+var _spawner_position: Vector2 = Vector2.ZERO
+var _anchor_position: Vector2 = Vector2.ZERO
 var _directive: SquadDirective = null
 var _last_directive_change: float = 0.0
 
 
 func set_anchor_position(vec: Vector2) -> void:
-    anchor_position = vec
+    _anchor_position = vec
+
+    if not _spawner_position_set:
+        _spawner_position = vec
+        _spawner_position_set = true
 
 
 func set_directive(new_directive: SquadDirective, reason: String = "") -> void:

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://d4h30dfbgmw5v" path="res://game/systems/loot_system.gd" id="5_2dxgc"]
 [ext_resource type="Script" uid="uid://b21pjsqs3e1mt" path="res://scenes/world/camera_rig.gd" id="6_2dxgc"]
 [ext_resource type="Script" uid="uid://cowjmnvp7ute" path="res://game/systems/hauler_task_system.gd" id="6_ncacs"]
-[ext_resource type="Script" uid="uid://bc01fxnb52vjd" path="res://game/ai/squads/squad_manager.gd" id="7_7k2i2"]
+[ext_resource type="Script" uid="uid://cv0my7m4j1va7" path="res://game/ai/squads/squad_system.gd" id="7_7k2i2"]
 [ext_resource type="Resource" uid="uid://c40sj6rim7kry" path="res://game/ai/squads/default_squad_config.tres" id="8_4kdn2"]
 [ext_resource type="Script" uid="uid://daoikxcwmp4at" path="res://game/ai/squads/squad_spawn_manager.gd" id="8_pdn5p"]
 [ext_resource type="PackedScene" uid="uid://bl636niefb2mo" path="res://scenes/enemies/default_enemy/default_enemy.tscn" id="9_gd8f6"]
@@ -51,24 +51,22 @@ unique_name_in_owner = true
 script = ExtResource("6_ncacs")
 
 [node name="SquadSystem" type="Node2D" parent="."]
-
-[node name="SquadManager" type="Node2D" parent="SquadSystem"]
 script = ExtResource("7_7k2i2")
 default_squad_config = ExtResource("8_4kdn2")
 
-[node name="SquadDirectiveRandTimer" type="Timer" parent="SquadSystem/SquadManager"]
-wait_time = 5.0
-autostart = true
-
 [node name="SquadSpawnManager" type="Node" parent="SquadSystem" node_paths=PackedStringArray("combatant_system")]
 script = ExtResource("8_pdn5p")
-squad_manager_path = NodePath("../SquadManager")
+squad_system_path = NodePath("..")
 combatant_system = NodePath("../../CombatantSystem")
 enemy_member_scene = ExtResource("9_gd8f6")
 
 [node name="SquadDebugDraw" type="Node2D" parent="SquadSystem"]
 script = ExtResource("9_q1he2")
-squad_manager_path = NodePath("../SquadManager")
+squad_manager_path = NodePath("..")
+
+[node name="SquadDirectiveRandTimer" type="Timer" parent="SquadSystem"]
+wait_time = 5.0
+autostart = true
 
 [node name="CameraRig" type="Node2D" parent="."]
 script = ExtResource("6_2dxgc")

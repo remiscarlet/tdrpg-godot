@@ -13,7 +13,5 @@ sprite_frames = ExtResource("2_fc34d")
 shape = ExtResource("3_ici22")
 
 [editable path="AttachmentsRig"]
-[editable path="AttachmentsRig/ControllersRoot/AIWanderNavigationController"]
-[editable path="AttachmentsRig/ControllersRoot/AIHaulerController"]
-[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/InteractableDetectorComponent"]
+[editable path="AttachmentsRig/FacingRoot/Sensors/Hurtbox2DComponent"]

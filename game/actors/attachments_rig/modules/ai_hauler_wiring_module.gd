@@ -20,16 +20,6 @@ func is_applicable(ctx: RigContext) -> bool:
     )
 
 
-func install(ctx: RigContext, stage: int) -> bool:
-    print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
-
-    match stage:
-        ModuleHost.Stage.POST_READY:
-            return _install_post_ready(ctx)
-        _:
-            return true
-
-
 func _install_post_ready(ctx: RigContext) -> bool:
     if ctx.level_container == null:
         print("Called _install_post_ready but ctx.level_container was null!")

@@ -18,16 +18,6 @@ func is_applicable(ctx: RigContext) -> bool:
     )
 
 
-func install(ctx: RigContext, stage: int) -> bool:
-    print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
-
-    match stage:
-        ModuleHost.Stage.READY:
-            return _install_ready(ctx)
-        _:
-            return true
-
-
 func _install_ready(ctx: RigContext) -> bool:
     var player_ctrl: PlayerInputController = ctx.rig.player_input()
     var aim_fire := ctx.rig.aim_fire_controller()

@@ -8,6 +8,7 @@ enum Stage { PRE_TREE = 1, READY = 2, POST_READY = 4 }
 var ctx := RigContext.new()
 var _ran_stage := 0
 var _modules: Array[FeatureModuleBase] = [
+    SquadWiringModule.new(),
     DamageableCoreModule.new(),
     InventoryWiringModule.new(),
     AIHaulerWiringModule.new(),
@@ -58,6 +59,6 @@ func _run(stage: int) -> void:
             continue
         if not m.is_applicable(ctx):
             continue
-        var ok := m.install(ctx, stage)
+        var ok: bool = m.install(ctx, stage)
         if strict and not ok:
             push_error("%s Module failed: %s" % [ctx.tag(), m.id()])

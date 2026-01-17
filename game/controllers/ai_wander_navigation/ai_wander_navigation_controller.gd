@@ -23,11 +23,11 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
     if agent.is_navigation_finished():
-        body.set_desired_dir(Vector2.ZERO)
+        body.set_desired_move(Vector2.ZERO)
         return
 
     var next_pos := agent.get_next_path_position()
-    body.set_desired_dir(body.global_position.direction_to(next_pos))
+    body.set_desired_move(body.global_position.direction_to(next_pos))
 
 
 func _setup() -> void:

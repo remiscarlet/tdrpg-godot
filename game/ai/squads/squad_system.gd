@@ -1,4 +1,4 @@
-class_name SquadManager
+class_name SquadSystem
 extends Node2D
 
 signal squad_created(squad_id: int)
@@ -139,6 +139,7 @@ func _apply_targets_to_members(targets: Dictionary) -> void:
 
 
 func _on_directive_rand_timer_timeout() -> void:
+    print("Changing directive")
     for squad_id in _squads.keys():
         var squad: Squad = get_squad(squad_id)
         var member: Node2D = squad.get_any_member()

@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
             return
 
     var next_pos := agent.get_next_path_position()
-    body.set_desired_dir(body.global_position.direction_to(next_pos))
+    body.set_desired_move(body.global_position.direction_to(next_pos))
 
 
 ## Public methods
@@ -111,7 +111,7 @@ func _transition_hauler_state(delta: float) -> bool:
 
 
 func _transition_state_idle() -> bool:
-    body.set_desired_dir(Vector2.ZERO)
+    body.set_desired_move(Vector2.ZERO)
     _pick_new_target()
     if current_task != null:
         current_state = HaulerState.GO_TO_LOOT

@@ -23,6 +23,9 @@ debug_color = Color(0.052071124, 0.6441717, 0.26613647, 0.41960785)
 
 [node name="AttachmentsRig" parent="." instance=ExtResource("2_nl20h")]
 
+[node name="ControllersRoot" parent="AttachmentsRig" index="0"]
+process_physics_priority = 10
+
 [node name="LootableComponent" parent="AttachmentsRig/ComponentsRoot" index="0" groups=["loot_emitters"] instance=ExtResource("9_g1fhr")]
 scale = Vector2(0.65, 0.65)
 

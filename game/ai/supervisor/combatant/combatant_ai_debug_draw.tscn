@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://game/ai/supervisor/combatant/combatant_ai_debug_draw.gd" id="1_caidbg"]
+
+[node name="CombatantAIDebugDraw" type="Node2D"]
+script = ExtResource("1_caidbg")

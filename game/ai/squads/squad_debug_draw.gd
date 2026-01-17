@@ -33,7 +33,7 @@ func _draw() -> void:
     if not enabled:
         return
 
-    var mgr := get_node_or_null(squad_manager_path) as SquadManager
+    var mgr := get_node_or_null(squad_manager_path) as SquadSystem
     if mgr == null:
         return
 

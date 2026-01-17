@@ -1,7 +1,7 @@
 class_name SquadSpawnManager
 extends Node
 
-@export var squad_manager_path: NodePath
+@export var squad_system_path: NodePath
 @export var combatant_system: CombatantSystem
 @export var enemy_member_scene: PackedScene
 @export var spawn_markers_group: StringName = Groups.ENEMY2_SPAWNS
@@ -30,7 +30,7 @@ func _on_timeout() -> void:
     if enemy_member_scene == null:
         return
 
-    var mgr := get_node_or_null(squad_manager_path) as SquadManager
+    var mgr := get_node_or_null(squad_system_path) as SquadSystem
     if mgr == null:
         return
 
@@ -61,7 +61,7 @@ func _on_timeout() -> void:
     # Spawn members and register them with the squad.
     for i in range(squad_size):
         var jitter := Vector2.RIGHT.rotated(randf() * TAU) * (randf() * spawn_scatter_radius)
-        var ctx := CombatantSpawnContext.new(anchor_pos + jitter, CombatantTypes.DEFAULT_ENEMY)
+        var ctx := CombatantSpawnContext.new(anchor_pos + jitter, CombatantTypes.DEFAULT_ENEMY, squad_id)
         var combatant: CombatantBase = await combatant_system.spawn(ctx)
 
         mgr.add_member_to_squad(squad_id, combatant)

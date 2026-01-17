@@ -19,16 +19,6 @@ func is_applicable(ctx: RigContext) -> bool:
     )
 
 
-func install(ctx: RigContext, stage: int) -> bool:
-    match stage:
-        ModuleHost.Stage.PRE_TREE:
-            return _install_pre_tree(ctx)
-        ModuleHost.Stage.READY:
-            return _install_ready(ctx)
-        _:
-            return true
-
-
 func _install_pre_tree(ctx: RigContext) -> bool:
     var sensor := ctx.rig.target_sensor()
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ochmuqfrk5a1"]
+
+[ext_resource type="Script" uid="uid://b5e1fxg8lp5d4" path="res://game/ai/supervisor/combatant/combatant_ai_supervisor.gd" id="1_juaxx"]
+[ext_resource type="Script" uid="uid://cam6vdokmkqfk" path="res://game/ai/states/wander_state.gd" id="2_fttug"]
+[ext_resource type="Script" uid="uid://bdqdj1bl1ywe6" path="res://game/ai/states/follow_directive_state.gd" id="2_t17qe"]
+[ext_resource type="Script" uid="uid://dhgye6iitq5id" path="res://game/ai/states/retreat_state.gd" id="4_tksj8"]
+
+[node name="CombatantAISupervisor" type="Node"]
+script = ExtResource("1_juaxx")
+follow_state_path = NodePath("States/FollowDirectiveState")
+wander_state_path = NodePath("States/WanderState")
+return_state_path = NodePath("States/RetreatState")
+
+[node name="States" type="Node" parent="."]
+
+[node name="FollowDirectiveState" type="Node" parent="States"]
+script = ExtResource("2_t17qe")
+
+[node name="WanderState" type="Node" parent="States"]
+script = ExtResource("2_fttug")
+
+[node name="RetreatState" type="Node" parent="States"]
+script = ExtResource("4_tksj8")

@@ -19,18 +19,6 @@ func is_applicable(ctx: RigContext) -> bool:
     )
 
 
-func install(ctx: RigContext, stage: int) -> bool:
-    print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
-
-    match stage:
-        ModuleHost.Stage.PRE_TREE:
-            return _install_pre_tree(ctx)
-        ModuleHost.Stage.POST_READY:
-            return _install_post_ready(ctx)
-        _:
-            return true
-
-
 func _install_pre_tree(ctx: RigContext) -> bool:
     var target_sensor: TargetSensor2DComponent = ctx.rig.target_sensor()
     target_sensor.set_team_id(ctx.team_id)

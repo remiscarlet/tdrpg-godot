@@ -6,7 +6,7 @@ const GOLDEN_ANGLE: float = PI * (3.0 - sqrt(5.0))
 var squad_id: int
 var team_id: int = 0
 var desired_count: int = 0
-var members: Array[Node2D] = []
+var members: Array[CombatantBase] = []
 var cfg: SquadConfig
 var fsm: FiniteStateMachine
 var rt := SquadRuntime.new()
@@ -21,6 +21,8 @@ func _init(config: SquadConfig, id: int, team: int, anchor_pos: Vector2, desired
 
     rt.set_anchor_position(anchor_pos)
     rt.set_directive(SquadDirective.hold(anchor_pos))
+
+    _rebuild_slot_offsets()
 
 
 func get_directive() -> SquadDirective:
@@ -38,13 +40,13 @@ func set_directive(d: SquadDirective) -> void:
         fsm.emit_event(&"directive_changed", d)
 
 
-func get_any_member() -> Node2D:
+func get_any_member() -> CombatantBase:
     if members.size() <= 0:
         return null
     return members[0]
 
 
-func add_member(m: Node2D) -> void:
+func add_member(m: CombatantBase) -> void:
     if m == null or not is_instance_valid(m):
         return
     if members.has(m):
@@ -53,7 +55,7 @@ func add_member(m: Node2D) -> void:
     rt.slots_dirty = true
 
 
-func remove_member(m: Node2D) -> void:
+func remove_member(m: CombatantBase) -> void:
     members.erase(m)
     var id: int = m.get_instance_id() if m != null else 0
     if id in rt.slot_assignment:
@@ -98,15 +100,21 @@ func get_current_cohesion_radius() -> float:
             return cfg.cohesion_radius_patrol
     return cfg.cohesion_radius_idle
 
-
-func get_slot_target_for(member: Node2D) -> Vector2:
+func has_slot_target_for(member: CombatantBase) -> bool:
     if member == null or not is_instance_valid(member):
-        return rt.anchor_position
+        return false
+
     var id: int = member.get_instance_id()
-    var idx: int = 0
-    if id in rt.slot_assignment:
-        idx = int(rt.slot_assignment[id])
+    return id in rt.slot_assignment
+
+func get_slot_target_for(member: CombatantBase) -> Vector2:
+    if not has_slot_target_for(member):
+        return rt.anchor_position
+
+    var id: int = member.get_instance_id()
+    var idx: int = int(rt.slot_assignment[id])
     idx = clampi(idx, 0, max(0, rt.slot_offsets.size() - 1))
+
     return rt.anchor_position + rt.slot_offsets[idx]
 
 

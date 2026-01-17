@@ -14,16 +14,6 @@ func is_applicable(ctx: RigContext) -> bool:
     return ctx.rig != null and ctx.rig.interactable_detector() != null
 
 
-func install(ctx: RigContext, stage: int) -> bool:
-    print("Installing %s during stage %d with ctx: %s" % [id(), stage, ctx])
-
-    match stage:
-        ModuleHost.Stage.READY:
-            return _install_ready(ctx)
-        _:
-            return true
-
-
 func _install_ready(ctx: RigContext) -> bool:
     var det := ctx.rig.interactable_detector()
 
