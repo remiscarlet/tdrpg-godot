@@ -1,8 +1,6 @@
 class_name DebugInputController
 extends Node
 
-@export var enabled: bool = true
-
 # Actions (created automatically if missing).
 const ACT_TOGGLE_UI := &"debug_toggle_ui"
 const ACT_TOGGLE_ENABLED := &"debug_toggle_enabled"
@@ -14,6 +12,8 @@ const ACT_CYCLE_TARGET_PREV := &"debug_cycle_target_prev"
 const ACT_CYCLE_TARGET_NEXT := &"debug_cycle_target_next"
 const ACT_FORCE_MOVE_SQUAD_HERE := &"debug_force_move_squad_here"
 
+@export var enabled: bool = true
+
 var _debug: DebugService
 var _debug_ui_root: Control
 
@@ -22,6 +22,7 @@ func _ready() -> void:
     _debug = get_node_or_null("/root/Debug") as DebugService
     _debug_ui_root = get_node_or_null("../") as Control
     _ensure_default_actions()
+
 
 func _input(event: InputEvent) -> void:
     if not enabled:
@@ -35,12 +36,12 @@ func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         var mb := event as InputEventMouseButton
         if mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT and (mb.ctrl_pressed or mb.meta_pressed):
-
             if _is_mouse_over_debug_ui():
                 return
 
             _debug.select_combatant_under_mouse(get_viewport())
             get_viewport().set_input_as_handled()
+
 
 func _unhandled_input(event: InputEvent) -> void:
     if not enabled:
@@ -127,6 +128,7 @@ func _ensure_key_action(action: StringName, keycode: Key) -> void:
     var ev := InputEventKey.new()
     ev.keycode = keycode
     InputMap.action_add_event(a, ev)
+
 
 func _is_mouse_over_debug_ui() -> bool:
     if _debug_ui_root == null:

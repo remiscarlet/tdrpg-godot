@@ -27,9 +27,6 @@ func _ready() -> void:
 
     (get_node("/root/Debug") as DebugService).request_force_move_squad.connect(_on_force_move_squad)
 
-func _on_force_move_squad(squad_id: int, target_pos: Vector2) -> void:
-    print("FORCE SQUAD (%s) TO MOVE %s" % [squad_id, target_pos])
-    set_squad_move_to(squad_id, target_pos)
 
 func _process(_delta: float) -> void:
     for squad_id in _squads.keys():
@@ -117,6 +114,11 @@ func set_squad_patrol(squad_id: int, points: PackedVector2Array, loop: bool = tr
     if s == null:
         return
     s.set_directive(SquadDirective.patrol(points, loop))
+
+
+func _on_force_move_squad(squad_id: int, target_pos: Vector2) -> void:
+    print("FORCE SQUAD (%s) TO MOVE %s" % [squad_id, target_pos])
+    set_squad_move_to(squad_id, target_pos)
 
 
 func _compute_slot_targets(s: Squad, map_ready: bool) -> Dictionary:

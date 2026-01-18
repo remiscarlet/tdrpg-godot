@@ -142,12 +142,12 @@ func _transition_to(next: LocomotionIntentStateBase) -> void:
     if next == _active_state:
         return
 
-    print("Exiting from prev state? %s" % _active_state != null)
+    print("Exiting from prev state? %s" % _active_state)
     if _active_state != null:
         _active_state.exit()
 
     _active_state = next
 
-    print("Entering next state? %s" % _active_state != null)
+    print("Entering next state? %s" % _active_state)
     if _active_state != null:
         _active_state.enter()

@@ -12,7 +12,6 @@ const RANGED_ATTACK := &"ranged_attack"
 const PLAYER_SPAWNS := &"player_spawns"
 const ENEMY1_SPAWNS := &"enemy1_spawns"
 const ENEMY2_SPAWNS := &"enemy2_spawns"
-
 # Debug
 const DEBUG_OVERLAY_SQUAD := &"debug_overlay_squad"
 const DEBUG_OVERLAY_COMBATANT := &"debug_overlay_combatant"
