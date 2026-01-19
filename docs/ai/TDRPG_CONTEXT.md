@@ -38,6 +38,11 @@ Notes:
 - Hauler: an automaton focused on logistics tasks (transporting resources, servicing bases, etc.).
 - Hub/Base: a defensible location with expanded capabilities; never perfectly safe.
 
+## Locomotion Layers (AI movement model)
+- Policy (intent / why + what): chooses the objective and constraints (move, hold, patrol, return to formation, retreat to tether, etc.), emitting an intention plus parameters like urgency, formation mode, and tolerances—without picking each agent’s final point.
+- Target (targeting / where): resolves the policy intent into concrete goals such as squad anchors, patrol points, and especially per-combatant slot targets or reassignment rules. This layer decides “what exact point should this agent aim for right now?” and prevents clumping by keeping goals unique.
+- Execution (how / per-tick motion): turns the target into continuous movement: path following via NavigationAgent2D, repath/slowdown gating, steering and avoidance, unsticking (shear, micro-detours, separation), and outputs direction/speed to the motor while coping with local collisions and congestion.
+
 ## “Do not break these by accident”
 - Godot metadata stability: avoid rewriting .tscn/.tres formatting and UIDs unless you are migrating.
 - Maintain separation: runtime simulation logic should not depend directly on debug UI/draw code.
