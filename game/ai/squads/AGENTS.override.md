@@ -16,5 +16,5 @@ Extra rules when working in squad code:
 - Avoid spamming logs per frame; prefer gated debug flags.
 
 ## What to update when behavior changes
-- Update docs/ai/TDRPG_CONTEXT.md only if design intent changes.
-- Update docs/ai/GODOT_GDSCRIPT_STYLE.md only if conventions change.
+- Update docs/agent/TDRPG_CONTEXT.md only if design intent changes.
+- Update docs/agent/GODOT_GDSCRIPT_STYLE.md only if conventions change.

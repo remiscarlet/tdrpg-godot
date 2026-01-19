@@ -1,8 +1,6 @@
 class_name LocomotionWiringModule
 extends FeatureModuleBase
 
-const PhysicsUtils = preload("res://game/utils/physics_utils.gd")
-
 
 func id() -> StringName:
     return &"locomotion_wiring"

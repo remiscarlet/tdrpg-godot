@@ -5,14 +5,14 @@ setup:
 install: setup
 
 lint:
-	find . -name '*.gd' -type f -exec \
+	find . -path './addons' -prune -o -name '*.gd' -type f -exec \
 		./tools/gdscript-formatter lint \
 		--disable function-name \
 		--max-line-length 120 \
 		{} \;
 
 format:
-	find . -name '*.gd' -type f -exec \
+	find . -path './addons' -prune -o -name '*.gd' -type f -exec \
 		./tools/gdscript-formatter \
 		--use-spaces \
 		--reorder-code \

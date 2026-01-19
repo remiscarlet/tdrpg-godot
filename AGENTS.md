@@ -7,8 +7,39 @@ This file is “operational context”: how to work in this repo without breakin
 and how to keep changes aligned with design + engineering intent.
 
 If anything here conflicts with in-repo docs, treat:
-1) docs/ai/TDRPG_CONTEXT.md as the canonical design context
+1) docs/agent/context/TDRPG_CONTEXT.md as the canonical design context
 2) existing code as canonical for conventions unless explicitly updated
+
+## Agent documentation layout
+The `docs/agent/` tree is the agent/human shared knowledge base. It has two entrypoints:
+
+- `docs/agent/context/` — **reference context**
+  - Project design vocabulary, invariants, style guidance, architecture notes.
+  - These files explain “what” and “why”.
+
+- `docs/agent/skills/` — **workflows / runbooks**
+  - Step-by-step procedures with required inputs/outputs (e.g., TDD loop, doc updates).
+  - These files explain “how” to perform recurring work in a consistent way.
+
+**Rule:** Keep operational “how to work here without breaking things” guidance in `AGENTS.md` files,
+and keep deep reference material and repeatable workflows under `docs/agent/context/` and
+`docs/agent/skills/`. 
+
+## Using Skills
+Whenever the user requests a change or discussion relating to the codebase, check the `docs/agent/skills/index.md` file for any relevant skills.
+If there is a relevant skill, you must use it.
+If you are unusure if you should use a skill or not, prompt the user for confirmation.
+
+## Instruction priority & scope
+Instructions are scoped and prioritized as follows:
+
+1) **Nearest directory instructions win:** If a directory contains `AGENTS.md` or `AGENTS.override.md`,
+   treat those as authoritative for that directory subtree.
+2) This top-level `AGENTS.md` applies repo-wide where not overridden.
+3) `docs/agent/context/*` is canonical for design vocabulary, intent, and architectural rationale.
+4) Existing code is canonical for local conventions and patterns unless explicitly changed.
+
+When instructions conflict, prefer the most specific (closest) instructions for the files you are editing.
 
 ## Prime directive
 Prefer small, correct, reviewable diffs. Avoid churn.
@@ -23,7 +54,7 @@ Prefer small, correct, reviewable diffs. Avoid churn.
 - Logistics and intel matter: networks can be partitioned; the player’s awareness is constrained by sensing/vision.
 - “Failure teaches”: when a run goes bad, it should reveal system truth, not feel arbitrary.
 
-More detail: docs/ai/TDRPG_CONTEXT.md
+More detail: docs/agent/context/TDRPG_CONTEXT.md
 
 ## Project Structure & Module Organization
 - `game/` holds core GDScript code (systems, AI, components, utils).
@@ -45,6 +76,8 @@ To run the game locally, open `project.godot` in the Godot editor and run the ma
 - Lint with `make lint`; the function-name rule is disabled, so follow existing style.
 - Use `snake_case` for filenames and keep directory layout consistent with `game/` and `scenes/`.
 
+Project style guide: docs/agent/context/GODOT_GDSCRIPT_STYLE.md
+
 ## Commit & Pull Request Guidelines
 - Commit messages are short, imperative, and sentence case (e.g., "Implement squad spawner policy").
 - PRs should include a concise summary, test steps (or "Not tested"), and screenshots/GIFs for visual or gameplay changes.
@@ -54,16 +87,14 @@ To run the game locally, open `project.godot` in the Godot editor and run the ma
 - When touching gameplay logic, add debug hooks or small test scenes where possible.
 - Keep “runtime logic” separate from “debug draw / UI” where feasible.
 
-## Local workflow (commands)
-Godot supports running from the command line; use `--path` or `--upwards` so commands resolve the project root.
+## Workflows (skills) — when to use them
+Recurring workflows live under `docs/agent/skills/`. When a task matches a workflow, follow it.
 
-Fill these in with your real commands:
-- Run editor: `godot -e --path .`
-- Run game: `godot --path .`
-- Export headless (CI-style): `godot --headless --path . --export-release "<preset>" "<output>"`
-- If you use Godot unit tests: `godot --path . --test --help` (then choose a test target)
+Recommended defaults:
+- Architecture/design:
+    - Discussion: follow `docs/agent/skills/design_discussion.md`
+    - Recording decisions: follow `docs/agent/skills/record_design_decision.md`
+- Implementing changes: follow `docs/agent/skills/implement_spec.md`
+- Documentation updates (finalizer): follow `docs/agent/skills/doc_update.md`
 
-## Where to look for deeper context
-- docs/ai/TDRPG_CONTEXT.md            design + vocabulary + invariants
-- docs/ai/GODOT_GDSCRIPT_STYLE.md     practical GDScript/Godot conventions for this project
-- game/ai/squads/AGENTS.override.md   extra rules for squad subsystem changes
+**Doc updates are first-class:** If a ch

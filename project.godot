@@ -111,6 +111,10 @@ zoom_reset={
 2d_physics/layer_26="ENEMY2_TARGETING_SENSOR"
 2d_physics/layer_27="ENEMY2_HOSTILE_SENSOR"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
