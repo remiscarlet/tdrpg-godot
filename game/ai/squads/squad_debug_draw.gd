@@ -23,14 +23,22 @@ extends Node2D
 @export var metadata_text_outline: Color = Color.BLACK
 @export var metadata_text_color: Color = Color.WHITE
 
+var _debug: DebugService
+
+
+func _ready() -> void:
+    _debug = get_node_or_null("/root/Debug") as DebugService
+    if _debug != null:
+        _debug.state_changed.connect(func(_s: DebugState) -> void: queue_redraw())
+
 
 func _process(_delta: float) -> void:
-    if enabled:
+    if _is_debug_active():
         queue_redraw()
 
 
 func _draw() -> void:
-    if not enabled:
+    if not _is_debug_active():
         return
 
     var mgr := get_node_or_null(squad_manager_path) as SquadSystem
@@ -132,3 +140,16 @@ func _draw_metadata(s: Squad) -> void:
             font_size,
             metadata_text_color,
         )
+
+
+func _is_debug_active() -> bool:
+    var on := enabled
+
+    if _debug == null:
+        return on
+
+    var st := _debug.state
+    if st == null:
+        return on
+
+    return on and st.enabled and st.overlay_squad

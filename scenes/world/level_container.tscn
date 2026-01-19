@@ -15,8 +15,8 @@
 
 [sub_resource type="Resource" id="Resource_whkll"]
 script = ExtResource("10_4kdn2")
-max_squads_alive = 2
-squad_size = 3
+max_squads_alive = 1
+squad_size = 8
 metadata/_custom_type_script = "uid://cso7of7ybaoa5"
 
 [node name="LevelContainer" type="Node2D"]
@@ -65,7 +65,7 @@ script = ExtResource("8_pdn5p")
 squad_system_path = NodePath("..")
 combatant_system = NodePath("../../CombatantSystem")
 spawn_policy = SubResource("Resource_whkll")
-spawn_interval_sec = 3.0
+spawn_interval_sec = 2.0
 
 [node name="SquadDebugDraw" type="Node2D" parent="SquadSystem" groups=["debug_overlay_squad"]]
 script = ExtResource("9_q1he2")

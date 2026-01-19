@@ -20,6 +20,8 @@ script = ExtResource("2_ycnr1")
 shape = ExtResource("3_x6w07")
 
 [node name="NavIntentLocomotionDriver" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("4_0xj1q")]
+flock_separation_weight = 1.0
+flock_alignment_weight = 0.5
 
 [node name="NavigationAgent2D" parent="AttachmentsRig/ControllersRoot/NavIntentLocomotionDriver" index="0"]
 radius = 16.0
@@ -51,6 +53,7 @@ debug_color = Color(1, 0.31764707, 0.76862746, 0.5647059)
 
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/NavIntentLocomotionDriver"]
+[editable path="AttachmentsRig/ControllersRoot/NavIntentLocomotionDriver/FlockDetector"]
 [editable path="AttachmentsRig/ControllersRoot/CombatantAISupervisor"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword"]
 [editable path="AttachmentsRig/FacingRoot/Sensors/BasicSword/AttachmentsRig"]

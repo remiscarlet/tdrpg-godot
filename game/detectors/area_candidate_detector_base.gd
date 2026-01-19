@@ -38,7 +38,7 @@ func _candidate_exited(_candidate) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-    var candidate: Area2D = _get_candidate_from_area(area)
+    var candidate := _get_candidate_from_area(area)
     if candidate == null:
         return
     if candidates.has(candidate):
@@ -48,7 +48,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_area_exited(area: Area2D) -> void:
-    var candidate: Area2D = _get_candidate_from_area(area)
+    var candidate := _get_candidate_from_area(area)
     if candidate == null:
         return
     candidates.erase(candidate)

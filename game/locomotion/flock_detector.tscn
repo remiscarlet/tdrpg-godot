@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://csbelqo7ak7mr"]
+
+[ext_resource type="PackedScene" path="res://game/detectors/area_candidate_detector_base.tscn" id="1_6g3li"]
+[ext_resource type="Script" uid="uid://bul06uv6o4s08" path="res://game/locomotion/flock_detector.gd" id="2_v6s0p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2b4w"]
+radius = 80.0
+
+[node name="FlockDetector" instance=ExtResource("1_6g3li")]
+script = ExtResource("2_v6s0p")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_q2b4w")

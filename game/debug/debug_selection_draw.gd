@@ -12,10 +12,17 @@ extends Node2D
 @export var label_offset: Vector2 = Vector2(10.0, -14.0)
 
 var _accum: float = 0.0
+var _debug: DebugService
+
+
+func _ready() -> void:
+    _debug = get_node_or_null("/root/Debug") as DebugService
+    if _debug != null:
+        _debug.state_changed.connect(func(_s: DebugState) -> void: queue_redraw())
 
 
 func _process(delta: float) -> void:
-    if not enabled:
+    if not _is_debug_active():
         return
     if refresh_hz <= 0.0:
         queue_redraw()
@@ -27,14 +34,10 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-    if not enabled:
+    if not _is_debug_active():
         return
 
-    var dbg := get_node_or_null("/root/Debug") as DebugService
-    if dbg == null or not dbg.state.enabled or not dbg.state.overlay_selection:
-        return
-
-    var sel := dbg.get_selected_combatant()
+    var sel := _debug.get_selected_combatant() if _debug != null else null
     if sel == null or not (sel is Node2D):
         return
 
@@ -46,3 +49,18 @@ func _draw() -> void:
     var fs: int = label_font_size if label_font_size > 0 else ThemeDB.fallback_font_size
     if f != null:
         draw_string(f, p + label_offset, target.name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, fs, label_color)
+
+
+func _is_debug_active() -> bool:
+    var on := enabled
+
+    if _debug == null:
+        return on
+
+    var st := _debug.state
+    if st == null:
+        return on
+
+    # Selection overlay also depends on having a selection.
+    var has_sel := _debug.get_selected_combatant() != null
+    return on and st.enabled and st.overlay_selection and has_sel

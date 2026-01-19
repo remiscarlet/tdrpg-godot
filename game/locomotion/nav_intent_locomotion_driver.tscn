@@ -1,12 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwv7gnnpoe7of"]
+[gd_scene load_steps=3 format=3 uid="uid://cwv7gnnpoe7of"]
 
 [ext_resource type="Script" uid="uid://ctovrgoxl4y1f" path="res://game/locomotion/nav_intent_locomotion_driver.gd" id="1_ewwx8"]
+[ext_resource type="PackedScene" uid="uid://csbelqo7ak7mr" path="res://game/locomotion/flock_detector.tscn" id="2_wfg3o"]
 
 [node name="NavIntentLocomotionDriver" type="Node2D"]
 script = ExtResource("1_ewwx8")
+flock_separation_weight = 0.5
+flock_alignment_weight = 0.0
+flock_cohesion_weight = 0.0
+enable_shearing = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 20.0
 time_horizon_obstacles = 1.0
 debug_enabled = true
+
+[node name="FlockDetector" parent="." instance=ExtResource("2_wfg3o")]
+flock_radius = 80.0
+auto_enable_monitoring = true

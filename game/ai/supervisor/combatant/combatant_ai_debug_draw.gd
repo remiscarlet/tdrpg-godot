@@ -52,16 +52,21 @@ var _body: CombatantBase
 var _supervisor: CombatantAISupervisor
 var _driver: NavIntentLocomotionDriver
 var _accum: float = 0.0
+var _debug: DebugService
 
 
 func _ready() -> void:
+    _debug = get_node_or_null("/root/Debug") as DebugService
+    if _debug != null:
+        _debug.state_changed.connect(func(_s: DebugState) -> void: queue_redraw())
+
     _body = _resolve_body()
     _supervisor = _resolve_supervisor()
     _driver = _resolve_driver()
 
 
 func _process(delta: float) -> void:
-    if not enabled:
+    if not _is_debug_active():
         return
 
     if refresh_hz <= 0.0:
@@ -75,7 +80,7 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-    if not enabled:
+    if not _is_debug_active():
         return
 
     # Refresh bindings opportunistically (helps when adding the node in-editor).
@@ -328,6 +333,20 @@ func _build_lines() -> PackedStringArray:
             )
 
     return lines
+
+
+func _is_debug_active() -> bool:
+    # Fallback to the local export if the debug service is absent (e.g., in isolation tests).
+    var on := enabled
+
+    if _debug == null:
+        return on
+
+    var st := _debug.state
+    if st == null:
+        return on
+
+    return on and st.enabled and st.overlay_combatant
 
 
 # --------------------------
