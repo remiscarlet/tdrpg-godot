@@ -51,6 +51,15 @@ func set_directive(new_directive: SquadDirective, reason: String = "") -> void:
 
     _last_directive_change = _get_now()
 
+    Director.emit_observation(
+        DirectorObservationEvent.at_position(
+            DirectorObservationEvent.Kind.SQUAD_STATUS,
+            _anchor_position,
+            1.0,
+            StringName("squad_%s" % _directive_to_source_id()),
+        ),
+    )
+
 
 func get_time_since_last_directive_change() -> float:
     return _get_now() - _last_directive_change
@@ -69,3 +78,16 @@ func increment_patrol_index() -> void:
 
 func _get_now() -> float:
     return Time.get_unix_time_from_system()
+
+
+func _directive_to_source_id() -> String:
+    if directive == null:
+        return ""
+    match directive.kind:
+        SquadDirective.Kind.HOLD:
+            return "hold"
+        SquadDirective.Kind.MOVE_TO:
+            return "move_to"
+        SquadDirective.Kind.PATROL:
+            return "patrol"
+    return "unknown"

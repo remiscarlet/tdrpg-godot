@@ -9,6 +9,8 @@ var _debug: DebugService
 @onready var _combatant_cb: CheckBox = %CombatantOverlayCheckBox
 @onready var _nav_cb: CheckBox = %NavOverlayCheckBox
 @onready var _sel_cb: CheckBox = %SelectionOverlayCheckBox
+@onready var _heatmap_cb: CheckBox = %HeatmapOverlayCheckBox
+@onready var _belief_cb: CheckBox = %BeliefOverlayCheckBox
 @onready var _selected_lbl: Label = %SelectedTargetLabel
 @onready var _selected_squad_lbl: Label = %SelectedSquadLabel
 
@@ -46,6 +48,14 @@ func _ready() -> void:
         func(v: bool) -> void:
             _debug.toggle(&"overlay_selection")
     )
+    _heatmap_cb.toggled.connect(
+        func(v: bool) -> void:
+            _debug.toggle(&"overlay_heatmap")
+    )
+    _belief_cb.toggled.connect(
+        func(v: bool) -> void:
+            _debug.toggle(&"overlay_belief")
+    )
 
     _on_debug_state_changed(_debug.state)
     _on_selection_changed(_debug.get_selected_combatant())
@@ -61,6 +71,8 @@ func _on_debug_state_changed(state: DebugState) -> void:
     _set_checkbox_silent(_combatant_cb, state.overlay_combatant)
     _set_checkbox_silent(_nav_cb, state.overlay_navigation)
     _set_checkbox_silent(_sel_cb, state.overlay_selection)
+    _set_checkbox_silent(_heatmap_cb, state.overlay_heatmap)
+    _set_checkbox_silent(_belief_cb, state.overlay_belief)
 
 
 func _on_selection_changed(selected: Node) -> void:

@@ -18,6 +18,8 @@ var _modules: Array[FeatureModuleBase] = [
     MeleeAttackWiringModule.new(),
     RangedAttackWiringModule.new(),
     TurretAutofireWiringModule.new(),
+    LocomotionWiringModule.new(),
+    AIEnemyWiringModule.new(),
 
     # PlayerInputBindingsModule.new(),
     # HaulerBindingsModule.new(),

@@ -8,6 +8,8 @@ const ACT_TOGGLE_SQUAD := &"debug_toggle_squad_overlay"
 const ACT_TOGGLE_COMBATANT := &"debug_toggle_combatant_overlay"
 const ACT_TOGGLE_NAV := &"debug_toggle_navigation_overlay"
 const ACT_TOGGLE_SELECTION := &"debug_toggle_selection_overlay"
+const ACT_TOGGLE_HEATMAP := &"debug_toggle_heatmap_overlay"
+const ACT_TOGGLE_BELIEF := &"debug_toggle_belief_overlay"
 const ACT_CYCLE_TARGET_PREV := &"debug_cycle_target_prev"
 const ACT_CYCLE_TARGET_NEXT := &"debug_cycle_target_next"
 const ACT_FORCE_MOVE_SQUAD_HERE := &"debug_force_move_squad_here"
@@ -84,6 +86,16 @@ func _unhandled_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
 
+    if event.is_action_pressed(String(ACT_TOGGLE_HEATMAP)):
+        _debug.toggle(&"overlay_heatmap")
+        get_viewport().set_input_as_handled()
+        return
+
+    if event.is_action_pressed(String(ACT_TOGGLE_BELIEF)):
+        _debug.toggle(&"overlay_belief")
+        get_viewport().set_input_as_handled()
+        return
+
     if event.is_action_pressed(String(ACT_CYCLE_TARGET_PREV)):
         _debug.cycle_selected_combatant(-1)
         get_viewport().set_input_as_handled()
@@ -111,6 +123,8 @@ func _ensure_default_actions() -> void:
     _ensure_key_action(ACT_TOGGLE_COMBATANT, KEY_F4)
     _ensure_key_action(ACT_TOGGLE_NAV, KEY_F5)
     _ensure_key_action(ACT_TOGGLE_SELECTION, KEY_F6)
+    _ensure_key_action(ACT_TOGGLE_HEATMAP, KEY_F7)
+    _ensure_key_action(ACT_TOGGLE_BELIEF, KEY_F8)
     _ensure_key_action(ACT_CYCLE_TARGET_PREV, KEY_PAGEUP)
     _ensure_key_action(ACT_CYCLE_TARGET_NEXT, KEY_PAGEDOWN)
     _ensure_key_action(ACT_FORCE_MOVE_SQUAD_HERE, KEY_F9)

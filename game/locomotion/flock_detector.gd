@@ -34,5 +34,5 @@ func _apply_radius() -> void:
 
 func _configure_collisions() -> void:
     # Keep detectors on a shared sensor layer so they can see each other.
-    set_collision_layer_value(Layers.AREA_SENSOR, true)
-    set_collision_mask_value(Layers.AREA_SENSOR, true)
+    set_collision_layer_value(Layers.FLOCK, true)
+    set_collision_mask_value(Layers.FLOCK, true)

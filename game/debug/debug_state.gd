@@ -16,6 +16,10 @@ signal state_changed
     set = _set_overlay_navigation
 @export var overlay_selection: bool = true:
     set = _set_overlay_selection
+@export var overlay_heatmap: bool = true:
+    set = _set_overlay_heatmap
+@export var overlay_belief: bool = true:
+    set = _set_overlay_belief
 
 
 func toggle(flag: StringName) -> void:
@@ -32,6 +36,10 @@ func toggle(flag: StringName) -> void:
             overlay_navigation = not overlay_navigation
         &"overlay_selection":
             overlay_selection = not overlay_selection
+        &"overlay_heatmap":
+            overlay_heatmap = not overlay_heatmap
+        &"overlay_belief":
+            overlay_belief = not overlay_belief
         _:
             push_warning("DebugState.toggle(): unknown flag '%s'" % String(flag))
 
@@ -79,4 +87,18 @@ func _set_overlay_selection(v: bool) -> void:
     if v == overlay_selection:
         return
     overlay_selection = v
+    _emit_changed()
+
+
+func _set_overlay_heatmap(v: bool) -> void:
+    if v == overlay_heatmap:
+        return
+    overlay_heatmap = v
+    _emit_changed()
+
+
+func _set_overlay_belief(v: bool) -> void:
+    if v == overlay_belief:
+        return
+    overlay_belief = v
     _emit_changed()

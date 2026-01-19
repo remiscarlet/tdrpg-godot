@@ -14,7 +14,9 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.ENEMY2_HITBOX]),
                 PackedInt32Array([Layers.PLAYER_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([Layers.LOOT]),
-                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.PLAYER_TARGETING_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
+                PackedInt32Array([Layers.PLAYER_HOSTILE_SENSOR]), # Hostile (in sight) Detector
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.ENEMY2_HURTBOX]),
             )
         ),
@@ -26,7 +28,9 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY2_HITBOX, Layers.PLAYER_HITBOX]),
                 PackedInt32Array([Layers.ENEMY1_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
-                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.ENEMY1_TARGETING_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
+                PackedInt32Array([Layers.ENEMY1_HOSTILE_SENSOR]), # Hostile (in sight) Detector
                 PackedInt32Array([Layers.ENEMY2_HURTBOX, Layers.PLAYER_HURTBOX]),
             )
         ),
@@ -38,7 +42,9 @@ static func _build() -> Dictionary[int, TeamPhysics]:
                 PackedInt32Array([Layers.ENEMY1_HITBOX, Layers.PLAYER_HITBOX]),
                 PackedInt32Array([Layers.ENEMY2_PICKUPBOX]), # Pickupbox
                 PackedInt32Array([]),
-                PackedInt32Array([Layers.AREA_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.ENEMY2_TARGETING_SENSOR]), # Target Detector
+                PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
+                PackedInt32Array([Layers.ENEMY2_HOSTILE_SENSOR]), # Hostile (in sight) Detector
                 PackedInt32Array([Layers.ENEMY1_HURTBOX, Layers.PLAYER_HURTBOX]),
             )
         ),
@@ -115,9 +121,20 @@ static func set_target_detector_collisions_for_team(
         team_id: int,
 ) -> void:
     var cfg := _get_cfg(team_id)
-    for layer in cfg.detector_layer:
+    for layer in cfg.targeting_layer:
         detector.set_collision_layer_value(layer, true)
-    for layer in cfg.detector_mask:
+    for layer in cfg.targeting_mask:
+        detector.set_collision_mask_value(layer, true)
+
+
+static func set_hostile_detector_collisions_for_team(
+        detector: CollisionObject2D,
+        team_id: int,
+) -> void:
+    var cfg := _get_cfg(team_id)
+    for layer in cfg.hostile_layer:
+        detector.set_collision_layer_value(layer, true)
+    for layer in cfg.hostile_mask:
         detector.set_collision_mask_value(layer, true)
 
 
@@ -128,8 +145,10 @@ class TeamPhysics:
     var hurtbox_mask: PackedInt32Array
     var pickupbox_layer: PackedInt32Array
     var pickupbox_mask: PackedInt32Array
-    var detector_layer: PackedInt32Array
-    var detector_mask: PackedInt32Array
+    var targeting_layer: PackedInt32Array
+    var targeting_mask: PackedInt32Array
+    var hostile_layer: PackedInt32Array
+    var hostile_mask: PackedInt32Array
 
 
     func _init(
@@ -139,8 +158,10 @@ class TeamPhysics:
             hurt_mask: PackedInt32Array,
             pb_layer: PackedInt32Array,
             pb_mask: PackedInt32Array,
-            d_layer: PackedInt32Array,
-            d_mask: PackedInt32Array,
+            t_layer: PackedInt32Array,
+            t_mask: PackedInt32Array,
+            h_layer: PackedInt32Array,
+            h_mask: PackedInt32Array,
     ) -> void:
         hitbox_layer = hit_layer
         hitbox_mask = hit_mask
@@ -148,5 +169,7 @@ class TeamPhysics:
         hurtbox_mask = hurt_mask
         pickupbox_layer = pb_layer
         pickupbox_mask = pb_mask
-        detector_layer = d_layer
-        detector_mask = d_mask
+        targeting_layer = t_layer
+        targeting_mask = t_mask
+        hostile_layer = h_layer
+        hostile_mask = h_mask

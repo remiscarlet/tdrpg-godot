@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=18 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://daoikxcwmp4at" path="res://game/ai/squads/squad_spawn_manager.gd" id="8_pdn5p"]
 [ext_resource type="Script" uid="uid://cxoi7qgyeg7h6" path="res://game/ai/squads/squad_debug_draw.gd" id="9_q1he2"]
 [ext_resource type="Script" uid="uid://cso7of7ybaoa5" path="res://game/ai/squads/spawning/max_squads_spawn_policy.gd" id="10_4kdn2"]
+[ext_resource type="Script" uid="uid://5qchkb2c60ex" path="res://game/ai/director/director.gd" id="11_dir"]
+[ext_resource type="Script" uid="uid://cqeoydt00unlv" path="res://game/ai/director/director_debug_overlay.gd" id="12_dir_overlay"]
+[ext_resource type="Resource" uid="uid://cpel7qb2dvige" path="res://assets/ai/director/director_config.tres" id="13_dir_cfg"]
+[ext_resource type="Script" uid="uid://b5f8y26ekask" path="res://game/ai/director/belief_debug_overlay.gd" id="14_dir_belief_overlay"]
 
 [sub_resource type="Resource" id="Resource_whkll"]
 script = ExtResource("10_4kdn2")
@@ -80,3 +84,18 @@ script = ExtResource("6_2dxgc")
 
 [node name="Camera2D" type="Camera2D" parent="CameraRig"]
 position_smoothing_enabled = true
+
+[node name="AIDirector" type="Node2D" parent="."]
+script = ExtResource("11_dir")
+config = ExtResource("13_dir_cfg")
+
+[node name="DirectorDebugOverlay" type="Node2D" parent="AIDirector" groups=["debug_overlay_heatmap"]]
+script = ExtResource("12_dir_overlay")
+director_path = NodePath("..")
+enabled = true
+
+[node name="BeliefDebugOverlay" type="Node2D" parent="AIDirector" groups=["debug_overlay_belief"]]
+script = ExtResource("14_dir_belief_overlay")
+director_path = NodePath("..")
+color = Color(0.37783384, 0.6751532, 0, 0.2509804)
+enabled = true

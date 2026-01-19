@@ -37,6 +37,7 @@ signal intent_completed(intent_id: StringName)
 @export var shear_angle_min_rad: float = PI / 16.0
 @export var shear_angle_max_rad: float = PI / 10.0
 @export var shear_bias_strength: float = 0.75
+@export var debug_print: bool = false
 
 var _intent: LocomotionIntent
 var _last_goal: Vector2 = Vector2.INF
@@ -52,8 +53,8 @@ var _last_commanded_dir: Vector2 = Vector2.ZERO
 var _last_commanded_scale: float = 0.0
 var _stuck_timer: float = 0.0
 var _last_delta: float = 0.0
+var _body: CombatantBase
 
-@onready var _body: CombatantBase = _find_body()
 @onready var _agent: NavigationAgent2D = get_node_or_null(nav_agent_path) as NavigationAgent2D
 @onready var _flock_detector: FlockDetector = get_node_or_null(flock_detector_path) as FlockDetector
 
@@ -154,6 +155,10 @@ func _physics_process(delta: float) -> void:
     _apply_local_movement_modifiers(dir, requested_scale)
 
 
+func set_body(body: CombatantBase) -> void:
+    _body = body
+
+
 func set_intent(intent: LocomotionIntent) -> void:
     _intent = intent
     _since_repath = 9999.0
@@ -231,13 +236,14 @@ func _on_agent_velocity_computed(safe_velocity: Vector2) -> void:
 
 
 func _apply_local_movement_modifiers(dir: Vector2, v_scale: float) -> void:
-    var base_dir := dir.normalized() if dir.length() > 0.001 else  Vector2.ZERO
+    var base_dir := dir.normalized() if dir.length() > 0.001 else Vector2.ZERO
     var base_scale := clampf(v_scale, 0.0, 1.0)
     var base_velocity := base_dir * base_scale
 
     var new_dir := base_dir
     var new_scale := base_scale
-    print("[%s] ORIG: (dir:%s, deg:%.1f, s:%s)" % [self, new_dir, _dir_deg(new_dir), new_scale])
+    if debug_print:
+        print("[%s] ORIG: (dir:%s, deg:%.1f, s:%s)" % [self, new_dir, _dir_deg(new_dir), new_scale])
 
     if enable_flocking:
         var steer := _compute_flock_adjustment()
@@ -252,7 +258,11 @@ func _apply_local_movement_modifiers(dir: Vector2, v_scale: float) -> void:
             new_dir = base_dir
             new_scale = base_scale
 
-        print("[%s] FLOCKING dir:%s deg:%.1f (scale:%s, steer:%s, base_vel:%s)" % [self, new_dir, _dir_deg(new_dir), new_scale, steer, base_velocity])
+        if debug_print:
+            print(
+                "[%s] FLOCKING dir:%s deg:%.1f (scale:%s, steer:%s, base_vel:%s)"
+                % [self, new_dir, _dir_deg(new_dir), new_scale, steer, base_velocity],
+            )
 
     if enable_shearing:
         var shear_stage := _get_shear_stage()
@@ -265,15 +275,18 @@ func _apply_local_movement_modifiers(dir: Vector2, v_scale: float) -> void:
                 working_dir = -working_dir # stage2: flip 180° then shear
             var rotated := working_dir.rotated(-shear_angle) # clockwise bias
             new_dir += rotated * shear_bias_strength
-            print("[%s] SHEARING stage:%s dir:%s deg:%.1f (rotated: %s deg:%.1f, str: %s)" % [
-                self,
-                shear_stage,
-                new_dir,
-                _dir_deg(new_dir),
-                rotated,
-                _dir_deg(rotated),
-                shear_bias_strength,
-            ])
+            if debug_print:
+                print(
+                    "[%s] SHEARING stage:%s dir:%s deg:%.1f (rotated: %s deg:%.1f, str: %s)" % [
+                        self,
+                        shear_stage,
+                        new_dir,
+                        _dir_deg(new_dir),
+                        rotated,
+                        _dir_deg(rotated),
+                        shear_bias_strength,
+                    ],
+                )
 
     if new_dir.length() > 0.001:
         new_dir = new_dir.normalized()
@@ -309,17 +322,8 @@ func _stop_if_no_intent() -> void:
         _stuck_timer = 0.0
 
         # Prevent “residual” avoidance motion.
-        if use_avoidance and _agent != null and _agent.avoidance_enabled:
-            _agent.set_velocity(Vector2.ZERO)
-
-
-func _find_body() -> CombatantBase:
-    var n := get_parent()
-    while n != null:
-        if n is CombatantBase:
-            return n as CombatantBase
-        n = n.get_parent()
-    return null
+    if use_avoidance and _agent != null and _agent.avoidance_enabled:
+        _agent.set_velocity(Vector2.ZERO)
 
 
 func _configure_flock_detector() -> void:
@@ -415,7 +419,6 @@ func _dir_deg(vec: Vector2) -> float:
     if vec.length() <= 0.001:
         return 0.0
     return rad_to_deg(vec.angle())
-
 
 
 func _is_same_squad(other_body: CombatantBase) -> bool:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bl636niefb2mo"]
+[gd_scene load_steps=13 format=3 uid="uid://bl636niefb2mo"]
 
 [ext_resource type="PackedScene" uid="uid://btwq1cb3h7kwa" path="res://game/actors/combatant/combatant_base.tscn" id="1_v1h8l"]
 [ext_resource type="Script" uid="uid://beu50d24ud1v3" path="res://scenes/enemies/default_enemy/default_enemy.gd" id="2_ycnr1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://game/ai/supervisor/combatant/combatant_ai_debug_draw.tscn" id="6_0xj1q"]
 [ext_resource type="PackedScene" uid="uid://dw0tshg2k2j2p" path="res://game/components/target_sensor_2d/target_sensor_2d_component.tscn" id="6_2qtr1"]
 [ext_resource type="Shape2D" uid="uid://co1vw7c527yan" path="res://scenes/enemies/default_enemy/default_enemy_hurtbox_shape.tres" id="6_nffph"]
+[ext_resource type="PackedScene" uid="uid://dacmkrs0lmvrh" path="res://game/components/player_sighting_detector/player_sighting_detector.tscn" id="7_detector"]
 
 [node name="DefaultEnemy" instance=ExtResource("1_v1h8l")]
 rotation = -0.00020307512
@@ -50,6 +51,8 @@ shape = ExtResource("6_nffph")
 debug_color = Color(1, 0.31764707, 0.76862746, 0.5647059)
 
 [node name="TargetSensor2DComponent" parent="AttachmentsRig/FacingRoot/Sensors" index="3" instance=ExtResource("6_2qtr1")]
+
+[node name="PlayerSightingDetector" parent="AttachmentsRig/FacingRoot/Sensors" index="4" instance=ExtResource("7_detector")]
 
 [editable path="AttachmentsRig"]
 [editable path="AttachmentsRig/ControllersRoot/NavIntentLocomotionDriver"]

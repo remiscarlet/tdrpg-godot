@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DirectorConfig" load_steps=2 format=3 uid="uid://cpel7qb2dvige"]
+
+[ext_resource type="Script" uid="uid://bq4olctwdvgml" path="res://game/ai/director/director_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enabled = true
+allow_debug_overlay = true
+enable_directives = true
+placeholder_directive_interval_sec = 2.0
+belief_decay_per_sec = 0.25

@@ -49,11 +49,26 @@ func _validate_ready() -> bool:
 func _on_timeout() -> void:
     # One-shot timer prevents overlapping spawns while we await CombatantSystem.
     if _validate_ready():
-        await _try_spawn_once()
+        await _consume_director_directives()
 
     # Always schedule the next tick.
     _timer.wait_time = spawn_interval_sec
     _timer.start()
+
+
+func _consume_director_directives() -> void:
+    var director := Director.get_instance()
+    var consumed_any := false
+
+    if director != null:
+        print("SquadSpawnManager: querying director for RANDOM_SPAWN directives.")
+        var directives := director.consume_directives(DirectorDirective.Goal.RANDOM_SPAWN)
+        for d in directives:
+            consumed_any = true
+            await _try_spawn_once()
+
+    if not consumed_any:
+        print("SquadSpawnManager: no director directives available; skipping spawn.")
 
 
 func _try_spawn_once() -> void:

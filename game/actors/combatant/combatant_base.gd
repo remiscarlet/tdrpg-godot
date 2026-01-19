@@ -48,3 +48,14 @@ func get_desired_dir() -> Vector2:
 
 func get_desired_speed_scale() -> float:
     return _desired_speed_scale
+
+
+func emit_director_observation(kind: DirectorObservationEvent.Kind, intensity: float = 1.0) -> void:
+    Director.emit_observation(
+        DirectorObservationEvent.at_position(
+            kind,
+            global_position,
+            intensity,
+            &"combatant",
+        ),
+    )

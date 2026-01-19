@@ -121,6 +121,8 @@ func _apply_overlay_groups_if_enabled() -> void:
     _apply_overlay_group(Groups.DEBUG_OVERLAY_SQUAD, state.enabled and state.overlay_squad)
     _apply_overlay_group(Groups.DEBUG_OVERLAY_COMBATANT, state.enabled and state.overlay_combatant)
     _apply_overlay_group(Groups.DEBUG_OVERLAY_NAV, state.enabled and state.overlay_navigation)
+    _apply_overlay_group(Groups.DEBUG_OVERLAY_HEATMAP, state.enabled and state.overlay_heatmap)
+    _apply_overlay_group(Groups.DEBUG_OVERLAY_BELIEF, state.enabled and state.overlay_belief)
 
     # Selection overlays are often useful only when there is a selection.
     var has_sel := get_selected_combatant() != null
