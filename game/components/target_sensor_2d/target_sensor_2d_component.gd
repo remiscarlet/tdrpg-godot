@@ -1,11 +1,10 @@
 class_name TargetSensor2DComponent
-extends Area2D
+extends AreaCandidateDetectorBase
 
 signal target_sensed(node: Hurtbox2DComponent)
 
 var sensor_radius: float
 var team_id: int = -1
-var _candidates: Array[Hurtbox2DComponent] = []
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 
@@ -14,8 +13,7 @@ func _ready() -> void:
     _apply_radius()
     _apply_team()
     monitoring = true
-    area_entered.connect(_on_area_entered)
-    area_exited.connect(_on_area_exited)
+    super._ready()
 
 
 func set_target_sensor_radius(radius: float) -> void:
@@ -29,8 +27,12 @@ func set_team_id(id: int) -> void:
 
 
 func get_candidates() -> Array[Hurtbox2DComponent]:
-    _prune_invalid()
-    return _candidates
+    var typed: Array[Hurtbox2DComponent] = []
+    for candidate in super.get_candidates():
+        var hurtbox := candidate as Hurtbox2DComponent
+        if hurtbox != null:
+            typed.append(hurtbox)
+    return typed
 
 
 func _apply_radius() -> void:
@@ -46,23 +48,9 @@ func _apply_team() -> void:
         PhysicsUtils.set_target_detector_collisions_for_team(self, team_id)
 
 
-func _on_area_entered(body: Node) -> void:
-    print("Target Sensor detected: %s" % body)
-    var hurtbox := body as Hurtbox2DComponent
-    if hurtbox == null:
-        return
-    _candidates.append(hurtbox)
-    target_sensed.emit(hurtbox)
+func _get_candidate_from_area(area: Area2D):
+    return area as Hurtbox2DComponent
 
 
-func _on_area_exited(body: Node) -> void:
-    var hurtbox := body as Hurtbox2DComponent
-    if hurtbox == null:
-        return
-    _candidates.erase(hurtbox)
-
-
-func _prune_invalid() -> void:
-    for i in range(_candidates.size() - 1, -1, -1):
-        if not is_instance_valid(_candidates[i]):
-            _candidates.remove_at(i)
+func _candidate_entered(candidate) -> void:
+    target_sensed.emit(candidate)

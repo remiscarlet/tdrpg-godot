@@ -21,6 +21,10 @@ shape = ExtResource("3_x6w07")
 
 [node name="NavIntentLocomotionDriver" parent="AttachmentsRig/ControllersRoot" index="0" instance=ExtResource("4_0xj1q")]
 
+[node name="NavigationAgent2D" parent="AttachmentsRig/ControllersRoot/NavIntentLocomotionDriver" index="0"]
+radius = 16.0
+time_horizon_agents = 0.5
+
 [node name="CombatantAISupervisor" parent="AttachmentsRig/ControllersRoot" index="1" instance=ExtResource("5_dpprp")]
 max_slot_distance = 250.0
 recover_slot_distance = 100.0

@@ -24,7 +24,7 @@ var _active_state: LocomotionIntentStateBase
 
 
 func _ready() -> void:
-    process_physics_priority = -20
+    process_physics_priority = PhysicsPriorities.AI
 
     _actor = get_parent().get_parent().get_parent() as CombatantBase
     if _actor == null:

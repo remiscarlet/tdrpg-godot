@@ -1,17 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt3v4ydc3rg5t"]
+[gd_scene load_steps=4 format=3 uid="uid://bt3v4ydc3rg5t"]
 
-[ext_resource type="Script" uid="uid://flpbd3nu5rx" path="res://game/components/interactable_detector/interactable_detector_component.gd" id="1_kdcat"]
+[ext_resource type="PackedScene" path="res://game/detectors/area_candidate_detector_base.tscn" id="1_6u3wn"]
+[ext_resource type="Script" uid="uid://flpbd3nu5rx" path="res://game/components/interactable_detector/interactable_detector_component.gd" id="2_2x4f2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdcat"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjo37"]
 radius = 50.0
 
-[node name="InteractableDetectorComponent" type="Area2D"]
+[node name="InteractableDetectorComponent" instance=ExtResource("1_6u3wn")]
 editor_description = "Adds the ability to detect and keep track of Interactables within the CollisionShape2D range"
-collision_layer = 0
 collision_mask = 16
-script = ExtResource("1_kdcat")
+script = ExtResource("2_2x4f2")
 sensor_path = NodePath(".")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kdcat")
-debug_color = Color(0.26448107, 0.50741035, 0.9879263, 0.41960785)
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_mjo37")

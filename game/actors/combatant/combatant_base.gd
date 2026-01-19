@@ -15,10 +15,11 @@ var _desired_speed_scale: float = 1.0
 
 # Lifecycle Methods
 func _ready() -> void:
-    process_physics_priority = 10
+    process_physics_priority = PhysicsPriorities.MOTOR_COMMIT
 
 
 func _physics_process(_delta: float) -> void:
+    # print("Actuating motor. Dir: %s, Vel: %s" % [_desired_dir, velocity])
     velocity = _desired_dir.normalized() * move_speed * _desired_speed_scale
     move_and_slide()
 

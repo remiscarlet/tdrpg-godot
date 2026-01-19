@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1dkm5wl0f3w6"]
+[gd_scene load_steps=14 format=3 uid="uid://d1dkm5wl0f3w6"]
 
 [ext_resource type="Script" uid="uid://dlbuxf2urwom7" path="res://scenes/world/level_container.gd" id="1_c06pb"]
 [ext_resource type="Script" uid="uid://m5k3uqlel23p" path="res://game/systems/turret_system.gd" id="2_jof1v"]
@@ -10,8 +10,14 @@
 [ext_resource type="Script" uid="uid://cv0my7m4j1va7" path="res://game/ai/squads/squad_system.gd" id="7_7k2i2"]
 [ext_resource type="Resource" uid="uid://c40sj6rim7kry" path="res://game/ai/squads/default_squad_config.tres" id="8_4kdn2"]
 [ext_resource type="Script" uid="uid://daoikxcwmp4at" path="res://game/ai/squads/squad_spawn_manager.gd" id="8_pdn5p"]
-[ext_resource type="PackedScene" uid="uid://bl636niefb2mo" path="res://scenes/enemies/default_enemy/default_enemy.tscn" id="9_gd8f6"]
 [ext_resource type="Script" uid="uid://cxoi7qgyeg7h6" path="res://game/ai/squads/squad_debug_draw.gd" id="9_q1he2"]
+[ext_resource type="Script" uid="uid://cso7of7ybaoa5" path="res://game/ai/squads/spawning/max_squads_spawn_policy.gd" id="10_4kdn2"]
+
+[sub_resource type="Resource" id="Resource_whkll"]
+script = ExtResource("10_4kdn2")
+max_squads_alive = 2
+squad_size = 3
+metadata/_custom_type_script = "uid://cso7of7ybaoa5"
 
 [node name="LevelContainer" type="Node2D"]
 editor_description = "Holds session/run-scoped state/systems/etc. "
@@ -58,9 +64,8 @@ default_squad_config = ExtResource("8_4kdn2")
 script = ExtResource("8_pdn5p")
 squad_system_path = NodePath("..")
 combatant_system = NodePath("../../CombatantSystem")
-enemy_member_scene = ExtResource("9_gd8f6")
-spawn_interval_sec = 1.0
-squad_size = 2
+spawn_policy = SubResource("Resource_whkll")
+spawn_interval_sec = 3.0
 
 [node name="SquadDebugDraw" type="Node2D" parent="SquadSystem" groups=["debug_overlay_squad"]]
 script = ExtResource("9_q1he2")

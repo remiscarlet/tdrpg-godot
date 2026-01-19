@@ -6,4 +6,7 @@
 script = ExtResource("1_ewwx8")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 20.0
+time_horizon_obstacles = 1.0
 debug_enabled = true
