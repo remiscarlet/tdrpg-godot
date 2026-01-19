@@ -25,6 +25,10 @@ Debug="*res://game/debug/debug_service.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
 [global_group]
 
 combatants=""
@@ -110,10 +114,6 @@ zoom_reset={
 2d_physics/layer_25="ENEMY2_PICKUPBOX"
 2d_physics/layer_26="ENEMY2_TARGETING_SENSOR"
 2d_physics/layer_27="ENEMY2_HOSTILE_SENSOR"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [rendering]
 

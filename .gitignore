@@ -3,6 +3,8 @@
 /android/
 addons/*
 
+tests/.reports/*
+
 # Mac
 *.DS_Store
 

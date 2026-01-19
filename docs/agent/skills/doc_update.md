@@ -54,10 +54,11 @@ Choose the MINIMUM set that keeps the repo truthful:
 
 ## Procedure
 1. Identify impacted documentation targets (AGENTS, ADR, architecture docs, README).
-2. Update the smallest doc set that makes the change discoverable at point-of-use.
-3. Add/Update ADR if the change is a long-term decision (not just an implementation detail).
-4. Update any indices (ADR index, architecture index).
-5. Validate:
+2. You MUST confirm with the user what your general set of intended changes is.
+3. Update the smallest doc set that makes the change discoverable at point-of-use.
+4. Add/Update ADR if the change is a long-term decision (not just an implementation detail).
+5. Update any indices (ADR index, architecture index).
+6. Validate:
    - Links are not obviously broken.
    - Build/test commands in docs match reality.
    - Terms match code (names, paths, entrypoints).

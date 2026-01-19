@@ -19,3 +19,8 @@ format:
 		{} \;
 
 lint-fix: format lint
+
+test:
+	godot --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a tests -rd res://tests/.reports
+
+ci: lint-fix test

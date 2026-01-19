@@ -71,12 +71,18 @@ More detail: docs/agent/context/TDRPG_CONTEXT.md
 
 To run the game locally, open `project.godot` in the Godot editor and run the main scene.
 
+More details: docs/agent/context/TESTING.md
+
 ## Coding Style & Naming Conventions
 - Format GDScript using `make format` (spaces, reordered code, 120-char lines).
 - Lint with `make lint`; the function-name rule is disabled, so follow existing style.
 - Use `snake_case` for filenames and keep directory layout consistent with `game/` and `scenes/`.
 
 Project style guide: docs/agent/context/GODOT_GDSCRIPT_STYLE.md
+
+## Makefile
+- For common repeated CLI commands run from the root of the repo, prefer creating Makefile targets.
+- When documenting commands, always prefer Makefile target commands over the verbose command.
 
 ## Commit & Pull Request Guidelines
 - Commit messages are short, imperative, and sentence case (e.g., "Implement squad spawner policy").
@@ -86,6 +92,10 @@ Project style guide: docs/agent/context/GODOT_GDSCRIPT_STYLE.md
 - Prefer additive changes with clear seams (new files, new small classes) over invasive rewrites.
 - When touching gameplay logic, add debug hooks or small test scenes where possible.
 - Keep “runtime logic” separate from “debug draw / UI” where feasible.
+
+## Updating Stale or Incorrect Information
+- If you try running a command in a context file or documentation block and it is incorrect, you MUST apply a fix with the working solution.
+- Refer to the `doc_update.md` for any specifics around how to execute the update.
 
 ## Workflows (skills) — when to use them
 Recurring workflows live under `docs/agent/skills/`. When a task matches a workflow, follow it.
