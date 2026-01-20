@@ -12,6 +12,17 @@ These are project-specific preferences to keep the codebase coherent and Godot-f
   - runtime logic: state, decisions, simulation
   - view/debug: drawing, UI overlays, visualization
 
+## File purpose header
+- Every `.gd` file MUST include a brief purpose line near the top so skimmers (including LLM agents) can identify intent quickly.
+- Place it immediately after any `@tool`/`class_name`/`extends` lines and before constants or member definitions.
+- Keep it one concise comment sentence answering “What is this file for?” Example:
+  ```gdscript
+  @tool
+  extends Node2D
+  # Purpose: Spawns enemy waves and routes them to active hubs.
+  ```
+- If a file has multiple purposes or cannot be described concisely AND accurately in one line, use multiple lines.
+
 ## Typed GDScript
 - Prefer typed variables/params/returns for core runtime paths.
 - Use types to document intent, not to win a type-theory contest.

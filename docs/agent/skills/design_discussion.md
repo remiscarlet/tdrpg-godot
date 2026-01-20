@@ -2,7 +2,6 @@
 id: design-discussion
 name: Discuss Design
 version: 1.0
-owners: ["solo-dev"]
 last_verified: 2026-01-19
 dependencies:
   - "docs/agent/skills/record_design_decision.md"

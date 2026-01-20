@@ -17,6 +17,10 @@ The `docs/agent/` tree is the agent/human shared knowledge base. It has two entr
   - Project design vocabulary, invariants, style guidance, architecture notes.
   - These files explain “what” and “why”.
 
+- `docs/specs/` — **implementation plans**
+  - Technical design docs with phases/milestones/validation for implementing approved decisions.
+  - Each spec links back to its ADR(s) and is indexed in `docs/specs/index.md`.
+
 - `docs/agent/skills/` — **workflows / runbooks**
   - Step-by-step procedures with required inputs/outputs (e.g., TDD loop, doc updates).
   - These files explain “how” to perform recurring work in a consistent way.
@@ -73,6 +77,11 @@ More detail: docs/agent/context/TDRPG_CONTEXT.md
 - `make lint` runs GDScript linting with `gdscript-formatter` (max line length 120).
 - `make format` formats all `.gd` files with spaces and code reordering.
 - `make lint-fix` formats then lints.
+
+Core testing tenet:
+- We MUST make a best effort to include tests with any new changes.
+- For files under `game/`, tests are required for any file with functions/business logic.
+- For files under `scenes/`, include basic tests where reasonable and appropriate; it is expected that many files will have no tests or light tests.
 
 To run the game locally, open `project.godot` in the Godot editor and run the main scene.
 

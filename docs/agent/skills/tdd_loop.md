@@ -3,7 +3,7 @@ id: tdd-loop
 name: Test-Driven Development Loop
 version: 1.0
 scope: generic
-dependencies: []
+dependencies: ["docs/context/TESTING.md"]
 last_verified: 2026-01-19
 ---
 
@@ -28,6 +28,7 @@ Default for all implementation work unless an explicit exemption applies.
 - A short TDD trace summary (template below)
 
 ## Procedure
+0) ENSURE: You have loaded the TESTING.md context file for testing conventions.
 1) Identify smallest testable unit of behavior that advances the acceptance criteria.
 2) Write or update a test that captures that behavior.
 3) Run the smallest relevant test command.

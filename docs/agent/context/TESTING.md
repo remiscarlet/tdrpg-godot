@@ -6,6 +6,7 @@ Quick reference for how we test the project and how LLM agents should treat test
 - Primary: GdUnit4 (vendored under `addons/gdUnit4`, enabled in `project.godot`).
 - Test root: `tests/` (see `.gdunit.cfg`); sample suite lives at `tests/unit/sample_test.gd`.
 - Detailed GdUnit notes: `docs/agent/context/testing/gdunit4.md`.
+- Untested inventory: `docs/agent/context/testing/untested_files.md` (generated list of .gd outside `tests/`, excludes `addons/`).
 
 ## Running Tests (headless)
 - From repo root: `make test`
@@ -15,9 +16,37 @@ Quick reference for how we test the project and how LLM agents should treat test
   - Reports land in `tests/.reports` (HTML + XML). Keep this command in sync with the vendored GdUnit version.
 
 ## Where to Put Tests
-- Unit and small integration suites under `tests/` (mirror source structure when possible).
+- Only add tests for `game/` and `scenes/` sources.
+- Unit suites live under `tests/unit/` and mirror the source path.
+- Integration suites live under `tests/integration/`
+- Scene-bound suites live under `tests/scenes/` and mirror the scene script path.
 - Use `extends GdUnitTestSuite`; start with a passing placeholder to confirm discovery before deep assertions.
 - Prefer fastest scope runs (single file → folder → full suite) when iterating.
+
+## Test File Mapping (source → test)
+- `game/**/foo.gd` → `tests/unit/game/**/foo_test.gd`
+- `scenes/**/bar.gd` → `tests/scenes/scenes/**/bar_test.gd`
+- For integration scope, use `tests/integration/` with the same mirrored path and `_test.gd` suffix.
+- If one suite intentionally covers multiple files, list all of them under `Testee:` in the header.
+
+## Required Test Header
+Add this header near the top of every test file, after `extends`:
+```
+# Purpose: <1 sentence>
+# Testee: res://path/to/file.gd
+# Testee: res://path/to/another.gd (repeat as needed)
+# Scope: unit | integration | scene
+# Tags: <comma-separated, optional>
+```
+
+Example snippet:
+```gdscript
+extends GdUnitTestSuite
+# Purpose: Validates director heat map decay behavior over time.
+# Testee: res://game/ai/director/heat_map.gd
+# Scope: unit
+# Tags: ai, director, heat
+```
 
 ## Writing Tests
 - All test functions must have a docblock explaining the purpose in plain English.

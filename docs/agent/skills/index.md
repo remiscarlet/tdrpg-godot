@@ -11,3 +11,7 @@ Inventory of available workflows under `docs/agent/skills/`. Use these as entry 
 | record-design-decision | Architecture / Design Decision | Capture design choices as ADRs with trade-offs and required doc updates. |
 | tdd-loop | Test-Driven Development Loop | Red/Green/Refactor workflow for implementation work. |
 | validate-skills | Validate Skills | Ensure all skill files comply with format and the index matches the skill catalog. |
+| skill-creation-intake | Skill Creation Intake | Structured questioning loop to clarify a new skill before drafting or coding it. |
+| save-todos | Save Hot TODOs | Append concise TODO/reminder lines to docs/TODOS.md when explicitly requested. |
+| remove-todos | Remove Hot TODOs | Delete TODO/reminder lines from docs/TODOS.md when explicitly requested. |
+| refresh-context | Refresh Context | Reload AGENTS.md and docs/agent/** into context on explicit refresh request. |
