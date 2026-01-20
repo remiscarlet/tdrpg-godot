@@ -1,6 +1,7 @@
 class_name LevelSystem
 extends Node
 
+## Purpose: System that starts and manages level sessions.
 var level_container_scene: PackedScene = preload("res://scenes/world/level_container.tscn")
 var current_level: Node = null
 var run_state: RunState

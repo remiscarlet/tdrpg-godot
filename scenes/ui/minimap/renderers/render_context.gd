@@ -1,6 +1,7 @@
 class_name RenderContext
 extends Resource
 
+## Purpose: Resource holding shared minimap render context.
 var nav_root: Node
 var poly_containers_root: Node2D
 var tilemap_layer: TileMapLayer

@@ -1,6 +1,7 @@
 class_name Hurtbox2DComponent
 extends Area2D
 
+## Purpose: Hurtbox area for receiving damage hits.
 var root: Node2D
 var health: HealthComponent
 

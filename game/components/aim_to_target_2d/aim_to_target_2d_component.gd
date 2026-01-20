@@ -1,6 +1,7 @@
 class_name AimToTarget2DComponent
 extends Node2D
 
+## Purpose: Component that rotates aim toward a target.
 var facing_root: Node2D
 var _angle_vector: Vector2
 

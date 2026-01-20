@@ -1,6 +1,7 @@
 class_name MinimapNavBake
 extends SubViewport
 
+## Purpose: Scene script for baking minimap navigation data.
 @export var nav_root: Node
 @export var bake_resolution: Vector2i = Vector2i(512, 512)
 @export_range(0.0, 0.45, 0.01) var frame_padding: float = 0.08

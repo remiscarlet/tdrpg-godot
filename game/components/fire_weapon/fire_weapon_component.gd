@@ -1,6 +1,7 @@
 class_name FireWeaponComponent
 extends Node2D
 
+## Purpose: Component that fires a weapon at targets.
 var ranged_attack_system: RangedAttackSystem
 
 

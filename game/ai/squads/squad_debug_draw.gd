@@ -1,6 +1,7 @@
 class_name SquadDebugDraw
 extends Node2D
 
+## Purpose: Debug draw node for squad visualization.
 @export var squad_manager_path: NodePath
 @export var enabled: bool = true
 @export var draw_cohesion_radius: bool = true

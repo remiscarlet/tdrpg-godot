@@ -1,6 +1,7 @@
 class_name InventoryComponent
 extends Node2D
 
+## Purpose: Component that exposes inventory on an actor.
 signal inventory_changed
 
 @export var capacity = 1

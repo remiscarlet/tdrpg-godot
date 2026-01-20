@@ -1,5 +1,9 @@
 extends GdUnitTestSuite
+## Purpose: Confirms definition database loads and resolves known resources.
 
+# Testee: res://game/providers/definition_db.gd
+# Scope: unit
+# Tags: definitions
 const DefinitionDB = preload("res://game/providers/definition_db.gd")
 const Loot = preload("res://game/utils/constants/loot.gd")
 const CombatantTypes = preload("res://game/utils/constants/combatant_types.gd")

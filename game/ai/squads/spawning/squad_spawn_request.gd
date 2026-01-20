@@ -4,6 +4,7 @@ extends RefCounted
 ## This is intentionally small for v1; the goal is to create a stable contract
 ## between the Director/Policy layer and the Spawn Execution layer.
 
+## Purpose: Data request to spawn a squad.
 var team_id: int = -1
 var squad_size: int = 0
 var combatant_id: StringName = StringNames.EMPTY

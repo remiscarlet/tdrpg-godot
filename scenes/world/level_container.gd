@@ -1,6 +1,7 @@
 class_name LevelContainer
 extends Node2D
 
+## Purpose: Owns the active map and wires runtime systems.
 @export var map_name_to_load = ""
 
 var run_state: RunState

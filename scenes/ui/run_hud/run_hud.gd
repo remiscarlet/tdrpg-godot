@@ -1,6 +1,7 @@
 class_name RunHUD
 extends Control
 
+## Purpose: Scene script for the run HUD UI.
 @export var resource_row_scene: PackedScene
 
 var run_state: RunState

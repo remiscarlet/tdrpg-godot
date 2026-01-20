@@ -1,5 +1,6 @@
 class_name PhysicsUtils
 
+## Purpose: Physics layer and mask helper utilities.
 static var _cfg_by_team: Dictionary[int, TeamPhysics] = _build()
 static var world_collidables: PackedInt32Array = [Layers.WORLD_SOLID]
 

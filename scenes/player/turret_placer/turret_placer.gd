@@ -1,5 +1,6 @@
 extends Node2D
 
+## Purpose: Handles player turret placement input and preview.
 signal place_turret_requested(ctx: TurretSpawnContext)
 
 var was_pressed_last_iter: bool

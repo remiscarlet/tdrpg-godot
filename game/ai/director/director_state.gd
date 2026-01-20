@@ -1,6 +1,7 @@
 class_name DirectorState
 extends RefCounted
 
+## Purpose: Runtime state data for the director.
 var heat_map := HeatMap.new()
 var belief_map := BeliefMap.new()
 var last_tick_ms: int = 0

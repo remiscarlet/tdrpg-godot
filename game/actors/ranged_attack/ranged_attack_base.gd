@@ -1,6 +1,7 @@
 class_name RangedAttackBase
 extends DamageEmitterBase
 
+## Purpose: Base damage emitter for ranged attacks.
 var speed: float = 600.0
 var lifetime_s: float = 3.0
 var _velocity: Vector2 = Vector2.ZERO

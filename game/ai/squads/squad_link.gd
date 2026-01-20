@@ -1,6 +1,7 @@
 class_name SquadLink
 extends RefCounted
 
+## Purpose: Link data tying combatants to squad slots.
 var _combatant: CombatantBase
 var _squad_id: int
 var _squad_system: SquadSystem

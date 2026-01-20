@@ -1,6 +1,7 @@
 class_name RangedAttackSystem
 extends Node
 
+## Purpose: System that spawns and manages ranged attacks.
 @onready var ranged_attack_container: Node2D = $RangedAttackContainer
 
 

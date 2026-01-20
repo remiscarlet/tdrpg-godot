@@ -2,6 +2,7 @@ class_name RangedAttackWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Ranged attack into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.RANGED_ATTACK_WIRING
 

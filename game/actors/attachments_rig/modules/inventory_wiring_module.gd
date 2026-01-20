@@ -2,6 +2,7 @@ class_name InventoryWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Inventory into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.INVENTORY_WIRING
 

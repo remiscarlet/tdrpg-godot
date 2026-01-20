@@ -1,6 +1,7 @@
 class_name CombatantSystem
 extends Node
 
+## Purpose: System that spawns and manages combatants.
 @onready var level_container: LevelContainer = get_parent()
 @onready var combatants_container: Node2D = $CombatantsContainer
 

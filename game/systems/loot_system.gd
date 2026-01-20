@@ -1,6 +1,7 @@
 class_name LootSystem
 extends Node
 
+## Purpose: System that resolves and spawns loot drops.
 var lootable_base_scene: PackedScene = preload("res://game/actors/loot/lootable_base.tscn")
 
 @onready var level_container: LevelContainer = get_parent()

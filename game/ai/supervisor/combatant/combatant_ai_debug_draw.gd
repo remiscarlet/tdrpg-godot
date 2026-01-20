@@ -1,5 +1,6 @@
 class_name CombatantAIDebugDraw
 extends Node2D
+## Purpose: Debug draw for combatant AI supervision.
 
 # World-space overlay for a single combatant's AI + locomotion.
 #

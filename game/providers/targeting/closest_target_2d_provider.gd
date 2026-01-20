@@ -1,6 +1,7 @@
 class_name ClosestTarget2DProvider
 extends TargetBaseProvider
 
+## Purpose: Targeting provider for closest 2D targets.
 var sensor: TargetSensor2DComponent
 
 

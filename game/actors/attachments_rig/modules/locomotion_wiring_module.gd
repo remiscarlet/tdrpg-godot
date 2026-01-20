@@ -2,6 +2,7 @@ class_name LocomotionWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Locomotion into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.LOCOMOTION_WIRING
 

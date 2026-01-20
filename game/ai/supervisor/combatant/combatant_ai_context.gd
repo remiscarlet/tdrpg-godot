@@ -1,6 +1,7 @@
 class_name CombatantAiContext
 extends RefCounted
 
+## Purpose: Context data for combatant AI supervision.
 var actor: Node2D
 # Optional providers (duck typing):
 var slot_provider: Node # expects get_assigned_slot_world_position()

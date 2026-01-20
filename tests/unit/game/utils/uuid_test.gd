@@ -1,5 +1,9 @@
 extends GdUnitTestSuite
+## Purpose: Validates UUID v4 formatting and uniqueness generation.
 
+# Testee: res://game/utils/uuid.gd
+# Scope: unit
+# Tags: uuid
 const Uuid = preload("res://game/utils/uuid.gd")
 
 
@@ -19,7 +23,7 @@ func test_v4_format_and_bits() -> void:
 
 ## Ensures repeated UUID v4 calls produce unique identifiers.
 func test_v4_generates_unique_ids() -> void:
-    var seen := {}
+    var seen := { }
     for i in 10:
         var id := Uuid.v4()
         assert_bool(seen.has(id)).is_false()

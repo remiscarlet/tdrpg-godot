@@ -2,6 +2,7 @@ class_name SquadWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Squad into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.SQUAD_WIRING
 

@@ -1,4 +1,5 @@
 class_name Layers
+## Purpose: Defines physics and navigation layer constants.
 
 # Physics
 const WORLD_SOLID = 1

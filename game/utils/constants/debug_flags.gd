@@ -1,5 +1,6 @@
 class_name DebugFlags
 extends RefCounted
+## Purpose: Defines debug flag constants.
 
 # DebugState flags
 const ENABLED := &"enabled"
@@ -10,7 +11,6 @@ const OVERLAY_NAVIGATION := &"overlay_navigation"
 const OVERLAY_SELECTION := &"overlay_selection"
 const OVERLAY_HEATMAP := &"overlay_heatmap"
 const OVERLAY_BELIEF := &"overlay_belief"
-
 # Debug input actions (InputMap)
 const ACT_TOGGLE_UI := &"debug_toggle_ui"
 const ACT_TOGGLE_ENABLED := &"debug_toggle_enabled"

@@ -1,5 +1,9 @@
 extends GdUnitTestSuite
+## Purpose: Verifies physics layer and mask helpers for combatants and projectiles.
 
+# Testee: res://game/utils/physics_utils.gd
+# Scope: unit
+# Tags: physics, layers
 const PhysicsUtils = preload("res://game/utils/physics_utils.gd")
 const Layers = preload("res://game/utils/constants/layers.gd")
 const CombatantTeam = preload("res://game/utils/enums/combatant_team.gd")

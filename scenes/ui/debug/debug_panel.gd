@@ -1,6 +1,7 @@
 class_name DebugPanel
 extends PanelContainer
 
+## Purpose: Scene script for the debug panel UI.
 var _debug: DebugService
 
 @onready var _enabled_cb: CheckBox = %EnabledCheckBox

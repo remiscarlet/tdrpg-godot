@@ -1,6 +1,7 @@
 class_name Director
 extends Node
 
+## Purpose: Director node that processes observations and issues directives.
 signal observation_processed(event: DirectorObservationEvent)
 
 static var _instance: Director

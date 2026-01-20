@@ -1,6 +1,7 @@
 class_name FlockDetector
 extends AreaCandidateDetectorBase
 
+## Purpose: Detects nearby flock members for steering logic.
 @export var flock_radius: float = 80.0
 @export var auto_enable_monitoring: bool = true
 

@@ -1,6 +1,7 @@
 class_name HealthBarView
 extends Node2D
 
+## Purpose: View node for displaying a health bar.
 @export var size := Vector2(32, 5)
 @export var y_offset := -20.0
 

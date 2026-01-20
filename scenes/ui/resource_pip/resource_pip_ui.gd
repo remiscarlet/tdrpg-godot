@@ -1,6 +1,7 @@
 class_name ResourcePipUI
 extends HBoxContainer
 
+## Purpose: Scene script for a resource pip UI element.
 var item_id: StringName
 var quantity: int
 

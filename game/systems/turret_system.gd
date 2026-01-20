@@ -1,6 +1,7 @@
 class_name TurretSystem
 extends Node
 
+## Purpose: System that spawns and manages turrets.
 @onready var level_container: LevelContainer = get_parent()
 @onready var turret_container: Node2D = $TurretContainer
 

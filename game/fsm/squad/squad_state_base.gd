@@ -1,7 +1,9 @@
 class_name SquadStateBase
 extends FSMState
 
+## Purpose: Base FSM state for squad behaviors.
 const DIRECTIVE_CHANGED := &"directive_changed"
+
 
 func _squad(ctx: Dictionary) -> Squad:
     return ctx[SquadFSMKeys.SQUAD]

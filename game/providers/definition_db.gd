@@ -1,4 +1,5 @@
 extends Node
+## Purpose: Loads and serves gameplay definition resources.
 
 # Point these at your content folders
 @export_dir var items_dir: String = "res://assets/definitions/items"

@@ -1,6 +1,7 @@
 class_name SquadRuntime
 extends RefCounted
 
+## Purpose: Runtime state and logic for a squad.
 signal directive_changed(old_directive: SquadDirective, new_directive: SquadDirective, reason: String)
 
 # "Where did we spawn"/"Where do we go to replenish"

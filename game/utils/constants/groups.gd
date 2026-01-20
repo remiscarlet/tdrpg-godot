@@ -1,4 +1,5 @@
 class_name Groups
+## Purpose: Defines node group constants.
 
 # Binding consumers
 const RUN_STATE_CONSUMERS := &"run_state_consumers"

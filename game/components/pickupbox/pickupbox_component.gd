@@ -1,6 +1,7 @@
 class_name PickupboxComponent
 extends Node2D
 
+## Purpose: Pickup area component for collecting loot.
 signal loot_encountered(loot: LootableBase)
 
 @export var area: Area2D

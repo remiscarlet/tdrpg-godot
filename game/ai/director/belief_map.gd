@@ -1,5 +1,6 @@
 class_name BeliefMap
 extends RefCounted
+## Purpose: Belief map data used by the director.
 
 # Simple grid-based probabilistic field with diffusion + decay (Markov-like).
 var cell_size: float = UIConsts.TILE_WIDTH_HEIGHT_PX

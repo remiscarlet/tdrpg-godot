@@ -1,6 +1,7 @@
 class_name CombatantAISupervisor
 extends Node
 
+## Purpose: Supervisor node that updates combatant AI.
 enum Intent { WANDER, FOLLOW_SQUAD, RETURN_TO_SPAWNER, RETURN_TO_SLOT }
 
 @export var enabled: bool = true

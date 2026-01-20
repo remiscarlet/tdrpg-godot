@@ -1,6 +1,7 @@
 class_name ModuleHost
 extends Node
 
+## Purpose: Installs and configures feature modules for an attachments rig.
 enum Stage { PRE_TREE = 1, READY = 2, POST_READY = 4 }
 
 @export var strict := true

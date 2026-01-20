@@ -1,6 +1,7 @@
 class_name LootableSpawnContext
 extends RefCounted
 
+## Purpose: Spawn context data for lootable actors.
 var origin: Vector2
 var source: Node
 var drops: Array[LootDrop]

@@ -1,6 +1,7 @@
 class_name NavUtils
 
 
+## Purpose: Navigation helper utilities for pathing queries.
 static func get_some_random_reachable_point(
         nav_rid: RID,
         from: Vector2,

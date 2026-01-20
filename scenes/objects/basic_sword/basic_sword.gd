@@ -1,6 +1,7 @@
 class_name BasicSword
 extends DamageEmitterBase
 
+## Purpose: Scene script for the basic sword damage emitter.
 @export var swing_range: float = 32.0
 @export var start_swing_angle: float = -PI / 2
 @export var end_swing_angle: float = PI / 2

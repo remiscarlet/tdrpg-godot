@@ -1,6 +1,7 @@
 class_name MouseUtils
 
 
+## Purpose: Mouse helper utilities for world and screen transforms.
 ## @brief Gets a normalized direction Vector2 to the mouse's global_position
 ##
 ## @param item The origin, represented by a CanvasItem inheriting object

@@ -1,5 +1,6 @@
 extends Control
 
+## Purpose: Aggregates overhead indicator UI elements.
 @export var attach_frac: Vector2 = Vector2(0.5, 1.0) # (0.5,1.0) == bottom-center
 
 var health_component: HealthComponent

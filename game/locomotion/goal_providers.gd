@@ -1,6 +1,7 @@
 class_name GoalProviders
 extends RefCounted
 
+## Purpose: Helper utilities for selecting locomotion goals.
 const GET_RETURN_POS := &"get_return_pos"
 const GET_FOLLOW_DIRECTIVE_POS := &"get_follow_directive_pos"
 const HAS_ACTIVE_MOVE_DIRECTIVE := &"has_active_move_directive"

@@ -1,6 +1,7 @@
 class_name MaxSquadsSpawnPolicy
 extends SquadSpawnPolicy
 
+## Purpose: Spawn policy enforcing a maximum squad count.
 @export var max_squads_alive: int = 3
 # For v1, policy also specifies the basic squad recipe.
 @export var team_id: int = CombatantTeam.MUTANT

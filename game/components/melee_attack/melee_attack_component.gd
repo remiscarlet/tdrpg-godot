@@ -1,6 +1,7 @@
 class_name MeleeAttackComponent
 extends Node2D
 
+## Purpose: Component that performs melee attacks.
 var target_sensor_component: TargetSensor2DComponent
 var sword: BasicSword
 

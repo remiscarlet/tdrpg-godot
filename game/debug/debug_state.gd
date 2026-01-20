@@ -1,6 +1,7 @@
 class_name DebugState
 extends Resource
 
+## Purpose: Debug state resource for runtime inspection.
 signal state_changed
 
 @export var enabled: bool = true:

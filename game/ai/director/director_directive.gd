@@ -1,6 +1,7 @@
 class_name DirectorDirective
 extends RefCounted
 
+## Purpose: Directive data issued by the director.
 enum Goal {
     UNKNOWN,
     SCOUT,

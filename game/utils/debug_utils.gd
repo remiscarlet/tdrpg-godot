@@ -1,6 +1,7 @@
 class_name DebugUtils
 
 
+## Purpose: Debug helper utilities for runtime inspection.
 static func dump_ps(tag: String, ps: PackedScene) -> void:
     print(
         (

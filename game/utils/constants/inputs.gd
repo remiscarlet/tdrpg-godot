@@ -1,5 +1,6 @@
 class_name Inputs
 
+## Purpose: Defines input action constants.
 const MOVE_RIGHT := &"move_right"
 const MOVE_LEFT := &"move_left"
 const MOVE_UP := &"move_up"

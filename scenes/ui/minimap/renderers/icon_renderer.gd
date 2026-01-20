@@ -2,6 +2,7 @@ class_name IconRenderer
 extends RendererBase
 
 
+## Purpose: Scene script for the minimap icon renderer.
 func _init() -> void:
     rebake_cadence = RebakeCadence.EVERY_FRAME
 

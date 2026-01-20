@@ -1,7 +1,9 @@
 class_name SquadStateMoveTo
 extends SquadStateBase
 
+## Purpose: Squad FSM state for moving to a target.
 const MOVE_COMPLETE := &"move_complete"
+
 
 func physics_update(ctx: Dictionary, dt: float) -> void:
     var rt := _rt(ctx)

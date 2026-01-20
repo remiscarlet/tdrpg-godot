@@ -1,6 +1,7 @@
 class_name DirectorObservationEvent
 extends RefCounted
 
+## Purpose: Observation event data for the director.
 enum Kind {
     UNKNOWN,
     PLAYER_SIGHTING,

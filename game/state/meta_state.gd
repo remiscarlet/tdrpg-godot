@@ -1,5 +1,6 @@
 class_name MetaState
 extends Resource
+## Purpose: Resource tracking meta progression data.
 
 # ---------------------------
 # Convenience API

@@ -1,21 +1,22 @@
 extends GdUnitTestSuite
+## Purpose: Ensures loot system spawns lootables with correct parent and group setup.
 
+# Testee: res://game/systems/loot_system.gd
+# Scope: unit
+# Tags: loot, systems
 const LootSystem = preload("res://game/systems/loot_system.gd")
 const LootDrop = preload("res://game/actors/loot/loot_drop.gd")
 const LootableBase = preload("res://game/actors/loot/lootable_base.gd")
 const Groups = preload("res://game/utils/constants/groups.gd")
 
-func _make_stub_scene() -> PackedScene:
-    return load("res://game/actors/loot/lootable_base.tscn")
-
 
 ## Spawns loot and asserts the lootable node is created, parented, and flagged correctly.
 func test_spawn_instantiates_and_parents_lootable() -> void:
-    var loot_container := Node2D.new()
+    var loot_container: Node2D = auto_free(Node2D.new())
     loot_container.name = "LootContainer"
     add_child(loot_container)
 
-    var system: LootSystem = LootSystem.new()
+    var system: LootSystem = auto_free(LootSystem.new())
     system.loot_container = loot_container
     system.lootable_base_scene = _make_stub_scene()
 
@@ -27,6 +28,8 @@ func test_spawn_instantiates_and_parents_lootable() -> void:
     assert_object(spawned.get_parent()).is_same(loot_container)
     assert_bool(spawned.is_in_group(Groups.LOOT)).is_true()
 
-    spawned.queue_free()
-    loot_container.queue_free()
-    await get_tree().process_frame()
+    auto_free(spawned)
+
+
+func _make_stub_scene() -> PackedScene:
+    return load("res://game/actors/loot/lootable_base.tscn")

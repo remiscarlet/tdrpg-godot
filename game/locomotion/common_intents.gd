@@ -2,6 +2,7 @@ class_name CommonIntents
 extends RefCounted
 
 
+## Purpose: Factory helpers for common locomotion intents.
 static func move_to_point(
         id: StringName,
         goal: Vector2,

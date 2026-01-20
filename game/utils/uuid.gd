@@ -1,6 +1,7 @@
 class_name Uuid
 
 
+## Purpose: UUID helper utilities for run/session IDs.
 static func v4() -> String:
     var crypto := Crypto.new()
     var b: PackedByteArray = crypto.generate_random_bytes(16) # 128 bits

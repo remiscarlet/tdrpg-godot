@@ -1,6 +1,7 @@
 class_name AimingTargetResult
 extends RefCounted
 
+## Purpose: Data result for aim target selection.
 var has_target: bool
 var dir: Vector2
 

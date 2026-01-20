@@ -1,6 +1,7 @@
 class_name SquadSpawnPolicyContext
 extends RefCounted
 
+## Purpose: Context data for squad spawn policies.
 var spawner: Node
 var squad_system: SquadSystem
 var now_sec: float

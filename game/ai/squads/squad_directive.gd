@@ -1,6 +1,7 @@
 class_name SquadDirective
 extends RefCounted
 
+## Purpose: Directive data for squads.
 enum Kind { HOLD, MOVE_TO, PATROL }
 
 var kind: Kind = Kind.HOLD

@@ -1,6 +1,7 @@
 class_name InventoryBarUI
 extends HBoxContainer
 
+## Purpose: Scene script for the overhead inventory bar UI.
 var inventory_component: InventoryComponent
 var resource_pip_scene: PackedScene = preload("res://scenes/ui/resource_pip/resource_pip_ui.tscn")
 var _pips: Dictionary[StringName, ResourcePipUI] = { }

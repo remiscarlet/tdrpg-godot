@@ -1,6 +1,7 @@
 class_name LootableComponent
 extends Node2D
 
+## Purpose: Component that marks an actor as lootable.
 signal loot_generated(ctx: LootableSpawnContext)
 
 @export var loot_table: LootTable

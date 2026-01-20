@@ -1,6 +1,7 @@
 class_name PlayerSightingDetector
 extends Area2D
 
+## Purpose: Detector that senses the player in range.
 @export_range(32.0, 1024.0, 1.0) var detection_radius: float = 512.0
 @export var intensity: float = 1.0
 

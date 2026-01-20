@@ -1,5 +1,6 @@
 class_name DebugInputController
 extends Node
+## Purpose: Controller that routes debug input actions.
 
 # Actions (created automatically if missing).
 const ACT_TOGGLE_UI := DebugFlags.ACT_TOGGLE_UI

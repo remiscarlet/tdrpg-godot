@@ -1,6 +1,7 @@
 class_name RigContext
 extends RefCounted
 
+## Purpose: Context data passed to feature modules during rig setup.
 var actor: Node2D # e.g., CombatantBase, DefaultTurret, Door, etc.
 var rig: AttachmentsRig
 var definition: DefinitionBase # or null

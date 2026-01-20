@@ -1,6 +1,7 @@
 class_name AttachmentModules
 extends RefCounted
 
+## Purpose: Defines attachment module ID constants.
 const FEATURE_MODULE := &"feature_module"
 const DAMAGEABLE_CORE := &"damageable_core"
 const SQUAD_WIRING := &"squad_wiring"

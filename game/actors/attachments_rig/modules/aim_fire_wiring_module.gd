@@ -2,6 +2,7 @@ class_name AimFireWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Aim fire into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.AIM_FIRE_WIRING
 

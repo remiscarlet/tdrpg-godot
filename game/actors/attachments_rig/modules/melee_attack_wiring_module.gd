@@ -2,6 +2,7 @@ class_name MeleeAttackWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Melee attack into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.MELEE_ATTACK_WIRING
 

@@ -1,6 +1,7 @@
 class_name WanderState
 extends LocomotionIntentStateBase
 
+## Purpose: AI state that wanders within constraints.
 @export var nav_agent_path: NodePath = NodePath("../../../NavIntentLocomotionDriver/NavigationAgent2D")
 @export var wander_radius: float = 400.0
 @export var tries: int = 12

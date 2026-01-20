@@ -1,10 +1,14 @@
 extends GdUnitTestSuite
+## Purpose: Validates inventory capacity and add/remove behaviors.
 
+# Testee: res://game/utils/inventory.gd
+# Scope: unit
+# Tags: inventory
 const Inventory = preload("res://game/utils/inventory.gd")
-const IRON := &"iron"
-const COPPER := &"copper"
-const GOLD := &"gold"
-const UNKNOWN := &"unknown"
+const IRON := StringName("iron")
+const COPPER := StringName("copper")
+const GOLD := StringName("gold")
+const UNKNOWN := StringName("unknown")
 
 var inventory: Inventory
 

@@ -1,5 +1,6 @@
 class_name PhysicsPriorities
 
+## Purpose: Defines physics priority constants.
 const AI := -20
 const STEERING := -10
 const LOCOMOTION_DRIVER := 0

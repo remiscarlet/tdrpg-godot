@@ -1,16 +1,12 @@
 extends GdUnitTestSuite
+## Purpose: Validates hauler task selection and claim expiry handling.
 
+# Testee: res://game/systems/hauler_task_system.gd
+# Scope: unit
+# Tags: hauling, systems
 const HaulerTaskSystem = preload("res://game/systems/hauler_task_system.gd")
 const HaulTask = preload("res://game/utils/haul_task.gd")
 const Groups = preload("res://game/utils/constants/groups.gd")
-
-
-func _make_node(pos: Vector2, group: StringName) -> Node2D:
-    var n: Node2D = auto_free(Node2D.new())
-    n.global_position = pos
-    add_child(n)
-    n.add_to_group(group)
-    return n
 
 
 ## Picks the nearest loot/collector pair and claims a haul task for the requester.
@@ -53,3 +49,11 @@ func test_reap_expired_claims_reopens_task() -> void:
 
     assert_int(task.status).is_equal(HaulTask.Status.OPEN)
     assert_int(task.claimed_by_id).is_equal(0)
+
+
+func _make_node(pos: Vector2, group: StringName) -> Node2D:
+    var n: Node2D = auto_free(Node2D.new())
+    n.global_position = pos
+    add_child(n)
+    n.add_to_group(group)
+    return n

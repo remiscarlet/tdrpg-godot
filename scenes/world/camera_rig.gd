@@ -1,5 +1,6 @@
 extends Node2D
 
+## Purpose: Camera rig controlling view and zoom.
 @export var target_path: NodePath
 @export var follow_speed: float = 12.0 # higher = snappier
 

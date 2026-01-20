@@ -1,6 +1,7 @@
 class_name HealthBarUI
 extends VBoxContainer
 
+## Purpose: Scene script for the overhead health bar UI.
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
 
 

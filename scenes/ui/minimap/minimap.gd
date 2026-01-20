@@ -1,5 +1,6 @@
 class_name Minimap
 extends PanelContainer
+## Purpose: Scene script for Minimap.
 
 # TODO: Eventually, zooming will show different BakeTextures/unit icons (a la Factorio zoom)
 @export var min_zoom: float = 0.15

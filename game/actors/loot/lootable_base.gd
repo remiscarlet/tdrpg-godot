@@ -1,6 +1,7 @@
 class_name LootableBase
 extends Area2D
 
+## Purpose: Base area for lootable world pickups.
 var drop: LootDrop
 var definition: ItemDefinition:
     get:

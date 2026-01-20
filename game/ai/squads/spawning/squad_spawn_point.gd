@@ -1,6 +1,7 @@
 class_name SquadSpawnPoint
 extends Marker2D
 
+## Purpose: Marker node for squad spawn locations.
 @export var enabled: bool = true
 @export_range(0.0, 100.0, 0.1) var weight: float = 1.0
 # Optional future-facing metadata.

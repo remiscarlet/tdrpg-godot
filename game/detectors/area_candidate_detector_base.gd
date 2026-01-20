@@ -1,6 +1,7 @@
 class_name AreaCandidateDetectorBase
 extends Area2D
 
+## Purpose: Base detector that tracks candidate areas or bodies.
 @export var sensor_path: NodePath = NodePath(".")
 
 var candidates: Array = []

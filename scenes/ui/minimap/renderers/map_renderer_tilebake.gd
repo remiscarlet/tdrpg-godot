@@ -1,6 +1,7 @@
 class_name MapRendererTilebake
 extends RendererBase
 
+## Purpose: Scene script for the minimap tile bake renderer.
 @export var floor_fill_color: Color = Color(1, 1, 1, 0.12)
 @export var floor_outline_color: Color = Color(1, 1, 1, 0.65)
 @export_range(1.0, 12.0, 0.5) var floor_outline_width: float = 2.0

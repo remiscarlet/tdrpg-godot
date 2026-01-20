@@ -1,6 +1,7 @@
 class_name MarkerGroupSpawnPlacement
 extends SquadSpawnPlacement
 
+## Purpose: Spawn placement that selects marker groups.
 @export var fallback_to_any_marker2d: bool = true
 
 

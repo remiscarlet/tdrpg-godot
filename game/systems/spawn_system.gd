@@ -1,6 +1,7 @@
 class_name SpawnSystem
 extends Node
 
+## Purpose: System that emits combatant spawn requests.
 signal combatant_spawn_requested(combatant_scene: PackedScene, ctx: CombatantSpawnContext)
 
 @onready var spawn_sources: Node = $"../SpawnSources"

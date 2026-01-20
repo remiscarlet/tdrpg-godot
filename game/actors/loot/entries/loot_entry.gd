@@ -1,6 +1,7 @@
 class_name LootEntry
 extends Resource
 
+## Purpose: Base resource for loot entries.
 @export var item_id: StringName
 @export var qty_min: int = 1
 @export var qty_max: int = 1

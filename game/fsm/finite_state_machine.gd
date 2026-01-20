@@ -1,11 +1,13 @@
 class_name FiniteStateMachine
 extends Node
 
+const INIT_REASON := &"init"
+
+## Purpose: Node implementing finite state machine transitions.
 var _ctx: Dictionary
 var _state: FSMState
 var _pending: FSMState = null
 var _pending_reason: StringName = StringNames.EMPTY
-const INIT_REASON := &"init"
 
 
 func init(ctx: Dictionary, initial: FSMState) -> void:

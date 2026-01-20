@@ -1,5 +1,6 @@
 class_name CombatantDefinition
 extends DefinitionBase
+## Purpose: Definition resource for combatant actors.
 
 # Basic stats (expand later)
 @export var team_id: int = CombatantTeam.PLAYER

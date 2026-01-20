@@ -1,6 +1,7 @@
 class_name DamageEvent
 extends RefCounted
 
+## Purpose: Data event describing damage details.
 enum DamageType { KINETIC, EXPLOSIVE, ENERGY }
 
 var amount: float

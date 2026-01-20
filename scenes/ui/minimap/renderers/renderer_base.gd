@@ -1,6 +1,7 @@
 class_name RendererBase
 extends Node
 
+## Purpose: Base class for Renderer.
 var rebake_cadence: int = RebakeCadence.ON_INIT
 
 

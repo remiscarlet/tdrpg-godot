@@ -1,6 +1,7 @@
 class_name DamageEmitterBase
 extends Area2D
 
+## Purpose: Base area node that emits damage events.
 var damage: float = 1.0
 var elemental: Array[StringName] = []
 

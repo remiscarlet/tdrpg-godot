@@ -1,6 +1,7 @@
 class_name LootDrop
 extends RefCounted
 
+## Purpose: Data record describing a resolved loot drop.
 var loot_id: StringName
 var quantity: int
 

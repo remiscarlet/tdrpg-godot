@@ -1,5 +1,9 @@
 extends GdUnitTestSuite
+## Purpose: Ensures haul task lifecycle helpers report correct claim status.
 
+# Testee: res://game/utils/haul_task.gd
+# Scope: unit
+# Tags: hauling
 const HaulTask = preload("res://game/utils/haul_task.gd")
 
 

@@ -1,6 +1,7 @@
 class_name LootContext
 extends RefCounted
 
+## Purpose: Context data for resolving loot drops.
 var tags: PackedStringArray = PackedStringArray()
 var level: int = 1
 

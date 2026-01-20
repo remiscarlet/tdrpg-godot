@@ -1,6 +1,7 @@
 class_name NavIntentLocomotionDriver
 extends Node2D
 
+## Purpose: Drives navigation movement from locomotion intents.
 signal intent_completed(intent_id: StringName)
 
 @export var enabled: bool = true

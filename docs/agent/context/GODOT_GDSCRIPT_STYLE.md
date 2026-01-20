@@ -19,7 +19,7 @@ These are project-specific preferences to keep the codebase coherent and Godot-f
   ```gdscript
   @tool
   extends Node2D
-  # Purpose: Spawns enemy waves and routes them to active hubs.
+  ## Purpose: Spawns enemy waves and routes them to active hubs.
   ```
 - If a file has multiple purposes or cannot be described concisely AND accurately in one line, use multiple lines.
 

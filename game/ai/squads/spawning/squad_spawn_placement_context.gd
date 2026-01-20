@@ -1,6 +1,7 @@
 class_name SquadSpawnPlacementContext
 extends RefCounted
 
+## Purpose: Context data for spawn placement.
 var spawner: Node
 var spawn_group: StringName
 var request: SquadSpawnRequest

@@ -1,7 +1,9 @@
 class_name SquadStatePatrol
 extends SquadStateBase
 
+## Purpose: Squad FSM state for patrolling waypoints.
 const PATROL_EMPTY := &"patrol_empty"
+
 
 func physics_update(ctx: Dictionary, dt: float) -> void:
     var rt := _rt(ctx)

@@ -2,6 +2,7 @@ class_name ResourceCollector
 extends InteractableBase
 
 
+## Purpose: Scene script for the resource collector interactable.
 func _enter_tree() -> void:
     super()
     # Interactables are scene tiles which get spawned in by Godot systems - not us. Thus, we can't dependency inject.

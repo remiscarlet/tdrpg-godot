@@ -2,6 +2,7 @@ class_name FeatureModuleBase
 extends RefCounted
 
 
+## Purpose: Base class for attachments rig feature modules.
 func id() -> StringName:
     return AttachmentModules.FEATURE_MODULE
 

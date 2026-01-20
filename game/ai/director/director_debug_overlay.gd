@@ -1,6 +1,7 @@
 class_name DirectorDebugOverlay
 extends Node2D
 
+## Purpose: Debug overlay for director diagnostics.
 @export var director_path: NodePath
 @export var color: Color = Color(1, 0, 0, 0.3)
 @export var enabled: bool = false

@@ -2,6 +2,7 @@ class_name InteractableWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Interactable into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.INTERACTABLE_WIRING
 

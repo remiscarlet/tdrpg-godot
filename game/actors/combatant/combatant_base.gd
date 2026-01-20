@@ -1,6 +1,7 @@
 class_name CombatantBase
 extends CharacterBody2D
 
+## Purpose: Base character body for combatant actors.
 var spawn_context: CombatantSpawnContext
 var definition: CombatantDefinition
 var inventory_capacity: int = 1

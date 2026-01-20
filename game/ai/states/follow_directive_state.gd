@@ -1,6 +1,7 @@
 class_name FollowDirectiveState
 extends LocomotionIntentStateBase
 
+## Purpose: AI state that follows the current directive.
 @export var nav_agent_path: NodePath = NodePath("../../../NavIntentLocomotionDriver/NavigationAgent2D")
 @export var tries: int = 12
 @export var arrive_radius: float = 24.0

@@ -2,6 +2,7 @@ class_name DamageableCoreModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires the damageable core into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.DAMAGEABLE_CORE
 

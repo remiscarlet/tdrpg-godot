@@ -2,6 +2,7 @@ class_name AIHaulerWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Ai hauler into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.AI_HAULER_WIRING
 

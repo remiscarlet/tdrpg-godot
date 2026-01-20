@@ -1,6 +1,7 @@
 class_name BeliefDebugOverlay
 extends Node2D
 
+## Purpose: Debug overlay that draws the director belief map.
 @export var director_path: NodePath
 @export var color: Color = Color(0, 0.6, 1, 0.25)
 @export var enabled: bool = false

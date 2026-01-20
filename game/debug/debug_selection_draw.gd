@@ -1,6 +1,7 @@
 class_name DebugSelectionDraw
 extends Node2D
 
+## Purpose: Debug draw node for selection visuals.
 @export var enabled: bool = true
 @export_range(1.0, 120.0, 1.0) var refresh_hz: float = 30.0
 @export var ring_radius: float = 22.0

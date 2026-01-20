@@ -1,6 +1,7 @@
 class_name InteractableBase
 extends Area2D
 
+## Purpose: Base interactable area with interaction hooks.
 var run_state: RunState
 
 

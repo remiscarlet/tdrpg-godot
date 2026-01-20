@@ -1,6 +1,7 @@
 class_name HaulTask
 extends RefCounted
 
+## Purpose: Data record for hauler task assignments.
 enum Status { OPEN, CLAIMED, IN_PROGRESS, DONE, FAILED }
 
 var loot_id: int

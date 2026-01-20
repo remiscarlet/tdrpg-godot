@@ -1,6 +1,7 @@
 class_name DefaultTurret
 extends Area2D
 
+## Purpose: Scene script for the default turret actor.
 var level_container: LevelContainer
 var fire_rate_per_sec: float
 var sensor_radius: float

@@ -1,6 +1,7 @@
 class_name HeatMap
 extends RefCounted
 
+## Purpose: Heat map data used by the director.
 var cell_size: float = UIConsts.TILE_WIDTH_HEIGHT_PX
 var decay_per_sec: float = 0.5
 var _cells: Dictionary = { } # Vector2i -> float

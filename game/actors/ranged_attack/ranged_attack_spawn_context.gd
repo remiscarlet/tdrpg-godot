@@ -1,6 +1,7 @@
 class_name RangedAttackSpawnContext
 extends RefCounted
 
+## Purpose: Spawn context data for ranged attacks.
 var ranged_attack_type_id: StringName
 var origin: Vector2
 var direction: Vector2 = Vector2.RIGHT

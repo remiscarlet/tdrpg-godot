@@ -1,6 +1,7 @@
 class_name AIEnemyWiringModule
 extends FeatureModuleBase
 
+## Purpose: Feature module that wires Ai enemy into the attachments rig.
 const PhysicsUtils = preload("res://game/utils/physics_utils.gd")
 
 

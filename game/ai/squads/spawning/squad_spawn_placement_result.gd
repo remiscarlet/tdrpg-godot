@@ -1,6 +1,7 @@
 class_name SquadSpawnPlacementResult
 extends RefCounted
 
+## Purpose: Result data for spawn placement.
 var position: Vector2 = Vector2.ZERO
 var spawn_point: Node = null
 

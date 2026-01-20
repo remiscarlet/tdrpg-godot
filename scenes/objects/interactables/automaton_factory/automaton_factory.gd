@@ -1,6 +1,7 @@
 class_name AutomatonFactory
 extends InteractableBase
 
+## Purpose: Scene script for the automaton factory interactable.
 var combatant_system: CombatantSystem
 
 

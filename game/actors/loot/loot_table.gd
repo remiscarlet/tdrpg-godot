@@ -1,6 +1,7 @@
 class_name LootTable
 extends Resource
 
+## Purpose: Resource defining loot table entries.
 const MAX_NESTING_DEPTH := 16
 
 @export var rolls_min: int = 1

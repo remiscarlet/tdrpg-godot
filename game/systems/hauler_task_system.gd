@@ -1,6 +1,7 @@
 class_name HaulerTaskSystem
 extends Node
 
+## Purpose: System that manages hauler task assignments.
 var _tasks: Array[HaulTask] = []
 
 

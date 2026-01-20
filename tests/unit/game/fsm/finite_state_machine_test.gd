@@ -1,9 +1,63 @@
 extends GdUnitTestSuite
+## Purpose: Exercises finite state machine initialization, transitions, and event forwarding.
 
+# Testee: res://game/fsm/finite_state_machine.gd
+# Scope: unit
+# Tags: fsm
 const FiniteStateMachine = preload("res://game/fsm/finite_state_machine.gd")
 const FSMState = preload("res://game/fsm/fsm_state.gd")
-const TO_B := &"to_b"
-const PING := &"ping"
+const TO_B := StringName("to_b")
+const PING := StringName("ping")
+
+
+## Initializes FSM with a state and verifies enter/update occur once on first step.
+func test_init_and_step_sets_initial_state() -> void:
+    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
+    var ctx: Dictionary = { }
+    var initial: TestState = TestState.new("A")
+
+    fsm.init(ctx, initial)
+    fsm.step(0.1)
+
+    assert_object(fsm._state).is_same(initial)
+    assert_int(initial.enters).is_equal(1)
+    assert_int(initial.updates).is_equal(1)
+
+
+## Ensures state switches requested during update are applied after the frame ends.
+func test_switch_during_update_applies_after_update() -> void:
+    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
+    var ctx: Dictionary = { "fsm": fsm }
+    var state_b: TestState = TestState.new("B")
+    var state_a: TestState = TestState.new(
+        "A",
+        func(local_ctx, _dt):
+            local_ctx["fsm"].switch_to(state_b, TO_B)
+    )
+
+    fsm.init(ctx, state_a)
+    fsm.step(0.1)
+
+    assert_object(fsm._state).is_same(state_b)
+    assert_int(state_a.enters).is_equal(1)
+    assert_int(state_a.exits).is_equal(1)
+    assert_int(state_b.enters).is_equal(1)
+    assert_int(state_b.updates).is_equal(0) # update happens on next step
+
+
+## Verifies events emitted on the FSM are forwarded to the active state's handler.
+func test_emit_event_forwards_to_active_state() -> void:
+    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
+    var ctx: Dictionary = { }
+    var state: TestState = TestState.new("A")
+
+    fsm.init(ctx, state)
+    fsm.step(0.1)
+
+    fsm.emit_event(PING, 123)
+
+    assert_array(state.events).has_size(1)
+    assert_array(state.events[0]).is_equal([PING, 123])
 
 
 class TestState extends FSMState:
@@ -42,51 +96,3 @@ class TestState extends FSMState:
 
     func handle_event(_ctx: Dictionary, event: StringName, data: Variant) -> void:
         events.append([event, data])
-
-
-## Initializes FSM with a state and verifies enter/update occur once on first step.
-func test_init_and_step_sets_initial_state() -> void:
-    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
-    var ctx: Dictionary = {}
-    var initial: TestState = TestState.new("A")
-
-    fsm.init(ctx, initial)
-    fsm.step(0.1)
-
-    assert_object(fsm._state).is_same(initial)
-    assert_int(initial.enters).is_equal(1)
-    assert_int(initial.updates).is_equal(1)
-
-
-## Ensures state switches requested during update are applied after the frame ends.
-func test_switch_during_update_applies_after_update() -> void:
-    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
-    var ctx: Dictionary = {"fsm": fsm}
-    var state_b: TestState = TestState.new("B")
-    var state_a: TestState = TestState.new("A", func(local_ctx, _dt):
-        local_ctx["fsm"].switch_to(state_b, TO_B)
-    )
-
-    fsm.init(ctx, state_a)
-    fsm.step(0.1)
-
-    assert_object(fsm._state).is_same(state_b)
-    assert_int(state_a.enters).is_equal(1)
-    assert_int(state_a.exits).is_equal(1)
-    assert_int(state_b.enters).is_equal(1)
-    assert_int(state_b.updates).is_equal(0) # update happens on next step
-
-
-## Verifies events emitted on the FSM are forwarded to the active state's handler.
-func test_emit_event_forwards_to_active_state() -> void:
-    var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
-    var ctx: Dictionary = {}
-    var state: TestState = TestState.new("A")
-
-    fsm.init(ctx, state)
-    fsm.step(0.1)
-
-    fsm.emit_event(PING, 123)
-
-    assert_array(state.events).has_size(1)
-    assert_array(state.events[0]).is_equal([PING, 123])

@@ -2,6 +2,7 @@ class_name FSMState
 extends RefCounted
 
 
+## Purpose: Base class for finite state machine states.
 func enter(_ctx: Dictionary) -> void:
     pass
 

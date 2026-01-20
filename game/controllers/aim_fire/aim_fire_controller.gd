@@ -1,6 +1,7 @@
 class_name AimFireController
 extends Node2D
 
+## Purpose: Controller for aiming and firing weapons.
 var last_dir = Vector2.ZERO
 var target_provider: TargetBaseProvider
 var aim_component: AimToTarget2DComponent

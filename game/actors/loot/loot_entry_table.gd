@@ -1,6 +1,7 @@
 class_name LootEntryTable
 extends LootEntry
 
+## Purpose: Loot entry that selects from a table of entries.
 @export var table: LootTable
 
 

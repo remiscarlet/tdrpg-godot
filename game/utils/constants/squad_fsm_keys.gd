@@ -1,6 +1,7 @@
 class_name SquadFSMKeys
 extends RefCounted
 
+## Purpose: Defines squad FSM key constants.
 const SQUAD := &"squad"
 const CFG := &"cfg"
 const RT := &"rt"

@@ -1,6 +1,7 @@
 class_name DefinitionBase
 extends Resource
 
+## Purpose: Base resource for gameplay definitions.
 @export var id: StringName
 @export var display_name: String
 @export_multiline var description: String

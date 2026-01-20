@@ -1,6 +1,7 @@
 class_name AIHaulerController
 extends Node2D
 
+## Purpose: Controller for AI hauler task behavior.
 enum HaulerState {
     IDLE,
     GO_TO_LOOT,

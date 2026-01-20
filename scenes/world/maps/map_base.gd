@@ -1,6 +1,7 @@
 class_name MapBase
 extends Node2D
 
+## Purpose: Base class for Map.
 @export var player_spawn_path: NodePath
 
 @onready var spawn_system: SpawnSystem = %SpawnSystem

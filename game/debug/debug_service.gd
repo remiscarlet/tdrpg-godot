@@ -6,6 +6,7 @@ extends Node
 ## - Emits high-level debug requests (e.g., override directives) via signals
 ## - Optionally applies overlay toggles by group
 
+## Purpose: Debug service managing debug state and selection.
 signal state_changed(state: DebugState)
 signal selection_changed(selected: Node)
 # Debug command plumbing (hook SquadManager to these later).

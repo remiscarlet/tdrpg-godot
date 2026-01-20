@@ -2,6 +2,7 @@ class_name SquadStateHold
 extends SquadStateBase
 
 
+## Purpose: Squad FSM state for holding position.
 func enter(ctx: Dictionary) -> void:
     # Optional: clear path when entering hold.
     var rt := _rt(ctx)

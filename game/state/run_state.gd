@@ -1,5 +1,6 @@
 class_name RunState
 extends Resource
+## Purpose: Resource tracking the current run state.
 
 # ---------------------------
 # Convenience API

@@ -1,5 +1,6 @@
 class_name AttachmentsRig
 extends Node2D
+## Purpose: Actor rig exposing roots and module host for wiring.
 
 # Cached slot roots (available pre-tree)
 var _components_root: Node

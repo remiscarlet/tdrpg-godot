@@ -1,6 +1,7 @@
 class_name TargetSensor2DComponent
 extends AreaCandidateDetectorBase
 
+## Purpose: Sensor component for targetable actors.
 signal target_sensed(node: Hurtbox2DComponent)
 
 var sensor_radius: float

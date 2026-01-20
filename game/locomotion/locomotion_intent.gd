@@ -1,6 +1,7 @@
 class_name LocomotionIntent
 extends RefCounted
 
+## Purpose: Data describing a locomotion intent and constraints.
 var id: StringName = StringNames.EMPTY
 # Callable() -> Vector2
 var goal_provider: Callable

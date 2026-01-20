@@ -1,6 +1,7 @@
 class_name PlayerInputController
 extends Node2D
 
+## Purpose: Controller that converts player input into actions.
 var delay_config: Dictionary[StringName, Dictionary] = {
     Inputs.CONFIRM: {
         "last": 0.0,

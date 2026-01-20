@@ -1,5 +1,6 @@
 extends Node
 
+## Purpose: Bootstraps the run, HUD, and level systems.
 var meta_state: MetaState = MetaState.new()
 var run_state: RunState
 

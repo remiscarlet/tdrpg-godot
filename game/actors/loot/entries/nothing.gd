@@ -2,6 +2,7 @@ class_name LootEntryNothing
 extends LootEntry
 
 
+## Purpose: Loot entry that yields nothing.
 func _init() -> void:
     item_id = StringNames.EMPTY
 

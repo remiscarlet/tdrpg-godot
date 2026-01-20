@@ -1,6 +1,7 @@
 class_name LocomotionIntentStateBase
 extends Node
 
+## Purpose: Base AI state that emits locomotion intents.
 @export var driver_path: NodePath = NodePath("../../../NavIntentLocomotionDriver")
 @export var body_path: NodePath
 @export var clear_intent_on_exit: bool = true

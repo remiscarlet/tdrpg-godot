@@ -1,6 +1,7 @@
 class_name Inventory
 extends Resource
 
+## Purpose: Inventory resource with item stacks and helpers.
 var items: Dictionary[StringName, int] = { }
 var capacity: int
 

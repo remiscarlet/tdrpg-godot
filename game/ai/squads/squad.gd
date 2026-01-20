@@ -1,6 +1,7 @@
 class_name Squad
 extends RefCounted
 
+## Purpose: Data container describing a squad and members.
 const GOLDEN_ANGLE: float = PI * (3.0 - sqrt(5.0))
 const DIRECTIVE_CHANGED := &"directive_changed"
 

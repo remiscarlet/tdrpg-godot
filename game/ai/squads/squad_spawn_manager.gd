@@ -1,6 +1,7 @@
 class_name SquadSpawnManager
 extends Node
 
+## Purpose: Manages squad spawn requests and policies.
 @export var squad_system_path: NodePath
 @export var combatant_system: CombatantSystem
 # Policy

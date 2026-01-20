@@ -1,5 +1,6 @@
 extends Node
 
+## Purpose: Routes HUD input actions to the UI.
 var delay_config: Dictionary[StringName, Dictionary] = {
     Inputs.ZOOM_IN: {
         "last": 0.0,

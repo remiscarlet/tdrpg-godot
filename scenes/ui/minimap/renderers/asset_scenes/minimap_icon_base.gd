@@ -1,6 +1,7 @@
 class_name MinimapIconBase
 extends Node2D
 
+## Purpose: Base class for minimap icon scenes.
 var configured: bool = false
 var color: Color
 

@@ -1,6 +1,7 @@
 class_name DirectorConfig
 extends Resource
 
+## Purpose: Configuration resource for the director system.
 @export var enabled: bool = false
 @export var tick_interval_sec: float = 1.0
 @export var max_observation_queue: int = 128

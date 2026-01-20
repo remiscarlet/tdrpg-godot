@@ -1,6 +1,7 @@
 class_name MapRenderer
 extends RendererBase
 
+## Purpose: Scene script for the minimap navpoly renderer.
 @export var fill_color: Color = Color(1, 1, 1, 0.12)
 @export var outline_color: Color = Color(1, 1, 1, 0.65)
 @export_range(1.0, 12.0, 0.5) var outline_width: float = 2.0

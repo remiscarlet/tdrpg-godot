@@ -1,6 +1,7 @@
 class_name SquadSystem
 extends Node2D
 
+## Purpose: System node that manages squad runtime.
 signal squad_created(squad_id: int)
 signal squad_disbanded(squad_id: int)
 signal squad_slot_targets_updated(squad_id: int, targets: Dictionary) # Node2D -> Vector2

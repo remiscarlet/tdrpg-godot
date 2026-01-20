@@ -1,6 +1,7 @@
 class_name HealthComponent
 extends Node
 
+## Purpose: Component that tracks health and damage.
 signal health_changed(current: float, max: float)
 signal died(source: Node)
 

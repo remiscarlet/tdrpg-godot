@@ -1,5 +1,6 @@
 class_name StringNames
 extends RefCounted
+## Purpose: Defines shared StringName constants.
 
 # Canonical StringName constants for common sentinel/placeholder values.
 const EMPTY := StringName()

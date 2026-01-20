@@ -2,6 +2,7 @@ class_name PlayerMouseAimingWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Player mouse aiming into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.PLAYER_MOUSE_AIM_WIRING
 

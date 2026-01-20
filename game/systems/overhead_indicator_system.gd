@@ -1,6 +1,7 @@
 class_name OverheadIndicatorSystem
 extends Node
 
+## Purpose: System that manages overhead indicator UI.
 @export var indicator_scene: PackedScene
 @export var anchor_rel_path: NodePath = NodePath("AttachmentsRig/ViewsRoot/OverheadIndicatorAnchor")
 

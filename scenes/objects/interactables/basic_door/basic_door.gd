@@ -1,6 +1,7 @@
 class_name BasicDoor
 extends InteractableBase
 
+## Purpose: Scene script for the basic door interactable.
 signal state_changed(state: DoorState)
 
 enum DoorState { CLOSED, OPEN, LOCKED }

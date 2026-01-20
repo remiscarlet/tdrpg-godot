@@ -1,6 +1,7 @@
 class_name CombatantSpawnContext
 extends RefCounted
 
+## Purpose: Spawn context data for combatant creation.
 var origin: Vector2
 var direction: Vector2 = Vector2.RIGHT
 var combatant_id: StringName

@@ -1,6 +1,7 @@
 class_name InteractableDetectorComponent
 extends AreaCandidateDetectorBase
 
+## Purpose: Detector component for nearby interactables.
 @onready var interactor: Node2D = get_parent().get_parent().get_parent().get_parent()
 
 

@@ -2,6 +2,7 @@ class_name TurretAutofireWiringModule
 extends FeatureModuleBase
 
 
+## Purpose: Feature module that wires Turret autofire into the attachments rig.
 func id() -> StringName:
     return AttachmentModules.TURRET_AUTOFIRE_WIRING
 
