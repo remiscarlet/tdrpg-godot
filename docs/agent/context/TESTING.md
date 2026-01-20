@@ -19,6 +19,10 @@ Quick reference for how we test the project and how LLM agents should treat test
 - Use `extends GdUnitTestSuite`; start with a passing placeholder to confirm discovery before deep assertions.
 - Prefer fastest scope runs (single file → folder → full suite) when iterating.
 
+## Writing Tests
+- All test functions must have a docblock explaining the purpose in plain English.
+- When interacting with or modifying a test, always validate the test is doing what the description is saying. Ensure the test name reflects the purpose of the test.
+
 ## Agentic Workflow Notes
 - Treat context and skills as part of the test surface area:
   - Consult relevant skills before/while touching tests (e.g., `docs/agent/skills/tdd_loop.md` for TDD, `doc_update.md` when updating commands/instructions).

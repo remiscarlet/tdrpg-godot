@@ -18,7 +18,7 @@ All skills must have a header with the following fields:
 | `name`     | False       | Human readable one-liner describing the skill |
 | `version`  | False       | Version tracking. Update this any time the contents of the file change. |
 | `last_verified` | False  | The last date a human verified this skill as working. You must have human confirmation before updating this field |
-| `requirements`  | False  | A bullet list of other skills this skill relies on. It may be an empty list, but must be explicit. |
+| `dependencies`  | False  | A bullet list of other skills this skill relies on. It may be an empty list, but must be explicit. |
 | `outputs`       | True   | Optional field describing files or directories this skill will modify |
 
 Example:
@@ -29,6 +29,7 @@ name: Documentation Updating
 version: 1.0
 last_verified: 2026-01-19
 scope: repo-wide
+dependencies: []
 outputs: ["docs/**", "**/AGENTS*.md", "README*.md", "CHANGELOG*.md"]
 ---
 ```

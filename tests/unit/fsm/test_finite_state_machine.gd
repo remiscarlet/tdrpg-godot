@@ -42,6 +42,7 @@ class TestState extends FSMState:
         events.append([event, data])
 
 
+## Initializes FSM with a state and verifies enter/update occur once on first step.
 func test_init_and_step_sets_initial_state() -> void:
     var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
     var ctx: Dictionary = {}
@@ -55,6 +56,7 @@ func test_init_and_step_sets_initial_state() -> void:
     assert_int(initial.updates).is_equal(1)
 
 
+## Ensures state switches requested during update are applied after the frame ends.
 func test_switch_during_update_applies_after_update() -> void:
     var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
     var ctx: Dictionary = {"fsm": fsm}
@@ -73,6 +75,7 @@ func test_switch_during_update_applies_after_update() -> void:
     assert_int(state_b.updates).is_equal(0) # update happens on next step
 
 
+## Verifies events emitted on the FSM are forwarded to the active state's handler.
 func test_emit_event_forwards_to_active_state() -> void:
     var fsm: FiniteStateMachine = auto_free(FiniteStateMachine.new())
     var ctx: Dictionary = {}

@@ -2,6 +2,7 @@
 id: implement-spec
 name: Implement Specification
 version: 1.1
+last_verified: 2026-01-20
 dependencies:
   - "docs/agent/skills/doc_update.md"
   - "docs/agent/skills/tdd_loop.md"

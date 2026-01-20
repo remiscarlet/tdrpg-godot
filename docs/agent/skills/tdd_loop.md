@@ -3,7 +3,7 @@ id: tdd-loop
 name: Test-Driven Development Loop
 version: 1.0
 scope: generic
-dependencies: None
+dependencies: []
 last_verified: 2026-01-19
 ---
 

@@ -9,12 +9,14 @@ func before_test() -> void:
     inventory = Inventory.new(2)
 
 
+## Verifies a new inventory reports empty state and capacity flags correctly.
 func test_empty_inventory_has_zero_size() -> void:
     assert_int(inventory.size()).is_equal(0)
     assert_bool(inventory.is_empty()).is_true()
     assert_bool(inventory.is_full()).is_false()
 
 
+## Confirms adding items within capacity succeeds and updates counts/full flag.
 func test_add_item_within_capacity_succeeds() -> void:
     assert_bool(inventory.add_item(&"iron", 1)).is_true()
     assert_int(inventory.get_item_qty_or_default(&"iron")).is_equal(1)
@@ -26,6 +28,7 @@ func test_add_item_within_capacity_succeeds() -> void:
     assert_bool(inventory.is_full()).is_true()
 
 
+## Ensures adding beyond capacity fails without altering stored items.
 func test_add_item_fails_when_capacity_reached() -> void:
     inventory.add_item(&"iron", 1)
     inventory.add_item(&"copper", 1)
@@ -36,18 +39,21 @@ func test_add_item_fails_when_capacity_reached() -> void:
     assert_bool(inventory.is_full()).is_true()
 
 
+## Rejects negative quantity additions and leaves inventory unchanged.
 func test_add_item_rejects_negative_quantity() -> void:
     var result := inventory.add_item(&"iron", -1)
     assert_bool(result).is_false()
     assert_int(inventory.size()).is_equal(0)
 
 
+## Allows zero-quantity additions as no-ops without modifying size.
 func test_add_item_allows_zero_quantity_noop() -> void:
     var result := inventory.add_item(&"iron", 0)
     assert_bool(result).is_true()
     assert_int(inventory.size()).is_equal(0)
 
 
+## Covers success and failure removal paths and resulting quantities.
 func test_remove_item_success_and_failure_paths() -> void:
     inventory.add_item(&"iron", 2)
 
@@ -60,6 +66,7 @@ func test_remove_item_success_and_failure_paths() -> void:
     assert_bool(inventory.remove_item(&"unknown", 1)).is_false()
 
 
+## Ensures negative removal requests are rejected and do not alter inventory.
 func test_remove_item_negative_rejected() -> void:
     var result := inventory.remove_item(&"iron", -1)
     assert_bool(result).is_false()

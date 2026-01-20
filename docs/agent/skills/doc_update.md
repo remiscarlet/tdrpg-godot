@@ -4,7 +4,7 @@ name: Documentation Updating
 version: 1.0
 last_verified: 2026-01-19
 scope: repo-wide
-dependencies: None
+dependencies: []
 outputs: ["docs/**", "**/AGENTS*.md", "README*.md", "CHANGELOG*.md"]
 ---
 

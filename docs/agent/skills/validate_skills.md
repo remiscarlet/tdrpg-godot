@@ -2,6 +2,7 @@
 id: validate-skills
 name: Validate all existing skills
 version: 1.0
+last_verified: 2026-01-20
 dependencies:
   - "docs/agent/skills/*"
 ---

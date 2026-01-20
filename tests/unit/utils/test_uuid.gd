@@ -3,6 +3,7 @@ extends GdUnitTestSuite
 const Uuid = preload("res://game/utils/uuid.gd")
 
 
+## Checks generated UUID v4 strings have correct length, separators, and version/variant bits.
 func test_v4_format_and_bits() -> void:
     var id := Uuid.v4()
     assert_int(id.length()).is_equal(36)
@@ -16,6 +17,7 @@ func test_v4_format_and_bits() -> void:
     assert_array(["8", "9", "a", "b", "A", "B"]).contains(variant_char)
 
 
+## Ensures repeated UUID v4 calls produce unique identifiers.
 func test_v4_generates_unique_ids() -> void:
     var seen := {}
     for i in 10:
