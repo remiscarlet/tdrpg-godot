@@ -1,6 +1,8 @@
 extends GdUnitTestSuite
 
 const DefinitionDB = preload("res://game/providers/definition_db.gd")
+const Loot = preload("res://game/utils/constants/loot.gd")
+const CombatantTypes = preload("res://game/utils/constants/combatant_types.gd")
 
 
 ## Loads definitions from the default directories and verifies core tables are populated.
@@ -21,17 +23,17 @@ func test_lookup_returns_expected_resources() -> void:
     var db: DefinitionDB = auto_free(DefinitionDB.new())
     db._ready()
 
-    var scrap = db.get_item(&"scrap")
+    var scrap = db.get_item(Loot.SCRAP)
     assert_object(scrap).is_not_null()
     assert_str(scrap.id).is_equal("scrap")
 
-    var default_enemy = db.get_enemy(&"default_enemy")
+    var default_enemy = db.get_enemy(CombatantTypes.DEFAULT_ENEMY)
     assert_object(default_enemy).is_not_null()
     assert_str(default_enemy.id).is_equal("default_enemy")
 
-    var default_player = db.get_player(&"player")
+    var default_player = db.get_player(CombatantTypes.PLAYER)
     assert_object(default_player).is_not_null()
     assert_str(default_player.id).is_equal("player")
 
-    var combatant = db.get_combatant(&"default_enemy")
+    var combatant = db.get_combatant(CombatantTypes.DEFAULT_ENEMY)
     assert_object(combatant).is_same(default_enemy)

@@ -13,12 +13,12 @@ enum Kind {
 var kind: Kind = Kind.UNKNOWN
 var position: Vector2 = Vector2.ZERO
 var intensity: float = 1.0
-var source_id: StringName = &""
+var source_id: StringName = StringNames.EMPTY
 var timestamp_ms: int = 0
 var metadata: Dictionary = { }
 
 
-static func at_position(kind: Kind, pos: Vector2, intensity: float = 1.0, source_id: StringName = &"") -> DirectorObservationEvent:
+static func at_position(kind: Kind, pos: Vector2, intensity: float = 1.0, source_id: StringName = StringNames.EMPTY) -> DirectorObservationEvent:
     var e := DirectorObservationEvent.new()
     e.kind = kind
     e.position = pos

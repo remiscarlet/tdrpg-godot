@@ -93,7 +93,7 @@ func _load_dir(dir_path: String, expected_type: Variant) -> Dictionary[StringNam
             continue
 
         var def := res as DefinitionBase
-        if def == null or def.id == &"":
+        if def == null or def.id == StringNames.EMPTY:
             push_error("DefinitionDB: Missing id in %s" % path)
             continue
 

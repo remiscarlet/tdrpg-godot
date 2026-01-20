@@ -2,17 +2,17 @@ class_name DebugInputController
 extends Node
 
 # Actions (created automatically if missing).
-const ACT_TOGGLE_UI := &"debug_toggle_ui"
-const ACT_TOGGLE_ENABLED := &"debug_toggle_enabled"
-const ACT_TOGGLE_SQUAD := &"debug_toggle_squad_overlay"
-const ACT_TOGGLE_COMBATANT := &"debug_toggle_combatant_overlay"
-const ACT_TOGGLE_NAV := &"debug_toggle_navigation_overlay"
-const ACT_TOGGLE_SELECTION := &"debug_toggle_selection_overlay"
-const ACT_TOGGLE_HEATMAP := &"debug_toggle_heatmap_overlay"
-const ACT_TOGGLE_BELIEF := &"debug_toggle_belief_overlay"
-const ACT_CYCLE_TARGET_PREV := &"debug_cycle_target_prev"
-const ACT_CYCLE_TARGET_NEXT := &"debug_cycle_target_next"
-const ACT_FORCE_MOVE_SQUAD_HERE := &"debug_force_move_squad_here"
+const ACT_TOGGLE_UI := DebugFlags.ACT_TOGGLE_UI
+const ACT_TOGGLE_ENABLED := DebugFlags.ACT_TOGGLE_ENABLED
+const ACT_TOGGLE_SQUAD := DebugFlags.ACT_TOGGLE_SQUAD
+const ACT_TOGGLE_COMBATANT := DebugFlags.ACT_TOGGLE_COMBATANT
+const ACT_TOGGLE_NAV := DebugFlags.ACT_TOGGLE_NAVIGATION
+const ACT_TOGGLE_SELECTION := DebugFlags.ACT_TOGGLE_SELECTION
+const ACT_TOGGLE_HEATMAP := DebugFlags.ACT_TOGGLE_HEATMAP
+const ACT_TOGGLE_BELIEF := DebugFlags.ACT_TOGGLE_BELIEF
+const ACT_CYCLE_TARGET_PREV := DebugFlags.ACT_CYCLE_TARGET_PREV
+const ACT_CYCLE_TARGET_NEXT := DebugFlags.ACT_CYCLE_TARGET_NEXT
+const ACT_FORCE_MOVE_SQUAD_HERE := DebugFlags.ACT_FORCE_MOVE_SQUAD_HERE
 
 @export var enabled: bool = true
 
@@ -53,7 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
     # Always allow toggling debug globally.
     if event.is_action_pressed(String(ACT_TOGGLE_ENABLED)):
-        _debug.toggle(&"enabled")
+        _debug.toggle(DebugFlags.ENABLED)
         get_viewport().set_input_as_handled()
         return
 
@@ -62,37 +62,37 @@ func _unhandled_input(event: InputEvent) -> void:
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_UI)):
-        _debug.toggle(&"show_ui")
+        _debug.toggle(DebugFlags.SHOW_UI)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_SQUAD)):
-        _debug.toggle(&"overlay_squad")
+        _debug.toggle(DebugFlags.OVERLAY_SQUAD)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_COMBATANT)):
-        _debug.toggle(&"overlay_combatant")
+        _debug.toggle(DebugFlags.OVERLAY_COMBATANT)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_NAV)):
-        _debug.toggle(&"overlay_navigation")
+        _debug.toggle(DebugFlags.OVERLAY_NAVIGATION)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_SELECTION)):
-        _debug.toggle(&"overlay_selection")
+        _debug.toggle(DebugFlags.OVERLAY_SELECTION)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_HEATMAP)):
-        _debug.toggle(&"overlay_heatmap")
+        _debug.toggle(DebugFlags.OVERLAY_HEATMAP)
         get_viewport().set_input_as_handled()
         return
 
     if event.is_action_pressed(String(ACT_TOGGLE_BELIEF)):
-        _debug.toggle(&"overlay_belief")
+        _debug.toggle(DebugFlags.OVERLAY_BELIEF)
         get_viewport().set_input_as_handled()
         return
 

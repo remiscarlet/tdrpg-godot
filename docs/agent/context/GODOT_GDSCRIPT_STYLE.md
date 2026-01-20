@@ -25,5 +25,13 @@ These are project-specific preferences to keep the codebase coherent and Godot-f
 - Use signals for cross-system notifications when ownership is unclear.
 - Avoid signal spaghetti; keep event flow obvious.
 
+## StringName usage
+- Do not use raw `&"..."` literals in code. Define a `const` for every StringName instead.
+- Prefer shared constants under `game/utils/constants/` (e.g., `DebugFlags`, `AttachmentModules`, `LocomotionIntents`, `StringNames.EMPTY`).
+- If a constant will be used/read outside of the file it's contained it, it MUST live under `game/utils/constants/`.
+- Module-specific identifiers may use a local `const` at the top of the file.
+- Use `StringNames.EMPTY` (or another shared sentinel) instead of `&""` defaults.
+- Enforce locally with `make lint-stringnames`.
+
 ## Command line usage
 Use `--path` or `--upwards` so Godot can locate `project.godot` reliably.

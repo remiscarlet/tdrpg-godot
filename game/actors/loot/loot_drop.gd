@@ -11,4 +11,4 @@ func _init(id: StringName, new_quantity: int = 1) -> void:
 
 
 func is_nothing() -> bool:
-    return loot_id == &""
+    return loot_id == StringNames.EMPTY

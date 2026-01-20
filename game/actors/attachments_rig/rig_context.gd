@@ -10,6 +10,6 @@ var level_container: LevelContainer # optional (your LevelContainer type)
 
 
 func tag() -> String:
-    var a: StringName = actor.name if actor else &"<?>"
-    var d := definition.id if definition and "id" in definition else &"no_def"
+    var a: StringName = actor.name if actor else StringNames.UNKNOWN
+    var d := definition.id if definition and "id" in definition else StringNames.NO_DEF
     return "[%s|%s]" % [a, d]

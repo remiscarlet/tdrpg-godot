@@ -11,7 +11,7 @@ extends Marker2D
 
 
 func _ready() -> void:
-    if auto_add_to_group and spawn_group != &"":
+    if auto_add_to_group and spawn_group != StringNames.EMPTY:
         add_to_group(spawn_group)
 
 

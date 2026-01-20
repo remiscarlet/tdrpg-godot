@@ -45,9 +45,9 @@ func _build_intent() -> LocomotionIntent:
 
 
 # Override point: which intent id should this state react to completing?
-# Return &"" to ignore completions.
+# Return StringNames.EMPTY to ignore completions.
 func _watched_intent_id() -> StringName:
-    return &""
+    return StringNames.EMPTY
 
 
 # Override point: what to do when watched intent completes (default: re-apply current intent)
@@ -67,7 +67,7 @@ func _apply_intent() -> void:
 
 func _on_driver_intent_completed(intent_id: StringName) -> void:
     var watched := _watched_intent_id()
-    if watched == &"":
+    if watched == StringNames.EMPTY:
         return
     if intent_id == watched:
         _on_watched_intent_completed()

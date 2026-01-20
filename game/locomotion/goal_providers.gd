@@ -1,6 +1,10 @@
 class_name GoalProviders
 extends RefCounted
 
+const GET_RETURN_POS := &"get_return_pos"
+const GET_FOLLOW_DIRECTIVE_POS := &"get_follow_directive_pos"
+const HAS_ACTIVE_MOVE_DIRECTIVE := &"has_active_move_directive"
+
 
 static func static_point(p: Vector2) -> Callable:
     return func() -> Vector2:
@@ -28,14 +32,14 @@ static func method_bool(obj: Object, method_name: StringName) -> Callable:
 # SquadLink adapters (match your existing SquadLink stub)
 static func squad_return_pos(squad_link: SquadLink) -> Callable:
     # squad_link.get_return_pos() -> Vector2
-    return method_vec2(squad_link, &"get_return_pos")
+    return method_vec2(squad_link, GET_RETURN_POS)
 
 
 static func squad_follow_goal_pos(squad_link: SquadLink) -> Callable:
     # squad_link.get_follow_directive_pos() -> Vector2
-    return method_vec2(squad_link, &"get_follow_directive_pos")
+    return method_vec2(squad_link, GET_FOLLOW_DIRECTIVE_POS)
 
 
 static func squad_has_directive_goal(squad_link: SquadLink) -> Callable:
     # squad_link.has_active_follow_goal() -> bool
-    return method_bool(squad_link, &"has_active_move_directive")
+    return method_bool(squad_link, HAS_ACTIVE_MOVE_DIRECTIVE)

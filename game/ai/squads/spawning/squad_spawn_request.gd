@@ -6,7 +6,7 @@ extends RefCounted
 
 var team_id: int = -1
 var squad_size: int = 0
-var combatant_id: StringName = &""
+var combatant_id: StringName = StringNames.EMPTY
 # Optional selector hints (used by placement later).
 var spawn_tags: Array[StringName] = []
 
@@ -14,7 +14,7 @@ var spawn_tags: Array[StringName] = []
 func _init(
         p_team_id: int = -1,
         p_squad_size: int = 0,
-        p_combatant_id: StringName = &"",
+        p_combatant_id: StringName = StringNames.EMPTY,
         p_spawn_tags: Array[StringName] = [],
 ) -> void:
     team_id = p_team_id
@@ -24,4 +24,4 @@ func _init(
 
 
 func is_valid() -> bool:
-    return team_id >= 0 and squad_size > 0 and combatant_id != &""
+    return team_id >= 0 and squad_size > 0 and combatant_id != StringNames.EMPTY

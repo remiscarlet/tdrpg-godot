@@ -19,7 +19,7 @@ func test_spawn_instantiates_and_parents_lootable() -> void:
     system.loot_container = loot_container
     system.lootable_base_scene = _make_stub_scene()
 
-    var loot := LootDrop.new(&"scrap", 1)
+    var loot := LootDrop.new(Loot.SCRAP, 1)
     var spawned: LootableBase = await system.spawn(loot, Vector2(5, 0), Vector2.RIGHT)
 
     assert_object(spawned).is_not_null()

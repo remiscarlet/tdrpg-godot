@@ -43,7 +43,7 @@ static func follow_squad_goal(
         slowdown_radius: float = 0.0,
 ) -> LocomotionIntent:
     var intent := LocomotionIntent.new(
-        &"follow_squad_goal",
+        LocomotionIntents.FOLLOW_SQUAD_GOAL,
         GoalProviders.squad_follow_goal_pos(squad_link),
         GoalProviders.squad_has_directive_goal(squad_link),
     )

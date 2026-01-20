@@ -41,7 +41,7 @@ func _validate_ready() -> bool:
         return false
     if spawn_placement == null:
         return false
-    if spawn_markers_group == &"":
+    if spawn_markers_group == StringNames.EMPTY:
         return false
     return true
 

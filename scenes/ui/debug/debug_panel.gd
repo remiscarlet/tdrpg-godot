@@ -26,35 +26,35 @@ func _ready() -> void:
 
     _enabled_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"enabled")
+            _debug.toggle(DebugFlags.ENABLED)
     )
     _show_ui_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"show_ui")
+            _debug.toggle(DebugFlags.SHOW_UI)
     )
     _squad_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_squad")
+            _debug.toggle(DebugFlags.OVERLAY_SQUAD)
     )
     _combatant_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_combatant")
+            _debug.toggle(DebugFlags.OVERLAY_COMBATANT)
     )
     _nav_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_navigation")
+            _debug.toggle(DebugFlags.OVERLAY_NAVIGATION)
     )
     _sel_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_selection")
+            _debug.toggle(DebugFlags.OVERLAY_SELECTION)
     )
     _heatmap_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_heatmap")
+            _debug.toggle(DebugFlags.OVERLAY_HEATMAP)
     )
     _belief_cb.toggled.connect(
         func(v: bool) -> void:
-            _debug.toggle(&"overlay_belief")
+            _debug.toggle(DebugFlags.OVERLAY_BELIEF)
     )
 
     _on_debug_state_changed(_debug.state)

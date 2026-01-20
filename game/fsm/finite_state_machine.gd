@@ -4,15 +4,16 @@ extends Node
 var _ctx: Dictionary
 var _state: FSMState
 var _pending: FSMState = null
-var _pending_reason: StringName = &""
+var _pending_reason: StringName = StringNames.EMPTY
+const INIT_REASON := &"init"
 
 
 func init(ctx: Dictionary, initial: FSMState) -> void:
     _ctx = ctx
-    switch_to(initial, &"init")
+    switch_to(initial, INIT_REASON)
 
 
-func switch_to(next: FSMState, reason: StringName = &"") -> void:
+func switch_to(next: FSMState, reason: StringName = StringNames.EMPTY) -> void:
     _pending = next
     _pending_reason = reason
 

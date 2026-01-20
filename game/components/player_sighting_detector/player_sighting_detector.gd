@@ -40,7 +40,7 @@ func _handle_collider(obj: Node) -> void:
             DirectorObservationEvent.Kind.PLAYER_SIGHTING,
             pos,
             intensity,
-            &"player_sighting_detector",
+            StringNames.PLAYER_SIGHTING_DETECTOR,
         ),
     )
 

@@ -14,7 +14,7 @@ Workflows and runbooks describing specificpredefined flows.
 All skills must have a header with the following fields:
 | Field name | Is Optional | Description |
 |------------|-------------|-------------|
-| `id`       | False       | `skill-name-slug` |
+| `id`       | False       | `skill-name-slug` Prefer hyphens |
 | `name`     | False       | Human readable one-liner describing the skill |
 | `version`  | False       | Version tracking. Update this any time the contents of the file change. |
 | `last_verified` | False  | The last date a human verified this skill as working. You must have human confirmation before updating this field |
@@ -33,3 +33,6 @@ dependencies: []
 outputs: ["docs/**", "**/AGENTS*.md", "README*.md", "CHANGELOG*.md"]
 ---
 ```
+
+## Filename Format
+Filenames should all use underscore instead of hyphens.

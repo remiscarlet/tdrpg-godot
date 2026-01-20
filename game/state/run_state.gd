@@ -9,7 +9,7 @@ signal currency_changed(currency_id: StringName, new_value: int)
 signal inventory_changed(item_id: StringName, new_qty: int)
 
 ## Run/session identity
-@export var run_id: StringName = &""
+@export var run_id: StringName = StringNames.EMPTY
 @export var rng_seed: int = 0
 @export var started_unix: float = 0.0
 ## Inventory

@@ -3,7 +3,7 @@ extends FeatureModuleBase
 
 
 func id() -> StringName:
-    return &"player_mouse_aim_wiring"
+    return AttachmentModules.PLAYER_MOUSE_AIM_WIRING
 
 
 func stages() -> int:

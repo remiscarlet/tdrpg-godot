@@ -1,7 +1,7 @@
 class_name LocomotionIntent
 extends RefCounted
 
-var id: StringName = &""
+var id: StringName = StringNames.EMPTY
 # Callable() -> Vector2
 var goal_provider: Callable
 # Optional Callable() -> bool
@@ -18,7 +18,7 @@ var complete_on_arrival: bool = false
 
 
 func _init(
-        _id: StringName = &"",
+        _id: StringName = StringNames.EMPTY,
         _goal_provider: Callable = Callable(),
         _active_provider: Callable = Callable(),
 ) -> void:

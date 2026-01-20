@@ -24,21 +24,21 @@ signal state_changed
 
 func toggle(flag: StringName) -> void:
     match flag:
-        &"enabled":
+        DebugFlags.ENABLED:
             enabled = not enabled
-        &"show_ui":
+        DebugFlags.SHOW_UI:
             show_ui = not show_ui
-        &"overlay_squad":
+        DebugFlags.OVERLAY_SQUAD:
             overlay_squad = not overlay_squad
-        &"overlay_combatant":
+        DebugFlags.OVERLAY_COMBATANT:
             overlay_combatant = not overlay_combatant
-        &"overlay_navigation":
+        DebugFlags.OVERLAY_NAVIGATION:
             overlay_navigation = not overlay_navigation
-        &"overlay_selection":
+        DebugFlags.OVERLAY_SELECTION:
             overlay_selection = not overlay_selection
-        &"overlay_heatmap":
+        DebugFlags.OVERLAY_HEATMAP:
             overlay_heatmap = not overlay_heatmap
-        &"overlay_belief":
+        DebugFlags.OVERLAY_BELIEF:
             overlay_belief = not overlay_belief
         _:
             push_warning("DebugState.toggle(): unknown flag '%s'" % String(flag))

@@ -43,7 +43,7 @@ func configure(ctx: RangedAttackSpawnContext) -> void:
 
     # Tagging
     add_to_group(Groups.RANGED_ATTACK)
-    if ctx.element != &"":
+    if ctx.element != StringNames.EMPTY:
         add_to_group(StringName("%s_%s" % [Groups.RANGED_ATTACK, String(ctx.element)]))
 
 

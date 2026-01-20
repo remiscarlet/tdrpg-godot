@@ -3,7 +3,7 @@ extends FeatureModuleBase
 
 
 func id() -> StringName:
-    return &"damageable_core"
+    return AttachmentModules.DAMAGEABLE_CORE
 
 
 func stages() -> int:

@@ -1,6 +1,7 @@
 class_name SquadStatePatrol
 extends SquadStateBase
 
+const PATROL_EMPTY := &"patrol_empty"
 
 func physics_update(ctx: Dictionary, dt: float) -> void:
     var rt := _rt(ctx)
@@ -11,7 +12,7 @@ func physics_update(ctx: Dictionary, dt: float) -> void:
     if rt.directive.patrol_points.size() == 0:
         # Degenerate patrol: just hold where you are.
         _squad(ctx).set_directive(SquadDirective.hold(rt.anchor_position))
-        _fsm(ctx).switch_to(ctx[SquadFSMKeys.ST_HOLD], &"patrol_empty")
+        _fsm(ctx).switch_to(ctx[SquadFSMKeys.ST_HOLD], PATROL_EMPTY)
         return
 
     var squad := _squad(ctx)

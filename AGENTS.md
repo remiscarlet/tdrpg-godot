@@ -25,6 +25,11 @@ The `docs/agent/` tree is the agent/human shared knowledge base. It has two entr
 and keep deep reference material and repeatable workflows under `docs/agent/context/` and
 `docs/agent/skills/`. 
 
+## Directories and Environment
+- Never create files outside of the repo root.
+    - If you must create a file above the repo root, you must get human confirmation.
+- Never use a `~` for the home directory as this will point you outside of the repo root.
+
 ## Using Skills
 Whenever the user requests a change or discussion relating to the codebase, check the `docs/agent/skills/index.md` file for any relevant skills.
 If there is a relevant skill, you must use it.
@@ -106,5 +111,3 @@ Recommended defaults:
     - Recording decisions: follow `docs/agent/skills/record_design_decision.md`
 - Implementing changes: follow `docs/agent/skills/implement_spec.md`
 - Documentation updates (finalizer): follow `docs/agent/skills/doc_update.md`
-
-**Doc updates are first-class:** If a ch

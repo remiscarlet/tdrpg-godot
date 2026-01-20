@@ -3,7 +3,7 @@ extends FeatureModuleBase
 
 
 func id() -> StringName:
-    return &"squad_wiring"
+    return AttachmentModules.SQUAD_WIRING
 
 
 func stages() -> int:

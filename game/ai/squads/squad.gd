@@ -2,6 +2,7 @@ class_name Squad
 extends RefCounted
 
 const GOLDEN_ANGLE: float = PI * (3.0 - sqrt(5.0))
+const DIRECTIVE_CHANGED := &"directive_changed"
 
 var squad_id: int
 var team_id: int = 0
@@ -37,7 +38,7 @@ func set_directive(d: SquadDirective) -> void:
 
     # Optional: nudge FSM immediately (otherwise the next physics_step will route)
     if fsm != null:
-        fsm.emit_event(&"directive_changed", d)
+        fsm.emit_event(DIRECTIVE_CHANGED, d)
 
 
 func get_any_member() -> CombatantBase:

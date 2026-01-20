@@ -3,6 +3,7 @@ Inventory of available workflows under `docs/agent/skills/`. Use these as entry 
 
 | id | name | Purpose (short) |
 | --- | --- | --- |
+| git-commit | Git Commit Workflow | Safely stage with consent and create a local commit once work is done; never push. |
 | design-discussion | Discuss Design | Structure a design conversation to surface constraints, options, and next steps before committing. |
 | discuss-and-implement | Discuss and Implement (Fast Path) | Lightweight design plus immediate execution for low-risk, small-scope changes. |
 | doc-update | Documentation Updating | Keep docs/AGENTS/README accurate; required finalizer after changes or decisions. |

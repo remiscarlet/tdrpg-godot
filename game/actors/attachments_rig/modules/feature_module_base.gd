@@ -3,7 +3,7 @@ extends RefCounted
 
 
 func id() -> StringName:
-    return &"feature_module"
+    return AttachmentModules.FEATURE_MODULE
 
 
 func stages() -> int:

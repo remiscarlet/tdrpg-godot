@@ -178,7 +178,7 @@ func has_intent() -> bool:
 
 
 func current_intent_id() -> StringName:
-    return _intent.id if _intent != null else &""
+    return _intent.id if _intent != null else StringNames.EMPTY
 
 
 func get_last_goal() -> Vector2:

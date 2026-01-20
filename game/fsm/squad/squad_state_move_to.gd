@@ -1,6 +1,7 @@
 class_name SquadStateMoveTo
 extends SquadStateBase
 
+const MOVE_COMPLETE := &"move_complete"
 
 func physics_update(ctx: Dictionary, dt: float) -> void:
     var rt := _rt(ctx)
@@ -16,4 +17,4 @@ func physics_update(ctx: Dictionary, dt: float) -> void:
     if complete:
         # Convert MOVE_TO into HOLD at destination (your current behavior, but in-state).
         squad.set_directive(SquadDirective.hold(dest))
-        _fsm(ctx).switch_to(ctx[SquadFSMKeys.ST_HOLD], &"move_complete")
+        _fsm(ctx).switch_to(ctx[SquadFSMKeys.ST_HOLD], MOVE_COMPLETE)

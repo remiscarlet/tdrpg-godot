@@ -2,6 +2,8 @@ extends GdUnitTestSuite
 
 const FiniteStateMachine = preload("res://game/fsm/finite_state_machine.gd")
 const FSMState = preload("res://game/fsm/fsm_state.gd")
+const TO_B := &"to_b"
+const PING := &"ping"
 
 
 class TestState extends FSMState:
@@ -62,7 +64,7 @@ func test_switch_during_update_applies_after_update() -> void:
     var ctx: Dictionary = {"fsm": fsm}
     var state_b: TestState = TestState.new("B")
     var state_a: TestState = TestState.new("A", func(local_ctx, _dt):
-        local_ctx["fsm"].switch_to(state_b, &"to_b")
+        local_ctx["fsm"].switch_to(state_b, TO_B)
     )
 
     fsm.init(ctx, state_a)
@@ -84,7 +86,7 @@ func test_emit_event_forwards_to_active_state() -> void:
     fsm.init(ctx, state)
     fsm.step(0.1)
 
-    fsm.emit_event(&"ping", 123)
+    fsm.emit_event(PING, 123)
 
     assert_array(state.events).has_size(1)
-    assert_array(state.events[0]).is_equal([&"ping", 123])
+    assert_array(state.events[0]).is_equal([PING, 123])

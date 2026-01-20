@@ -29,7 +29,7 @@ func _init() -> void:
 # ---------------------------
 func get_currency(currency_id: StringName) -> int:
     match currency_id:
-        &"mystery_item":
+        Currencies.MYSTERY_ITEM:
             return mystery_item
         _:
             return 0
@@ -40,7 +40,7 @@ func add_currency(currency_id: StringName, delta: int) -> void:
         return
 
     match currency_id:
-        &"mystery_item":
+        Currencies.MYSTERY_ITEM:
             mystery_item = max(0, mystery_item + delta)
             meta_currency_changed.emit(currency_id, mystery_item)
         _:

@@ -56,6 +56,6 @@ func emit_director_observation(kind: DirectorObservationEvent.Kind, intensity: f
             kind,
             global_position,
             intensity,
-            &"combatant",
+            StringNames.COMBATANT,
         ),
     )

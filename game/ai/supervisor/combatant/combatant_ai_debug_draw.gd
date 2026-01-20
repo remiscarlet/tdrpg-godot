@@ -240,7 +240,7 @@ func _build_lines() -> PackedStringArray:
     # Supervisor state
     if _supervisor != null:
         var active_state := _supervisor_get_active_state(_supervisor)
-        var active_name: StringName = active_state.name if active_state != null else &"<none>"
+        var active_name: StringName = active_state.name if active_state != null else StringNames.NONE
         lines.append(
             "supervisor:%s state:%s returning:%s" % [
                 str(_supervisor.enabled),
@@ -454,10 +454,10 @@ func _driver_get_agent(d: Object) -> NavigationAgent2D:
 
 func _driver_current_intent_id(d: Object) -> StringName:
     if d == null:
-        return &""
+        return StringNames.EMPTY
     if d.has_method("current_intent_id"):
         return d.call("current_intent_id")
-    return &""
+    return StringNames.EMPTY
 
 
 func _body_get_desired_dir(b: Object) -> Vector2:

@@ -18,7 +18,10 @@ format:
 		--reorder-code \
 		{} \;
 
-lint-fix: format lint
+lint-fix: format lint lint-stringnames
+
+lint-stringnames:
+	python3 tools/lint_stringnames.py
 
 test:
 	godot --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a tests -rd res://tests/.reports

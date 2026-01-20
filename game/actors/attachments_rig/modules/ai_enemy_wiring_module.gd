@@ -5,7 +5,7 @@ const PhysicsUtils = preload("res://game/utils/physics_utils.gd")
 
 
 func id() -> StringName:
-    return &"ai_enemy_wiring"
+    return AttachmentModules.AI_ENEMY_WIRING
 
 
 func stages() -> int:

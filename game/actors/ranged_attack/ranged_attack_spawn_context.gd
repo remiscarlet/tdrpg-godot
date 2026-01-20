@@ -9,7 +9,7 @@ var team_id: int
 # Optional: for homing projectiles
 var target: Node2D = null
 # Optional: gameplay metadata
-var element: StringName = &""
+var element: StringName = StringNames.EMPTY
 var tags: Array[StringName] = []
 
 

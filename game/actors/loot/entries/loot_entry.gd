@@ -20,7 +20,7 @@ func is_eligible(ctx: LootContext) -> bool:
 
 
 func resolve(rng: RandomNumberGenerator, _ctx: LootContext, _depth: int) -> Array[LootDrop]:
-    if item_id == &"":
+    if item_id == StringNames.EMPTY:
         print("Resolving empty due to empty item_id")
         return []
     var q := rng.randi_range(qty_min, qty_max)
