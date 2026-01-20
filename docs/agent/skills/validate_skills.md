@@ -1,7 +1,7 @@
 ---
 id: validate-skills
 name: Validate all existing skills
-version: 1.0
+version: 1.1
 last_verified: 2026-01-20
 dependencies:
   - "docs/agent/skills/*"
@@ -11,6 +11,10 @@ dependencies:
 
 ## Purpose
 Using the requirements defined in `docs/agent/skills/AGENTS.override.md`, validate all skill files follow the expected format and satisfy all constraints.
+
+## When to Use
+- The user explicitly asks to "Validate skills" or "validate skills".
+- The user asks to confirm the skills index matches the skill catalog.
 
 ## Inputs (Required)
 None - Always validate all skills under `docs/agent/skills/`

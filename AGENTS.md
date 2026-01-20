@@ -29,6 +29,12 @@ The `docs/agent/` tree is the agent/human shared knowledge base. It has two entr
 and keep deep reference material and repeatable workflows under `docs/agent/context/` and
 `docs/agent/skills/`. 
 
+## ADRs vs Specs (when to use which)
+- Use ADRs for durable architectural/design decisions and trade-offs.
+- Use Specs for implementation plans tied to ADRs (phases, milestones, risks, validation).
+- Specs live under `docs/specs/`, must link their ADR(s), and be indexed in `docs/specs/index.md`.
+- Spec statuses are `Draft`, `Active`, `Retired`.
+
 ## Directories and Environment
 - Never create files outside of the repo root.
     - If you must create a file above the repo root, you must get human confirmation.

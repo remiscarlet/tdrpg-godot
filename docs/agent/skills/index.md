@@ -15,3 +15,4 @@ Inventory of available workflows under `docs/agent/skills/`. Use these as entry 
 | save-todos | Save Hot TODOs | Append concise TODO/reminder lines to docs/TODOS.md when explicitly requested. |
 | remove-todos | Remove Hot TODOs | Delete TODO/reminder lines from docs/TODOS.md when explicitly requested. |
 | refresh-context | Refresh Context | Reload AGENTS.md and docs/agent/** into context on explicit refresh request. |
+| spec-create | Create or Update Spec | Create or update specs/plans documents tied to ADRs. |
