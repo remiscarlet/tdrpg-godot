@@ -2,7 +2,7 @@
 
 | id | title | status | owner | linked ADRs | last updated |
 | --- | --- | --- | --- | --- | --- |
-| 0001 | Game tests plan | Draft | TBD | None | 2026-01-20 |
+| 0001 | Game tests plan | Active | TBD | None | 2026-01-21 |
 
 ## How to use this index
 - Add a row for every spec file in `docs/specs/`.

@@ -17,7 +17,7 @@ Default for all implementation work unless an explicit exemption applies.
 
 ## Inputs (Required)
 - Acceptance criteria (behavioral)
-- Test location conventions (where tests live, how to run them)
+- Optionally, a specific spec from `docs/specs/`
 
 ## Outputs (Required)
 - New or updated test(s)
